@@ -1,0 +1,12 @@
+.containerLogin {
+    
+    width: 40rem;
+    height: 30rem;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: goldenrod;
+    border-radius: 0.5rem;    
+}
