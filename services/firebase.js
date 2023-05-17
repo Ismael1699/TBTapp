@@ -1,20 +1,16 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyDaLDdF748T7-2QGL8NvTqTF111HOY17MU',
-  authDomain: 'database-tbt.firebaseapp.com',
-  projectId: 'database-tbt',
-  storageBucket: 'database-tbt.appspot.com',
-  messagingSenderId: '352228707504',
-  appId: '1:352228707504:web:97fdafabc8742a9245ff75',
-  measurementId: 'G-8NR67HECZ9',
+  apiKey: 'AIzaSyDdPQs_ApNCT5F0x5PORh6eN1dvj3ZVXm0',
+  authDomain: 'database-tbt-4c167.firebaseapp.com',
+  projectId: 'database-tbt-4c167',
+  storageBucket: 'database-tbt-4c167.appspot.com',
+  messagingSenderId: '207729276637',
+  appId: '1:207729276637:web:c0e81df1f9a443f25a4d34',
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 const auth = getAuth(app);
 export { auth };
