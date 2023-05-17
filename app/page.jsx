@@ -7,9 +7,15 @@ export default function LoginPage() {
   const [user, setUser] = useState('');
   const { password, setPassword } = useState('');
 
-  function userChange(e) {
-    return setUser(e.target.value);
+  const [credentials, setCredentials] = useState({
+    user: '',
+    password: '',
+  });
+
+  function changeCredentials(e) {
+    setCredentials({ ...credentials, [e.value.name]: e.target.value });
   }
+
   console.log(user);
   return (
     <div className={login.containerLogin}>
@@ -18,10 +24,10 @@ export default function LoginPage() {
         <input
           className={login.input}
           type="text"
-          name="name"
+          name="user"
           placeholder="Escribe tu usuario"
           value={user}
-          onChange={userChange}
+          onChange={changeCredentials}
         />
         <input
           className={login.input}
@@ -29,6 +35,7 @@ export default function LoginPage() {
           name="password"
           placeholder="Escribe tu contraseña"
           value={password}
+          onChange={changeCredentials}
         />
       </form>
       <button className={login.styledbutton}>Enviar</button>
