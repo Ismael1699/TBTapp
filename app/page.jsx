@@ -25,13 +25,13 @@ export default function LoginPage() {
         />
         <input
           className={login.input}
-          type="text"
+          type="password"
           name="password"
           placeholder="Escribe tu contraseña"
           value={password}
         />
-        <input className={login.stylebutton} type="submit" value="Enviar" />
       </form>
+      <button className={login.styledbutton}>Enviar</button>
     </div>
   );
 }
