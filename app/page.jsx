@@ -4,9 +4,13 @@ import login from './login.module.css';
 import { useState } from 'react';
 
 export default function LoginPage() {
-  const [user, setUser] = useState('Ismael Sarmiento');
-  const { password, setPassword } = useState('esta es una pasword');
+  const [user, setUser] = useState('');
+  const { password, setPassword } = useState('');
 
+  function userChange(e) {
+    return setUser(e.target.value);
+  }
+  console.log(user);
   return (
     <div className={login.containerLogin}>
       <h1>Welcome!</h1>
@@ -16,14 +20,17 @@ export default function LoginPage() {
           type="text"
           name="name"
           placeholder="Escribe tu usuario"
+          value={user}
+          onChange={userChange}
         />
         <input
           className={login.input}
           type="text"
           name="password"
           placeholder="Escribe tu contraseña"
+          value={password}
         />
-        <input className={login.input} type="submit" value="Submit" />
+        <input className={login.stylebutton} type="submit" value="Enviar" />
       </form>
     </div>
   );
