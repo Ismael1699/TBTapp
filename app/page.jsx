@@ -37,17 +37,17 @@ export default function LoginPage() {
       <form className={login.form}>
         <input
           className={login.input}
-          type="text"
-          name="user"
-          placeholder="Escribe tu usuario"
+          name='user'
+          type='text'
+          placeholder='Escribe tu usuario'
           value={credentials.user}
           onChange={changeCredentials}
         />
         <input
           className={login.input}
-          type="password"
-          name="password"
-          placeholder="Escribe tu contraseña"
+          type='password'
+          name='password'
+          placeholder='Escribe tu contraseña'
           value={credentials.password}
           onChange={changeCredentials}
         />
