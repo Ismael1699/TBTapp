@@ -4,8 +4,10 @@ import login from './login.module.css';
 import { useState } from 'react';
 import { auth } from '../services/firebase.js';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
+  const router = useRouter();
   const [credentials, setCredentials] = useState({
     user: '',
     password: '',
@@ -23,8 +25,9 @@ export default function LoginPage() {
         credentials.password
       );
       console.log('felicidades estas registrado');
+      router.push('/home');
     } catch (error) {
-      console.log('lo siento no estas registrado');
+      alert('lo siento no estas registrado');
     }
   }
 
