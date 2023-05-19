@@ -6,10 +6,5 @@ export const metadata = {
 };
 
 export default function ContainerHome({ children }) {
-  return (
-    <div className={sytlehome.home}>
-      <Navbar />
-      {children}
-    </div>
-  );
+  return <div className={sytlehome.home}>{children}</div>;
 }
