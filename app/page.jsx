@@ -1,5 +1,5 @@
-import { Children } from 'react';
+import style from './app.module.css';
 
 export default function App() {
-  return <main></main>;
+  return <main className={style.app}>hola mundo</main>;
 }
