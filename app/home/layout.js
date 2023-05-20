@@ -1,4 +1,3 @@
-import Navbar from './navbar';
 import sytlehome from './contanierHome.module.css';
 export const metadata = {
   title: 'Home',

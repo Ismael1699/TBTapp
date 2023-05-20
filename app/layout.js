@@ -1,5 +1,5 @@
 import '../src/app/globals.css';
-import Navbar from './navbar.jsx';
+import Navbar from './navbar';
 
 export const metadata = {
   title: 'Login',
