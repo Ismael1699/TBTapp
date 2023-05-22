@@ -34,6 +34,14 @@
     border-radius: 50%;
 }
 
+.navbar li {
+    list-style: none;
+    width: 100%;
+    height: 70%;   
+    padding: 1rem;
+    font-weight: 900;
+}
+
 .navbar li ul{
-    list-style: none
+    margin-top: 0.5rem;
 }

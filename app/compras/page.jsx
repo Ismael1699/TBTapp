@@ -1,7 +1,7 @@
 export default function Compras() {
   return (
     <div>
-      <h1>hola mundo</h1>
+      <h1>compras</h1>
     </div>
   );
 }
