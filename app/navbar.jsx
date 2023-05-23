@@ -2,6 +2,8 @@
 import { useRouter } from 'next/navigation';
 import style from './navbar.module.css';
 import Link from 'next/link';
+import Image from 'next/image';
+import profile from '../public/profile.png';
 
 export default function Navbar() {
   const router = useRouter();
@@ -9,7 +11,9 @@ export default function Navbar() {
   return (
     <div className={style.navbar}>
       <div className={style.user}>
-        <div className={style.img}></div>
+        <div className={style.img}>
+          <Image src={profile} className={style.profile}></Image>
+        </div>
         <button
           onClick={() => {
             router.push('/login');
