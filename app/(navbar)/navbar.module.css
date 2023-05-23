@@ -1,7 +1,7 @@
 .navbar{
     width: 15%;
     height: 100%;
-    background-color: aliceblue;
+    background-color: var(--in-color);
     border-radius: 0 0.5rem 0.5rem 0;
 }
 
@@ -13,23 +13,22 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center; 
 }
 
 .user button { 
     width: 5rem;
     padding: 0.4rem;
     border: none;
-    background-color: #F9D57D;
+    background-color: var(--accent-color);
     margin-top: 0.5rem;
     border-radius: 0.4rem;
-    color:rgb(255, 255, 255);
+    color:var(--font-dark);
     font-weight: 900;
 }
 
 .img{
-    background-color: aliceblue;
+    background-color: var(--in-color);
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
@@ -37,7 +36,6 @@
     align-items: center;
     justify-content: center;
     border: 1px solid rgba(145, 144, 144, 0.486);
-    
 }
 
 .navbar li {
@@ -46,6 +44,7 @@
     height: 70%;   
     padding: 1rem;
     font-weight: 900;
+    color: var(--font-ligth);
 }
 
 .navbar li ul{

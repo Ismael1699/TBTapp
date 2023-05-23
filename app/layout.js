@@ -1,5 +1,5 @@
-import '../src/app/globals.css';
-import Navbar from './navbar';
+import './globals.css';
+import Navbar from './(navbar)/navbar';
 
 export const metadata = {
   title: 'Login',
@@ -10,10 +10,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body>
-        <section className='contSec'>
+        <main className='contSec'>
           <Navbar />
           {children}
-        </section>
+        </main>
       </body>
     </html>
   );
