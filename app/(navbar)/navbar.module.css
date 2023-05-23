@@ -2,14 +2,15 @@
     width: 15%;
     height: 100%;
     background-color: var(--in-color);
-    border-radius: 0 0.5rem 0.5rem 0;
+    border-radius: 0 1.5rem 1.5rem 0;
+    overflow: hidden;
 }
 
 .user{
-    background-color: rgb(229, 237, 246);
+    background-color: rgba(196, 196, 196, 0.288);
     height: 25%;
     width: 100%;
-    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    border-radius: 0 1.5rem 1.5rem 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,10 +23,17 @@
     border: none;
     background-color: var(--accent-color);
     margin-top: 0.5rem;
-    border-radius: 0.4rem;
+    border-radius: 1.5rem;
     color:var(--font-dark);
     font-weight: 900;
+    transition: all 0.3s ease-in-out;
 }
+
+.user button:hover {
+    transform: scale(1.05);
+    background-color: var(--accent-hover-color);
+}
+
 
 .img{
     background-color: var(--in-color);
@@ -38,19 +46,35 @@
     border: 1px solid rgba(145, 144, 144, 0.486);
 }
 
+.img i {
+    font-size: 65px;
+    color: var(--font-ligth);
+}
+
 .navbar li {
     list-style: none;
     width: 100%;
     height: 70%;   
-    padding: 1rem;
+    margin: 1rem;
     font-weight: 900;
     color: var(--font-ligth);
 }
 
 .navbar li ul{
     margin-top: 0.5rem;
+    transition: all 0.3s ease-in-out;
+    padding: 0.5rem;
+}
+.navbar li i {
+    margin: 0.5rem;
 }
 
+.navbar li ul:hover{
+    background-color: rgb(255, 255, 255);
+    border-radius: 1rem;
+    margin-left: 2rem;
+    transform: scale(1.1);
+}
 .profile {
     width: 50%;
     height: 50%;

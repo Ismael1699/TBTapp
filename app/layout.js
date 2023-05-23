@@ -1,5 +1,6 @@
 import './globals.css';
 import Navbar from './(navbar)/navbar';
+import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 
 export const metadata = {
   title: 'Login',
