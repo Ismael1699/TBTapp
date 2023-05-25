@@ -1,15 +1,31 @@
 'use client';
-import { createContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import app from '../services/firebase';
 
-const Context = createContext({});
-
-export function ContextAuthProvider({ children }) {
-  const [isLogged, setIsLogged] = useState(false);
-  return (
-    <Context.Provider value={{ isLogged, setIsLogged }}>
-      {children}
-    </Context.Provider>
-  );
+const auth = getAuth(app);
+export const AuthContext = createContext();
+export default function useAuthContext() {
+  return useContext(AuthContext);
 }
 
-export default Context;
+export function AuthContextProvider({ children }) {
+  const [isLogged, setIsLogged] = useState(null);
+  //const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (isLogged) => {
+      isLogged ? setIsLogged(isLogged) : setIsLogged(null);
+      // podemos tener un loading
+      //setLoading(false)
+    });
+
+    console.log(isLogged);
+
+    return () => unsubscribe();
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ isLogged }}>{children}</AuthContext.Provider>
+  );
+}

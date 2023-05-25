@@ -5,11 +5,11 @@ import { useContext, useState } from 'react';
 import { auth } from '../../services/firebase.js';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
-import AuthContext from '../../contextApp/AuthContext';
+// import AuthContext from '../../contextApp/AuthContext';
 
 export default function LoginPage() {
   const router = useRouter();
-  const { setIsLogged } = useContext(AuthContext);
+  // const { setIsLogged } = useContext(AuthContext);
   const [credentials, setCredentials] = useState({
     user: '',
     password: '',
@@ -27,7 +27,7 @@ export default function LoginPage() {
         credentials.user,
         credentials.password
       );
-      setIsLogged(true);
+      // setIsLogged(true);
       router.push('/');
     } catch (error) {
       alert('lo siento no estas registrado');

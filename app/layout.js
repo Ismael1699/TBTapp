@@ -1,7 +1,7 @@
 import './globals.css';
 import Navbar from './(navbar)/navbar';
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
-import { ContextAuthProvider } from '../contextApp/AuthContext';
+import { AuthContextProvider } from '../contextApp/AuthContext';
 
 export const metadata = {
   title: 'Login',
@@ -12,12 +12,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body>
-        <ContextAuthProvider>
+        <AuthContextProvider>
           <main className='contSec'>
             <Navbar />
             {children}
           </main>
-        </ContextAuthProvider>
+        </AuthContextProvider>
       </body>
     </html>
   );
