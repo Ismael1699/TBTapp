@@ -1,18 +1,21 @@
 'use client';
 
 import login from './login.module.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { auth } from '../../services/firebase.js';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
+import AuthContext from '../../contextApp/AuthContext';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { setIsLogged } = useContext(AuthContext);
   const [credentials, setCredentials] = useState({
     user: '',
     password: '',
   });
 
+  // Funciones generales de longin
   function changeCredentials(e) {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   }
@@ -24,8 +27,8 @@ export default function LoginPage() {
         credentials.user,
         credentials.password
       );
-      console.log('felicidades estas registrado');
-      router.push('/home');
+      setIsLogged(true);
+      router.push('/');
     } catch (error) {
       alert('lo siento no estas registrado');
     }
