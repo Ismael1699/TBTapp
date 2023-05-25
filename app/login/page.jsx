@@ -2,10 +2,12 @@
 
 import login from './login.module.css';
 import { useContext, useState } from 'react';
-import { auth } from '../../services/firebase.js';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import app from '../../services/firebase.js';
+import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 // import AuthContext from '../../contextApp/AuthContext';
+
+const auth = getAuth(app);
 
 export default function LoginPage() {
   const router = useRouter();

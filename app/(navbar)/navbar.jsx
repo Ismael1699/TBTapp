@@ -1,9 +1,23 @@
 'use client';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import AuthContext from '../../contextApp/AuthContext';
-import NabarIn from './navbarin';
+import NavbarIn from './navbarin';
 import NavbarOut from './navbarout';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
-  return <></>;
+  const { isLoged } = AuthContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoged == null) {
+      router.push('/login');
+    }
+  }, [isLoged]);
+
+  return (
+    <>
+      <NavbarIn></NavbarIn>
+    </>
+  );
 }

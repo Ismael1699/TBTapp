@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import app from '../services/firebase';
 
+//seste método se tuvo que implementar en este archivo ya que generaba problemas en el archivo firebase.js
 const auth = getAuth(app);
 export const AuthContext = createContext();
 export default function useAuthContext() {
@@ -15,12 +16,16 @@ export function AuthContextProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (isLogged) => {
-      isLogged ? setIsLogged(isLogged) : setIsLogged(null);
+      if (isLogged) {
+        setIsLogged(isLogged);
+        console.log('se iniciado sección');
+        console.log(isLogged);
+      } else {
+        setIsLogged(null);
+      }
       // podemos tener un loading
       //setLoading(false)
     });
-
-    console.log(isLogged);
 
     return () => unsubscribe();
   }, []);

@@ -2,7 +2,7 @@ import style from './navbar.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export default function NabarIn() {
+export default function NavbarIn() {
   const router = useRouter();
   return (
     <>
