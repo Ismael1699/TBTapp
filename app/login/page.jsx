@@ -2,12 +2,13 @@
 
 import login from './login.module.css';
 import { useContext, useState } from 'react';
-import app from '../../services/firebase.js';
-import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
+// import app from '../../services/firebase.js';
+// import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 // import AuthContext from '../../contextApp/AuthContext';
+import auth from '../../services/firebaseAuth';
 
-const auth = getAuth(app);
+// const auth = getAuth(app);
 
 export default function LoginPage() {
   const router = useRouter();
@@ -22,19 +23,19 @@ export default function LoginPage() {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   }
 
-  async function userLogin() {
-    try {
-      await signInWithEmailAndPassword(
-        auth,
-        credentials.user,
-        credentials.password
-      );
-      // setIsLogged(true);
-      router.push('/');
-    } catch (error) {
-      alert('lo siento no estas registrado');
-    }
-  }
+  // async function userLogin() {
+  //   try {
+  //     await signInWithEmailAndPassword(
+  //       auth,
+  //       credentials.user,
+  //       credentials.password
+  //     );
+  //     // setIsLogged(true);
+  //     router.push('/');
+  //   } catch (error) {
+  //     alert('lo siento no estas registrado');
+  //   }
+  // }
 
   return (
     <div className={login.containerLogin}>
@@ -57,7 +58,12 @@ export default function LoginPage() {
           onChange={changeCredentials}
         />
       </form>
-      <button className={login.styledbutton} onClick={userLogin}>
+      <button
+        className={login.styledbutton}
+        onClick={async () => {
+          await auth.userLogin(credentials.user, credentials.password);
+        }}
+      >
         Enviar
       </button>
     </div>
