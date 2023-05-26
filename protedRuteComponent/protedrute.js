@@ -1,17 +1,19 @@
+'use client';
 import { useRouter } from 'next/navigation';
 import { useEffect, useContext } from 'react';
-import { AuthContext } from '../contextApp/AuthContext';
+import AuthContext from '../contextApp/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
+  const { isLogged } = useContext(AuthContext);
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (!isLogged) {
       router.replace('/login');
     }
-  }, [loading, user, router]);
+  }, [isLogged, router]);
 
-  return loading ? <div>Cargando...</div> : <>{children}</>;
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;
