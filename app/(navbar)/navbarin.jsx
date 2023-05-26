@@ -1,6 +1,7 @@
 import style from './navbar.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import auth from '../../services/firebaseAuth';
 
 export default function NavbarIn() {
   const router = useRouter();
@@ -13,11 +14,11 @@ export default function NavbarIn() {
             <i className='bi bi-person-fill'></i>
           </div>
           <button
-            onClick={() => {
-              router.push('/login');
+            onClick={async () => {
+              await auth.userLogout();
             }}
           >
-            Login
+            Logout
           </button>
         </div>
         <li>

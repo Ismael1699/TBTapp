@@ -5,15 +5,16 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
-import router from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const auth = getAuth(app);
 
 const userLogin = async (email, password) => {
   return signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      router.push('/');
-      console.log('se ha iniciado seción');
+    .then((credentials) => {
+      console.log('se ha iniciado sección');
+      const user = credentials.user;
+      return { user };
     })
     .catch((error) => {
       console.log('no estas registado');

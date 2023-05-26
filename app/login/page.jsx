@@ -1,41 +1,21 @@
 'use client';
 
 import login from './login.module.css';
-import { useContext, useState } from 'react';
-// import app from '../../services/firebase.js';
-// import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-// import AuthContext from '../../contextApp/AuthContext';
 import auth from '../../services/firebaseAuth';
 
-// const auth = getAuth(app);
-
 export default function LoginPage() {
-  const router = useRouter();
-  // const { setIsLogged } = useContext(AuthContext);
   const [credentials, setCredentials] = useState({
     user: '',
     password: '',
   });
 
-  // Funciones generales de longin
+  const router = useRouter();
+  // Funciones para obtener lo que inserta el usuario en los imputs
   function changeCredentials(e) {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   }
-
-  // async function userLogin() {
-  //   try {
-  //     await signInWithEmailAndPassword(
-  //       auth,
-  //       credentials.user,
-  //       credentials.password
-  //     );
-  //     // setIsLogged(true);
-  //     router.push('/');
-  //   } catch (error) {
-  //     alert('lo siento no estas registrado');
-  //   }
-  // }
 
   return (
     <div className={login.containerLogin}>
@@ -61,7 +41,9 @@ export default function LoginPage() {
       <button
         className={login.styledbutton}
         onClick={async () => {
-          await auth.userLogin(credentials.user, credentials.password);
+          await auth
+            .userLogin(credentials.user, credentials.password)
+            .then(() => router.push('/'));
         }}
       >
         Enviar
