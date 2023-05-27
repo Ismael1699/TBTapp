@@ -1,0 +1,43 @@
+.card{
+    background-color: aquamarine;
+    width: 25rem;
+    height: 10rem;
+    border-radius: 1rem;
+    font-size: 12px;
+    display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
+            "proyecto departamento No Fecha"
+            "descripción descripción descripción descripción"
+            "Requsito Requsito status status";
+}
+
+.proyecto {
+    grid-area: proyecto;
+}
+
+.departamento {
+    grid-area: departamento;
+}
+
+.no {
+    grid-area: No;
+}
+
+.fecha {
+    grid-area: Fecha;
+}
+
+.descripcion {
+    grid-area: descripción;
+}
+
+.requisito {
+    grid-area: Requsito;
+}
+
+.status {
+    grid-area: status;
+}

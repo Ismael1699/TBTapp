@@ -20,7 +20,17 @@ export default function Compras() {
         </div>
       </div>
       <div className={style.containerbody}></div>
-      <Card />
+      <div className={style.containercard}>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
     </>
   );
 }

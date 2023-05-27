@@ -63,4 +63,8 @@
 }
 
 /* cuerpo de Requisiones */
-
+.containercard{
+    display: flex;
+    padding: 2rem;
+    flex-wrap: wrap;
+}
