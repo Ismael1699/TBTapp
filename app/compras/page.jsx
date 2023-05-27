@@ -5,13 +5,17 @@ export default function Compras() {
     <>
       <div className={style.header}>
         <h1>Requisiciones</h1>
-        <div>
+        <div className={style.containerbuscador}>
+          <i className='bi bi-search'></i>
           <input
             className={style.buscador}
             type='text'
             placeholder='buscar compra'
           />
-          <button className=''> Agregar compra</button>
+          <button className=''>
+            <i className='bi bi-plus-lg'></i>
+            <p>Agregar</p>
+          </button>
         </div>
       </div>
     </>

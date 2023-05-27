@@ -19,6 +19,13 @@
     margin-right: 1.5rem;
 }
 
+
+.containerbuscador{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .buscador{
     width: 20rem;
     height: 2rem;
@@ -26,12 +33,27 @@
     margin-right: 2rem;
     border-radius: 0.6rem;
     border: 2px solid var(--font-ligth);
+    background-color: var(--in-color);
+    border: none;
 }
 
 .header button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--accent-color);
     height: 2rem;
     width: 7rem;
     border-radius: 1rem;
     border:none;
+    transition: all 0.3s ease-in-out;
+}
+
+.header button:hover {
+    transform: scale(1.05);
+    background-color: var(--accent-hover-color);
+}
+
+.header i{
+    margin-right: 1rem;
 }
