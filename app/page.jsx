@@ -1,5 +1,10 @@
 'use client';
+import Image from 'next/image';
 
 export default function App() {
-  return <section className='app'>hola mundo</section>;
+  return (
+    <div className='app'>
+      <Image src='/public/profile.png' width={200} height={100} />
+    </div>
+  );
 }

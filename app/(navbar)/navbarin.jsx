@@ -31,7 +31,7 @@ export default function NavbarIn() {
           <ul>
             <Link href='/compras'>
               <i className='bi bi-briefcase-fill'></i>
-              Compras
+              Requisiciones
             </Link>
           </ul>
         </li>
