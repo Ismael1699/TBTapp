@@ -1,3 +1,4 @@
+import Card from './(Card)/Card';
 import style from './layout.module.css';
 
 export default function Compras() {
@@ -18,6 +19,8 @@ export default function Compras() {
           </button>
         </div>
       </div>
+      <div className={style.containerbody}></div>
+      <Card />
     </>
   );
 }

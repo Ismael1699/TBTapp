@@ -1,8 +1,12 @@
+/* container general*/
 .compras{
     width: 85%;
     height: 100%;
     color: var(--font-ligth);
 }
+
+
+/*parte superior*/
 
 .header{
     display: flex;
@@ -57,3 +61,6 @@
 .header i{
     margin-right: 1rem;
 }
+
+/* cuerpo de Requisiones */
+
