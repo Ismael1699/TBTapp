@@ -6,6 +6,5 @@ import NavbarOut from './navbarout';
 
 export default function Navbar() {
   const { isLogged } = useContext(AuthContext);
-
   return <>{isLogged ? <NavbarIn /> : <NavbarOut />}</>;
 }

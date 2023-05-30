@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Card from './(Card)/Card';
 import style from './layout.module.css';
 
@@ -13,10 +14,12 @@ export default function Compras() {
             type='text'
             placeholder='buscar compra'
           />
-          <button className=''>
+          <Link
+            href='/compras/agregar'
+            className={style.button}>
             <i className='bi bi-plus-lg'></i>
             <p>Agregar</p>
-          </button>
+          </Link>
         </div>
       </div>
       <div className={style.containerbody}></div>
