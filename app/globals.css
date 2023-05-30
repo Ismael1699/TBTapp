@@ -48,7 +48,7 @@ a {
   width: calc(100% - 4rem);
   display: flex;
   border-radius: 1rem;
-  overflow: hidden;
+  
   box-shadow: -8px 11px 20px 0px rgba(0, 0, 0, 0.11);
   background-color: white;
 }

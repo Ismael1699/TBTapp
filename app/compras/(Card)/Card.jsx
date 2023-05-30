@@ -12,11 +12,15 @@ export default function Card() {
       </div>
       <p className={style.requisito}>solicitante</p>
       <div className={style.status}>
-        <h3>status</h3>
-        <p>subido</p>
-        <p>autorizado</p>
-        <p>autorizado</p>
-        <p>pagado</p>
+        <h3 className={style.statustitle}>status</h3>
+        {/*<p className={style.subida}>subido</p>
+        <p className={style.autorizada1}>autorizado</p>
+        <p className={style.autorizada2}>autorizado</p>
+        <p className={style.pagada}>pagado</p> */}
+        <div className={style.barsubida}></div>
+        <div className={style.barautorizada1}></div>
+        <div className={style.barautorizada2}></div>
+        <div className={style.barpagada}></div>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@
     width: 85%;
     height: 100%;
     color: var(--font-ligth);
+    overflow: auto;
 }
 
 
@@ -64,7 +65,9 @@
 
 /* cuerpo de Requisiones */
 .containercard{
+    height: 80%;
+    width:100%;
     display: flex;
-    padding: 2rem;
-    flex-wrap: wrap;
+    padding: 1rem;
+    flex-wrap: wrap;  
 }

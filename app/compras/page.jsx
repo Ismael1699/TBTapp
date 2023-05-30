@@ -30,6 +30,9 @@ export default function Compras() {
         <Card />
         <Card />
         <Card />
+        <Card />
+        <Card />
+        <Card />
       </div>
     </>
   );
