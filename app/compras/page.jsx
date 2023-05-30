@@ -18,7 +18,13 @@ export default function Compras() {
             href='/compras/agregar'
             className={style.button}>
             <i className='bi bi-plus-lg'></i>
-            <p>Agregar</p>
+            <p>Compra</p>
+          </Link>
+          <Link
+            href=''
+            className={style.button}>
+            <i className='bi bi-plus-lg'></i>
+            <p>Provedore</p>
           </Link>
         </div>
       </div>

@@ -1,73 +1,77 @@
 /* container general*/
-.compras{
-    width: 85%;
-    height: 100%;
-    color: var(--font-ligth);
-    overflow: auto;
+.compras {
+  width: 85%;
+  height: 100%;
+  color: var(--font-ligth);
+  overflow: auto;
 }
-
 
 /*parte superior*/
 
-.header{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 20%;
-    align-items: center;
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 20%;
+  align-items: center;
 }
 
-.header h1{
-    margin-left: 1.5rem;
+.header h1 {
+  margin-left: 1.5rem;
 }
-.header div{
-    margin-right: 1.5rem;
-}
-
-
-.containerbuscador{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.header div {
+  margin-right: 1.5rem;
 }
 
-.buscador{
-    width: 20rem;
-    height: 2rem;
-    padding: 1rem;
-    margin-right: 2rem;
-    border-radius: 0.6rem;
-    border: 2px solid var(--font-ligth);
-    background-color: var(--in-color);
-    border: none;
+.containerbuscador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.header button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--accent-color);
-    height: 2rem;
-    width: 7rem;
-    border-radius: 1rem;
-    border:none;
-    transition: all 0.3s ease-in-out;
+.buscador {
+  width: 20rem;
+  height: 1.5rem;
+  padding: 1rem;
+  margin-right: 2rem;
+  border-radius: 0.6rem;
+  border: 2px solid var(--font-ligth);
+  background-color: var(--in-color);
+  border: none;
 }
 
-.header button:hover {
-    transform: scale(1.05);
-    background-color: var(--accent-hover-color);
+.button {
+  font-size: small;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  display: flex;
+  color: var(--font-dark);
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent-color);
+  height: 2rem;
+  width: fit-content;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  border-radius: 1rem;
+  border: none;
+  transition: all 0.3s ease-in-out;
 }
 
-.header i{
-    margin-right: 1rem;
+.button:hover {
+  transform: scale(1.05);
+  background-color: var(--accent-hover-color);
+}
+
+.header i {
+  margin-right: 1rem;
 }
 
 /* cuerpo de Requisiones */
-.containercard{
-    height: 80%;
-    width:100%;
-    display: flex;
-    padding: 1rem;
-    flex-wrap: wrap;  
+.containercard {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+  flex-wrap: wrap;
 }
