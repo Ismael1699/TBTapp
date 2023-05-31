@@ -24,7 +24,7 @@ export default function Compras() {
             href=''
             className={style.button}>
             <i className='bi bi-plus-lg'></i>
-            <p>Provedore</p>
+            <p>Provedor</p>
           </Link>
         </div>
       </div>
