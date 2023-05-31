@@ -17,11 +17,26 @@ export default function Agregar() {
   const rowGenerator = itemTable.map(() => (
     <tr>
       <td>1</td>
-      <td>1234</td>
-      <td>valvula</td>
-      <td>pza</td>
-      <td>2</td>
-      <td>$123</td>
+      <td>
+        <input type='number' />
+      </td>
+      <td>
+        <input type='text' />
+      </td>
+      <td>
+        <select name='unidad'>
+          <option value='pza'>PZA</option>
+          <option value='pza'>Serv</option>
+          <option value='litros'>Litros</option>
+          <option value='kilos'>Kilos</option>
+        </select>
+      </td>
+      <td>
+        <input type='number' />
+      </td>
+      <td>
+        <input type='number' />
+      </td>
       <td>$150</td>
       <td>eliminar o editar</td>
     </tr>

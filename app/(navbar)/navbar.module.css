@@ -1,81 +1,80 @@
-.navbar{
-    width: 15%;
-    height: 100%;
-    background-color: var(--in-color);
-    border-radius: 0 1.5rem 1.5rem 0;
-    overflow: hidden;
+.navbar {
+  width: 15%;
+  height: 100%;
+  background-color: var(--card-color);
+  border-radius: 0 1.5rem 1.5rem 0;
+  overflow: hidden;
 }
 
-.user{
-    background-color: rgba(196, 196, 196, 0.288);
-    height: 25%;
-    width: 100%;
-    border-radius: 0 1.5rem 1.5rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
+.user {
+  background-color: rgba(196, 196, 196, 0.288);
+  height: 25%;
+  width: 100%;
+  border-radius: 0 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.user button { 
-    width: 5rem;
-    padding: 0.4rem;
-    border: none;
-    background-color: var(--accent-color);
-    margin-top: 0.5rem;
-    border-radius: 1.5rem;
-    color:var(--font-dark);
-    font-weight: 900;
-    transition: all 0.3s ease-in-out;
+.user button {
+  width: 5rem;
+  padding: 0.4rem;
+  border: none;
+  background-color: var(--accent-color);
+  margin-top: 0.5rem;
+  border-radius: 1.5rem;
+  color: var(--font-dark);
+  font-weight: 900;
+  transition: all 0.3s ease-in-out;
 }
 
 .user button:hover {
-    transform: scale(1.05);
-    background-color: var(--accent-hover-color);
+  transform: scale(1.05);
+  background-color: var(--accent-hover-color);
 }
 
-
-.img{
-    background-color: var(--in-color);
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(145, 144, 144, 0.486);
+.img {
+  background-color: var(--card-color);
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(145, 144, 144, 0.486);
 }
 
 .img i {
-    font-size: 65px;
-    color: var(--font-ligth);
+  font-size: 65px;
+  color: var(--font-ligth);
 }
 
 .navbar li {
-    list-style: none;
-    width: 100%;
-    height: 70%;   
-    margin-left:0.5rem;
-    font-weight: 900;
-    color: var(--font-ligth);
+  list-style: none;
+  width: 100%;
+  height: 70%;
+  margin-left: 0.5rem;
+  font-weight: 900;
+  color: var(--font-ligth);
 }
 
-.navbar li ul{
-    margin-top: 0.5rem;
-    transition: all 0.3s ease-in-out;
-    padding:0.4rem;
+.navbar li ul {
+  margin-top: 0.5rem;
+  transition: all 0.3s ease-in-out;
+  padding: 0.4rem;
 }
 .navbar li i {
-    margin: 0.5rem;
+  margin: 0.5rem;
 }
 
-.navbar li ul:hover{
-    background-color: rgb(255, 255, 255);
-    border-radius: 1rem;
-    margin-left: 1.5rem;
-    transform: scale(1.1);
+.navbar li ul:hover {
+  background-color: rgb(255, 255, 255);
+  border-radius: 1rem;
+  margin-left: 1.5rem;
+  transform: scale(1.1);
 }
 .profile {
-    width: 50%;
-    height: 50%;
+  width: 50%;
+  height: 50%;
 }

@@ -1,121 +1,117 @@
-.card{
-    background-color: #2F4858;
-    color: white;
-    font-weight: 900;
-    margin: 1rem;
-    padding: 0.7rem;
-    width: 23rem;
-    height: 10rem;
-    border-radius: 1rem;
-    font-size: 12px;
-    display: grid;
-    transition: all 0.3s ease-in-out;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-        "proyecto departamento No Fecha"
-        "descripción descripción descripción descripción"
-        "requisito requisito status status";
+.card {
+  background-color: var(--card-color);
+  color: white;
+  font-weight: 900;
+  margin: 1rem;
+  padding: 0.7rem;
+  width: 23rem;
+  height: 10rem;
+  border-radius: 1rem;
+  font-size: 12px;
+  display: grid;
+  transition: all 0.3s ease-in-out;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    'proyecto departamento No Fecha'
+    'descripción descripción descripción descripción'
+    'requisito requisito status status';
 }
 
-.card:hover{
-    transform: scale(1.02);
+.card:hover {
+  transform: scale(1.02);
 }
 
 .proyecto {
-    grid-area: proyecto;
+  grid-area: proyecto;
 }
 
 .departamento {
-    grid-area: departamento;
+  grid-area: departamento;
 }
 
 .no {
-    grid-area: No;
+  grid-area: No;
 }
 
 .fecha {
-    grid-area: Fecha;
+  grid-area: Fecha;
 }
 
 .descripcion {
-    grid-area: descripción;
-    display: flex;
-    justify-content: space-around;
+  grid-area: descripción;
+  display: flex;
+  justify-content: space-around;
 }
 
 .requisito {
-    grid-area: requisito;
+  grid-area: requisito;
 }
 
 .status {
-    grid-area: status;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-        "statustitle statustitle statustitle statustitle"
-        "barsubida barautorizada1 barautorizada2 barpagada";
+  grid-area: status;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    'statustitle statustitle statustitle statustitle'
+    'barsubida barautorizada1 barautorizada2 barpagada';
 }
 
 /*grid de status*/
 .statustitle {
-    grid-area: statustitle;
-    margin: auto;
+  grid-area: statustitle;
+  margin: auto;
 }
 
 .subida {
-    grid-area: subida;
+  grid-area: subida;
 }
 
 .autorizada1 {
-    grid-area: autorizada1;
+  grid-area: autorizada1;
 }
 
 .autorizada2 {
-    grid-area: autorizada2;
+  grid-area: autorizada2;
 }
 
 .pagada {
-    grid-area: pagada;
+  grid-area: pagada;
 }
 
 .barsubida {
-    grid-area: barsubida;
-    margin: 0.4rem;
-    width: calc(100% - 0.8rem);
-    height: calc(100% - 0.8rem);
-    background-color: greenyellow;
-    border-radius: 0.3rem 0 0 0.3rem;
+  grid-area: barsubida;
+  margin: 0.4rem;
+  width: calc(100% - 0.8rem);
+  height: calc(100% - 0.8rem);
+  background-color: greenyellow;
+  border-radius: 0.3rem 0 0 0.3rem;
 }
 
 .barautorizada1 {
-    grid-area: barautorizada1;
-    margin: 0.4rem;
-    width: calc(100% - 0.8rem);
-    height: calc(100% - 0.8rem);
-    background-color: greenyellow;
-    
-    
-    
+  grid-area: barautorizada1;
+  margin: 0.4rem;
+  width: calc(100% - 0.8rem);
+  height: calc(100% - 0.8rem);
+  background-color: greenyellow;
 }
 
 .barautorizada2 {
-    grid-area: barautorizada2;
-    margin: 0.4rem;
-    width: calc(100% - 0.8rem);
-    height: calc(100% - 0.8rem);
-    background-color: rgba(165, 165, 165, 0.534);
+  grid-area: barautorizada2;
+  margin: 0.4rem;
+  width: calc(100% - 0.8rem);
+  height: calc(100% - 0.8rem);
+  background-color: rgba(165, 165, 165, 0.534);
 }
 
 .barpagada {
-    grid-area: barpagada;
-    margin: 0.4rem;
-    width: calc(100% - 0.8rem);
-    height: calc(100% - 0.8rem);
-    background-color: rgba(165, 165, 165, 0.534);
-    border-radius: 0 0.3rem 0.3rem 0;
+  grid-area: barpagada;
+  margin: 0.4rem;
+  width: calc(100% - 0.8rem);
+  height: calc(100% - 0.8rem);
+  background-color: rgba(165, 165, 165, 0.534);
+  border-radius: 0 0.3rem 0.3rem 0;
 }
-

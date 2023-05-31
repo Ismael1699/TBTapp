@@ -2,7 +2,7 @@
 .compras {
   width: 85%;
   height: 100%;
-  color: var(--font-ligth);
+  color: var(--font-dark);
   overflow: auto;
 }
 
@@ -36,7 +36,7 @@
   margin-right: 2rem;
   border-radius: 0.6rem;
   border: 2px solid var(--font-ligth);
-  background-color: var(--in-color);
+  background-color: var(--input-bg-color);
   border: none;
 }
 

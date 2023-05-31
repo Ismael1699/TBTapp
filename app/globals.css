@@ -4,35 +4,34 @@
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
-
   /*variables de estilos globales*/
-  --accent-color: #F9D57D;
-  --accent-hover-color:#f8c23a;
-  --font-ligth:rgb(167, 167, 167);
-  --font-dark:rgb(56, 56, 56);
-  --content-color:#ffff;
-  --in-color: #E7F0FE;
-  --in-placeholder-color:rgba(61, 61, 61, 0.307);
+  --accent-color: #f2c709;
+  --accent-hover-color: #f8c23a;
+  --font-ligth: rgb(206, 206, 206);
+  --font-dark: #5f5f5f;
+  --content-color: #ffff;
+  --card-color: #2f4858;
+  --in-placeholder-color: #b6bcbe98;
+  --input-bg-color: #f6f7f8;
+  --global-bg: #e3e8ea;
 }
-
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: Lato, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: Lato, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
 
 html,
 body {
-  
   font-family: var(--font-mono);
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
-  background-color:#E3E8EA;
+  background-color: var(--global-bg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,20 +41,14 @@ a {
   text-decoration: none;
 }
 
-.contSec{
-  margin: 2em;
-  height: calc(100% - 4rem);
-  width: calc(100% - 4rem);
+.contSec {
+  height: 100%;
+  width: 100%;
   display: flex;
   border-radius: 1rem;
-  
-  box-shadow: -8px 11px 20px 0px rgba(0, 0, 0, 0.11);
-  background-color: white;
 }
 
-.app{
+.app {
   width: 85%;
   height: 100%;
-  
 }
-

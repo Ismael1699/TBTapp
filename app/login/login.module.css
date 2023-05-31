@@ -1,63 +1,57 @@
 .containerLogin {
-    
-    width: 85%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;  
-    background-color: var(--content-color);
-    border-radius: 0.5rem;
-    color: var(--font-ligth);
-    font-size: 30px;
-    
+  width: 85%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 0.5rem;
+  color: var(--font-dark);
+  font-size: 30px;
 }
 
-
-
-.form{
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.5rem;
-   
+.form {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
 }
 
-.input{
-    margin-top: 0.3rem;
-    padding: 1.3rem;
-    background-color:var(--in-color);
-    width:30%;
-    height: 2rem;
-    border: none;
-    outline:0;
-    color: var(--font-ligth);
-    font-weight:900;
-    border-radius: 0.5rem;
+.input {
+  margin-top: 0.3rem;
+  padding: 1.3rem;
+  background-color: var(--input-bg-color);
+  width: 30%;
+  height: 2rem;
+  border: none;
+  outline: 0;
+  color: var(--font-ligth);
+  font-weight: 900;
+  border-radius: 0.5rem;
 }
 
-.input::placeholder { 
-    color: var(--in-placeholder-color);
-    font-style: italic; 
+.input::placeholder {
+  color: var(--in-placeholder-color);
+  font-style: italic;
 }
 
-.styledbutton{
-    color: var(--font-dark);
-    font-weight:900;
-    margin-top: 1.5rem;
-    width: 12rem;
-    height: 3rem;
-    background-color: var(--accent-color);
-    border:none; 
-    outline:0;
-    border-radius: 2rem;
-    transition: all 0.3s ease-in-out;
+.styledbutton {
+  color: var(--font-dark);
+  font-weight: 900;
+  margin-top: 1.5rem;
+  width: 12rem;
+  height: 3rem;
+  background-color: var(--accent-color);
+  border: none;
+  outline: 0;
+  border-radius: 2rem;
+  transition: all 0.3s ease-in-out;
 }
 
-.styledbutton:hover{
-    transform: scale(1.05);
-    background-color: var(--accent-hover-color);
+.styledbutton:hover {
+  transform: scale(1.05);
+  background-color: var(--accent-hover-color);
 }
