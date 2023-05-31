@@ -1,2 +1,49 @@
 .table {
+  width: 100%;
+  background-color: red;
+  color: white;
+}
+
+.head {
+  width: fit-content;
+  height: fit-content;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    'proyecto frente suministro'
+    'fecha lugar proveedor';
+}
+
+.proyecto {
+  grid-area: proyecto;
+  margin: 0.5rem;
+}
+.frente {
+  grid-area: frente;
+  margin: 0.5rem;
+}
+.suministro {
+  grid-area: suministro;
+  margin: 0.5rem;
+}
+.fecha {
+  grid-area: fecha;
+  margin: 0.5rem;
+}
+.lugar {
+  grid-area: lugar;
+  margin: 0.5rem;
+}
+.proveedor {
+  grid-area: proveedor;
+  margin: 0.5rem;
+}
+
+/*table*/
+
+.button {
+  margin-top: 3rem;
 }
