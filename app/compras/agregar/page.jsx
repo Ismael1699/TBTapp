@@ -3,13 +3,29 @@ import { useState } from 'react';
 import style from './agregar.module.css';
 
 export default function Agregar() {
-  const [itemTable, setItemTable] = useState([0]);
+  const [itemTable, setItemTable] = useState([]);
 
   function addRowTable() {
-    setItemTable([...itemTable, itemTable[setItemTable.length - 1] + 1]);
+    setItemTable([...itemTable, itemTable.length + 1]);
   }
 
+  function reset() {
+    setItemTable([]);
+  }
   console.log(itemTable);
+
+  const rowGenerator = itemTable.map(() => (
+    <tr>
+      <td>1</td>
+      <td>1234</td>
+      <td>valvula</td>
+      <td>pza</td>
+      <td>2</td>
+      <td>$123</td>
+      <td>$150</td>
+      <td>eliminar o editar</td>
+    </tr>
+  ));
 
   return (
     <div>
@@ -81,12 +97,18 @@ export default function Agregar() {
           <th>Precio Final</th>
           <th>modos</th>
         </tr>
+        {rowGenerator}
       </table>
 
       <button
         className={style.button}
         onClick={addRowTable}>
         agregar
+      </button>
+      <button
+        className={style.button}
+        onClick={reset}>
+        reset
       </button>
     </div>
   );
