@@ -69,10 +69,11 @@
 }
 
 .navbar li ul:hover {
-  background-color: rgb(255, 255, 255);
+  background-color: var(--global-bg);
   border-radius: 1rem;
   margin-left: 1.5rem;
   transform: scale(1.1);
+  color: var(--font-dark);
 }
 .profile {
   width: 50%;
