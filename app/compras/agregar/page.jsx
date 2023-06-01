@@ -113,6 +113,10 @@ export default function Agregar() {
             <option value='provedor2'>Provedor 2</option>
           </select>
         </div>
+        <div className={style.file}>
+          <h3>Cotización</h3>
+          <input type='file'></input>
+        </div>
       </div>
 
       <table className={style.table}>
@@ -132,12 +136,12 @@ export default function Agregar() {
       <button
         className={style.button}
         onClick={addRowTable}>
-        agregar
+        Agregar
       </button>
       <button
         className={style.button}
         onClick={reset}>
-        reset
+        Reset
       </button>
     </div>
   );
