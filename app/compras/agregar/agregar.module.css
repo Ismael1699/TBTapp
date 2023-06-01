@@ -8,7 +8,7 @@
   gap: 0px 0px;
   grid-template-areas:
     'proyecto frente suministro file'
-    'fecha lugar proveedor file';
+    'fecha lugar proveedor  file';
 }
 
 .head select {
@@ -76,7 +76,6 @@
   width: calc(100% - 3rem);
   border-spacing: 0;
   border-radius: 1.5rem;
-  overflow: hidden;
   background-color: white;
 }
 
@@ -90,11 +89,23 @@
 }
 .table tr {
   height: 3rem;
-}
-.table tr:nth-child(odd) {
-  background-color: rgba(207, 206, 206, 0.123);
+  transition: all 0.2s ease-in-out;
 }
 
+.rowGenerator:hover {
+  transform: scale(1.01);
+  position: relative;
+  box-shadow: -9px 10px 10px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.table tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.table tr:nth-child(even) {
+  background-color: white;
+}
 .table th:first-child {
   width: 10%;
 }
@@ -147,4 +158,24 @@
   padding-left: 0.7rem;
   padding-right: 0.7rem;
   text-align: center;
+}
+
+.eliminar {
+  background-color: rgb(150, 1, 1);
+  border: none;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  transition: all 0.25s ease-in-out;
+}
+
+.eliminar i {
+  color: var(--font-ligth);
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.eliminar:hover {
+  transform: scale(1.15);
+  background-color: rgb(255, 0, 0);
 }

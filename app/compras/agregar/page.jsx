@@ -15,7 +15,7 @@ export default function Agregar() {
   console.log(itemTable);
 
   const rowGenerator = itemTable.map(() => (
-    <tr>
+    <tr className={style.rowGenerator}>
       <td>1</td>
       <td>
         <input
@@ -52,7 +52,11 @@ export default function Agregar() {
         />
       </td>
       <td>$150</td>
-      <td>eliminar o editar</td>
+      <td>
+        <button className={style.eliminar}>
+          <i className='bi bi-x-lg'></i>
+        </button>
+      </td>
     </tr>
   ));
 
