@@ -11,6 +11,34 @@
     'fecha lugar proveedor';
 }
 
+.head select {
+  font-size: 15px;
+  border: none;
+  height: auto;
+  font-weight: 900;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: var(--font-ligth);
+  background-color: var(--card-color);
+  margin-top: 1rem;
+}
+
+.head select option:hover {
+  background-color: brown;
+}
+
+.head input {
+  font-size: 15px;
+  border: none;
+  height: auto;
+  font-weight: 900;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: var(--font-ligth);
+  background-color: var(--card-color);
+  margin-top: 1rem;
+}
+
 .proyecto {
   grid-area: proyecto;
   margin: 0.5rem;
@@ -39,27 +67,72 @@
 /*table*/
 
 .table {
-  margin: 1rem;
-  width: calc(100% - 2rem);
-  color: white;
+  color: var(--font-dark);
+  margin: 1.5rem;
+  width: calc(100% - 3rem);
   border-spacing: 0;
-  border-radius: 2rem;
+  border-radius: 1.5rem;
   overflow: hidden;
   background-color: white;
 }
 
-.table th {
-}
 .table td {
-  color: black;
   text-align: center;
-  border-bottom: 1px solid var(--font-ligth);
 }
 
+.table th {
+  background-color: var(--card-color);
+  color: var(--font-ligth);
+}
 .table tr {
   height: 3rem;
+}
+.table tr:nth-child(odd) {
+  background-color: rgba(207, 206, 206, 0.123);
+}
+
+.table th:first-child {
+  width: 10%;
+}
+
+.table th:nth-child(2) {
+  width: 10%;
+}
+.table th:nth-child(3) {
+  width: 30%;
+}
+.table th:nth-child(4) {
+  width: 10%;
+}
+
+.table th:nth-child(5) {
+  width: 10%;
+}
+
+.table th:nth-child(6) {
+  width: 10%;
+}
+
+.table th:nth-child(7) {
+  width: 10%;
+}
+
+.table th:nth-child(8) {
+  width: 10%;
 }
 
 .button {
   margin-top: 3rem;
+}
+
+/*estilos de rows generadas*/
+
+.inputsRow {
+  width: 70%;
+  border: none;
+  background-color: var(--global-bg);
+  border-radius: 0.5rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  text-align: center;
 }

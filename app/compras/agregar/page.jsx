@@ -18,13 +18,21 @@ export default function Agregar() {
     <tr>
       <td>1</td>
       <td>
-        <input type='number' />
+        <input
+          className={style.inputsRow}
+          type='number'
+        />
       </td>
       <td>
-        <input type='text' />
+        <input
+          type='text'
+          className={style.inputsRow}
+        />
       </td>
       <td>
-        <select name='unidad'>
+        <select
+          className={style.inputsRow}
+          name='unidad'>
           <option value='pza'>PZA</option>
           <option value='pza'>Serv</option>
           <option value='litros'>Litros</option>
@@ -32,10 +40,16 @@ export default function Agregar() {
         </select>
       </td>
       <td>
-        <input type='number' />
+        <input
+          className={style.inputsRow}
+          type='number'
+        />
       </td>
       <td>
-        <input type='number' />
+        <input
+          className={style.inputsRow}
+          type='number'
+        />
       </td>
       <td>$150</td>
       <td>eliminar o editar</td>
@@ -46,14 +60,14 @@ export default function Agregar() {
     <div>
       <div className={style.head}>
         <div className={style.proyecto}>
-          <h5>Proyecto</h5>
+          <h3>Proyecto</h3>
           <select name='proyecto'>
             <option value='2103'>2103 SCT Pachuca</option>
           </select>
         </div>
 
         <div className={style.frente}>
-          <h5>Frente</h5>
+          <h3>Frente</h3>
           <select name='frente'>
             <option value='terracerias'>Terracerias</option>
             <option value='maquinaria'>Maquinaria</option>
@@ -62,7 +76,7 @@ export default function Agregar() {
         </div>
 
         <div className={style.suministro}>
-          <h5>Grupo de suministro</h5>
+          <h3>Grupo de suministro</h3>
           <select name='grupo de suministro'>
             <option value='materiales de construccion'>
               Materiales de construcción
@@ -79,12 +93,12 @@ export default function Agregar() {
         </div>
 
         <div className={style.fecha}>
-          <h5>Fecha</h5>
+          <h3>Fecha</h3>
           <input type='date'></input>
         </div>
 
         <div className={style.lugar}>
-          <h5>Lugar de compra</h5>
+          <h3>Lugar de compra</h3>
           <select name='lugar de compra'>
             <option value='local'>Compra local</option>
             <option value='regional'>Compra regional</option>
@@ -93,7 +107,7 @@ export default function Agregar() {
         </div>
 
         <div className={style.proveedor}>
-          <h5>Proveedor</h5>
+          <h3>Proveedor</h3>
           <select name='proverdores'>
             <option value='provedor1'>Provedor 1</option>
             <option value='provedor2'>Provedor 2</option>
@@ -105,7 +119,7 @@ export default function Agregar() {
         <tr>
           <th>partida</th>
           <th>No parte</th>
-          <th>Descripción</th>
+          <th className={style.sizedescripcion}>Descripción</th>
           <th>Unidad</th>
           <th>Cantidad</th>
           <th>Precio Unitario</th>
