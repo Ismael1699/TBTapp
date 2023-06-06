@@ -2,12 +2,12 @@
 import { useEffect, useState } from 'react';
 import style from './agregar.module.css';
 import { v4 as uuid } from 'uuid';
+import EditEneable from './(components)/Editeneable';
+import EditDisable from './(components)/EditDisable';
 
 export default function Agregar() {
   const [itemTable, setItemTable] = useState([]);
-  const [itemSelected, setItemSelected] = useState(null);
-
-  let editItemTable = itemTable;
+  const [isEditing, setIsEditing] = useState(false);
 
   function rowDelete(e) {
     setItemTable(itemTable.filter((item) => item.id !== e.target.id));
@@ -22,59 +22,30 @@ export default function Agregar() {
       {
         id: uuid(),
         index: index,
+        noparte: '12',
+        descripcion: '32',
+        unidad: '',
+        cantidad: '',
+        unitario: '',
+        final: '',
       },
     ]);
   }
 
   //funcion que genere jsx para cada fila de la tabla se le pide id
-  function genereteJSX(id, index) {
-    return (
-      <tr
-        id={index}
-        className={style.rowGenerator}>
-        <td>{index}</td>
-        <td>
-          <input
-            className={style.inputsRow}
-            type='number'
-          />
-        </td>
-        <td>
-          <input
-            type='text'
-            className={style.inputsRow}
-          />
-        </td>
-        <td>
-          <select
-            className={style.inputsRow}
-            name='unidad'>
-            <option value='pza'>PZA</option>
-            <option value='pza'>Serv</option>
-            <option value='litros'>Litros</option>
-            <option value='kilos'>Kilos</option>
-          </select>
-        </td>
-        <td>
-          <input
-            className={style.inputsRow}
-            type='number'
-          />
-        </td>
-        <td>
-          <input
-            className={style.inputsRow}
-            type='number'
-          />
-        </td>
-        <td>$150</td>
-        <td>
-          <i
-            onClick={rowDelete}
-            id={id}
-            className='bi bi-x-lg'></i>
-        </td>
-      </tr>
+  function genereteJSX(obj, index) {
+    return isEditing ? (
+      <EditEneable
+        obj={obj}
+        index={index}
+        rowDelete={rowDelete}
+      />
+    ) : (
+      <EditDisable
+        obj={obj}
+        index={index}
+        rowDelete={rowDelete}
+      />
     );
   }
 
@@ -161,19 +132,21 @@ export default function Agregar() {
 
         {itemTable.map((obj, index) => {
           console.log(obj.id);
-          return genereteJSX(obj.id, index);
+          return genereteJSX(obj, index);
         })}
         {console.log(itemTable)}
       </table>
 
       <button
         className={style.button}
-        onClick={addRowTable}>
+        onClick={addRowTable}
+      >
         Agregar
       </button>
       <button
         className={style.button}
-        onClick={reset}>
+        onClick={reset}
+      >
         Reset
       </button>
     </div>
