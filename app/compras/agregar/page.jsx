@@ -1,64 +1,86 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './agregar.module.css';
+import { v4 as uuid } from 'uuid';
 
 export default function Agregar() {
   const [itemTable, setItemTable] = useState([]);
+  const [itemSelected, setItemSelected] = useState(null);
+
+  let editItemTable = itemTable;
+
+  function rowDelete(e) {
+    setItemTable(itemTable.filter((item) => item.id !== e.target.id));
+    return;
+  }
 
   function addRowTable() {
-    setItemTable([...itemTable, itemTable.length + 1]);
+    const getLastItem = itemTable[itemTable.length - 1];
+    const index = itemTable.length == 0 ? 1 : getLastItem.number + 1;
+    setItemTable([
+      ...itemTable,
+      {
+        id: uuid(),
+        index: index,
+      },
+    ]);
+  }
+
+  //funcion que genere jsx para cada fila de la tabla se le pide id
+  function genereteJSX(id, index) {
+    return (
+      <tr
+        id={index}
+        className={style.rowGenerator}>
+        <td>{index}</td>
+        <td>
+          <input
+            className={style.inputsRow}
+            type='number'
+          />
+        </td>
+        <td>
+          <input
+            type='text'
+            className={style.inputsRow}
+          />
+        </td>
+        <td>
+          <select
+            className={style.inputsRow}
+            name='unidad'>
+            <option value='pza'>PZA</option>
+            <option value='pza'>Serv</option>
+            <option value='litros'>Litros</option>
+            <option value='kilos'>Kilos</option>
+          </select>
+        </td>
+        <td>
+          <input
+            className={style.inputsRow}
+            type='number'
+          />
+        </td>
+        <td>
+          <input
+            className={style.inputsRow}
+            type='number'
+          />
+        </td>
+        <td>$150</td>
+        <td>
+          <i
+            onClick={rowDelete}
+            id={id}
+            className='bi bi-x-lg'></i>
+        </td>
+      </tr>
+    );
   }
 
   function reset() {
     setItemTable([]);
   }
-  console.log(itemTable);
-
-  const rowGenerator = itemTable.map(() => (
-    <tr className={style.rowGenerator}>
-      <td>1</td>
-      <td>
-        <input
-          className={style.inputsRow}
-          type='number'
-        />
-      </td>
-      <td>
-        <input
-          type='text'
-          className={style.inputsRow}
-        />
-      </td>
-      <td>
-        <select
-          className={style.inputsRow}
-          name='unidad'>
-          <option value='pza'>PZA</option>
-          <option value='pza'>Serv</option>
-          <option value='litros'>Litros</option>
-          <option value='kilos'>Kilos</option>
-        </select>
-      </td>
-      <td>
-        <input
-          className={style.inputsRow}
-          type='number'
-        />
-      </td>
-      <td>
-        <input
-          className={style.inputsRow}
-          type='number'
-        />
-      </td>
-      <td>$150</td>
-      <td>
-        <button className={style.eliminar}>
-          <i className='bi bi-x-lg'></i>
-        </button>
-      </td>
-    </tr>
-  ));
 
   return (
     <div>
@@ -134,7 +156,14 @@ export default function Agregar() {
           <th>Precio Final</th>
           <th>modos</th>
         </tr>
-        {rowGenerator}
+
+        {/* parte donde se generará de manera dinamica los elementos de cada fila de la tabla */}
+
+        {itemTable.map((obj, index) => {
+          console.log(obj.id);
+          return genereteJSX(obj.id, index);
+        })}
+        {console.log(itemTable)}
       </table>
 
       <button
