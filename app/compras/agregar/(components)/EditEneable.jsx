@@ -1,25 +1,31 @@
-export default function EditEneable({ obj, index }) {
+import style from '../agregar.module.css';
+export default function EditEneable({ obj, index, onChangeEditing }) {
   return (
-    <tr
-      id={index}
-      className={style.rowGenerator}>
+    <tr className={style.rowGenerator}>
       <td>{index}</td>
       <td>
         <input
+          id='noparte'
           className={style.inputsRow}
           type='number'
+          onChange={onChangeEditing}
         />
       </td>
       <td>
         <input
+          id='descripcion'
           type='text'
           className={style.inputsRow}
+          onChange={onChangeEditing}
         />
       </td>
       <td>
         <select
+          id='unidad'
           className={style.inputsRow}
-          name='unidad'>
+          name='unidad'
+          onChange={onChangeEditing}
+        >
           <option value='pza'>PZA</option>
           <option value='pza'>Serv</option>
           <option value='litros'>Litros</option>
@@ -28,22 +34,23 @@ export default function EditEneable({ obj, index }) {
       </td>
       <td>
         <input
+          id='cantidad'
           className={style.inputsRow}
           type='number'
+          onChange={onChangeEditing}
         />
       </td>
       <td>
         <input
+          id='unitario'
           className={style.inputsRow}
           type='number'
+          onChange={onChangeEditing}
         />
       </td>
-      <td>$150</td>
+      <td>$0</td>
       <td>
-        <i
-          onClick={rowDelete}
-          id={id}
-          className='bi bi-x-lg'></i>
+        <i className='bi bi-check-lg'></i>
       </td>
     </tr>
   );

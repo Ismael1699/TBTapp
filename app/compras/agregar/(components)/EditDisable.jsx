@@ -1,5 +1,5 @@
 import style from '../agregar.module.css';
-export default function EditDisable({ obj, index, rowDelete }) {
+export default function EditDisable({ obj, index, rowDelete, editingRow }) {
   return (
     <tr
       id={index}
@@ -20,11 +20,14 @@ export default function EditDisable({ obj, index, rowDelete }) {
       {/* precio final */}
       <td>{obj.final}</td>
       {/* modos */}
-      <td>
+      <td id={obj.id}>
         <i
           onClick={rowDelete}
-          id={obj.id}
           className='bi bi-x-lg'
+        ></i>
+        <i
+          onClick={editingRow}
+          className='bi bi-pencil-square'
         ></i>
       </td>
     </tr>

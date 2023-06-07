@@ -7,11 +7,12 @@ import EditDisable from './(components)/EditDisable';
 
 export default function Agregar() {
   const [itemTable, setItemTable] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
+  const [itemSelected, setItemSelected] = useState({});
 
   function rowDelete(e) {
-    setItemTable(itemTable.filter((item) => item.id !== e.target.id));
-    return;
+    setItemTable(
+      itemTable.filter((item) => item.id !== e.target.parentElement.id)
+    );
   }
 
   function addRowTable() {
@@ -21,6 +22,7 @@ export default function Agregar() {
       ...itemTable,
       {
         id: uuid(),
+        editing: false,
         index: index,
         noparte: '12',
         descripcion: '32',
@@ -32,19 +34,41 @@ export default function Agregar() {
     ]);
   }
 
+  function editingRow(e) {
+    const id = e.target.parentElement.id;
+    let index;
+    const element = itemTable.filter((obj, ind) => {
+      index = ind;
+      return obj.id === id;
+    });
+    setItemSelected({ ...element[0], editing: true });
+    const newItemTable = itemTable.map((obj) => {
+      return obj.id === element[0].id ? { ...obj, editing: true } : { ...obj };
+    });
+    setItemTable(newItemTable);
+  }
+
+  function onChangeEditing(e) {
+    const item = e.target.id;
+    setItemSelected({ ...itemSelected, [item]: e.target.value });
+    console.log(itemSelected);
+  }
+
   //funcion que genere jsx para cada fila de la tabla se le pide id
   function genereteJSX(obj, index) {
-    return isEditing ? (
+    return obj.editing ? (
       <EditEneable
         obj={obj}
         index={index}
         rowDelete={rowDelete}
+        onChangeEditing={onChangeEditing}
       />
     ) : (
       <EditDisable
         obj={obj}
         index={index}
         rowDelete={rowDelete}
+        editingRow={editingRow}
       />
     );
   }
