@@ -24,8 +24,8 @@ export default function Agregar() {
         id: uuid(),
         editing: false,
         index: index,
-        noparte: '12',
-        descripcion: '32',
+        noparte: '',
+        descripcion: '',
         unidad: '',
         cantidad: '',
         unitario: '',
@@ -41,7 +41,7 @@ export default function Agregar() {
       index = ind;
       return obj.id === id;
     });
-    setItemSelected({ ...element[0], editing: true });
+    setItemSelected({ ...element[0], editing: false });
     const newItemTable = itemTable.map((obj) => {
       return obj.id === element[0].id ? { ...obj, editing: true } : { ...obj };
     });
@@ -50,8 +50,26 @@ export default function Agregar() {
 
   function onChangeEditing(e) {
     const item = e.target.id;
-    setItemSelected({ ...itemSelected, [item]: e.target.value });
+    const data = e.target.value;
+    setItemSelected({
+      ...itemSelected,
+      [item]:
+        item !== 'unitario'
+          ? data
+          : parseInt(data).toLocaleString('en', {
+              style: 'currency',
+              currency: 'MXN',
+            }),
+    });
     console.log(itemSelected);
+  }
+
+  function submitEditing() {
+    setItemTable(
+      itemTable.map((obj) =>
+        obj.id === itemSelected.id ? { ...itemSelected } : { ...obj }
+      )
+    );
   }
 
   //funcion que genere jsx para cada fila de la tabla se le pide id
@@ -62,6 +80,7 @@ export default function Agregar() {
         index={index}
         rowDelete={rowDelete}
         onChangeEditing={onChangeEditing}
+        submitEditing={submitEditing}
       />
     ) : (
       <EditDisable

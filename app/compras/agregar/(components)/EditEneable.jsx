@@ -1,5 +1,10 @@
 import style from '../agregar.module.css';
-export default function EditEneable({ obj, index, onChangeEditing }) {
+export default function EditEneable({
+  obj,
+  index,
+  onChangeEditing,
+  submitEditing,
+}) {
   return (
     <tr className={style.rowGenerator}>
       <td>{index}</td>
@@ -50,7 +55,10 @@ export default function EditEneable({ obj, index, onChangeEditing }) {
       </td>
       <td>$0</td>
       <td>
-        <i className='bi bi-check-lg'></i>
+        <i
+          onClick={submitEditing}
+          className='bi bi-check-lg'
+        ></i>
       </td>
     </tr>
   );

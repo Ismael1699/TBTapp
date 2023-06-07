@@ -81,6 +81,7 @@
 
 .table td {
   text-align: center;
+  font-size: 12px;
 }
 
 .table th {
@@ -151,7 +152,8 @@
 /*estilos de rows generadas*/
 
 .inputsRow {
-  width: 70%;
+  font-size: 12px;
+  width: 90%;
   border: none;
   background-color: var(--global-bg);
   border-radius: 0.5rem;
