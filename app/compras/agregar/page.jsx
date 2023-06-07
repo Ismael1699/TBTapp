@@ -51,7 +51,6 @@ export default function Agregar() {
   function onChangeEditing(e) {
     const item = e.target.id;
     const data = e.target.value;
-    console.log(e);
     const final = itemSelected.cantidad * parseInt(data);
     setItemSelected(() => {
       return item === 'unitario'
@@ -68,6 +67,14 @@ export default function Agregar() {
   }
 
   function submitEditing() {
+    let exit = false;
+    let data = Object.values(itemSelected);
+    data.map((props, index) => (props === '' ? (exit = true) : ''));
+
+    if (exit) {
+      return alert('Inserta los datos faltantes');
+    }
+
     setItemTable(
       itemTable.map((obj) =>
         obj.id === itemSelected.id ? { ...itemSelected } : { ...obj }
