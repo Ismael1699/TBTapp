@@ -17,13 +17,13 @@ export default function Agregar() {
 
   function addRowTable() {
     const getLastItem = itemTable[itemTable.length - 1];
-    const index = itemTable.length == 0 ? 1 : getLastItem.number + 1;
+    const partida = itemTable.length == 0 ? 1 : getLastItem.partida + 1;
     setItemTable([
       ...itemTable,
       {
         id: uuid(),
         editing: false,
-        index: index,
+        partida: partida,
         noparte: '',
         descripcion: '',
         unidad: '',
@@ -51,17 +51,20 @@ export default function Agregar() {
   function onChangeEditing(e) {
     const item = e.target.id;
     const data = e.target.value;
-    setItemSelected({
-      ...itemSelected,
-      [item]:
-        item !== 'unitario'
-          ? data
-          : parseInt(data).toLocaleString('en', {
-              style: 'currency',
-              currency: 'MXN',
-            }),
+    console.log(e);
+    const final = itemSelected.cantidad * parseInt(data);
+    setItemSelected(() => {
+      return item === 'unitario'
+        ? {
+            ...itemSelected,
+            [item]: data,
+            final: final,
+          }
+        : {
+            ...itemSelected,
+            [item]: data,
+          };
     });
-    console.log(itemSelected);
   }
 
   function submitEditing() {
@@ -81,6 +84,7 @@ export default function Agregar() {
         rowDelete={rowDelete}
         onChangeEditing={onChangeEditing}
         submitEditing={submitEditing}
+        itemSelected={itemSelected}
       />
     ) : (
       <EditDisable
@@ -174,10 +178,8 @@ export default function Agregar() {
         {/* parte donde se generará de manera dinamica los elementos de cada fila de la tabla */}
 
         {itemTable.map((obj, index) => {
-          console.log(obj.id);
           return genereteJSX(obj, index);
         })}
-        {console.log(itemTable)}
       </table>
 
       <button

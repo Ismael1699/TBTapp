@@ -4,10 +4,17 @@ export default function EditEneable({
   index,
   onChangeEditing,
   submitEditing,
+  itemSelected,
 }) {
+  const cant = parseInt(itemSelected.cantidad);
+  const price = parseInt(itemSelected.unitario);
+  const final = cant * price;
   return (
-    <tr className={style.rowGenerator}>
-      <td>{index}</td>
+    <tr
+      id={index + 1}
+      className={style.rowGenerator}
+    >
+      <td>{index + 1}</td>
       <td>
         <input
           id='noparte'
@@ -31,10 +38,15 @@ export default function EditEneable({
           name='unidad'
           onChange={onChangeEditing}
         >
-          <option value='pza'>PZA</option>
-          <option value='pza'>Serv</option>
-          <option value='litros'>Litros</option>
-          <option value='kilos'>Kilos</option>
+          <option
+            disabled
+            selected
+            value
+          ></option>
+          <option value='PZA'>PZA</option>
+          <option value='Serv'>Serv</option>
+          <option value='Litros'>Litros</option>
+          <option value='Kilos'>Kilos</option>
         </select>
       </td>
       <td>
@@ -53,7 +65,7 @@ export default function EditEneable({
           onChange={onChangeEditing}
         />
       </td>
-      <td>$0</td>
+      <td>{final}</td>
       <td>
         <i
           onClick={submitEditing}

@@ -2,11 +2,11 @@ import style from '../agregar.module.css';
 export default function EditDisable({ obj, index, rowDelete, editingRow }) {
   return (
     <tr
-      id={index}
+      id={index + 1}
       className={style.rowGenerator}
     >
       {/* partida */}
-      <td>{index}</td>
+      <td>{index + 1}</td>
       {/* no parte */}
       <td>{obj.noparte}</td>
       {/* Descripción */}
@@ -16,9 +16,23 @@ export default function EditDisable({ obj, index, rowDelete, editingRow }) {
       {/* cantidad */}
       <td>{obj.cantidad}</td>
       {/* precio unitario */}
-      <td>{obj.unitario}</td>
+      <td>
+        {obj.unitario !== ''
+          ? parseInt(obj.unitario).toLocaleString('en', {
+              style: 'currency',
+              currency: 'MXN',
+            })
+          : 'MX$0.0'}
+      </td>
       {/* precio final */}
-      <td>{obj.final}</td>
+      <td>
+        {obj.unitario !== ''
+          ? obj.final.toLocaleString('en', {
+              style: 'currency',
+              currency: 'MXN',
+            })
+          : 'MX$0.0'}
+      </td>
       {/* modos */}
       <td id={obj.id}>
         <i
