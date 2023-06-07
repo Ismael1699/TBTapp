@@ -66,7 +66,7 @@ export default function EditEneable({
         />
       </td>
       <td>{final}</td>
-      <td>
+      <td className={style.check}>
         <i
           onClick={submitEditing}
           className='bi bi-check-lg'

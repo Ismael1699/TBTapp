@@ -34,7 +34,10 @@ export default function EditDisable({ obj, index, rowDelete, editingRow }) {
           : 'MX$0.0'}
       </td>
       {/* modos */}
-      <td id={obj.id}>
+      <td
+        id={obj.id}
+        className={style.modos}
+      >
         <i
           onClick={rowDelete}
           className='bi bi-x-lg'
