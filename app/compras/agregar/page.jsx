@@ -13,6 +13,7 @@ export default function Agregar() {
     fecha: '',
     lugar: '',
     proveedor: '',
+    numero: '',
   };
   const [headData, setheadData] = useState(structHead);
   const [itemTable, setItemTable] = useState([]);
@@ -157,6 +158,7 @@ export default function Agregar() {
     }
   }
 
+  console.log(headData);
   return (
     <div>
       <div className={style.head}>
@@ -272,6 +274,15 @@ export default function Agregar() {
             <option value='provedor1'>Provedor 1</option>
             <option value='provedor2'>Provedor 2</option>
           </select>
+        </div>
+        <div className={style.numero}>
+          <h3>Numero de requisición</h3>
+          <input
+            id='numero'
+            type='number'
+            placeholder='Inserte un numero'
+            onChange={headOnChange}
+          />
         </div>
         <div className={style.enviar}>
           <button onClick={enviarData}>Enviar</button>

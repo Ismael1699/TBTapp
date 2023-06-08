@@ -8,7 +8,7 @@
   gap: 0px 0px;
   grid-template-areas:
     'proyecto frente suministro enviar'
-    'fecha lugar proveedor  enviar';
+    'fecha lugar proveedor  numero';
 }
 
 .head select {
@@ -63,11 +63,20 @@
   grid-area: proveedor;
   margin: 0.5rem;
 }
+
+.numero {
+  grid-area: numero;
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .enviar {
   grid-area: enviar;
   display: flex;
-  align-items: center;
   justify-content: center;
+  margin-top: 2.7rem;
 }
 .enviar button {
   background-color: var(--accent-color);
