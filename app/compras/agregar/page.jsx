@@ -17,6 +17,7 @@ export default function Agregar() {
   const [headData, setheadData] = useState({});
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
+  const [objData, setObjData] = useState({});
 
   //función para eleminar filas
   function rowDelete(e) {
@@ -125,6 +126,12 @@ export default function Agregar() {
     const item = e.target.id;
     setheadData({ ...headData, [item]: e.target.value });
     console.log(headData);
+  }
+  console.log(objData);
+
+  //centralizar los datos de la tabla con los de header
+  function enviarData() {
+    setObjData({ ...headData, table: itemTable });
   }
 
   return (
@@ -244,7 +251,7 @@ export default function Agregar() {
           </select>
         </div>
         <div className={style.enviar}>
-          <button>Enviar</button>
+          <button onClick={enviarData}>Enviar</button>
         </div>
       </div>
 
