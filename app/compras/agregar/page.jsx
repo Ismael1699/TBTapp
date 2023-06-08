@@ -14,7 +14,7 @@ export default function Agregar() {
     lugar: '',
     proveedor: '',
   };
-  const [headData, setheadData] = useState({});
+  const [headData, setheadData] = useState(structHead);
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
   const [objData, setObjData] = useState({});
@@ -125,13 +125,36 @@ export default function Agregar() {
   function headOnChange(e) {
     const item = e.target.id;
     setheadData({ ...headData, [item]: e.target.value });
-    console.log(headData);
   }
-  console.log(objData);
 
-  //centralizar los datos de la tabla con los de header
+  //centralizar los datos de la tabla con los de header y saber si el usuario ha ingresado todos los datos
   function enviarData() {
-    setObjData({ ...headData, table: itemTable });
+    let rowContentData = false;
+
+    if (itemTable.length === 0) {
+      rowContentData = false;
+    } else {
+      itemTable.map((obj) => {
+        console.log('itemtable obj');
+        console.log(obj);
+        const valuesObj = Object.values(obj);
+        valuesObj.map((values) =>
+          values === '' ? (rowContentData = false) : (rowContentData = true)
+        );
+      });
+    }
+    const value = Object.values(headData);
+    let headContentData = true;
+    value.map((item) =>
+      item === '' ? (headContentData = false) : (headContentData = true)
+    );
+
+    if (rowContentData && headContentData) {
+      setObjData({ ...headData, table: itemTable });
+      console.log('se ha guardado los datos');
+    } else {
+      alert('Por favor terminina de llenar los datos');
+    }
   }
 
   return (
