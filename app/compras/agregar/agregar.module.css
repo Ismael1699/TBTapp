@@ -7,8 +7,8 @@
   grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas:
-    'proyecto frente suministro file'
-    'fecha lugar proveedor  file';
+    'proyecto frente suministro enviar'
+    'fecha lugar proveedor  enviar';
 }
 
 .head select {
@@ -63,9 +63,26 @@
   grid-area: proveedor;
   margin: 0.5rem;
 }
-.file {
-  grid-area: file;
-  margin: 0.5rem;
+.enviar {
+  grid-area: enviar;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.enviar button {
+  background-color: var(--accent-color);
+  border: none;
+  width: 70%;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  transition: all 0.2s ease-in-out;
+  color: var(--font-dark);
+  font-weight: 900;
+}
+
+.enviar button:hover {
+  background-color: var(--accent-hover-color);
+  transform: scale(1.05);
 }
 
 /*table*/

@@ -6,9 +6,19 @@ import EditEneable from './(components)/Editeneable';
 import EditDisable from './(components)/EditDisable';
 
 export default function Agregar() {
+  const structHead = {
+    proyecto: '',
+    frente: '',
+    suministro: '',
+    fecha: '',
+    lugar: '',
+    proveedor: '',
+  };
+  const [headData, setheadData] = useState({});
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
 
+  //función para eleminar filas
   function rowDelete(e) {
     setItemTable(
       itemTable.filter((item) => item.id !== e.target.parentElement.id)
@@ -34,6 +44,7 @@ export default function Agregar() {
     ]);
   }
 
+  //funcion para editar filas
   function editingRow(e) {
     const id = e.target.parentElement.id;
     let index;
@@ -48,28 +59,30 @@ export default function Agregar() {
     setItemTable(newItemTable);
   }
 
+  //funcion para guardar onTime de forma temp los elementos inputs de editar
   function onChangeEditing(e) {
     const item = e.target.id;
-    const data = e.target.value;
-    const final = itemSelected.cantidad * parseInt(data);
+    const dataLocale = e.target.value;
+    const final = itemSelected.cantidad * parseInt(dataLocale);
     setItemSelected(() => {
       return item === 'unitario'
         ? {
             ...itemSelected,
-            [item]: data,
+            [item]: dataLocale,
             final: final,
           }
         : {
             ...itemSelected,
-            [item]: data,
+            [item]: dataLocale,
           };
     });
   }
 
+  //guardar en el estado los elementos de la tabla
   function submitEditing() {
     let exit = false;
-    let data = Object.values(itemSelected);
-    data.map((props, index) => (props === '' ? (exit = true) : ''));
+    let values = Object.values(itemSelected);
+    values.map((props, index) => (props === '' ? (exit = true) : ''));
 
     if (exit) {
       return alert('Inserta los datos faltantes');
@@ -102,9 +115,16 @@ export default function Agregar() {
       />
     );
   }
-
+  // eliminar todos los elementos de la tabla
   function reset() {
     setItemTable([]);
+  }
+
+  //funcion para obtener los datos del header
+  function headOnChange(e) {
+    const item = e.target.id;
+    setheadData({ ...headData, [item]: e.target.value });
+    console.log(headData);
   }
 
   return (
@@ -112,14 +132,36 @@ export default function Agregar() {
       <div className={style.head}>
         <div className={style.proyecto}>
           <h3>Proyecto</h3>
-          <select name='proyecto'>
+          <select
+            id='proyecto'
+            name='proyecto'
+            onClick={headOnChange}
+          >
+            <option
+              disabled
+              selected
+              value
+            >
+              Elegir alguna
+            </option>
             <option value='2103'>2103 SCT Pachuca</option>
           </select>
         </div>
 
         <div className={style.frente}>
           <h3>Frente</h3>
-          <select name='frente'>
+          <select
+            id='frente'
+            name='frente'
+            onClick={headOnChange}
+          >
+            <option
+              disabled
+              selected
+              value
+            >
+              Elegir alguna
+            </option>
             <option value='terracerias'>Terracerias</option>
             <option value='maquinaria'>Maquinaria</option>
             <option value='administracion'>Administración</option>
@@ -128,7 +170,18 @@ export default function Agregar() {
 
         <div className={style.suministro}>
           <h3>Grupo de suministro</h3>
-          <select name='grupo de suministro'>
+          <select
+            id='suministro'
+            name='grupo de suministro'
+            onClick={headOnChange}
+          >
+            <option
+              disabled
+              selected
+              value
+            >
+              Elegir alguna
+            </option>
             <option value='materiales de construccion'>
               Materiales de construcción
             </option>
@@ -145,12 +198,27 @@ export default function Agregar() {
 
         <div className={style.fecha}>
           <h3>Fecha</h3>
-          <input type='date'></input>
+          <input
+            id='fecha'
+            type='date'
+            onChange={headOnChange}
+          ></input>
         </div>
 
         <div className={style.lugar}>
           <h3>Lugar de compra</h3>
-          <select name='lugar de compra'>
+          <select
+            id='lugar'
+            name='lugar de compra'
+            onClick={headOnChange}
+          >
+            <option
+              disabled
+              selected
+              value
+            >
+              Elegir alguna
+            </option>
             <option value='local'>Compra local</option>
             <option value='regional'>Compra regional</option>
             <option value='nacional'>Compra nacional</option>
@@ -159,14 +227,24 @@ export default function Agregar() {
 
         <div className={style.proveedor}>
           <h3>Proveedor</h3>
-          <select name='proverdores'>
+          <select
+            id='proveedores'
+            name='proverdores'
+            onClick={headOnChange}
+          >
+            <option
+              disabled
+              selected
+              value
+            >
+              Elegir alguna
+            </option>
             <option value='provedor1'>Provedor 1</option>
             <option value='provedor2'>Provedor 2</option>
           </select>
         </div>
-        <div className={style.file}>
-          <h3>Cotización</h3>
-          <input type='file'></input>
+        <div className={style.enviar}>
+          <button>Enviar</button>
         </div>
       </div>
 
