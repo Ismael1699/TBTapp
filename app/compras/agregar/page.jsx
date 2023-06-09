@@ -4,6 +4,7 @@ import style from './agregar.module.css';
 import { v4 as uuid } from 'uuid';
 import EditEneable from './(components)/Editeneable';
 import EditDisable from './(components)/EditDisable';
+import upData from '../../../services/upData';
 
 export default function Agregar() {
   const structHead = {
@@ -136,8 +137,6 @@ export default function Agregar() {
       rowContentData = false;
     } else {
       itemTable.map((obj) => {
-        console.log('itemtable obj');
-        console.log(obj);
         const valuesObj = Object.values(obj);
         valuesObj.map((values) =>
           values === '' ? (rowContentData = false) : (rowContentData = true)
@@ -152,13 +151,24 @@ export default function Agregar() {
 
     if (rowContentData && headContentData) {
       setObjData({ ...headData, table: itemTable });
-      console.log('se ha guardado los datos');
+      console.log('se ha guardado los datos de forma local');
+      return subirDataToDB();
     } else {
       alert('Por favor terminina de llenar los datos');
     }
   }
 
-  console.log(headData);
+  async function subirDataToDB() {
+    const { result, error } = await upData(
+      'requisiciones',
+      `requisicion${objData.numero}`,
+      objData
+    );
+    if (error) {
+      return console.log(error);
+    }
+    console.log('los datos se enviaron a la base de datos');
+  }
   return (
     <div>
       <div className={style.head}>
