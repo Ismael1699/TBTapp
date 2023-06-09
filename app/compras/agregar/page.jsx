@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 import EditEneable from './(components)/Editeneable';
 import EditDisable from './(components)/EditDisable';
 import upData from '../../../services/upData';
+import createExcel from '../../../services/createExcel';
 
 export default function Agregar() {
   const structHead = {
@@ -168,6 +169,7 @@ export default function Agregar() {
       return console.log(error);
     }
     console.log('los datos se enviaron a la base de datos');
+    createExcel();
   }
   return (
     <div>
