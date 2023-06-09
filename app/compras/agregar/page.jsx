@@ -16,7 +16,7 @@ export default function Agregar() {
     proveedor: '',
     numero: '',
   };
-  const [headData, setheadData] = useState(structHead);
+  const [headData, setHeadData] = useState(structHead);
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
   const [objData, setObjData] = useState({});
@@ -126,7 +126,7 @@ export default function Agregar() {
   //funcion para obtener los datos del header
   function headOnChange(e) {
     const item = e.target.id;
-    setheadData({ ...headData, [item]: e.target.value });
+    setHeadData({ ...headData, [item]: e.target.value });
   }
 
   //centralizar los datos de la tabla con los de header y saber si el usuario ha ingresado todos los datos
