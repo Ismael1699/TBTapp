@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import EditEneable from './(components)/Editeneable';
 import EditDisable from './(components)/EditDisable';
 import upData from '../../../services/upData';
-import createExcel from '../../../services/createExcel';
+import getFile from '../../apis/getFile';
 
 export default function Agregar() {
   const structHead = {
@@ -21,6 +21,7 @@ export default function Agregar() {
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
   const [objData, setObjData] = useState({});
+  const [fileData, setFileData] = useState(null);
 
   //función para eleminar filas
   function rowDelete(e) {
@@ -169,8 +170,13 @@ export default function Agregar() {
       return console.log(error);
     }
     console.log('los datos se enviaron a la base de datos');
-    createExcel();
+    // modificar excel con google
   }
+
+  async function handleImport() {
+    getFile();
+  }
+
   return (
     <div>
       <div className={style.head}>
@@ -180,11 +186,11 @@ export default function Agregar() {
             id='proyecto'
             name='proyecto'
             onClick={headOnChange}
+            defaultValue='default'
           >
             <option
               disabled
-              selected
-              value
+              value='default'
             >
               Elegir alguna
             </option>
@@ -198,11 +204,11 @@ export default function Agregar() {
             id='frente'
             name='frente'
             onClick={headOnChange}
+            defaultValue='default'
           >
             <option
               disabled
-              selected
-              value
+              value='default'
             >
               Elegir alguna
             </option>
@@ -218,11 +224,11 @@ export default function Agregar() {
             id='suministro'
             name='grupo de suministro'
             onClick={headOnChange}
+            defaultValue='default'
           >
             <option
               disabled
-              selected
-              value
+              value='default'
             >
               Elegir alguna
             </option>
@@ -255,11 +261,11 @@ export default function Agregar() {
             id='lugar'
             name='lugar de compra'
             onClick={headOnChange}
+            defaultValue='default'
           >
             <option
               disabled
-              selected
-              value
+              value='default'
             >
               Elegir alguna
             </option>
@@ -275,11 +281,11 @@ export default function Agregar() {
             id='proveedores'
             name='proverdores'
             onClick={headOnChange}
+            defaultValue='default'
           >
             <option
               disabled
-              selected
-              value
+              value='default'
             >
               Elegir alguna
             </option>
@@ -302,22 +308,24 @@ export default function Agregar() {
       </div>
 
       <table className={style.table}>
-        <tr>
-          <th>partida</th>
-          <th>No parte</th>
-          <th className={style.sizedescripcion}>Descripción</th>
-          <th>Unidad</th>
-          <th>Cantidad</th>
-          <th>Precio Unitario</th>
-          <th>Precio Final</th>
-          <th>modos</th>
-        </tr>
+        <tbody>
+          <tr>
+            <th>partida</th>
+            <th>No parte</th>
+            <th className={style.sizedescripcion}>Descripción</th>
+            <th>Unidad</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Precio Final</th>
+            <th>modos</th>
+          </tr>
 
-        {/* parte donde se generará de manera dinamica los elementos de cada fila de la tabla */}
+          {/* parte donde se generará de manera dinamica los elementos de cada fila de la tabla */}
 
-        {itemTable.map((obj, index) => {
-          return genereteJSX(obj, index);
-        })}
+          {itemTable.map((obj, index) => {
+            return genereteJSX(obj, index);
+          })}
+        </tbody>
       </table>
 
       <button
@@ -332,6 +340,9 @@ export default function Agregar() {
       >
         Reset
       </button>
+
+      <button>Descargar archivo modificado</button>
+      <button onClick={handleImport}>importar elemento</button>
     </div>
   );
 }
