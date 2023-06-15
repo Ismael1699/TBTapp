@@ -170,7 +170,7 @@ export default function Agregar() {
   }
 
   async function sendDataBackend() {
-    await fetch('../../api/data', {
+    await fetch('../../api/excelMod', {
       method: 'POST',
       body: JSON.stringify(objData),
     });
