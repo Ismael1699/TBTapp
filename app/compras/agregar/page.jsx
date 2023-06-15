@@ -5,7 +5,6 @@ import { v4 as uuid } from 'uuid';
 import EditEneable from './(components)/Editeneable';
 import EditDisable from './(components)/EditDisable';
 import upData from '../../../services/upData';
-import getFile from '../../apis/getFile';
 
 export default function Agregar() {
   const structHead = {
@@ -21,7 +20,6 @@ export default function Agregar() {
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
   const [objData, setObjData] = useState({});
-  const [fileData, setFileData] = useState(null);
 
   //función para eleminar filas
   function rowDelete(e) {
@@ -166,17 +164,16 @@ export default function Agregar() {
       `requisicion${objData.numero}`,
       objData
     );
-    if (error) {
-      return console.log(error);
-    }
-    console.log('los datos se enviaron a la base de datos');
+    if (error) console.log('los datos se enviaron a la base de datos');
     // modificar excel con google
   }
 
-  async function handleImport() {
-    getFile();
+  async function sendDataBackend() {
+    await fetch('../../api/data', {
+      method: 'POST',
+      body: JSON.stringify(headData),
+    });
   }
-
   return (
     <div>
       <div className={style.head}>
@@ -278,8 +275,8 @@ export default function Agregar() {
         <div className={style.proveedor}>
           <h3>Proveedor</h3>
           <select
-            id='proveedores'
-            name='proverdores'
+            id='proveedor'
+            name='proveerdor'
             onClick={headOnChange}
             defaultValue='default'
           >
@@ -341,8 +338,7 @@ export default function Agregar() {
         Reset
       </button>
 
-      <button>Descargar archivo modificado</button>
-      <button onClick={handleImport}>importar elemento</button>
+      <button onClick={sendDataBackend}>Descargar archivo modificado</button>
     </div>
   );
 }
