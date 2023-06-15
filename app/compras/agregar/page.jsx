@@ -166,13 +166,15 @@ export default function Agregar() {
     );
     if (error) console.log('los datos se enviaron a la base de datos');
     // modificar excel con google
+    sendDataBackend();
   }
 
   async function sendDataBackend() {
     await fetch('../../api/data', {
       method: 'POST',
-      body: JSON.stringify(headData),
+      body: JSON.stringify(objData),
     });
+    console.log('los datos fueron enviado al servidor');
   }
   return (
     <div>
@@ -191,7 +193,7 @@ export default function Agregar() {
             >
               Elegir alguna
             </option>
-            <option value='2103'>2103 SCT Pachuca</option>
+            <option value={2103}>2103 SCT Pachuca</option>
           </select>
         </div>
 
@@ -209,9 +211,9 @@ export default function Agregar() {
             >
               Elegir alguna
             </option>
-            <option value='terracerias'>Terracerias</option>
-            <option value='maquinaria'>Maquinaria</option>
-            <option value='administracion'>Administración</option>
+            <option value='TERRACERIAS'>Terracerias</option>
+            <option value='MAQUINARIA'>Maquinaria</option>
+            <option value='ADMINISTRACION'>Administración</option>
           </select>
         </div>
 
@@ -337,8 +339,6 @@ export default function Agregar() {
       >
         Reset
       </button>
-
-      <button onClick={sendDataBackend}>Descargar archivo modificado</button>
     </div>
   );
 }

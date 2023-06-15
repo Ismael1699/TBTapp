@@ -2,7 +2,7 @@ import style from '../agregar.module.css';
 export default function EditDisable({ obj, index, rowDelete, editingRow }) {
   return (
     <tr
-      id={index + 1}
+      id={obj.id}
       className={style.rowGenerator}
     >
       {/* partida */}

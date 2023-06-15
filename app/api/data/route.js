@@ -9,9 +9,11 @@ export async function POST(req) {
   const workbook = await XlsxPopulate.fromFileAsync(
     './app/api/data/plantilla.xlsx'
   );
-  const sheet = workbook.sheet('requi');
-  const cell = sheet.cell('A1');
-  cell.value('hola mundo');
+  workbook.sheet('requi').cell('C7').value(parseInt(body.proyecto, 10));
+  workbook.sheet('requi').cell('C9').value(body.frente);
+  workbook.sheet('requi').cell('C11').value(body.fecha);
+  workbook.sheet('requi').cell('P5').value(parseInt(body.numero, 10));
+  workbook.sheet('requi').cell('L20').value(body.proveedor);
 
   await workbook.toFileAsync('./app/api/data/plantilla.xlsx');
 

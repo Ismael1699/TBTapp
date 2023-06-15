@@ -11,7 +11,7 @@ export default function EditEneable({
   const final = cant * price;
   return (
     <tr
-      id={index + 1}
+      id={obj.id}
       className={style.rowGenerator}
     >
       <td>{index + 1}</td>
@@ -37,11 +37,11 @@ export default function EditEneable({
           className={style.inputsRow}
           name='unidad'
           onChange={onChangeEditing}
+          defaultValue=''
         >
           <option
             disabled
-            selected
-            value
+            value=''
           ></option>
           <option value='PZA'>PZA</option>
           <option value='Serv'>Serv</option>
