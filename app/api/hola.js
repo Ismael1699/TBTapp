@@ -1,8 +1,8 @@
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
-export default async function getFile() {
+export default async function getFile(data) {
   const storage = getStorage();
-  const starsRef = ref(storage, 'excel/plantilla.xlsx');
+  const starsRef = ref(storage, data);
 
   let link = '';
   let errorl = null;

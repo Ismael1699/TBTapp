@@ -231,17 +231,17 @@ export default function Agregar() {
             >
               Elegir alguna
             </option>
-            <option value='materiales de construccion'>
+            <option value='MATERIALES DE CONSTRUCCION'>
               Materiales de construcción
             </option>
-            <option value='refacciones'>Refacciones</option>
-            <option value='combustibles y aceites'>
+            <option value='REFACCIONES'>Refacciones</option>
+            <option value='COMBUSTIBLES Y ACEITES'>
               Combustible y aceites
             </option>
-            <option value='resguardo consumo'>Resguardo cosumo</option>
-            <option value='equipo auxiliar'>Equipo auxiliar</option>
-            <option value='papeleria'>papeleria</option>
-            <option value='Otros'>Otros</option>
+            <option value='RESGUARDO CONSUMOS'>Resguardo cosumo</option>
+            <option value='EQUIPO AUXILIAR'>Equipo auxiliar</option>
+            <option value='PAPELERIA'>papeleria</option>
+            <option value='OTROS'>Otros</option>
           </select>
         </div>
 
