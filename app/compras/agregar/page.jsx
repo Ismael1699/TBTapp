@@ -19,9 +19,6 @@ export default function Agregar() {
   const [headData, setHeadData] = useState(structHead);
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
-  const [objData, setObjData] = useState({});
-
-  console.log(itemTable);
 
   //función para eleminar filas
   function rowDelete(e) {
@@ -155,29 +152,29 @@ export default function Agregar() {
     );
 
     if (rowContentData && headContentData) {
-      setObjData({ ...headData, table: itemTable });
+      const data = { ...headData, table: itemTable };
       console.log('se ha guardado los datos de forma local');
-      return subirDataToDB();
+      return subirDataToDB(data);
     } else {
       alert('Por favor terminina de llenar los datos');
     }
   }
 
-  async function subirDataToDB() {
+  async function subirDataToDB(data) {
     const { result, error } = await upData(
       'requisiciones',
-      `requisicion${objData.numero}`,
-      objData
+      `requisicion${data.numero}`,
+      data
     );
     if (error) console.log('los datos se enviaron a la base de datos');
     // modificar excel con google
-    sendDataBackend();
+    sendDataBackend(data);
   }
 
-  async function sendDataBackend() {
+  async function sendDataBackend(data) {
     await fetch('../../api/excelMod', {
       method: 'POST',
-      body: JSON.stringify(objData),
+      body: JSON.stringify(data),
     });
     console.log('los datos fueron enviado al servidor');
   }
@@ -327,7 +324,6 @@ export default function Agregar() {
           {/* parte donde se generará de manera dinamica los elementos de cada fila de la tabla */}
 
           {itemTable.map((obj, index) => {
-            console.log(obj);
             return genereteJSX(obj, index);
           })}
         </tbody>
