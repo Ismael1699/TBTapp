@@ -6,11 +6,16 @@ export default function EditEneable({
   submitEditing,
   itemSelected,
 }) {
-  const cant = parseInt(itemSelected.cantidad);
-  const price = parseInt(itemSelected.unitario);
+  const cant = parseInt(
+    itemSelected.cantidad == '' ? 0 : itemSelected.cantidad
+  );
+  const price = parseInt(
+    itemSelected.unitario == '' ? 0 : itemSelected.unitario
+  );
   const final = cant * price;
   return (
     <tr
+      key={obj.id}
       id={obj.id}
       className={style.rowGenerator}
     >

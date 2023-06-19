@@ -2,6 +2,7 @@ import style from '../agregar.module.css';
 export default function EditDisable({ obj, index, rowDelete, editingRow }) {
   return (
     <tr
+      key={obj.id}
       id={obj.id}
       className={style.rowGenerator}
     >

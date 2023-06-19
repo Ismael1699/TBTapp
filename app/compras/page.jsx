@@ -1,10 +1,19 @@
+'use client';
 import Link from 'next/link';
 import Card from './(Card)/Card';
 import style from './layout.module.css';
+import { useState } from 'react';
+import AddProveedor from './(AddProveedor)/AddProveedor';
 
 export default function Compras() {
+  const [proveedorIsClicked, setProveedorIsClicked] = useState(false);
+
+  function handleButtonProveedor() {
+    setProveedorIsClicked(!proveedorIsClicked);
+  }
+
   return (
-    <>
+    <div className={style.container}>
       <div className={style.header}>
         <h1>Requisiciones</h1>
         <div className={style.containerbuscador}>
@@ -16,19 +25,26 @@ export default function Compras() {
           />
           <Link
             href='/compras/agregar'
-            className={style.button}>
+            className={style.button}
+          >
             <i className='bi bi-plus-lg'></i>
             <p>Compra</p>
           </Link>
-          <Link
+          <button
             href=''
-            className={style.button}>
+            className={style.button}
+            onClick={handleButtonProveedor}
+          >
             <i className='bi bi-plus-lg'></i>
             <p>Provedor</p>
-          </Link>
+          </button>
         </div>
       </div>
-      <div className={style.containerbody}></div>
+      {proveedorIsClicked ? (
+        <AddProveedor handleButtonProveedor={handleButtonProveedor} />
+      ) : (
+        <></>
+      )}
       <div className={style.containercard}>
         <Card />
         <Card />
@@ -43,6 +59,6 @@ export default function Compras() {
         <Card />
         <Card />
       </div>
-    </>
+    </div>
   );
 }

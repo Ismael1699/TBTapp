@@ -21,6 +21,8 @@ export default function Agregar() {
   const [itemSelected, setItemSelected] = useState({});
   const [objData, setObjData] = useState({});
 
+  console.log(itemTable);
+
   //función para eleminar filas
   function rowDelete(e) {
     setItemTable(
@@ -121,6 +123,7 @@ export default function Agregar() {
   // eliminar todos los elementos de la tabla
   function reset() {
     setItemTable([]);
+    setHeadData(structHead);
   }
 
   //funcion para obtener los datos del header

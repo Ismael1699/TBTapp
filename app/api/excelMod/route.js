@@ -4,8 +4,6 @@ import { NextResponse } from 'next/server';
 export async function POST(req) {
   const body = await req.json();
 
-  console.log(body);
-
   const workbook = await XlsxPopulate.fromFileAsync(
     './app/api/excelMod/plantilla.xlsx'
   );
@@ -68,6 +66,7 @@ export async function POST(req) {
   });
 
   await workbook.toFileAsync('./app/api/excelMod/plantilla.xlsx');
+  console.log('se creo correctamente');
 
   return NextResponse.json({ url: 'se creo corretamente' });
 }
