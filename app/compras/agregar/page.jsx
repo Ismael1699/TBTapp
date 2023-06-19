@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 import EditEneable from './(components)/Editeneable';
 import EditDisable from './(components)/EditDisable';
 import upData from '../../../services/upData';
+import HeadData from './(components)/HeadData';
 
 export default function Agregar() {
   const structHead = {
@@ -19,6 +20,7 @@ export default function Agregar() {
   const [headData, setHeadData] = useState(structHead);
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
+  const [dataWasSent, setDataWasSent] = useState(false);
 
   //función para eleminar filas
   function rowDelete(e) {
@@ -119,20 +121,9 @@ export default function Agregar() {
       />
     );
   }
-  // eliminar todos los elementos de la tabla
-  function reset() {
-    setItemTable([]);
-    setHeadData(structHead);
-  }
-
-  //funcion para obtener los datos del header
-  function headOnChange(e) {
-    const item = e.target.id;
-    setHeadData({ ...headData, [item]: e.target.value });
-  }
 
   //centralizar los datos de la tabla con los de header y saber si el usuario ha ingresado todos los datos
-  function enviarData() {
+  function centralizeData() {
     let rowContentData = false;
 
     if (itemTable.length === 0) {
@@ -153,14 +144,13 @@ export default function Agregar() {
 
     if (rowContentData && headContentData) {
       const data = { ...headData, table: itemTable };
-      console.log('se ha guardado los datos de forma local');
-      return subirDataToDB(data);
+      return sendDataToDB(data);
     } else {
       alert('Por favor terminina de llenar los datos');
     }
   }
 
-  async function subirDataToDB(data) {
+  async function sendDataToDB(data) {
     const { result, error } = await upData(
       'requisiciones',
       `requisicion${data.numero}`,
@@ -176,138 +166,22 @@ export default function Agregar() {
       method: 'POST',
       body: JSON.stringify(data),
     });
-    console.log('los datos fueron enviado al servidor');
+    alert(
+      `Se ha creado correctamente la orden de compra y la requisicion número ${data.numero}`
+    );
+    setDataWasSent(true);
+    setItemTable([]);
+    setHeadData(structHead);
   }
   return (
     <div>
-      <div className={style.head}>
-        <div className={style.proyecto}>
-          <h3>Proyecto</h3>
-          <select
-            id='proyecto'
-            name='proyecto'
-            onClick={headOnChange}
-            defaultValue='default'
-          >
-            <option
-              disabled
-              value='default'
-            >
-              Elegir alguna
-            </option>
-            <option value={2103}>2103 SCT Pachuca</option>
-          </select>
-        </div>
-
-        <div className={style.frente}>
-          <h3>Frente</h3>
-          <select
-            id='frente'
-            name='frente'
-            onClick={headOnChange}
-            defaultValue='default'
-          >
-            <option
-              disabled
-              value='default'
-            >
-              Elegir alguna
-            </option>
-            <option value='TERRACERIAS'>Terracerias</option>
-            <option value='MAQUINARIA'>Maquinaria</option>
-            <option value='ADMINISTRACION'>Administración</option>
-          </select>
-        </div>
-
-        <div className={style.suministro}>
-          <h3>Grupo de suministro</h3>
-          <select
-            id='suministro'
-            name='grupo de suministro'
-            onClick={headOnChange}
-            defaultValue='default'
-          >
-            <option
-              disabled
-              value='default'
-            >
-              Elegir alguna
-            </option>
-            <option value='MATERIALES DE CONSTRUCCION'>
-              Materiales de construcción
-            </option>
-            <option value='REFACCIONES'>Refacciones</option>
-            <option value='COMBUSTIBLES Y ACEITES'>
-              Combustible y aceites
-            </option>
-            <option value='RESGUARDO CONSUMOS'>Resguardo cosumo</option>
-            <option value='EQUIPO AUXILIAR'>Equipo auxiliar</option>
-            <option value='PAPELERIA'>papeleria</option>
-            <option value='OTROS'>Otros</option>
-          </select>
-        </div>
-
-        <div className={style.fecha}>
-          <h3>Fecha</h3>
-          <input
-            id='fecha'
-            type='date'
-            onChange={headOnChange}
-          ></input>
-        </div>
-
-        <div className={style.lugar}>
-          <h3>Lugar de compra</h3>
-          <select
-            id='lugar'
-            name='lugar de compra'
-            onClick={headOnChange}
-            defaultValue='default'
-          >
-            <option
-              disabled
-              value='default'
-            >
-              Elegir alguna
-            </option>
-            <option value='local'>Compra local</option>
-            <option value='regional'>Compra regional</option>
-            <option value='nacional'>Compra nacional</option>
-          </select>
-        </div>
-
-        <div className={style.proveedor}>
-          <h3>Proveedor</h3>
-          <select
-            id='proveedor'
-            name='proveerdor'
-            onClick={headOnChange}
-            defaultValue='default'
-          >
-            <option
-              disabled
-              value='default'
-            >
-              Elegir alguna
-            </option>
-            <option value='provedor1'>Provedor 1</option>
-            <option value='provedor2'>Provedor 2</option>
-          </select>
-        </div>
-        <div className={style.numero}>
-          <h3>Numero de requisición</h3>
-          <input
-            id='numero'
-            type='number'
-            placeholder='Inserte un numero'
-            onChange={headOnChange}
-          />
-        </div>
-        <div className={style.enviar}>
-          <button onClick={enviarData}>Enviar</button>
-        </div>
-      </div>
-
+      <HeadData
+        setHeadData={setHeadData}
+        centralizeData={centralizeData}
+        headData={headData}
+        dataWasSent={dataWasSent}
+        setDataWasSent={setDataWasSent}
+      />
       <table className={style.table}>
         <tbody>
           <tr>
@@ -334,12 +208,6 @@ export default function Agregar() {
         onClick={addRowTable}
       >
         Agregar
-      </button>
-      <button
-        className={style.button}
-        onClick={reset}
-      >
-        Reset
       </button>
     </div>
   );
