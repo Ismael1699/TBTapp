@@ -110,9 +110,11 @@ export default function Agregar() {
         onChangeEditing={onChangeEditing}
         submitEditing={submitEditing}
         itemSelected={itemSelected}
+        key={obj.id}
       />
     ) : (
       <EditDisable
+        key={obj.id}
         obj={obj}
         index={index}
         rowDelete={rowDelete}
@@ -325,6 +327,7 @@ export default function Agregar() {
           {/* parte donde se generará de manera dinamica los elementos de cada fila de la tabla */}
 
           {itemTable.map((obj, index) => {
+            console.log(obj);
             return genereteJSX(obj, index);
           })}
         </tbody>
