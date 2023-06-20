@@ -167,7 +167,7 @@ export default function Agregar() {
       body: JSON.stringify(data),
     });
     alert(
-      `Se ha creado correctamente la orden de compra y la requisicion número ${data.numero}`
+      `Se ha creado correctamente la orden de compra y la requisición número ${data.numero}`
     );
     setDataWasSent(true);
     setItemTable([]);

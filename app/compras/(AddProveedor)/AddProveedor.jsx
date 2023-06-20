@@ -15,16 +15,22 @@ export default function AddProveedor({ handleButtonProveedor }) {
           <div className={style.grupInputs}>
             <label htmlFor='proveedor'>Proveedor</label>
             <input
+              id='proveedor'
               name='proveedor'
               type='text'
             />
             <label htmlFor='rfc'>RFC</label>
             <input
+              id='rfc'
               name='rfc'
               type='text'
             />
             <label htmlFor='direccion'>Dirección</label>
-            <input type='text' />
+            <input
+              id='direccion'
+              name='direccion'
+              type='text'
+            />
           </div>
         </div>
         <div className={style.form}>
@@ -34,13 +40,22 @@ export default function AddProveedor({ handleButtonProveedor }) {
           <div className={style.grupInputs}>
             <label htmlFor='banco'>Banco</label>
             <input
+              id='banco'
               name='banco'
               type='text'
             />
             <label htmlFor='clabe'>Clabe</label>
-            <input type='text' />
+            <input
+              id='clabe'
+              name='clabe'
+              type='text'
+            />
             <label htmlFor='cuenta'>Cuenta</label>
-            <input type='text' />
+            <input
+              id='cuenta'
+              name='cuenta'
+              type='text'
+            />
           </div>
         </div>
         <div className={style.form}>
@@ -50,11 +65,13 @@ export default function AddProveedor({ handleButtonProveedor }) {
           <div className={style.grupInputs}>
             <label htmlFor='telefono'>Teléfono</label>
             <input
+              id='telefono'
               name='telefono'
               type='text'
             />
-            <label htmlFor='coreo'>Correo</label>
+            <label htmlFor='correo'>Correo</label>
             <input
+              id='correo'
               name='correo'
               type='text'
             />
