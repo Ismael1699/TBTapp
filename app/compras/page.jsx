@@ -1,6 +1,8 @@
+'use client';
 import Link from 'next/link';
 import Card from './(Card)/Card';
 import style from './layout.module.css';
+import { useEffect, useState, use } from 'react';
 
 async function getCol() {
   const response = await fetch('http://localhost:3000/api/getColFirebase', {
@@ -10,8 +12,9 @@ async function getCol() {
   return response.json();
 }
 
-export default async function Compras() {
-  const dataRequisiciones = await getCol();
+export default function Compras() {
+  const data = use(getCol()).data;
+  console.log(data);
   return (
     <div className={style.container}>
       <div className={style.header}>
@@ -40,8 +43,12 @@ export default async function Compras() {
         </div>
       </div>
       <div className={style.containercard}>
-        <Card />
-        {JSON.stringify(dataRequisiciones.data)}
+        {data.map((obj, index) => (
+          <Card
+            obj={obj}
+            key={index}
+          />
+        ))}
       </div>
     </div>
   );

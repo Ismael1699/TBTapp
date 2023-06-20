@@ -1,22 +1,31 @@
 import style from './card.module.css';
-export default function Card() {
+export default function Card({ obj }) {
   return (
     <div className={style.card}>
-      <p className={style.proyecto}>Proyecto</p>
-      <p className={style.no}>No.</p>
-      <p className={style.departamento}>Departamento</p>
-      <p className={style.fecha}>Fecha</p>
+      <p className={style.proyecto}>{obj.proyecto}</p>
+      <p className={style.no}>No. {obj.numero}</p>
+      <p className={style.departamento}>{obj.frente}</p>
+      <p className={style.fecha}>{obj.fecha} </p>
       <div className={style.descripcion}>
-        <p>Descripción</p>
-        <p>precio</p>
+        <p>
+          Descripción
+          <br />
+          {obj.table[0].descripcion}
+        </p>
+        <p>
+          precio <br />
+          {parseInt(obj.table[0].unitario).toLocaleString('en', {
+            style: 'currency',
+            currency: 'MXN',
+          })}
+        </p>
       </div>
-      <p className={style.requisito}>solicitante</p>
+      <p className={style.requisito}>
+        solicitante:
+        <br /> {obj.frente}
+      </p>
       <div className={style.status}>
         <h3 className={style.statustitle}>status</h3>
-        {/*<p className={style.subida}>subido</p>
-        <p className={style.autorizada1}>autorizado</p>
-        <p className={style.autorizada2}>autorizado</p>
-        <p className={style.pagada}>pagado</p> */}
         <div className={style.barsubida}></div>
         <div className={style.barautorizada1}></div>
         <div className={style.barautorizada2}></div>
