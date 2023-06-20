@@ -20,5 +20,5 @@ export async function POST(req) {
       error = e;
     });
 
-  return Response({ link: link, error: error });
+  return NextResponse.json({ link: link, error: error });
 }

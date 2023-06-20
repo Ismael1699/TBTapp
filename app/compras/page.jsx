@@ -1,17 +1,17 @@
-'use client';
 import Link from 'next/link';
 import Card from './(Card)/Card';
 import style from './layout.module.css';
-import { useState } from 'react';
-import AddProveedor from './(AddProveedor)/AddProveedor';
 
-export default function Compras() {
-  const [proveedorIsClicked, setProveedorIsClicked] = useState(false);
+async function getCol() {
+  const response = await fetch('http://localhost:3000/api/getColFirebase', {
+    method: 'POST',
+    body: JSON.stringify({ col: 'requisiciones' }),
+  });
+  return response.json();
+}
 
-  function handleButtonProveedor() {
-    setProveedorIsClicked(!proveedorIsClicked);
-  }
-
+export default async function Compras() {
+  const dataRequisiciones = await getCol();
   return (
     <div className={style.container}>
       <div className={style.header}>
@@ -33,31 +33,15 @@ export default function Compras() {
           <button
             href=''
             className={style.button}
-            onClick={handleButtonProveedor}
           >
             <i className='bi bi-plus-lg'></i>
             <p>Provedor</p>
           </button>
         </div>
       </div>
-      {proveedorIsClicked ? (
-        <AddProveedor handleButtonProveedor={handleButtonProveedor} />
-      ) : (
-        <></>
-      )}
       <div className={style.containercard}>
         <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {JSON.stringify(dataRequisiciones.data)}
       </div>
     </div>
   );
