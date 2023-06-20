@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import app from '../../../services/firebase';
 
 export async function POST(req) {
-  const body = await req.json();
+  // const body = await req.json();
   const storage = getStorage(app);
   const starsRef = ref(storage, body);
 
