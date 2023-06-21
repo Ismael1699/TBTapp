@@ -3,6 +3,7 @@
 import style from './proveedor.module.css';
 import AddProveedor from './(AddProveedor)/AddProveedor';
 import { useState } from 'react';
+import CardProveedor from './(CardProveedor)/CardProveedor';
 
 export default function Proveedores() {
   const [agregarWasClicked, setAgregarWasClicked] = useState(false);
@@ -35,6 +36,7 @@ export default function Proveedores() {
         ) : (
           <></>
         )}
+        <CardProveedor />
       </div>
     </div>
   );

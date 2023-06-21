@@ -1,0 +1,65 @@
+.container {
+  width: 20rem;
+  height: 10rem;
+  background-color: var(--card-color);
+  border-radius: 1rem;
+  padding: 0.8rem;
+  color: var(--font-ligth);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    'proveedor proveedor proveedor proveedor proveedor'
+    'contacto contacto telefono correo correo'
+    'rfc rfc direccion direccion direccion';
+}
+
+.proveedor {
+  grid-area: proveedor;
+  display: flex;
+  justify-content: center;
+  background-color: wheat;
+  align-items: center;
+}
+
+.contacto {
+  grid-area: contacto;
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.telefono {
+  grid-area: telefono;
+  background-color: chocolate;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.correo {
+  grid-area: correo;
+  background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rfc {
+  grid-area: rfc;
+  background-color: slategray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.direccion {
+  grid-area: direccion;
+  background-color: cadetblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
