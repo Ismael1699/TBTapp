@@ -46,7 +46,12 @@ export default function Proveedores() {
         ) : (
           <></>
         )}
-        <CardProveedor />
+        {data.map((obj, index) => (
+          <CardProveedor
+            obj={obj}
+            index={index}
+          />
+        ))}
       </div>
     </div>
   );

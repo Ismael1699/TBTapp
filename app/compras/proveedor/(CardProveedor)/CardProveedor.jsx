@@ -1,25 +1,25 @@
 import style from './CardProveedor.module.css';
 
-export default function CardProveedor() {
+export default function CardProveedor({ obj }) {
   return (
     <div className={style.container}>
       <div className={style.proveedor}>
-        <p>proveedor</p>
+        <p>{obj.proveedor}</p>
       </div>
       <div className={style.contacto}>
-        <p>contacto</p>
+        <p>{obj.contacto}</p>
       </div>
       <div className={style.correo}>
-        <p>correo</p>
+        <p>{obj.correo}</p>
       </div>
       <div className={style.telefono}>
-        <p>telefono</p>
+        <p>{obj.telefono}</p>
       </div>
       <div className={style.rfc}>
-        <p>RFC</p>
+        <p>{obj.rfc}</p>
       </div>
       <div className={style.direccion}>
-        <p>Direccion</p>
+        <p>{obj.direccion}</p>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 .container {
-  width: 20rem;
-  height: 10rem;
+  width: 22rem;
+  height: 11rem;
   background-color: var(--card-color);
   border-radius: 1rem;
   padding: 0.8rem;
@@ -17,48 +17,49 @@
 }
 
 .proveedor {
+  font-size: 15px;
+  font-weight: 900;
   grid-area: proveedor;
   display: flex;
   justify-content: center;
-  background-color: wheat;
   align-items: center;
 }
 
 .contacto {
+  font-size: 10px;
   grid-area: contacto;
-  background-color: yellow;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .telefono {
+  font-size: 10px;
   grid-area: telefono;
-  background-color: chocolate;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .correo {
+  font-size: 10px;
   grid-area: correo;
-  background-color: tomato;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .rfc {
+  font-size: 10px;
   grid-area: rfc;
-  background-color: slategray;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .direccion {
+  font-size: 10px;
   grid-area: direccion;
-  background-color: cadetblue;
   display: flex;
   justify-content: center;
   align-items: center;
