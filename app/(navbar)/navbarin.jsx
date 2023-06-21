@@ -17,8 +17,9 @@ export default function NavbarIn() {
             onClick={async () => {
               await auth.userLogout();
             }}
+            className='button'
           >
-            Logout
+            <p>Logout</p>
           </button>
         </div>
         <li>

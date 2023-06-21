@@ -10,8 +10,8 @@ export async function POST(req) {
   workbook.sheet('requi').cell('C7').value(parseInt(body.proyecto, 10));
   workbook.sheet('requi').cell('C9').value(body.frente);
   workbook.sheet('requi').cell('C11').value(body.fecha);
-  workbook.sheet('requi').cell('P5').value(parseInt(body.numero, 10));
-  workbook.sheet('requi').cell('L20').value(body.proveedor);
+  workbook.sheet('requi').cell('O5').value(parseInt(body.numero, 10));
+  workbook.sheet('requi').cell('K20').value(body.proveedor);
 
   const suministroStructur = {
     'MATERIALES DE CONSTRUCCION': 'H8',
@@ -24,9 +24,9 @@ export async function POST(req) {
   };
 
   const lugarStructur = {
-    local: 'P9',
-    regional: 'P10',
-    nacional: 'P11',
+    local: 'O9',
+    regional: 'O10',
+    nacional: 'O11',
   };
 
   const keyWordSuministro = body.suministro;
@@ -38,7 +38,7 @@ export async function POST(req) {
   workbook.sheet('requi').cell(cellSuministro).value('X');
   workbook.sheet('requi').cell(cellLugar).value('X');
 
-  let numberTable = 19;
+  let numberTable = 20;
   body.table.map((item, index) => {
     numberTable++;
     workbook
@@ -59,10 +59,10 @@ export async function POST(req) {
       .sheet('requi')
       .cell('J' + numberTable)
       .value(parseInt(item.cantidad, 10));
-    workbook
-      .sheet('requi')
-      .cell('K' + numberTable)
-      .value(item.final);
+    // workbook
+    //   .sheet('requi')
+    //   .cell('K' + numberTable)
+    //   .value(item.final);
   });
 
   await workbook.toFileAsync('./app/api/excelMod/plantilla.xlsx');

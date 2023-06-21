@@ -18,7 +18,9 @@ export default function Compras() {
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <h1>Requisiciones</h1>
+        <div className={style.title}>
+          <p>Requisiciones</p>
+        </div>
         <div className={style.containerbuscador}>
           <i className='bi bi-search'></i>
           <input
@@ -28,18 +30,18 @@ export default function Compras() {
           />
           <Link
             href='/compras/agregar'
-            className={style.button}
+            className='button'
           >
             <i className='bi bi-plus-lg'></i>
             <p>Compra</p>
           </Link>
-          <button
-            href=''
-            className={style.button}
+          <Link
+            href='/compras/proveedor'
+            className='button'
           >
             <i className='bi bi-plus-lg'></i>
             <p>Provedor</p>
-          </button>
+          </Link>
         </div>
       </div>
       <div className={style.containercard}>

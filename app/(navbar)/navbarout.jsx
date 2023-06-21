@@ -13,6 +13,7 @@ export default function NavbarOut() {
           onClick={() => {
             router.push('/login');
           }}
+          className='button'
         >
           Login
         </button>

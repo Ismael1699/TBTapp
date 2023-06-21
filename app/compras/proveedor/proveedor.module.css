@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.head {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.title {
+  color: var(--font-dark);
+  font-size: var(--title-font-size);
+}
+
+.buttons {
+  margin-top: 1.5rem;
+}
+
+.body {
+  height: 80%;
+  width: 100%;
+  background-color: violet;
+}

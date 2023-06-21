@@ -17,23 +17,6 @@
   align-items: center;
 }
 
-.user button {
-  width: 5rem;
-  padding: 0.4rem;
-  border: none;
-  background-color: var(--accent-color);
-  margin-top: 0.5rem;
-  border-radius: 1.5rem;
-  color: var(--font-dark);
-  font-weight: 900;
-  transition: all 0.3s ease-in-out;
-}
-
-.user button:hover {
-  transform: scale(1.05);
-  background-color: var(--accent-hover-color);
-}
-
 .img {
   background-color: var(--card-color);
   width: 5rem;
@@ -43,6 +26,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(145, 144, 144, 0.486);
+  margin-bottom: 0.8rem;
 }
 
 .img i {
