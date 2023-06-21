@@ -7,7 +7,7 @@ import { useState } from 'react';
 export default function Proveedores() {
   const [agregarWasClicked, setAgregarWasClicked] = useState(false);
 
-  function AgregarOnClick() {
+  function agregarOnClick() {
     return setAgregarWasClicked(!agregarWasClicked);
   }
 
@@ -20,7 +20,7 @@ export default function Proveedores() {
         <div className={style.buttons}>
           <button
             className='button'
-            onClick={AgregarOnClick}
+            onClick={agregarOnClick}
           >
             Agregar
           </button>
@@ -31,7 +31,7 @@ export default function Proveedores() {
       </div>
       <div className={style.body}>
         {agregarWasClicked ? (
-          <AddProveedor setAgregarWasClicked={setAgregarWasClicked} />
+          <AddProveedor agregarOnClick={agregarOnClick} />
         ) : (
           <></>
         )}

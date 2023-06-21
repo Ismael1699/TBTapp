@@ -1,12 +1,12 @@
 .container {
   width: 34rem;
-  height: 34rem;
+  height: 36rem;
   background-color: #e3e8ea9f;
   backdrop-filter: blur(50px);
   position: fixed;
   z-index: 100;
   left: calc(50% - 15rem);
-  top: calc(50% - 17rem);
+  top: calc(50% - 18rem);
   border-radius: 3rem;
   box-shadow: -64px 79px 100px 62px rgba(0, 0, 0, 0.3);
   padding: 1rem 2rem 2rem 2rem;
