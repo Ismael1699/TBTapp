@@ -1,7 +1,7 @@
 'use client';
 import style from './addproveedor.module.css';
 
-export default function AddProveedor({ handleButtonProveedor }) {
+export default function AddProveedor({ setAgregarWasClicked }) {
   return (
     <>
       <div className={style.container}>

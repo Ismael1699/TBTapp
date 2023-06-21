@@ -1,6 +1,16 @@
+'use client';
+
 import style from './proveedor.module.css';
+import AddProveedor from './(AddProveedor)/AddProveedor';
+import { useState } from 'react';
 
 export default function Proveedores() {
+  const [agregarWasClicked, setAgregarWasClicked] = useState(false);
+
+  function AgregarOnClick() {
+    return setAgregarWasClicked(!agregarWasClicked);
+  }
+
   return (
     <div className={style.container}>
       <div className={style.head}>
@@ -8,13 +18,24 @@ export default function Proveedores() {
           <p>Proveedores</p>
         </div>
         <div className={style.buttons}>
-          <button className='button'>Agregar</button>
+          <button
+            className='button'
+            onClick={AgregarOnClick}
+          >
+            Agregar
+          </button>
           <button className={style.filterButton}>Maquinaria</button>
-          <button>Terracerias</button>
-          <button>Administración</button>
+          <button className={style.filterButton}>Terracerias</button>
+          <button className={style.filterButton}>Administración</button>
         </div>
       </div>
-      <div className={style.body}></div>
+      <div className={style.body}>
+        {agregarWasClicked ? (
+          <AddProveedor setAgregarWasClicked={setAgregarWasClicked} />
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 }
