@@ -2,11 +2,21 @@
 
 import style from './proveedor.module.css';
 import AddProveedor from './(AddProveedor)/AddProveedor';
-import { useState } from 'react';
+import { useState, use } from 'react';
 import CardProveedor from './(CardProveedor)/CardProveedor';
+
+async function getCol() {
+  const response = await fetch('http://localhost:3000/api/getColFirebase', {
+    method: 'POST',
+    body: JSON.stringify({ col: 'proveedores' }),
+  });
+  return response.json();
+}
 
 export default function Proveedores() {
   const [agregarWasClicked, setAgregarWasClicked] = useState(false);
+  const data = use(getCol()).data;
+  console.log(data);
 
   function agregarOnClick() {
     return setAgregarWasClicked(!agregarWasClicked);

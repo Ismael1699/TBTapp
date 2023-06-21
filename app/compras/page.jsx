@@ -14,7 +14,6 @@ async function getCol() {
 
 export default function Compras() {
   const data = use(getCol()).data;
-  console.log(data);
   return (
     <div className={style.container}>
       <div className={style.header}>
