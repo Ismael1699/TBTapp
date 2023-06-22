@@ -16,7 +16,6 @@ async function getCol() {
 export default function Proveedores() {
   const [agregarWasClicked, setAgregarWasClicked] = useState(false);
   const data = use(getCol()).data;
-  console.log(data);
 
   function agregarOnClick() {
     return setAgregarWasClicked(!agregarWasClicked);

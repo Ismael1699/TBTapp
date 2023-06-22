@@ -1,8 +1,11 @@
 import style from './CardProveedor.module.css';
 
-export default function CardProveedor({ obj }) {
+export default function CardProveedor({ obj, key }) {
   return (
-    <div className={style.container}>
+    <div
+      key={key}
+      className={style.container}
+    >
       <div className={style.proveedor}>
         <p>{obj.proveedor}</p>
       </div>
