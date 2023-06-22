@@ -110,6 +110,13 @@ export default function AddProveedor({ agregarOnClick }) {
             <p>Contacto y frente</p>
           </div>
           <div className={style.grupInputs}>
+            <label htmlFor='contacto'>Contacto</label>
+            <input
+              id='contacto'
+              name='contacto'
+              type='text'
+              onChange={inputsOnChange}
+            />
             <label htmlFor='telefono'>Teléfono</label>
             <input
               id='telefono'
@@ -138,12 +145,14 @@ export default function AddProveedor({ agregarOnClick }) {
             className={style.cancelar}
             onClick={agregarOnClick}
           >
+            <i className='bi bi-x-circle-fill'></i>
             Cancelar
           </button>
           <button
             className={style.button}
             onClick={checkCompleteInformation}
           >
+            <i className='bi bi-plus-circle-fill'></i>
             Agregar
           </button>
         </div>

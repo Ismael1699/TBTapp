@@ -1,12 +1,12 @@
 .container {
-  width: 34rem;
-  height: 36rem;
+  width: 32rem;
+  height: 32rem;
   background-color: #e3e8ea9f;
   backdrop-filter: blur(50px);
   position: fixed;
   z-index: 100;
-  left: calc(50% - 15rem);
-  top: calc(50% - 18rem);
+  left: calc(50% - 11rem);
+  top: calc(50% - 16rem);
   border-radius: 3rem;
   box-shadow: -64px 79px 100px 62px rgba(0, 0, 0, 0.3);
   padding: 1rem 2rem 2rem 2rem;
@@ -25,12 +25,12 @@
   width: 100%;
   height: auto;
   border-bottom: 2px solid rgba(88, 88, 88, 0.466);
-  padding: 0.5rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
   justify-content: space-between;
 }
 
 .subtitle {
-  width: 30%;
+  width: 25%;
 }
 
 .subtitle p {
@@ -38,9 +38,24 @@
 }
 
 .grupInputs {
-  width: 40%;
+  width: 75%;
+  height: 7rem;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.1rem;
+  align-items: center;
+}
+
+.grupInputs input {
+  width: 40%;
+  border: none;
+  margin-top: 0.5rem;
+  background-color: #4100005e;
+  border-radius: 1rem;
+  padding: 0.1rem;
+  padding-left: 0.6rem;
+  color: var(--font-dark);
 }
 
 .grupInputs label {
@@ -58,39 +73,41 @@
   backdrop-filter: blur(1.5px);
 }
 
-.grupInputs input {
-  border: none;
-  margin-top: 0.5rem;
-  background-color: #e3e8ea50;
-  border-radius: 1rem;
-  padding: 0.1rem;
-  padding-left: 0.6rem;
-  color: var(--font-dark);
-}
-
 .button {
-  background-color: var(--accent-color);
+  background-color: rgb(0, 161, 0);
+  height: auto;
   border: none;
   font-weight: 900;
-  padding: 0.5rem;
-  color: var(--font-dark);
-  border-radius: 1rem;
-  margin-top: 1rem;
-}
-.cancelar {
-  background-color: rgb(156, 0, 0);
-  border: none;
-  font-weight: 900;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   color: var(--font-ligth);
   border-radius: 1rem;
-  margin-top: 1rem;
-  margin-right: 1rem;
+}
+
+.button i {
+  color: var(--font-ligth);
+  margin-right: 0.5rem;
+}
+
+.cancelar {
+  background-color: rgb(182, 0, 0);
+  color: var(--font-ligth);
+  height: auto;
+  border: none;
+  font-weight: 900;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 1rem;
+  margin-right: 2rem;
+}
+.cancelar i {
+  color: var(--font-ligth);
+  margin-right: 0.5rem;
 }
 
 .buttons {
   width: 100%;
-  height: auto;
+  height: 4rem;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  padding-right: 1rem;
 }
