@@ -2,9 +2,18 @@ import { pool } from '../../../database/db';
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {
-  const { proyecto, frente, suministro, fecha, lugar, proveedor, numero } =
-    await req.json();
+  const {
+    proyecto,
+    frente,
+    suministro,
+    fecha,
+    lugar,
+    proveedor,
+    numero,
+    table,
+  } = await req.json();
 
+  console.log(table);
   const [dataDuplicate] = await pool.query(
     `SELECT id, frente , numero FROM requisiciones WHERE frente ="${frente}"`
   );

@@ -59,9 +59,8 @@ export default function Agregar() {
   //funcion para editar filas
   function editingRow(e) {
     const id = e.target.parentElement.id;
-    let index;
-    const element = itemTable.filter((obj, ind) => {
-      index = ind;
+
+    const element = itemTable.filter((obj) => {
       return obj.id === id;
     });
     setItemSelected({ ...element[0], editing: false });
@@ -74,18 +73,26 @@ export default function Agregar() {
   //funcion para guardar onTime de forma temp los elementos inputs de editar
   function onChangeEditing(e) {
     const item = e.target.id;
-    const dataLocale = e.target.value;
-    const final = itemSelected.cantidad * parseInt(dataLocale);
+    const dataTarget = e.target.value;
+    const pricefinal =
+      '' + parseFloat(itemSelected.cantidad) * parseFloat(dataTarget);
     setItemSelected(() => {
       return item === 'unitario'
         ? {
             ...itemSelected,
-            [item]: dataLocale,
-            final: final,
+            [item]: dataTarget,
+            final: pricefinal,
+          }
+        : item === 'cantidad'
+        ? {
+            ...itemSelected,
+            [item]: dataTarget,
+            final:
+              '' + parseFloat(dataTarget) * parseFloat(itemSelected.unitario),
           }
         : {
             ...itemSelected,
-            [item]: dataLocale,
+            [item]: dataTarget,
           };
     });
   }
@@ -182,6 +189,7 @@ export default function Agregar() {
     }
   }
 
+  console.log(itemSelected);
   return (
     <div>
       <HeadData

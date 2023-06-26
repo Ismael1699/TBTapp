@@ -19,7 +19,7 @@ export default function EditDisable({ obj, index, rowDelete, editingRow }) {
       {/* precio unitario */}
       <td>
         {obj.unitario !== ''
-          ? parseInt(obj.unitario).toLocaleString('en', {
+          ? parseFloat(obj.unitario).toLocaleString('en', {
               style: 'currency',
               currency: 'MXN',
             })
@@ -27,8 +27,8 @@ export default function EditDisable({ obj, index, rowDelete, editingRow }) {
       </td>
       {/* precio final */}
       <td>
-        {obj.unitario !== ''
-          ? obj.final.toLocaleString('en', {
+        {obj.final !== ''
+          ? parseFloat(obj.final).toLocaleString('en', {
               style: 'currency',
               currency: 'MXN',
             })
