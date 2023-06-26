@@ -1,6 +1,6 @@
 'use client';
 import style from '../agregar.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, use } from 'react';
 
 export default function HeadData({
   setHeadData,
@@ -166,8 +166,7 @@ export default function HeadData({
           >
             Elegir alguna
           </option>
-          <option value='provedor1'>Provedor 1</option>
-          <option value='provedor2'>Provedor 2</option>
+          <option value='1'>proveedor 1</option>
         </select>
       </div>
       <div className={style.numero}>

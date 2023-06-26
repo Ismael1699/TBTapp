@@ -2,10 +2,9 @@ import { NextResponse } from 'next/server';
 import { getFirestore, collection, doc, getDocs } from 'firebase/firestore';
 import app from '../../../services/firebase';
 
-export async function POST(req) {
-  const body = await req.json();
+export async function GET() {
   const dataBase = getFirestore(app);
-  const coll = collection(dataBase, body.col);
+  const coll = collection(dataBase, 'requisiciones');
 
   let result = null;
   let error = null;

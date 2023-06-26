@@ -15,7 +15,8 @@ async function getCol() {
 
 export default function Proveedores() {
   const [agregarWasClicked, setAgregarWasClicked] = useState(false);
-  const data = use(getCol()).data;
+
+  const dataProveedor = use(getCol()).data;
 
   function agregarOnClick() {
     return setAgregarWasClicked(!agregarWasClicked);
@@ -45,7 +46,7 @@ export default function Proveedores() {
         ) : (
           <></>
         )}
-        {data.map((obj, index) => (
+        {dataProveedor.map((obj, index) => (
           <CardProveedor
             obj={obj}
             index={index}

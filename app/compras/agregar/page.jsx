@@ -1,11 +1,19 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, use } from 'react';
+import useSWR from 'swr';
 import style from './agregar.module.css';
 import { v4 as uuid } from 'uuid';
 import EditEneable from './(components)/Editeneable';
 import EditDisable from './(components)/EditDisable';
 import upData from '../../../services/upData';
 import HeadData from './(components)/HeadData';
+
+async function fetching(data) {
+  return await fetch(`../../../api/conectionDB`, {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
 
 export default function Agregar() {
   const structHead = {
@@ -151,28 +159,29 @@ export default function Agregar() {
   }
 
   async function sendDataToDB(data) {
-    const { result, error } = await upData(
-      'requisiciones',
-      `requisicion${data.numero}`,
-      data
-    );
-    if (error) console.log('los datos se enviaron a la base de datos');
-    // modificar excel con google
+    //  const { result, error } = await upData(
+    //   'requisiciones',
+    //    `requisicion${data.numero}`,
+    //    data
+    //  );
+    // if (error) console.log('los datos se enviaron a la base de datos');
+    // console.log(result)
+    //modificar excel con google
     sendDataBackend(data);
   }
 
   async function sendDataBackend(data) {
-    await fetch('../../api/excelMod', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
-    alert(
-      `Se ha creado correctamente la orden de compra y la requisición número ${data.numero}`
-    );
-    setDataWasSent(true);
-    setItemTable([]);
-    setHeadData(structHead);
+    const res = await fetching(data);
+    if (res.ok) {
+      const res1 = JSON.parse(await res.text());
+      console.log(res1.message);
+      alert(res1.message);
+    } else {
+      console.log(res);
+      alert('Status: ' + res.status + ' ' + res.statusText);
+    }
   }
+
   return (
     <div>
       <HeadData
