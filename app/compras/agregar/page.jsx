@@ -75,7 +75,9 @@ export default function Agregar() {
     const item = e.target.id;
     const dataTarget = e.target.value;
     const pricefinal =
-      '' + parseFloat(itemSelected.cantidad) * parseFloat(dataTarget);
+      '' +
+      Number.parseFloat(itemSelected.cantidad).toFixed(2) *
+        Number.parseFloat(dataTarget).toFixed(2);
     setItemSelected(() => {
       return item === 'unitario'
         ? {
@@ -88,7 +90,9 @@ export default function Agregar() {
             ...itemSelected,
             [item]: dataTarget,
             final:
-              '' + parseFloat(dataTarget) * parseFloat(itemSelected.unitario),
+              '' +
+              Number.parseFloat(dataTarget).toFixed(2) *
+                Number.parseFloat(itemSelected.unitario).toFixed(2),
           }
         : {
             ...itemSelected,

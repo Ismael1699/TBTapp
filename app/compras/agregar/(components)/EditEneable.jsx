@@ -7,10 +7,14 @@ export default function EditEneable({
   itemSelected,
 }) {
   const cant =
-    itemSelected.cantidad == '' ? 0 : parseFloat(itemSelected.cantidad);
+    itemSelected.cantidad == ''
+      ? 0
+      : Number.parseFloat(itemSelected.cantidad).toFixed(2);
   const price =
-    itemSelected.unitario == '' ? 0 : parseFloat(itemSelected.unitario);
-  const final = parseFloat(cant * price);
+    itemSelected.unitario == ''
+      ? 0
+      : Number.parseFloat(itemSelected.unitario).toFixed(2);
+  const final = Number.parseFloat(cant * price).toFixed(2);
   return (
     <tr
       key={obj.id}
