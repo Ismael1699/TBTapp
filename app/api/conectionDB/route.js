@@ -37,6 +37,20 @@ export async function POST(req) {
     numero,
   });
 
+  table.map(async (obj) => {
+    await pool.query('INSERT INTO row_requisiciones SET ?', {
+      partida: obj.partida,
+      n_parte: obj.noparte,
+      descripcion: obj.descripcion,
+      unidad: obj.unidad,
+      cantidad: obj.cantidad,
+      p_unitario: obj.unitario,
+      p_final: obj.final,
+      n_compra: numero,
+      frente: frente,
+    });
+  });
+
   return NextResponse.json({
     message: `Se ha añadio la requisición ${numero}`,
   });
