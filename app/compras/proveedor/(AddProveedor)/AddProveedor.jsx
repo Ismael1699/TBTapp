@@ -3,6 +3,15 @@ import style from './addproveedor.module.css';
 import { useState } from 'react';
 import upData from '../../../../services/upData';
 
+async function sendProveedor(data) {
+  return await (
+    await fetch('http://localhost:3000/api/proveedores', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    })
+  ).json();
+}
+
 export default function AddProveedor({ agregarOnClick }) {
   const dataStruct = {
     proveedor: '',
@@ -32,16 +41,15 @@ export default function AddProveedor({ agregarOnClick }) {
     );
 
     if (allInfomationIs) {
-      return sendDataToDB();
+      return sendDataToDB(dataProveedores);
     }
     alert('Por favor termina de completar los datos para ser enviados');
   }
 
-  function sendDataToDB() {
-    upData('proveedores', dataProveedores.proveedor, dataProveedores);
-    alert('Datos han sido enviados y guardados');
+  async function sendDataToDB(data) {
+    const response = await sendProveedor(data);
+    alert(response.message);
   }
-  console.log(dataProveedores);
 
   return (
     <>

@@ -1,22 +1,20 @@
 'use client';
-
 import style from './proveedor.module.css';
 import AddProveedor from './(AddProveedor)/AddProveedor';
 import { useState, use } from 'react';
 import CardProveedor from './(CardProveedor)/CardProveedor';
+import useSWR from 'swr';
 
-async function getCol() {
-  const response = await fetch('http://localhost:3000/api/getColFirebase', {
-    method: 'POST',
-    body: JSON.stringify({ col: 'proveedores' }),
-  });
-  return response.json();
+async function getProveedores(url) {
+  const response = await fetch(`http://localhost:3000${url}`);
+  return await response.json();
 }
 
-export default function Proveedores() {
+export default async function Proveedores() {
   const [agregarWasClicked, setAgregarWasClicked] = useState(false);
 
-  const dataProveedor = use(getCol()).data;
+  const { data, error, isLoading } = useSWR('/api/proveedores', getProveedores);
+  const provedoresArray = data.data;
 
   function agregarOnClick() {
     return setAgregarWasClicked(!agregarWasClicked);
@@ -46,10 +44,11 @@ export default function Proveedores() {
         ) : (
           <></>
         )}
-        {dataProveedor.map((obj, index) => (
+        {provedoresArray.map((obj, index) => (
           <CardProveedor
             obj={obj}
             index={index}
+            key={index}
           />
         ))}
       </div>
