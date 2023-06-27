@@ -2,14 +2,12 @@ import Link from 'next/link';
 import Card from './(Card)/Card';
 import style from './layout.module.css';
 
-// async function getCol() {
-//   const response = await fetch('http://localhost:3000/api/getColFirebase');
-//   return response.json();
-// }
-
+async function getData() {
+  return await (await fetch('http://localhost:3000/api/conectionDB')).json();
+}
 export default async function Compras() {
-  // const dataRequisiciones = await getCol();
-  // console.log(dataRequisiciones);
+  const dataRequisiciones = await getData();
+
   return (
     <div className={style.container}>
       <div className={style.header}>
@@ -40,12 +38,12 @@ export default async function Compras() {
         </div>
       </div>
       <div className={style.containercard}>
-        {/* {dataRequisiciones.data.map((obj, index) => (
+        {dataRequisiciones.data.map((obj, index) => (
           <Card
             obj={obj}
             key={index}
           />
-        ))} */}
+        ))}
       </div>
     </div>
   );

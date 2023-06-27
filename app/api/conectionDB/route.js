@@ -49,3 +49,9 @@ export async function POST(req) {
     message: `Se ha añadio la requisición ${numero}`,
   });
 }
+
+export async function GET() {
+  const [response] = await pool.query(`SELECT * FROM requisiciones`);
+  console.log(response);
+  return NextResponse.json({ data: response });
+}

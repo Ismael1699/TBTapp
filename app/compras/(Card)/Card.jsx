@@ -1,5 +1,6 @@
 import style from './card.module.css';
-export default function Card({ obj }) {
+
+export default async function Card({ obj }) {
   return (
     <div className={style.card}>
       <p className={style.proyecto}>{obj.proyecto}</p>
@@ -10,14 +11,15 @@ export default function Card({ obj }) {
         <p>
           Descripción
           <br />
-          {obj.table[0].descripcion}
+          {/* {obj.table[0].descripcion} */}
+          hola
         </p>
         <p>
           precio <br />
-          {parseInt(obj.table[0].unitario).toLocaleString('en', {
+          {/* {parseInt(obj.table[0].unitario).toLocaleString('en', {
             style: 'currency',
             currency: 'MXN',
-          })}
+          })} */}
         </p>
       </div>
       <p className={style.requisito}>
