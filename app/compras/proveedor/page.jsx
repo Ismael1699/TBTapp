@@ -14,6 +14,18 @@ import useSWR from 'swr';
 const getProveedores = (url) =>
   fetch(`http://localhost:3000${url}`).then((res) => res.json());
 
+async function deleteProveedorBackend(id) {
+  const response = await fetch(
+    'http://localhost:3000/api/proveedores/deleteProveedor',
+    {
+      method: 'POST', //No es la manera correcta de hace run delete, para modificar esto se tendra que implementar rutas dinamicas
+      body: JSON.stringify({ id }),
+    }
+  );
+
+  return JSON.parse(await response.text());
+}
+
 export default function Proveedores() {
   const [agregarWasClicked, setAgregarWasClicked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -33,12 +45,24 @@ export default function Proveedores() {
   }
 
   function editingProveedor(e) {
-    const id = e.target.id;
+    const id = e.target.value;
     const itemMatch = proveedoresArray.filter((obj) => obj.id + '' === id);
     setCardSelected(itemMatch[0]);
     setIsEditing(true);
     return setAgregarWasClicked(true);
   }
+
+  async function deleteCard(e) {
+    const id = e.target.value;
+
+    const elim = confirm('Deseas eleiminarlo');
+
+    if (elim) {
+      const res = await deleteProveedorBackend(id);
+      alert(res.message);
+    }
+  }
+
   if (error) return 'An error has occurred.';
   if (isLoading) return 'Cargando..';
   return (
@@ -78,6 +102,7 @@ export default function Proveedores() {
             index={index}
             key={index}
             editingProveedor={editingProveedor}
+            deleteCard={deleteCard}
           />
         ))}
       </div>

@@ -1,16 +1,27 @@
 import Link from 'next/link';
 import style from './CardProveedor.module.css';
 
-export default function CardProveedor({ obj, index, editingProveedor }) {
+export default function CardProveedor({
+  obj,
+  index,
+  editingProveedor,
+  deleteCard,
+}) {
   return (
     <div className={style.container}>
       <div className={style.proveedor}>
         <p>{obj.name}</p>
         <button
           onClick={editingProveedor}
-          id={obj.id}
+          value={obj.id}
         >
           edit
+        </button>
+        <button
+          onClick={deleteCard}
+          value={obj.id}
+        >
+          delete
         </button>
       </div>
       <div className={style.contacto}>

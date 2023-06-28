@@ -4,12 +4,11 @@ import { useEffect, useState } from 'react';
 import upData from '../../../../services/upData';
 
 async function sendProveedor(data, method) {
-  return await (
-    await fetch('http://localhost:3000/api/proveedores', {
-      method: method,
-      body: JSON.stringify(data),
-    })
-  ).json();
+  const res = await fetch('http://localhost:3000/api/proveedores', {
+    method: method,
+    body: JSON.stringify(data),
+  });
+  return JSON.parse(await res.text());
 }
 
 export default function AddProveedor({

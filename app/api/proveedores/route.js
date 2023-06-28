@@ -42,26 +42,33 @@ export async function POST(req) {
 }
 
 export async function PUT(req) {
-  const res = await req.json();
-  console.log(res);
+  const body = await req.json();
 
   await pool.query(
     'UPDATE proveedores SET name= ?, direccion = ?, rfc = ?, banco= ?, cuenta = ?, clabe = ?, contacto = ?, telefono = ?, correo = ?, frente = ? WHERE id = ? ',
     [
-      res.name,
-      res.direccion,
-      res.rfc,
-      res.banco,
-      res.cuenta,
-      res.clabe,
-      res.contacto,
-      res.telefono,
-      res.correo,
-      res.frente,
-      res.id,
+      body.name,
+      body.direccion,
+      body.rfc,
+      body.banco,
+      body.cuenta,
+      body.clabe,
+      body.contacto,
+      body.telefono,
+      body.correo,
+      body.frente,
+      body.id,
     ]
   );
   return NextResponse.json({
     message: 'Se actualizado los datos del proveedor',
+  });
+}
+
+export async function DELETE(req) {
+  const body = await req.json();
+  console.log(body);
+  return NextResponse.json({
+    message: 'Se Ha eleminado el proveedor',
   });
 }
