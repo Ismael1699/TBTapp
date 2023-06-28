@@ -25,7 +25,7 @@ export async function POST(req) {
   }
 
   await pool.query('INSERT INTO proveedores SET ?', {
-    name: res.proveedor,
+    name: res.name,
     direccion: res.direccion,
     rfc: res.rfc,
     banco: res.banco,
@@ -38,5 +38,30 @@ export async function POST(req) {
   });
   return NextResponse.json({
     message: `Se ha guardado el proveedor "${res.proveedor}" correctamente`,
+  });
+}
+
+export async function PUT(req) {
+  const res = await req.json();
+  console.log(res);
+
+  await pool.query(
+    'UPDATE proveedores SET name= ?, direccion = ?, rfc = ?, banco= ?, cuenta = ?, clabe = ?, contacto = ?, telefono = ?, correo = ?, frente = ? WHERE id = ? ',
+    [
+      res.name,
+      res.direccion,
+      res.rfc,
+      res.banco,
+      res.cuenta,
+      res.clabe,
+      res.contacto,
+      res.telefono,
+      res.correo,
+      res.frente,
+      res.id,
+    ]
+  );
+  return NextResponse.json({
+    message: 'Se actualizado los datos del proveedor',
   });
 }

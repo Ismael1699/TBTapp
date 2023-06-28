@@ -1,20 +1,25 @@
 'use client';
 import style from './addproveedor.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import upData from '../../../../services/upData';
 
-async function sendProveedor(data) {
+async function sendProveedor(data, method) {
   return await (
     await fetch('http://localhost:3000/api/proveedores', {
-      method: 'POST',
+      method: method,
       body: JSON.stringify(data),
     })
   ).json();
 }
 
-export default function AddProveedor({ agregarOnClick }) {
+export default function AddProveedor({
+  isEditing,
+  cardSelected,
+  setCardSelected,
+  cancelarOnClick,
+}) {
   const dataStruct = {
-    proveedor: '',
+    name: '',
     rfc: '',
     direccion: '',
     banco: '',
@@ -25,12 +30,12 @@ export default function AddProveedor({ agregarOnClick }) {
     frente: '',
   };
 
-  const [dataProveedores, setDataProveedores] = useState({});
+  const [dataProveedores, setDataProveedores] = useState(cardSelected);
 
   function inputsOnChange(e) {
     const item = e.target.id;
     const value = e.target.value;
-    setDataProveedores({ ...dataProveedores, [item]: value });
+    return setDataProveedores({ ...dataProveedores, [item]: value });
   }
 
   function checkCompleteInformation() {
@@ -41,14 +46,19 @@ export default function AddProveedor({ agregarOnClick }) {
     );
 
     if (allInfomationIs) {
-      return sendDataToDB(dataProveedores);
+      if (isEditing) {
+        return sendDataToDB(dataProveedores, 'PUT');
+      }
+      return sendDataToDB(dataProveedores, 'POST');
     }
-    alert('Por favor termina de completar los datos para ser enviados');
+    return alert('Por favor termina de completar los datos para ser enviados');
   }
 
-  async function sendDataToDB(data) {
-    const response = await sendProveedor(data);
+  async function sendDataToDB(data, method) {
+    const response = await sendProveedor(data, method);
     alert(response.message);
+    setCardSelected({});
+    return cancelarOnClick;
   }
 
   return (
@@ -62,12 +72,13 @@ export default function AddProveedor({ agregarOnClick }) {
             <p>Proveedor</p>
           </div>
           <div className={style.grupInputs}>
-            <label htmlFor='proveedor'>Proveedor</label>
+            <label htmlFor='name'>Proveedor</label>
             <input
-              id='proveedor'
-              name='proveedor'
+              id='name'
+              name='name'
               type='text'
               onChange={inputsOnChange}
+              value={dataProveedores.name}
             />
             <label htmlFor='rfc'>RFC</label>
             <input
@@ -75,6 +86,7 @@ export default function AddProveedor({ agregarOnClick }) {
               name='rfc'
               type='text'
               onChange={inputsOnChange}
+              value={dataProveedores.rfc}
             />
             <label htmlFor='direccion'>Dirección</label>
             <input
@@ -82,6 +94,7 @@ export default function AddProveedor({ agregarOnClick }) {
               name='direccion'
               type='text'
               onChange={inputsOnChange}
+              value={dataProveedores.direccion}
             />
           </div>
         </div>
@@ -96,6 +109,7 @@ export default function AddProveedor({ agregarOnClick }) {
               name='banco'
               type='text'
               onChange={inputsOnChange}
+              value={dataProveedores.banco}
             />
             <label htmlFor='clabe'>Clabe</label>
             <input
@@ -103,6 +117,7 @@ export default function AddProveedor({ agregarOnClick }) {
               name='clabe'
               type='text'
               onChange={inputsOnChange}
+              value={dataProveedores.clabe}
             />
             <label htmlFor='cuenta'>Cuenta</label>
             <input
@@ -110,6 +125,7 @@ export default function AddProveedor({ agregarOnClick }) {
               name='cuenta'
               type='text'
               onChange={inputsOnChange}
+              value={dataProveedores.cuenta}
             />
           </div>
         </div>
@@ -124,6 +140,7 @@ export default function AddProveedor({ agregarOnClick }) {
               name='contacto'
               type='text'
               onChange={inputsOnChange}
+              value={dataProveedores.contacto}
             />
             <label htmlFor='telefono'>Teléfono</label>
             <input
@@ -131,6 +148,7 @@ export default function AddProveedor({ agregarOnClick }) {
               name='telefono'
               type='text'
               onChange={inputsOnChange}
+              value={dataProveedores.telefono}
             />
             <label htmlFor='correo'>Correo</label>
             <input
@@ -138,6 +156,7 @@ export default function AddProveedor({ agregarOnClick }) {
               name='correo'
               type='text'
               onChange={inputsOnChange}
+              value={dataProveedores.correo}
             />
             <label htmlFor='frente'>Frente</label>
             <input
@@ -145,24 +164,35 @@ export default function AddProveedor({ agregarOnClick }) {
               name='frente'
               type='text'
               onChange={inputsOnChange}
+              value={dataProveedores.frente}
             />
           </div>
         </div>
         <div className={style.buttons}>
           <button
             className={style.cancelar}
-            onClick={agregarOnClick}
+            onClick={cancelarOnClick}
           >
             <i className='bi bi-x-circle-fill'></i>
             Cancelar
           </button>
-          <button
-            className={style.button}
-            onClick={checkCompleteInformation}
-          >
-            <i className='bi bi-plus-circle-fill'></i>
-            Agregar
-          </button>
+          {isEditing ? (
+            <button
+              className={style.button}
+              onClick={checkCompleteInformation}
+            >
+              <i className='bi bi-plus-circle-fill'></i>
+              Editar
+            </button>
+          ) : (
+            <button
+              className={style.button}
+              onClick={checkCompleteInformation}
+            >
+              <i className='bi bi-plus-circle-fill'></i>
+              Agregar
+            </button>
+          )}
         </div>
       </div>
       <div className={style.blur}></div>

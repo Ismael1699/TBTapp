@@ -13,18 +13,32 @@ import useSWR from 'swr';
 
 const getProveedores = (url) =>
   fetch(`http://localhost:3000${url}`).then((res) => res.json());
+
 export default function Proveedores() {
   const [agregarWasClicked, setAgregarWasClicked] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [cardSelected, setCardSelected] = useState({});
 
   const { data, error, isLoading } = useSWR('/api/proveedores', getProveedores);
 
   const proveedoresArray = data;
-  console.log(proveedoresArray);
+
+  function cancelarOnClick() {
+    setIsEditing(false);
+    return agregarOnClick();
+  }
 
   function agregarOnClick() {
     return setAgregarWasClicked(!agregarWasClicked);
   }
 
+  function editingProveedor(e) {
+    const id = e.target.id;
+    const itemMatch = proveedoresArray.filter((obj) => obj.id + '' === id);
+    setCardSelected(itemMatch[0]);
+    setIsEditing(true);
+    return setAgregarWasClicked(true);
+  }
   if (error) return 'An error has occurred.';
   if (isLoading) return 'Cargando..';
   return (
@@ -47,7 +61,14 @@ export default function Proveedores() {
       </div>
       <div className={style.body}>
         {agregarWasClicked ? (
-          <AddProveedor agregarOnClick={agregarOnClick} />
+          <AddProveedor
+            agregarOnClick={agregarOnClick}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+            cardSelected={cardSelected}
+            setCardSelected={setCardSelected}
+            cancelarOnClick={cancelarOnClick}
+          />
         ) : (
           <></>
         )}
@@ -55,6 +76,8 @@ export default function Proveedores() {
           <CardProveedor
             obj={obj}
             index={index}
+            key={index}
+            editingProveedor={editingProveedor}
           />
         ))}
       </div>
