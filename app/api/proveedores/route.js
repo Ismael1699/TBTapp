@@ -3,8 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   const [response] = await pool.query(`SELECT * FROM proveedores`);
-  console.log(response);
-  return NextResponse.json({ data: response });
+  return NextResponse.json(response);
 }
 
 export async function POST(req) {
