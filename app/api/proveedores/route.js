@@ -8,7 +8,6 @@ export async function GET() {
 
 export async function POST(req) {
   const res = await req.json();
-  console.log(res);
 
   const [dataDuplicate] = await pool.query(
     `SELECT id, clabe FROM proveedores WHERE frente ="${res.frente}"`
@@ -37,7 +36,7 @@ export async function POST(req) {
     frente: res.frente,
   });
   return NextResponse.json({
-    message: `Se ha guardado el proveedor "${res.proveedor}" correctamente`,
+    message: `Se ha guardado el proveedor "${res.name}" correctamente`,
   });
 }
 
@@ -62,13 +61,5 @@ export async function PUT(req) {
   );
   return NextResponse.json({
     message: 'Se actualizado los datos del proveedor',
-  });
-}
-
-export async function DELETE(req) {
-  const body = await req.json();
-  console.log(body);
-  return NextResponse.json({
-    message: 'Se Ha eleminado el proveedor',
   });
 }

@@ -5,7 +5,6 @@ import style from './agregar.module.css';
 import { v4 as uuid } from 'uuid';
 import EditEneable from './(components)/Editeneable';
 import EditDisable from './(components)/EditDisable';
-import upData from '../../../services/upData';
 import HeadData from './(components)/HeadData';
 
 async function fetching(data) {
@@ -14,6 +13,9 @@ async function fetching(data) {
     body: JSON.stringify(data),
   });
 }
+
+const getProveedores = (url) =>
+  fetch(`http://localhost:3000${url}`).then((res) => res.json());
 
 export default function Agregar() {
   const structHead = {
@@ -29,7 +31,14 @@ export default function Agregar() {
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
   const [dataWasSent, setDataWasSent] = useState(false);
+  const { data, error, isLoading } = useSWR('/api/proveedores', getProveedores);
+  const proveedoresArray = data;
 
+  //controlan el sistema de carga de los datos hecho al servidor  el useSWR
+  if (error) return 'An error has occurred.';
+  if (isLoading) return 'Cargando..';
+
+  console.log(proveedoresArray);
   //función para eleminar filas
   function rowDelete(e) {
     setItemTable(
@@ -189,15 +198,12 @@ export default function Agregar() {
     const res = await fetching(data);
     if (res.ok) {
       const res1 = JSON.parse(await res.text());
-      console.log(res1.message);
       alert(res1.message);
     } else {
-      console.log(res);
       alert('Status: ' + res.status + ' ' + res.statusText);
     }
   }
 
-  console.log(itemSelected);
   return (
     <div>
       <HeadData
@@ -206,6 +212,7 @@ export default function Agregar() {
         headData={headData}
         dataWasSent={dataWasSent}
         setDataWasSent={setDataWasSent}
+        proveedoresArray={proveedoresArray}
       />
       <table className={style.table}>
         <tbody>

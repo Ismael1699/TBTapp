@@ -8,6 +8,7 @@ export default function HeadData({
   headData,
   dataWasSent,
   setDataWasSent,
+  proveedoresArray,
 }) {
   const [valueSelectedProyecto, setValueSelectedProyecto] = useState('');
   const [valueSelectedFrente, setValueSelectedFrente] = useState('');
@@ -166,7 +167,14 @@ export default function HeadData({
           >
             Elegir alguna
           </option>
-          <option value='1'>proveedor 1</option>
+          {proveedoresArray.map((obj, index) => (
+            <option
+              key={index}
+              value={obj.name}
+            >
+              {obj.name}
+            </option>
+          ))}
         </select>
       </div>
       <div className={style.numero}>
