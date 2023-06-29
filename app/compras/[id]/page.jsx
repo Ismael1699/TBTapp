@@ -1,33 +1,48 @@
 'use client';
 import { useEffect, useState, use } from 'react';
 import useSWR from 'swr';
-import style from './agregar.module.css';
+import style from '../agregar/agregar.module.css';
 import { v4 as uuid } from 'uuid';
-import EditEneable from './(components)/Editeneable';
-import EditDisable from './(components)/EditDisable';
-import HeadData from './(components)/HeadData';
+import EditEneable from '../agregar/(components)/Editeneable';
+import EditDisable from '../agregar/(components)/EditDisable';
+import HeadData from '../agregar/(components)/HeadData';
+
+const structHead = {
+  proyecto: '',
+  frente: '',
+  suministro: '',
+  fecha: '',
+  lugar: '',
+  proveedor: '',
+  numero: '',
+};
 
 async function fetching(data) {
   return await fetch(`../../../api/conectionDB`, {
-    method: 'POST',
+    method: 'PUT',
     body: JSON.stringify(data),
   });
 }
 
-export default function Agregar() {
-  const structHead = {
-    proyecto: '',
-    frente: '',
-    suministro: '',
-    fecha: '',
-    lugar: '',
-    proveedor: '',
-    numero: '',
-  };
+const getProveedores = (url) =>
+  fetch(`http://localhost:3000${url}`).then((res) => res.json());
+
+export default function RequisicionDetails({ params, searchParams }) {
   const [headData, setHeadData] = useState(structHead);
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
   const [dataWasSent, setDataWasSent] = useState(false);
+  const compraData = useSWR(
+    `/api/conectionDB/compra?id=${params.id}`,
+    getProveedores
+  );
+
+  console.log(compraData);
+
+  useEffect(() => {
+    setHeadData(compraData.data);
+    setItemTable(compraData.data.obj_table.table);
+  }, []);
 
   //función para eleminar filas
   function rowDelete(e) {
@@ -193,6 +208,9 @@ export default function Agregar() {
       alert('Status: ' + res.status + ' ' + res.statusText);
     }
   }
+
+  if (compraData.error) return 'An error has occurred.';
+  if (compraData.isLoading) return 'Cargando..';
 
   return (
     <div>

@@ -1,6 +1,10 @@
 'use client';
 import style from '../agregar.module.css';
-import { useEffect, useState, use } from 'react';
+import { useEffect, useState } from 'react';
+import useSWR from 'swr';
+
+const getProveedores = (url) =>
+  fetch(`http://localhost:3000${url}`).then((res) => res.json());
 
 export default function HeadData({
   setHeadData,
@@ -8,54 +12,20 @@ export default function HeadData({
   headData,
   dataWasSent,
   setDataWasSent,
-  proveedoresArray,
 }) {
-  const [valueSelectedProyecto, setValueSelectedProyecto] = useState('');
-  const [valueSelectedFrente, setValueSelectedFrente] = useState('');
-  const [valueSelectedSuministro, setValueSelectedSuministro] = useState('');
-  const [valueSelectedFecha, setValueSelectedFecha] = useState('');
-  const [valueSelectedLugar, setValueSeletedLugar] = useState('');
-  const [valueSelectedProveedor, setValueSelectedProveedor] = useState('');
-  const [ValueSelectedNumero, setValueSelectedNumero] = useState('');
+  const proveedores = useSWR('/api/proveedores', getProveedores);
+  const proveedoresArray = proveedores.data;
+
+  //controlan el sistema de carga de los datos hecho al servidor  el useSWR
+  if (proveedores.error) return 'An error has occurred.';
+  if (proveedores.isLoading) return 'Cargando..';
 
   //funcion para obtener los datos del header
   function headHandleChange(e) {
     setDataWasSent(false);
     const item = e.target.id;
     setHeadData({ ...headData, [item]: e.target.value });
-    if (item === 'proyecto') {
-      setValueSelectedProyecto(e.target.value);
-    }
-    if (item === 'frente') {
-      setValueSelectedFrente(e.target.value);
-    }
-    if (item === 'suministro') {
-      setValueSelectedSuministro(e.target.value);
-    }
-    if (item === 'fecha') {
-      setValueSelectedFecha(e.target.value);
-    }
-    if (item === 'lugar') {
-      setValueSeletedLugar(e.target.value);
-    }
-    if (item === 'proveedor') {
-      setValueSelectedProveedor(e.target.value);
-    }
-    if (item === 'numero') {
-      setValueSelectedNumero(e.target.value);
-    }
   }
-
-  // este useEfect esta al pendiente del cambio de la variable dataWasSent para resetear los input del head
-  useEffect(() => {
-    setValueSelectedProyecto('');
-    setValueSelectedFrente('');
-    setValueSelectedSuministro('');
-    setValueSelectedFecha('');
-    setValueSeletedLugar('');
-    setValueSelectedProveedor('');
-    setValueSelectedNumero('');
-  }, [dataWasSent]);
 
   return (
     <div className={style.head}>
@@ -65,7 +35,7 @@ export default function HeadData({
           id='proyecto'
           name='proyecto'
           onChange={headHandleChange}
-          value={valueSelectedProyecto}
+          value={headData.proyecto}
         >
           <option
             disabled
@@ -74,6 +44,7 @@ export default function HeadData({
             Elegir alguna
           </option>
           <option value={2103}>2103 SCT Pachuca</option>
+          <option value={2104}>2104 SCT Atotonilco</option>
         </select>
       </div>
 
@@ -83,7 +54,7 @@ export default function HeadData({
           id='frente'
           name='frente'
           onChange={headHandleChange}
-          value={valueSelectedFrente}
+          value={headData.frente}
         >
           <option
             disabled
@@ -103,7 +74,7 @@ export default function HeadData({
           id='suministro'
           name='grupo de suministro'
           onChange={headHandleChange}
-          value={valueSelectedSuministro}
+          value={headData.suministro}
         >
           <option
             disabled
@@ -129,7 +100,7 @@ export default function HeadData({
           id='fecha'
           type='date'
           onChange={headHandleChange}
-          value={valueSelectedFecha}
+          value={headData.fecha}
         ></input>
       </div>
 
@@ -139,7 +110,7 @@ export default function HeadData({
           id='lugar'
           name='lugar de compra'
           onChange={headHandleChange}
-          value={valueSelectedLugar}
+          value={headData.lugar}
         >
           <option
             disabled
@@ -159,7 +130,7 @@ export default function HeadData({
           id='proveedor'
           name='proveerdor'
           onChange={headHandleChange}
-          value={valueSelectedProveedor}
+          value={headData.proveedor}
         >
           <option
             disabled
@@ -184,7 +155,7 @@ export default function HeadData({
           type='number'
           placeholder='Inserte un numero'
           onChange={headHandleChange}
-          value={ValueSelectedNumero}
+          value={headData.numero}
         />
       </div>
       <div className={style.enviar}>
