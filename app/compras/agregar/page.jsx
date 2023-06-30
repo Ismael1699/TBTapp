@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 import EditEneable from './(components)/Editeneable';
 import EditDisable from './(components)/EditDisable';
 import HeadData from './(components)/HeadData';
+import { useRouter } from 'next/navigation';
 
 const structHead = {
   proyecto: '',
@@ -28,6 +29,7 @@ export default function Agregar() {
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
   const [dataWasSent, setDataWasSent] = useState(false);
+  const router = useRouter();
 
   //función para eleminar filas
   function rowDelete(e) {
@@ -189,6 +191,8 @@ export default function Agregar() {
     if (res.ok) {
       const res1 = JSON.parse(await res.text());
       alert(res1.message);
+      router.refresh();
+      router.push('/compras');
     } else {
       alert('Status: ' + res.status + ' ' + res.statusText);
     }

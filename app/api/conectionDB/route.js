@@ -48,7 +48,12 @@ export async function POST(req) {
 }
 
 export async function GET() {
-  const [response] = await pool.query(`SELECT * FROM requisiciones`);
+  const [response] = await pool.query(`
+      SELECT  requisiciones.id, requisiciones.proyecto, requisiciones.frente, requisiciones.suministro, requisiciones.fecha, requisiciones.lugar, requisiciones.numero, requisiciones.proveedor , row_requisiciones.obj_table
+      FROM requisiciones 
+      INNER JOIN row_requisiciones 
+      ON  requisiciones.numero = row_requisiciones.n_compra ;`);
+  console.log(response);
   return NextResponse.json({ data: response });
 }
 
@@ -89,5 +94,22 @@ export async function PUT(req) {
 
   return NextResponse.json({
     message: `Se ha actualizado la requisición ${numero}`,
+  });
+}
+
+export async function DELETE(req) {
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get('id');
+  const [numeroRequisicion] = await pool.query(
+    `select numero from requisiciones where id=${id};`
+  );
+  const [idTable] = await pool.query(
+    `select id from row_requisiciones where n_compra=${numeroRequisicion[0].numero};`
+  );
+
+  await pool.query('DELETE FROM requisiciones WHERE id = ?', [id]);
+  await pool.query(`DELETE FROM row_requisiciones WHERE id=${idTable[0].id}`);
+  return NextResponse.json({
+    message: `Se ha eliminado correctamente`,
   });
 }

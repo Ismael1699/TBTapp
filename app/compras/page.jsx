@@ -4,11 +4,14 @@ import style from './layout.module.css';
 
 async function getData() {
   return await (
-    await fetch('http://localhost:3000/api/conectionDB', { cache: 'no-store' })
+    await fetch('http://localhost:3000/api/conectionDB', {
+      cache: 'no-store',
+    })
   ).json();
 }
 export default async function Compras() {
   const dataRequisiciones = await getData();
+  console.log(dataRequisiciones);
 
   return (
     <div className={style.container}>

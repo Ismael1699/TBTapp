@@ -1,11 +1,11 @@
 'use client';
-import { useEffect, useState, use } from 'react';
-import useSWR from 'swr';
+import { useEffect, useState } from 'react';
 import style from '../agregar/agregar.module.css';
 import { v4 as uuid } from 'uuid';
 import EditEneable from '../agregar/(components)/Editeneable';
 import EditDisable from '../agregar/(components)/EditDisable';
 import HeadData from '../agregar/(components)/HeadData';
+import { useRouter } from 'next/navigation';
 
 const structHead = {
   proyecto: '',
@@ -24,6 +24,13 @@ async function fetching(data) {
   });
 }
 
+async function deleteCompra(id) {
+  const res = await fetch(` http://localhost:3000/api/conectionDB?id=${id}`, {
+    method: 'DELETE',
+  });
+  return JSON.parse(await res.text());
+}
+
 async function getProveedores1(id) {
   const res = await fetch(
     `http://localhost:3000/api/conectionDB/compra?id=${id}`
@@ -37,6 +44,7 @@ export default function RequisicionDetails({ params }) {
   const [itemSelected, setItemSelected] = useState({});
   const [dataWasSent, setDataWasSent] = useState(false);
   const [isEditing, setIsEditing] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     async function proveedoresFetching() {
@@ -212,6 +220,17 @@ export default function RequisicionDetails({ params }) {
     }
   }
 
+  async function DeleteRequisicion() {
+    const isDelete = confirm(
+      '¿Quiéres eleminar permanentemente esta requisición?'
+    );
+    if (isDelete) {
+      const res = await deleteCompra(params.id);
+      alert(res.message);
+      router.refresh();
+      router.push('/compras');
+    }
+  }
   return (
     <div>
       <HeadData
@@ -249,7 +268,10 @@ export default function RequisicionDetails({ params }) {
           <i className='bi bi-plus'></i>
         </button>
         <div className={style.buttonsBackend}>
-          <button className={style.buttonDelete}>
+          <button
+            className={style.buttonDelete}
+            onClick={DeleteRequisicion}
+          >
             <i className='bi bi-trash-fill'></i>
             Eliminar
           </button>

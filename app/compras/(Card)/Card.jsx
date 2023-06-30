@@ -13,8 +13,7 @@ export default async function Card({ obj }) {
           <p>
             Descripción
             <br />
-            {/* {obj.table[0].descripcion} */}
-            hola
+            {obj.obj_table.table[0].descripcion}
           </p>
           <p>
             precio <br />
