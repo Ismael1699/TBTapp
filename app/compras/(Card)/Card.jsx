@@ -17,10 +17,10 @@ export default async function Card({ obj }) {
           </p>
           <p>
             precio <br />
-            {/* {parseInt(obj.table[0].unitario).toLocaleString('en', {
-            style: 'currency',
-            currency: 'MXN',
-          })} */}
+            {parseInt(obj.obj_table.table[0].unitario).toLocaleString('en', {
+              style: 'currency',
+              currency: 'MXN',
+            })}
           </p>
         </div>
         <p className={style.requisito}>
