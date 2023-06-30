@@ -8,10 +8,9 @@ const getProveedores = (url) =>
 
 export default function HeadData({
   setHeadData,
-  centralizeData,
   headData,
-  dataWasSent,
   setDataWasSent,
+  isEditing,
 }) {
   const proveedores = useSWR('/api/proveedores', getProveedores);
   const proveedoresArray = proveedores.data;
@@ -150,13 +149,17 @@ export default function HeadData({
       </div>
       <div className={style.numero}>
         <h3>Numero de requisición</h3>
-        <input
-          id='numero'
-          type='number'
-          placeholder='Inserte un numero'
-          onChange={headHandleChange}
-          value={headData.numero}
-        />
+        {isEditing ? (
+          <div>{headData.numero}</div>
+        ) : (
+          <input
+            id='numero'
+            type='number'
+            placeholder='Inserte un numero'
+            onChange={headHandleChange}
+            value={headData.numero}
+          />
+        )}
       </div>
     </div>
   );

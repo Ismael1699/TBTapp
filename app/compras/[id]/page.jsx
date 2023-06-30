@@ -18,13 +18,11 @@ const structHead = {
 };
 
 async function fetching(data) {
-  return await fetch(`../../../api/conectionDB`, {
+  return await fetch(` http://localhost:3000/api/conectionDB`, {
     method: 'PUT',
     body: JSON.stringify(data),
   });
 }
-const getProveedores = (url) =>
-  fetch(`http://localhost:3000${url}`).then((res) => res.json());
 
 async function getProveedores1(id) {
   const res = await fetch(
@@ -38,6 +36,7 @@ export default function RequisicionDetails({ params }) {
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
   const [dataWasSent, setDataWasSent] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
 
   useEffect(() => {
     async function proveedoresFetching() {
@@ -220,6 +219,7 @@ export default function RequisicionDetails({ params }) {
         headData={headData}
         dataWasSent={dataWasSent}
         setDataWasSent={setDataWasSent}
+        isEditing={isEditing}
       />
       <table className={style.table}>
         <tbody>
@@ -250,7 +250,7 @@ export default function RequisicionDetails({ params }) {
         </button>
         <div className={style.buttonsBackend}>
           <button className={style.buttonDelete}>
-            <i class='bi bi-trash-fill'></i>
+            <i className='bi bi-trash-fill'></i>
             Eliminar
           </button>
           <button

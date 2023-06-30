@@ -223,13 +223,23 @@ export default function Agregar() {
           })}
         </tbody>
       </table>
-
-      <button
-        className={style.button}
-        onClick={addRowTable}
-      >
-        Agregar
-      </button>
+      <div className={style.botones}>
+        <button
+          className={style.buttonAdd}
+          onClick={addRowTable}
+        >
+          <i className='bi bi-plus'></i>
+        </button>
+        <div className={style.buttonsBackend}>
+          <button
+            onClick={centralizeData}
+            className={style.buttonEnviar}
+          >
+            <i className='bi bi-send-fill'></i>
+            Enviar
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
