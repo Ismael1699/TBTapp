@@ -13,7 +13,5 @@ export async function GET(req) {
       ON  requisiciones.numero = row_requisiciones.n_compra
       WHERE requisiciones.id=${id}`);
 
-  console.log(res);
-
   return NextResponse.json(res[0]);
 }

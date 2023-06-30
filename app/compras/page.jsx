@@ -11,8 +11,6 @@ async function getData() {
 }
 export default async function Compras() {
   const dataRequisiciones = await getData();
-  console.log(dataRequisiciones);
-
   return (
     <div className={style.container}>
       <div className={style.header}>

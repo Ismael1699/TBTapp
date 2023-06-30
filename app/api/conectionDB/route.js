@@ -53,7 +53,6 @@ export async function GET() {
       FROM requisiciones 
       INNER JOIN row_requisiciones 
       ON  requisiciones.numero = row_requisiciones.n_compra ;`);
-  console.log(response);
   return NextResponse.json({ data: response });
 }
 
@@ -69,19 +68,6 @@ export async function PUT(req) {
     table,
   } = await req.json();
 
-  // const [dataDuplicate] = await pool.query(
-  //   `SELECT id, frente , numero FROM requisiciones WHERE frente ="${frente}"`
-  // );
-  // let isDuplicate = false;
-  // dataDuplicate.map((obj) =>
-  //   obj.numero === numero ? (isDuplicate = true) : (isDuplicate = false)
-  // );
-
-  // if (isDuplicate) {
-  //   return NextResponse.json({
-  //     message: `La Requsicion "${numero}", frente de "${frente}" ya ha sido creada, por favor confirme el numero de requisición ingresada`,
-  //   });
-  // }
   await pool.query(
     'UPDATE requisiciones SET proyecto = ?, frente = ?, suministro = ?, fecha = ?, lugar = ?, proveedor = ?, numero = ? ',
     [proyecto, frente, suministro, fecha, lugar, proveedor, numero]

@@ -175,14 +175,6 @@ export default function Agregar() {
   }
 
   async function sendDataToDB(data) {
-    //  const { result, error } = await upData(
-    //   'requisiciones',
-    //    `requisicion${data.numero}`,
-    //    data
-    //  );
-    // if (error) console.log('los datos se enviaron a la base de datos');
-    // console.log(result)
-    //modificar excel con google
     sendDataBackend(data);
   }
 

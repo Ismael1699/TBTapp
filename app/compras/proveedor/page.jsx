@@ -30,8 +30,6 @@ export default function Proveedores() {
   const proveedoresArray = data;
   const router = useRouter();
 
-  console.log(proveedoresArray);
-
   //cancelar la ventan de agregar o editar proveeodores
   function cancelarOnClick() {
     setIsEditing(false);
@@ -46,9 +44,7 @@ export default function Proveedores() {
   // controla que tarjeta va a ser editado, sus datos se guardan en cardSelected
   function editingProveedor(e) {
     const id = e.target.parentElement.value;
-    console.log(id);
     const itemMatch = proveedoresArray.filter((obj) => obj.id + '' === id);
-    console.log(itemMatch);
     setCardSelected(itemMatch[0]);
     setIsEditing(true);
     return setAgregarWasClicked(true);

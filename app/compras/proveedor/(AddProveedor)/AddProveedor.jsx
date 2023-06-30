@@ -1,6 +1,6 @@
 'use client';
 import style from './addproveedor.module.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 async function sendProveedor(data, method) {
   const res = await fetch('http://localhost:3000/api/proveedores', {

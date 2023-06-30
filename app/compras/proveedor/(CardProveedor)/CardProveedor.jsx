@@ -7,7 +7,6 @@ export default function CardProveedor({
   editingProveedor,
   deleteCard,
 }) {
-  console.log(obj.id);
   return (
     <div className={style.container}>
       <div className={style.proveedor}>
@@ -22,11 +21,9 @@ export default function CardProveedor({
         <button
           onClick={deleteCard}
           className={style.delete}
+          value={obj.id}
         >
-          <i
-            value={obj.id}
-            className='bi bi-x'
-          ></i>
+          <i className='bi bi-x'></i>
         </button>
       </div>
       <div className={style.contacto}>
