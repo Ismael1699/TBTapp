@@ -1,11 +1,20 @@
 'use client';
-import { useEffect, useState, use } from 'react';
-import useSWR from 'swr';
+import { useState } from 'react';
 import style from './agregar.module.css';
 import { v4 as uuid } from 'uuid';
 import EditEneable from './(components)/Editeneable';
 import EditDisable from './(components)/EditDisable';
 import HeadData from './(components)/HeadData';
+
+const structHead = {
+  proyecto: '',
+  frente: '',
+  suministro: '',
+  fecha: '',
+  lugar: '',
+  proveedor: '',
+  numero: '',
+};
 
 async function fetching(data) {
   return await fetch(`../../../api/conectionDB`, {
@@ -15,15 +24,6 @@ async function fetching(data) {
 }
 
 export default function Agregar() {
-  const structHead = {
-    proyecto: '',
-    frente: '',
-    suministro: '',
-    fecha: '',
-    lugar: '',
-    proveedor: '',
-    numero: '',
-  };
   const [headData, setHeadData] = useState(structHead);
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});

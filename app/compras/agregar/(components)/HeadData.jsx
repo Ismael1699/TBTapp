@@ -158,9 +158,6 @@ export default function HeadData({
           value={headData.numero}
         />
       </div>
-      <div className={style.enviar}>
-        <button onClick={centralizeData}>Enviar</button>
-      </div>
     </div>
   );
 }

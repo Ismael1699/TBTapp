@@ -23,25 +23,29 @@ async function fetching(data) {
     body: JSON.stringify(data),
   });
 }
-
 const getProveedores = (url) =>
   fetch(`http://localhost:3000${url}`).then((res) => res.json());
 
-export default function RequisicionDetails({ params, searchParams }) {
+async function getProveedores1(id) {
+  const res = await fetch(
+    `http://localhost:3000/api/conectionDB/compra?id=${id}`
+  );
+  return JSON.parse(await res.text());
+}
+
+export default function RequisicionDetails({ params }) {
   const [headData, setHeadData] = useState(structHead);
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
   const [dataWasSent, setDataWasSent] = useState(false);
-  const compraData = useSWR(
-    `/api/conectionDB/compra?id=${params.id}`,
-    getProveedores
-  );
-
-  console.log(compraData);
 
   useEffect(() => {
-    setHeadData(compraData.data);
-    setItemTable(compraData.data.obj_table.table);
+    async function proveedoresFetching() {
+      const res = await getProveedores1(params.id);
+      setHeadData(res);
+      setItemTable(res.obj_table.table);
+    }
+    proveedoresFetching();
   }, []);
 
   //función para eleminar filas
@@ -209,14 +213,10 @@ export default function RequisicionDetails({ params, searchParams }) {
     }
   }
 
-  if (compraData.error) return 'An error has occurred.';
-  if (compraData.isLoading) return 'Cargando..';
-
   return (
     <div>
       <HeadData
         setHeadData={setHeadData}
-        centralizeData={centralizeData}
         headData={headData}
         dataWasSent={dataWasSent}
         setDataWasSent={setDataWasSent}
@@ -241,13 +241,27 @@ export default function RequisicionDetails({ params, searchParams }) {
           })}
         </tbody>
       </table>
-
-      <button
-        className={style.button}
-        onClick={addRowTable}
-      >
-        Agregar
-      </button>
+      <div className={style.botones}>
+        <button
+          className={style.buttonAdd}
+          onClick={addRowTable}
+        >
+          <i className='bi bi-plus'></i>
+        </button>
+        <div className={style.buttonsBackend}>
+          <button className={style.buttonDelete}>
+            <i class='bi bi-trash-fill'></i>
+            Eliminar
+          </button>
+          <button
+            onClick={centralizeData}
+            className={style.buttonEnviar}
+          >
+            <i className='bi bi-send-fill'></i>
+            Enviar
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -78,21 +78,6 @@
   justify-content: center;
   margin-top: 2.7rem;
 }
-.enviar button {
-  background-color: var(--accent-color);
-  border: none;
-  width: 70%;
-  padding: 0.8rem;
-  border-radius: 1rem;
-  transition: all 0.2s ease-in-out;
-  color: var(--font-dark);
-  font-weight: 900;
-}
-
-.enviar button:hover {
-  background-color: var(--accent-hover-color);
-  transform: scale(1.05);
-}
 
 /*table*/
 
@@ -163,18 +148,6 @@
   width: 10%;
 }
 
-.button {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  margin-left: 3rem;
-  padding: 0.5rem 2rem 0.5rem 2rem;
-  border-radius: 2rem;
-  border: none;
-  background-color: var(--accent-color);
-  color: var(--font-dark);
-  font-weight: 900;
-}
-
 /*estilos de rows generadas*/
 
 .inputsRow {
@@ -241,4 +214,89 @@
 .check i:hover {
   transform: scale(1.15);
   color: rgb(1, 255, 56);
+}
+
+.botones {
+  margin: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonAdd {
+  margin-left: 3rem;
+  border-radius: 50%;
+  padding: 0.1rem 0.3rem 0.1rem 0.3rem;
+  border: none;
+  background-color: var(--card-color);
+  color: var(--font-ligth);
+  font-weight: 900;
+  transition: all 0.3s ease-in-out;
+}
+
+.buttonAdd i {
+  font-size: 30px;
+}
+
+.buttonAdd:hover {
+  transform: scale(1.05);
+  background-color: #456a81;
+}
+
+.buttonsBackend {
+  display: flex;
+}
+
+.buttonEnviar {
+  color: var(--font-dark);
+  font-weight: 900;
+  padding: 0.5rem 1.3rem 0.5rem 1.3rem;
+  background-color: var(--accent-color);
+  border: none;
+  outline: 0;
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 3rem;
+}
+
+.buttonEnviar p {
+  font-size: 14px;
+}
+.buttonEnviar i {
+  margin-right: 0.8rem;
+}
+
+.buttonEnviar:hover {
+  transform: scale(1.05);
+  background-color: var(--accent-hover-color);
+}
+
+.buttonDelete {
+  color: var(--font-ligth);
+  font-weight: 900;
+  padding: 0.5rem 1.3rem 0.5rem 1.3rem;
+  background-color: rgb(121, 1, 1);
+  border: none;
+  outline: 0;
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 3rem;
+}
+
+.buttonDelete p {
+  font-size: 14px;
+}
+.buttonDelete i {
+  margin-right: 0.8rem;
+}
+
+.buttonDelete:hover {
+  transform: scale(1.05);
+  background-color: rgb(161, 0, 0);
 }
