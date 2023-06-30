@@ -16,6 +16,42 @@
     'rfc rfc direccion direccion direccion';
 }
 
+.edit {
+  margin-left: 0.4rem;
+  border: none;
+  border-radius: 50%;
+  padding: 0rem 0.1rem 0rem 0.1rem;
+  background-color: #553e4c;
+  transition: all 0.3s ease-in-out;
+}
+.edit i {
+  font-size: 20px;
+  color: var(--font-ligth);
+}
+
+.edit:hover {
+  transform: scale(1.05);
+  background-color: #6e5063;
+}
+
+.delete {
+  margin-left: 0.4rem;
+  border: none;
+  border-radius: 50%;
+  padding: 0rem 0.1rem 0rem 0.1rem;
+  background-color: #7c0000;
+  transition: all 0.3s ease-in-out;
+}
+.delete i {
+  font-size: 20px;
+  color: var(--font-ligth);
+}
+
+.delete:hover {
+  transform: scale(1.05);
+  background-color: #a70000;
+}
+
 .proveedor {
   font-size: 15px;
   font-weight: 900;

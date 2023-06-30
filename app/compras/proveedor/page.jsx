@@ -4,6 +4,7 @@ import AddProveedor from './(AddProveedor)/AddProveedor';
 import { useState } from 'react';
 import CardProveedor from './(CardProveedor)/CardProveedor';
 import useSWR from 'swr';
+import { useRouter } from 'next/navigation';
 
 //consultas al backend
 const getProveedores = (url) =>
@@ -27,6 +28,9 @@ export default function Proveedores() {
   const [cardSelected, setCardSelected] = useState({});
   const { data, error, isLoading } = useSWR('/api/proveedores', getProveedores);
   const proveedoresArray = data;
+  const router = useRouter();
+
+  console.log(proveedoresArray);
 
   //cancelar la ventan de agregar o editar proveeodores
   function cancelarOnClick() {
@@ -39,10 +43,12 @@ export default function Proveedores() {
     return setAgregarWasClicked(!agregarWasClicked);
   }
 
-  // controla que tarjeta va a se editado, sus datos se guardan en cardSelected
+  // controla que tarjeta va a ser editado, sus datos se guardan en cardSelected
   function editingProveedor(e) {
-    const id = e.target.value;
+    const id = e.target.parentElement.value;
+    console.log(id);
     const itemMatch = proveedoresArray.filter((obj) => obj.id + '' === id);
+    console.log(itemMatch);
     setCardSelected(itemMatch[0]);
     setIsEditing(true);
     return setAgregarWasClicked(true);
@@ -57,6 +63,7 @@ export default function Proveedores() {
     if (elim) {
       const res = await deleteProveedorBackend(id);
       alert(res.message);
+      router.refresh();
     }
   }
 
@@ -95,15 +102,17 @@ export default function Proveedores() {
         ) : (
           <></>
         )}
-        {proveedoresArray.map((obj, index) => (
-          <CardProveedor
-            obj={obj}
-            index={index}
-            key={index}
-            editingProveedor={editingProveedor}
-            deleteCard={deleteCard}
-          />
-        ))}
+        {proveedoresArray.map((obj, index) => {
+          return (
+            <CardProveedor
+              obj={obj}
+              index={index}
+              key={index}
+              editingProveedor={editingProveedor}
+              deleteCard={deleteCard}
+            />
+          );
+        })}
       </div>
     </div>
   );
