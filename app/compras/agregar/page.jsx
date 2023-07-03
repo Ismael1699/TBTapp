@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './agregar.module.css';
 import { v4 as uuid } from 'uuid';
 import EditEneable from './(components)/Editeneable';
@@ -24,12 +24,27 @@ async function fetching(data) {
   });
 }
 
+async function getProveedores() {
+  const response = await fetch('http://localhost:3000/api/proveedores');
+  return JSON.parse(await response.text());
+}
+
 export default function Agregar() {
   const [headData, setHeadData] = useState(structHead);
   const [itemTable, setItemTable] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
   const [dataWasSent, setDataWasSent] = useState(false);
+  const [arrayProveedores, setArrayProveedores] = useState([]);
+  const [dataProveedor, setDataProveedor] = useState({});
   const router = useRouter();
+
+  useEffect(() => {
+    async function proveedores() {
+      const res = await getProveedores();
+      setArrayProveedores(res);
+    }
+    proveedores();
+  }, []);
 
   //función para eleminar filas
   function rowDelete(e) {
@@ -178,6 +193,13 @@ export default function Agregar() {
     sendDataBackend(data);
   }
 
+  async function excel() {
+    const res = await fetch('http://localhost:3000/api/excelMod', {
+      method: 'POST',
+      body: JSON.stringify({ ...headData, dataProveedor, table: itemTable }),
+    });
+  }
+
   async function sendDataBackend(data) {
     const res = await fetching(data);
     if (res.ok) {
@@ -198,6 +220,8 @@ export default function Agregar() {
         headData={headData}
         dataWasSent={dataWasSent}
         setDataWasSent={setDataWasSent}
+        arrayProveedores={arrayProveedores}
+        setDataProveedor={setDataProveedor}
       />
       <table className={style.table}>
         <tbody>
@@ -227,6 +251,13 @@ export default function Agregar() {
           <i className='bi bi-plus'></i>
         </button>
         <div className={style.buttonsBackend}>
+          <button
+            className={style.buttonEnviar}
+            onClick={excel}
+          >
+            <i className='bi bi-send-fill'></i>
+            Generate
+          </button>
           <button
             onClick={centralizeData}
             className={style.buttonEnviar}

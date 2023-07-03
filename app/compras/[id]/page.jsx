@@ -30,11 +30,16 @@ async function deleteCompra(id) {
   return JSON.parse(await res.text());
 }
 
-async function getProveedores1(id) {
+async function getDataCompra(id) {
   const res = await fetch(
     `http://localhost:3000/api/conectionDB/compra?id=${id}`
   );
   return JSON.parse(await res.text());
+}
+
+async function getProveedores() {
+  const response = await fetch('http://localhost:3000/api/proveedores');
+  return JSON.parse(await response.text());
 }
 
 export default function RequisicionDetails({ params }) {
@@ -43,15 +48,22 @@ export default function RequisicionDetails({ params }) {
   const [itemSelected, setItemSelected] = useState({});
   const [dataWasSent, setDataWasSent] = useState(false);
   const [isEditing, setIsEditing] = useState(true);
+  const [arrayProveedores, setArrayProveedores] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
-    async function proveedoresFetching() {
-      const res = await getProveedores1(params.id);
+    async function dataCompra() {
+      const res = await getDataCompra(params.id);
       setHeadData(res);
       setItemTable(res.obj_table.table);
     }
-    proveedoresFetching();
+    dataCompra();
+
+    async function proveedores() {
+      const res = await getProveedores();
+      setArrayProveedores(res);
+    }
+    proveedores();
   }, []);
 
   //función para eleminar filas
@@ -229,6 +241,7 @@ export default function RequisicionDetails({ params }) {
         headData={headData}
         dataWasSent={dataWasSent}
         setDataWasSent={setDataWasSent}
+        arrayProveedores={arrayProveedores}
         isEditing={isEditing}
       />
       <table className={style.table}>

@@ -3,27 +3,26 @@ import style from '../agregar.module.css';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
-const getProveedores = (url) =>
-  fetch(`http://localhost:3000${url}`).then((res) => res.json());
-
 export default function HeadData({
   setHeadData,
   headData,
   setDataWasSent,
   isEditing,
+  arrayProveedores,
+  setDataProveedor,
 }) {
-  const proveedores = useSWR('/api/proveedores', getProveedores);
-  const proveedoresArray = proveedores.data;
-
-  //controlan el sistema de carga de los datos hecho al servidor  el useSWR
-  if (proveedores.error) return 'An error has occurred.';
-  if (proveedores.isLoading) return 'Cargando..';
+  const proveedoresArray = arrayProveedores;
 
   //funcion para obtener los datos del header
   function headHandleChange(e) {
     setDataWasSent(false);
     const item = e.target.id;
     setHeadData({ ...headData, [item]: e.target.value });
+    if (item === 'proveedor') {
+      arrayProveedores.map((obj) => {
+        obj.name === e.target.value ? setDataProveedor(obj) : undefined;
+      });
+    }
   }
 
   return (
@@ -141,6 +140,7 @@ export default function HeadData({
             <option
               key={index}
               value={obj.name}
+              id={obj.id}
             >
               {obj.name}
             </option>
