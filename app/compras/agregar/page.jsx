@@ -198,13 +198,16 @@ export default function Agregar() {
       method: 'POST',
       body: JSON.stringify({ ...headData, dataProveedor, table: itemTable }),
     });
+    return JSON.parse(await res.text());
   }
 
   async function sendDataBackend(data) {
     const res = await fetching(data);
+    const resExcel = await excel();
     if (res.ok) {
       const res1 = JSON.parse(await res.text());
       alert(res1.message);
+      alert(resExcel.message);
       router.refresh();
       router.push('/compras');
     } else {

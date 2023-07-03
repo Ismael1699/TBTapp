@@ -88,5 +88,9 @@ export async function POST(req) {
   );
   // console.log('se creo correctamente');
 
-  return NextResponse.json({ url: 'se creo corretamente' });
+  return NextResponse.json({
+    message:
+      "Se ha creado el archivo de excel, consulta el archivo en requisiciones/'tarjeta de la requisicion'/Descargar' ",
+    url: 'se creo corretamente',
+  });
 }
