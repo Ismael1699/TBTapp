@@ -46,7 +46,7 @@ async function getProveedores() {
 }
 
 async function getExcel() {
-  const response = await fetch('http://localhost:3000/api/download');
+  const response = await fetch('http://localhost:3000/api/excelMod/download');
   return JSON.parse(await response.text());
 }
 
