@@ -60,9 +60,8 @@ export default function HeadData({
           >
             Elegir alguna
           </option>
-          <option value='TERRACERIAS'>Terracerias</option>
           <option value='MAQUINARIA'>Maquinaria</option>
-          <option value='ADMINISTRACION'>Administración</option>
+          <option value='PLANEACION'>Planeación</option>
         </select>
       </div>
 
