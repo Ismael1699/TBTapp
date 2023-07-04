@@ -6,6 +6,9 @@ import EditEneable from '../agregar/(components)/Editeneable';
 import EditDisable from '../agregar/(components)/EditDisable';
 import HeadData from '../agregar/(components)/HeadData';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import ButtonDonwload from '../(ButtonDonwload)/ButtonDonwload';
+import { writeFile } from 'xlsx';
 
 const structHead = {
   proyecto: '',
@@ -39,6 +42,11 @@ async function getDataCompra(id) {
 
 async function getProveedores() {
   const response = await fetch('http://localhost:3000/api/proveedores');
+  return JSON.parse(await response.text());
+}
+
+async function getExcel() {
+  const response = await fetch('http://localhost:3000/api/download');
   return JSON.parse(await response.text());
 }
 
@@ -234,6 +242,11 @@ export default function RequisicionDetails({ params }) {
       router.push('/compras');
     }
   }
+
+  async function descargar() {
+    const res = await getExcel();
+    return await writeFile(res.hola, 'Presidents.xlsx', { compression: true });
+  }
   return (
     <div>
       <HeadData
@@ -272,6 +285,12 @@ export default function RequisicionDetails({ params }) {
           <i className='bi bi-plus'></i>
         </button>
         <div className={style.buttonsBackend}>
+          <button
+            onClick={descargar}
+            className={style.buttonEnviar}
+          >
+            Descargar
+          </button>
           <button
             className={style.buttonDelete}
             onClick={DeleteRequisicion}

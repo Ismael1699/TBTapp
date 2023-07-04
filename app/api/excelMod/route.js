@@ -84,7 +84,7 @@ export async function POST(req) {
   console.log(body);
 
   await workbook.toFileAsync(
-    `./requisicionesStorage/HOJA DE COMPRA ${body.numero}.xlsm`
+    `../requisicionesStorage/HOJA DE COMPRA ${body.numero}.xlsm`
   );
   // console.log('se creo correctamente');
 
