@@ -244,9 +244,29 @@ export default function RequisicionDetails({ params }) {
   }
 
   async function descargar() {
-    const res = await getExcel();
-    return await writeFile(res.hola, 'Presidents.xlsx', { compression: true });
+    const blob = await getExcel();
+    location.href = blob.hola;
+
+    // if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+    //   // If IE, you must uses a different method.
+    //   window.navigator.msSaveOrOpenBlob(
+    //     new Blob(blob.hola.data, { type: 'Buffer' }),
+    //     'out.xlsx'
+    //   );
+    // } else {
+    //   var url = window.URL.createObjectURL(
+    //     new Blob(blob.hola.data, { type: 'Buffer' })
+    //   );
+    //   var a = document.createElement('a');
+    //   document.body.appendChild(a);
+    //   a.href = url;
+    //   a.download = 'out.xlsm';
+    //   a.click();
+    //   window.URL.revokeObjectURL(url);
+    //   document.body.removeChild(a);
+    // }
   }
+
   return (
     <div>
       <HeadData
