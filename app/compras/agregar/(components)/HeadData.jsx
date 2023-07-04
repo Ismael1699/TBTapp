@@ -1,7 +1,5 @@
 'use client';
 import style from '../agregar.module.css';
-import { useEffect, useState } from 'react';
-import useSWR from 'swr';
 
 export default function HeadData({
   setHeadData,
