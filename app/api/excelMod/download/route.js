@@ -1,39 +1,32 @@
 import { NextResponse } from 'next/server';
-
-import { readFile, utils, set_fs, writeFile, write, read } from 'xlsx';
 import { join } from 'path';
 import { cwd } from 'process';
-
-let fs = require('fs');
-
-// export async function GET() {
-//   set_fs(await import('fs')); // dynamically import 'fs' when needed
-//   const filename = join(
-//     cwd(),
-//     'ExcelsStorageRequis',
-//     'plantillas',
-//     'plantillaMaquinaria.xlsm'
-//   ); // /data/sheetjs.xlsx
-//   const wb = readFile(filename);
-
-//   return NextResponse.json({ hola: wb });
-// }
-
 const XlsxPopulate = require('xlsx-populate');
 
-export async function GET() {
+export async function POST(req) {
+  const res = await req.json();
   let base = '';
-  const filename = join(
-    cwd(),
-    'ExcelsStorageRequis',
-    'plantillas',
-    'plantillaMaquinaria.xlsm'
-  );
-  const workbook = await XlsxPopulate.fromFileAsync(
-    // './app/api/excelMod/plantilla.xlsm'
-    filename
-  );
-  const file = fs.readFileSync(filename);
+  let filename = '';
+
+  if (res.frente === 'MAQUINARIA') {
+    filename = join(
+      cwd(),
+      'ExcelsStorageRequis',
+      'Maquinaria',
+      `HOJA DE COMPRA ${res.numero}.xlsm`
+    );
+  }
+
+  if (res.frente === 'PLANEACION') {
+    filename = join(
+      cwd(),
+      'ExcelsStorageRequis',
+      'Planeacion',
+      `HOJA DE COMPRA ${res.numero}.xlsm`
+    );
+  }
+
+  const workbook = await XlsxPopulate.fromFileAsync(filename);
 
   await workbook.outputAsync('base64').then(function (base64) {
     base =
@@ -42,5 +35,5 @@ export async function GET() {
       ';base64,' +
       base64;
   });
-  return NextResponse.json({ hola: base });
+  return NextResponse.json({ excel: base });
 }

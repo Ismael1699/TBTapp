@@ -1,14 +1,34 @@
 const XlsxPopulate = require('xlsx-populate');
 import { NextResponse } from 'next/server';
+import { join } from 'path';
+import { cwd } from 'process';
 
 export async function POST(req) {
   //request del cliente
   const body = await req.json();
   console.log(body);
-  //Carga de plantilla
-  const workbook = await XlsxPopulate.fromFileAsync(
-    './app/api/excelMod/plantilla.xlsm'
-  );
+  let workbook = '';
+  if (body.frente === 'MAQUINARIA') {
+    workbook = await XlsxPopulate.fromFileAsync(
+      join(
+        cwd(),
+        'ExcelsStorageRequis',
+        'plantillas',
+        'plantillaMaquinaria.xlsm'
+      )
+    );
+  }
+  if (body.frente === 'PLANEACION') {
+    workbook = await XlsxPopulate.fromFileAsync(
+      join(
+        cwd(),
+        'ExcelsStorageRequis',
+        'plantillas',
+        'plantillaPlaneacion.xlsm'
+      )
+    );
+  }
+
   //CASE OBJECT suministro
   const suministroStructur = {
     'MATERIALES DE CONSTRUCCION': 'H8',
@@ -83,11 +103,26 @@ export async function POST(req) {
 
   console.log(body);
 
-  await workbook.toFileAsync(
-    `../requisicionesStorage/HOJA DE COMPRA ${body.numero}.xlsm`
-  );
-  // console.log('se creo correctamente');
-
+  if (body.frente === 'MAQUINARIA') {
+    await workbook.toFileAsync(
+      join(
+        cwd(),
+        'ExcelsStorageRequis',
+        'Maquinaria',
+        `HOJA DE COMPRA ${body.numero}.xlsm`
+      )
+    );
+  }
+  if (body.frente === 'PLANEACION') {
+    await workbook.toFileAsync(
+      join(
+        cwd(),
+        'ExcelsStorageRequis',
+        'Planeacion',
+        `HOJA DE COMPRA ${body.numero}.xlsm`
+      )
+    );
+  }
   return NextResponse.json({
     message:
       "Se ha creado el archivo de excel, consulta el archivo en requisiciones/'tarjeta de la requisicion'/Descargar' ",

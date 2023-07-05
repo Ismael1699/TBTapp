@@ -6,9 +6,6 @@ import EditEneable from '../agregar/(components)/Editeneable';
 import EditDisable from '../agregar/(components)/EditDisable';
 import HeadData from '../agregar/(components)/HeadData';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import ButtonDonwload from '../(ButtonDonwload)/ButtonDonwload';
-import { writeFile } from 'xlsx';
 
 const structHead = {
   proyecto: '',
@@ -45,11 +42,6 @@ async function getProveedores() {
   return JSON.parse(await response.text());
 }
 
-async function getExcel() {
-  const response = await fetch('http://localhost:3000/api/excelMod/download');
-  return JSON.parse(await response.text());
-}
-
 export default function RequisicionDetails({ params }) {
   const [headData, setHeadData] = useState(structHead);
   const [itemTable, setItemTable] = useState([]);
@@ -57,21 +49,25 @@ export default function RequisicionDetails({ params }) {
   const [dataWasSent, setDataWasSent] = useState(false);
   const [isEditing, setIsEditing] = useState(true);
   const [arrayProveedores, setArrayProveedores] = useState([]);
+  const [dataProveedor, setDataProveedor] = useState({});
   const router = useRouter();
 
   useEffect(() => {
+    async function proveedores(proveedor) {
+      const res = await getProveedores();
+      setArrayProveedores(res);
+      res.map((obj) => {
+        return obj.name === proveedor ? setDataProveedor(obj) : undefined;
+      });
+    }
+
     async function dataCompra() {
       const res = await getDataCompra(params.id);
       setHeadData(res);
+      proveedores(res.proveedor);
       setItemTable(res.obj_table.table);
     }
     dataCompra();
-
-    async function proveedores() {
-      const res = await getProveedores();
-      setArrayProveedores(res);
-    }
-    proveedores();
   }, []);
 
   //función para eleminar filas
@@ -80,7 +76,6 @@ export default function RequisicionDetails({ params }) {
       itemTable.filter((item) => item.id !== e.target.parentElement.id)
     );
   }
-
   function addRowTable() {
     const getLastItem = itemTable[itemTable.length - 1];
     const partida = itemTable.length == 0 ? 1 : getLastItem.partida + 1;
@@ -221,10 +216,20 @@ export default function RequisicionDetails({ params }) {
     sendDataBackend(data);
   }
 
+  async function excel() {
+    const res = await fetch('http://localhost:3000/api/excelMod', {
+      method: 'POST',
+      body: JSON.stringify({ ...headData, dataProveedor, table: itemTable }),
+    });
+    return JSON.parse(await res.text());
+  }
+
   async function sendDataBackend(data) {
     const res = await fetching(data);
+    const resExcel = await excel();
     if (res.ok) {
       const res1 = JSON.parse(await res.text());
+      alert(resExcel.message);
       alert(res1.message);
     } else {
       alert('Status: ' + res.status + ' ' + res.statusText);
@@ -243,30 +248,6 @@ export default function RequisicionDetails({ params }) {
     }
   }
 
-  async function descargar() {
-    const blob = await getExcel();
-    location.href = blob.hola;
-
-    // if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-    //   // If IE, you must uses a different method.
-    //   window.navigator.msSaveOrOpenBlob(
-    //     new Blob(blob.hola.data, { type: 'Buffer' }),
-    //     'out.xlsx'
-    //   );
-    // } else {
-    //   var url = window.URL.createObjectURL(
-    //     new Blob(blob.hola.data, { type: 'Buffer' })
-    //   );
-    //   var a = document.createElement('a');
-    //   document.body.appendChild(a);
-    //   a.href = url;
-    //   a.download = 'out.xlsm';
-    //   a.click();
-    //   window.URL.revokeObjectURL(url);
-    //   document.body.removeChild(a);
-    // }
-  }
-
   return (
     <div>
       <HeadData
@@ -276,6 +257,7 @@ export default function RequisicionDetails({ params }) {
         setDataWasSent={setDataWasSent}
         arrayProveedores={arrayProveedores}
         isEditing={isEditing}
+        setDataProveedor={setDataProveedor}
       />
       <table className={style.table}>
         <tbody>
@@ -305,12 +287,6 @@ export default function RequisicionDetails({ params }) {
           <i className='bi bi-plus'></i>
         </button>
         <div className={style.buttonsBackend}>
-          <button
-            onClick={descargar}
-            className={style.buttonEnviar}
-          >
-            Descargar
-          </button>
           <button
             className={style.buttonDelete}
             onClick={DeleteRequisicion}
