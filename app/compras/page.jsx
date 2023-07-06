@@ -19,11 +19,16 @@ export default async function Compras() {
         </div>
         <div className={style.containerbuscador}>
           <i className='bi bi-search'></i>
-          <input
-            className={style.buscador}
-            type='text'
-            placeholder='buscar compra'
-          />
+          <form>
+            <label htmlFor='search'></label>
+            <input
+              className={style.buscador}
+              type='text'
+              placeholder='buscar compra'
+              id='search'
+            />
+          </form>
+
           <Link
             href='/compras/agregar'
             className='button'

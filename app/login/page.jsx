@@ -26,7 +26,9 @@ export default function LoginPage() {
       router.push('/');
     } catch (error) {
       setIsAlert(true);
-      setAlertMessage('Lo siento no estas registrado');
+      setAlertMessage(
+        'La Contraseña no concide con el correo, o esta cuenta no tiene acceso'
+      );
     }
 
     return;
