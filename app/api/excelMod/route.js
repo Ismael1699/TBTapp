@@ -6,7 +6,6 @@ import { cwd } from 'process';
 export async function POST(req) {
   //request del cliente
   const body = await req.json();
-  console.log(body);
   let workbook = '';
   if (body.frente === 'MAQUINARIA') {
     workbook = await XlsxPopulate.fromFileAsync(
@@ -100,8 +99,6 @@ export async function POST(req) {
   workbook.sheet('requi').cell('M25').value(body.dataProveedor.banco);
   workbook.sheet('compra').cell('H8').value(body.dataProveedor.direccion);
   workbook.sheet('compra').cell('H29').value(body.dataProveedor.contacto);
-
-  console.log(body);
 
   if (body.frente === 'MAQUINARIA') {
     await workbook.toFileAsync(

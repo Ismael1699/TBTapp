@@ -5,7 +5,7 @@
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
   /*variables de estilos globales*/
-  --accent-color: #e4bc09;
+  --accent-color: #ebca66;
   --accent-hover-color: #ffd000;
   --font-ligth: rgb(224, 224, 224);
   --font-dark: #5f5f5f;
@@ -13,7 +13,7 @@
   --card-color: #2f4858;
   --in-placeholder-color: #b6bcbe98;
   --input-bg-color: #f6f7f8;
-  --global-bg: #e3e8ea;
+  --global-bg: #ebebeb;
   --title-font-size: 3rem;
 }
 

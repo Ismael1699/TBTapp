@@ -10,11 +10,26 @@ export default function LoginPage() {
     user: '',
     password: '',
   });
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
 
   const router = useRouter();
   // Funciones para obtener lo que inserta el usuario en los imputs
   function changeCredentials(e) {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    setIsAlert(false);
+  }
+
+  async function loginHandle() {
+    try {
+      await auth.userLogin(credentials.user, credentials.password);
+      router.push('/');
+    } catch (error) {
+      setIsAlert(true);
+      setAlertMessage('Lo siento no estas registrado');
+    }
+
+    return;
   }
 
   return (
@@ -28,6 +43,7 @@ export default function LoginPage() {
           placeholder='Escribe tu usuario'
           value={credentials.user}
           onChange={changeCredentials}
+          autoComplete='new-password'
         />
         <input
           className={login.input}
@@ -36,15 +52,18 @@ export default function LoginPage() {
           placeholder='Escribe tu contraseña'
           value={credentials.password}
           onChange={changeCredentials}
+          autoComplete='new-password'
         />
       </form>
+
+      {isAlert ? (
+        <div className={login.alert}>
+          <p>{alertMessage}</p>
+        </div>
+      ) : null}
       <button
         className={login.styledbutton}
-        onClick={async () => {
-          await auth
-            .userLogin(credentials.user, credentials.password)
-            .then(() => router.push('/'));
-        }}
+        onClick={loginHandle}
       >
         Enviar
       </button>

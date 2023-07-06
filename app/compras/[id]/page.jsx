@@ -231,6 +231,8 @@ export default function RequisicionDetails({ params }) {
       const res1 = JSON.parse(await res.text());
       alert(resExcel.message);
       alert(res1.message);
+      router.refresh();
+      router.push('/compras');
     } else {
       alert('Status: ' + res.status + ' ' + res.statusText);
     }
