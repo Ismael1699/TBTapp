@@ -18,14 +18,14 @@ const structHead = {
 };
 
 async function fetching(data) {
-  return await fetch(`../../../api/conectionDB`, {
+  return await fetch(process.env.URL_HOST + `/api/conectionDB`, {
     method: 'POST',
     body: JSON.stringify(data),
   });
 }
 
 async function getProveedores() {
-  const response = await fetch('http://localhost:3000/api/proveedores');
+  const response = await fetch(process.env.URL_HOST + '/api/proveedores');
   return JSON.parse(await response.text());
 }
 
@@ -194,7 +194,7 @@ export default function Agregar() {
   }
 
   async function excel() {
-    const res = await fetch('http://localhost:3000/api/excelMod', {
+    const res = await fetch(process.env.URL_HOST + '/api/excelMod', {
       method: 'POST',
       body: JSON.stringify({ ...headData, dataProveedor, table: itemTable }),
     });

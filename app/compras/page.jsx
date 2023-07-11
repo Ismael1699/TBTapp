@@ -4,7 +4,7 @@ import style from './layout.module.css';
 
 async function getData() {
   return await (
-    await fetch('http://localhost:3000/api/conectionDB', {
+    await fetch(process.env.URL_HOST + '/api/conectionDB', {
       cache: 'no-store',
     })
   ).json();

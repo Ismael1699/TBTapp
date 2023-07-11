@@ -8,11 +8,11 @@ import { useRouter } from 'next/navigation';
 
 //consultas al backend
 const getProveedores = (url) =>
-  fetch(`http://localhost:3000${url}`).then((res) => res.json());
+  fetch(process.env.URL_HOST + `${url}`).then((res) => res.json());
 
 async function deleteProveedorBackend(id) {
   const response = await fetch(
-    'http://localhost:3000/api/proveedores/deleteProveedor',
+    process.env.URL_HOST + '/api/proveedores/deleteProveedor',
     {
       method: 'POST', //No es la manera correcta de hace run delete, para modificar esto se tendra que implementar rutas dinamicas
       body: JSON.stringify({ id }),

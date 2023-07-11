@@ -1,6 +1,12 @@
-import Image from 'next/image';
-import file from '../public/IMG_0428.png';
-
 export default async function App() {
-  return <div className='app'></div>;
+  return (
+    <div className='home'>
+      <p>TRITURADOS BASÁLTICOS TEPETLAOXTOC</p>
+      <img
+        className='img'
+        src='/IMG_0428.png'
+        alt='criba'
+      />
+    </div>
+  );
 }

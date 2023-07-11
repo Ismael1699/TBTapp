@@ -1,10 +1,13 @@
 'use client';
 
 async function getExcel(frente, numero) {
-  const response = await fetch('http://localhost:3000/api/excelMod/download', {
-    method: 'POST',
-    body: JSON.stringify({ frente, numero }),
-  });
+  const response = await fetch(
+    process.env.URL_HOST + '/api/excelMod/download',
+    {
+      method: 'POST',
+      body: JSON.stringify({ frente, numero }),
+    }
+  );
   return JSON.parse(await response.text());
 }
 

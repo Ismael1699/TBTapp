@@ -33,7 +33,7 @@ export default async function Card({ obj }) {
           <div className={style.barautorizada1}></div>
           <div className={style.barautorizada2}></div>
           <div className={style.barpagada}></div> */}
-        <Link href={'http://localhost:3000/compras/' + obj.id}>
+        <Link href={process.env.URL_HOST + '/compras/' + obj.id}>
           <button>Editar</button>
         </Link>
         <DownloadButton obj={obj} />

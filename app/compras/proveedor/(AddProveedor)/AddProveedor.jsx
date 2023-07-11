@@ -3,7 +3,7 @@ import style from './addproveedor.module.css';
 import { useState } from 'react';
 
 async function sendProveedor(data, method) {
-  const res = await fetch('http://localhost:3000/api/proveedores', {
+  const res = await fetch(process.env.URL_HOST + '/api/proveedores', {
     method: method,
     body: JSON.stringify(data),
   });
