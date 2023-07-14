@@ -14,6 +14,7 @@ export default function AddProveedor({
   isEditing,
   cardSelected,
   setCardSelected,
+
   cancelarOnClick,
 }) {
   const dataStruct = {

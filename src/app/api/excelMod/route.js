@@ -11,6 +11,7 @@ export async function POST(req) {
     workbook = await XlsxPopulate.fromFileAsync(
       join(
         cwd(),
+        'src',
         'ExcelsStorageRequis',
         'plantillas',
         'plantillaMaquinaria.xlsm'
@@ -21,6 +22,7 @@ export async function POST(req) {
     workbook = await XlsxPopulate.fromFileAsync(
       join(
         cwd(),
+        'src',
         'ExcelsStorageRequis',
         'plantillas',
         'plantillaPlaneacion.xlsm'
@@ -104,6 +106,7 @@ export async function POST(req) {
     await workbook.toFileAsync(
       join(
         cwd(),
+        'src',
         'ExcelsStorageRequis',
         'Maquinaria',
         `HOJA DE COMPRA ${body.numero}.xlsm`
@@ -114,6 +117,7 @@ export async function POST(req) {
     await workbook.toFileAsync(
       join(
         cwd(),
+        'src',
         'ExcelsStorageRequis',
         'Planeacion',
         `HOJA DE COMPRA ${body.numero}.xlsm`

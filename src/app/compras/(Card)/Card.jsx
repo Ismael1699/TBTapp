@@ -32,7 +32,10 @@ export default async function Card({ obj }) {
     <div className={style.card}>
       <div className={style.header}>
         <div className={style.downloadIcon}>
-          <i className='bi bi-file-earmark-arrow-down-fill'></i>
+          <DownloadButton
+            frente={obj.frente}
+            numero={obj.numero}
+          />
         </div>
         <div className={style.title}>
           <p className={style.orden}>Orden de compra {obj.numero}</p>
@@ -42,7 +45,9 @@ export default async function Card({ obj }) {
           </p>
         </div>
         <div className={style.options}>
-          <i className='bi bi-three-dots'></i>
+          <Link href={`/compras/${obj.id}`}>
+            <i className='bi bi-three-dots'></i>
+          </Link>
         </div>
       </div>
       <div className={style.body}>

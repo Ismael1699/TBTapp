@@ -11,6 +11,7 @@ export async function POST(req) {
   if (res.frente === 'MAQUINARIA') {
     filename = join(
       cwd(),
+      'src',
       'ExcelsStorageRequis',
       'Maquinaria',
       `HOJA DE COMPRA ${res.numero}.xlsm`
@@ -20,6 +21,7 @@ export async function POST(req) {
   if (res.frente === 'PLANEACION') {
     filename = join(
       cwd(),
+      'src',
       'ExcelsStorageRequis',
       'Planeacion',
       `HOJA DE COMPRA ${res.numero}.xlsm`
@@ -35,5 +37,6 @@ export async function POST(req) {
       ';base64,' +
       base64;
   });
+
   return NextResponse.json({ excel: base });
 }

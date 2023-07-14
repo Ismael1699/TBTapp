@@ -17,28 +17,26 @@ const structHead = {
   numero: '',
 };
 async function fetching(data) {
-  return await fetch(process.env.URL_HOST + `/api/conectionDB`, {
+  return await fetch(`/api/conectionDB`, {
     method: 'PUT',
     body: JSON.stringify(data),
   });
 }
 
 async function deleteCompra(id) {
-  const res = await fetch(process.env.URL_HOST + `/api/conectionDB?id=${id}`, {
+  const res = await fetch(`/api/conectionDB?id=${id}`, {
     method: 'DELETE',
   });
   return JSON.parse(await res.text());
 }
 
 async function getDataCompra(id) {
-  const res = await fetch(
-    process.env.URL_HOST + `/api/conectionDB/compra?id=${id}`
-  );
+  const res = await fetch(`/api/conectionDB/compra?id=${id}`);
   return JSON.parse(await res.text());
 }
 
 async function getProveedores() {
-  const response = await fetch(process.env.URL_HOST + '/api/proveedores');
+  const response = await fetch('/api/proveedores');
   return JSON.parse(await response.text());
 }
 
@@ -217,7 +215,7 @@ export default function RequisicionDetails({ params }) {
   }
 
   async function excel() {
-    const res = await fetch(process.env.URL_HOST + '/api/excelMod', {
+    const res = await fetch('/api/excelMod', {
       method: 'POST',
       body: JSON.stringify({ ...headData, dataProveedor, table: itemTable }),
     });
