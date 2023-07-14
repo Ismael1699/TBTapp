@@ -7,17 +7,13 @@ import useSWR from 'swr';
 import { useRouter } from 'next/navigation';
 
 //consultas al backend
-const getProveedores = (url) =>
-  fetch(process.env.URL_HOST + `${url}`).then((res) => res.json());
+const getProveedores = (url) => fetch(`${url}`).then((res) => res.json());
 
 async function deleteProveedorBackend(id) {
-  const response = await fetch(
-    process.env.URL_HOST + '/api/proveedores/deleteProveedor',
-    {
-      method: 'POST', //No es la manera correcta de hace run delete, para modificar esto se tendra que implementar rutas dinamicas
-      body: JSON.stringify({ id }),
-    }
-  );
+  const response = await fetch('/api/proveedores/deleteProveedor', {
+    method: 'POST', //No es la manera correcta de hace run delete, para modificar esto se tendra que implementar rutas dinamicas
+    body: JSON.stringify({ id }),
+  });
   return JSON.parse(await response.text());
 }
 
@@ -26,7 +22,10 @@ export default function Proveedores() {
   const [agregarWasClicked, setAgregarWasClicked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [cardSelected, setCardSelected] = useState({});
-  const { data, error, isLoading } = useSWR('/api/proveedores', getProveedores);
+  const { data, error, isLoading, mutate } = useSWR(
+    '/api/proveedores',
+    getProveedores
+  );
   const proveedoresArray = data;
   const router = useRouter();
 
@@ -52,14 +51,17 @@ export default function Proveedores() {
 
   // Control para eleminar del fronted y del backend la card selecionada
   async function deleteCard(e) {
-    const id = e.target.value;
+    const id = e.target.parentElement.value;
 
     const elim = confirm('Deseas eleiminarlo');
+    const newprovedores = proveedoresArray.filter((obj) => obj.id !== id);
 
     if (elim) {
       const res = await deleteProveedorBackend(id);
+      mutate([newprovedores]);
       alert(res.message);
       router.refresh();
+      router.push('/compras/proveedor');
     }
   }
 

@@ -3,6 +3,7 @@ import { pool } from '../../../../database/db';
 
 export async function POST(res) {
   const req = await res.json();
+  console.log(req);
   await pool.query('DELETE FROM proveedores WHERE id = ?', [req.id]);
 
   return NextResponse.json({

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import style from './agregar.module.css';
 import { v4 as uuid } from 'uuid';
-import EditEneable from './(components)/Editeneable';
+import EditEneable from './(components)/EditEneable';
 import EditDisable from './(components)/EditDisable';
 import HeadData from './(components)/HeadData';
 import { useRouter } from 'next/navigation';
@@ -18,14 +18,15 @@ const structHead = {
 };
 
 async function fetching(data) {
-  return await fetch(process.env.URL_HOST + `/api/conectionDB`, {
+  return await fetch(`/api/conectionDB`, {
     method: 'POST',
     body: JSON.stringify(data),
   });
 }
 
 async function getProveedores() {
-  const response = await fetch(process.env.URL_HOST + '/api/proveedores');
+  const link = '/api/proveedores';
+  const response = await fetch(link);
   return JSON.parse(await response.text());
 }
 
@@ -194,7 +195,7 @@ export default function Agregar() {
   }
 
   async function excel() {
-    const res = await fetch(process.env.URL_HOST + '/api/excelMod', {
+    const res = await fetch('/api/excelMod', {
       method: 'POST',
       body: JSON.stringify({ ...headData, dataProveedor, table: itemTable }),
     });

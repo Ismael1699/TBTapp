@@ -1,6 +1,6 @@
 import './globals.css';
 import Navbar from './(navbar)/navbar';
-import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+import '/node_modules/bootstrap-icons/font/bootstrap-icons.css';
 import { AuthContextProvider } from '../contextApp/AuthContext';
 import ProtectedRoute from '../protedRuteComponent/protedRute';
 

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import style from '../agregar/agregar.module.css';
 import { v4 as uuid } from 'uuid';
-import EditEneable from '../agregar/(components)/Editeneable';
+import EditEneable from '../agregar/(components)/EditEneable';
 import EditDisable from '../agregar/(components)/EditDisable';
 import HeadData from '../agregar/(components)/HeadData';
 import { useRouter } from 'next/navigation';

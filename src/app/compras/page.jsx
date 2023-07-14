@@ -3,14 +3,16 @@ import Card from './(Card)/Card';
 import style from './layout.module.css';
 
 async function getData() {
-  return await (
-    await fetch(process.env.URL_HOST + '/api/conectionDB', {
-      cache: 'no-store',
-    })
-  ).json();
+  const response = await fetch(process.env.URL_HOST + '/api/conectionDB', {
+    cache: 'no-store',
+  });
+  console.log(response);
+  return JSON.parse(await response.text());
 }
+
 export default async function Compras() {
   const dataRequisiciones = await getData();
+
   return (
     <div className={style.container}>
       <div className={style.header}>
@@ -45,6 +47,7 @@ export default async function Compras() {
           </Link>
         </div>
       </div>
+
       <div className={style.containercard}>
         {dataRequisiciones.data.map((obj, index) => (
           <Card
