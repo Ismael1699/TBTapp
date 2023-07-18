@@ -9,16 +9,21 @@
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
   /*variables de estilos globales*/
-  --accent-color: #ebca66;
+  --accent-color: #ffdc82;
   --accent-hover-color: #ffd000;
-  --font-ligth: rgb(224, 224, 224);
-  --font-dark: #5f5f5f;
+  --font-ligth: rgb(104, 104, 104);
+  --font-dark: #5f5f5f7a;
   --content-color: #ffff;
-  --card-color: #2f4858;
-  --in-placeholder-color: #b6bcbe98;
+  --card-color: #d3d3d3;
+  --in-placeholder-color: #73737354;
   --input-bg-color: #f6f7f8;
   --global-bg: #ebebeb;
   --title-font-size: 2.5rem;
+
+  --primary-color: #ffff;
+  --secundary-color: #f0f0f0;
+  --font-color: #737373;
+  --border-radius-primary: 30px;
 }
 
 * {
@@ -33,16 +38,22 @@
 html,
 body {
   font-family: var(--font-mono);
+  color: var(--font-color);
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
-  background-color: var(--global-bg);
+  background-color: var(--primary-color);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 a {
   color: inherit;
+}
+
+a:link,
+a:visited,
+a:active {
   text-decoration: none;
 }
 
@@ -54,7 +65,7 @@ a {
 }
 
 .button {
-  color: var(--font-dark);
+  color: var(--font-color);
   font-weight: 900;
   padding: 0.5rem 1.3rem 0.5rem 1.3rem;
   background-color: var(--accent-color);
@@ -77,8 +88,11 @@ a {
 }
 
 .home {
-  width: 100%;
-  height: 100%;
+  width: calc(85% - 3rem);
+  height: calc(100% - 3rem);
+  margin: 1.5rem;
+  border-radius: var(--border-radius-primary);
+  background-color: var(--secundary-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,7 +101,9 @@ a {
   font-size: 30px;
   letter-spacing: 3px;
   font-weight: 900;
-  color: var(--font-dark);
+}
+
+.home p {
   animation-name: fade;
   animation-duration: 3s;
 }
@@ -99,6 +115,8 @@ a {
   object-fit: cover;
   border-radius: 50%;
   transition: all 0.5s ease-in-out;
+  animation-name: fade;
+  animation-duration: 3s;
 }
 
 img:hover {
@@ -114,5 +132,26 @@ img:hover {
   to {
     opacity: 1;
     transform: translateY(0%);
+  }
+}
+
+@media (max-width: 900px) {
+  .contSec {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    height: 100%;
+  }
+
+  .home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 85%;
+  }
+  .home p {
+    text-align: center;
   }
 }

@@ -111,3 +111,12 @@
   align-items: center;
   padding-right: 1rem;
 }
+
+@media (max-width: 900px) {
+  .container {
+    width: 100%;
+    height: 80;
+    left: 0;
+    top: 0;
+  }
+}

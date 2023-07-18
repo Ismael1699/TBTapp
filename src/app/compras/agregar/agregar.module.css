@@ -2,74 +2,64 @@
   width: fit-content;
   height: fit-content;
   padding: 1rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0px 0px;
-  grid-template-areas:
-    'proyecto frente suministro enviar'
-    'fecha lugar proveedor  numero';
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .head select {
   font-size: 15px;
   border: none;
   height: auto;
-  font-weight: 900;
+  font-weight: 700;
   border-radius: 0.5rem;
   padding: 0.5rem;
   color: var(--font-ligth);
-  background-color: var(--card-color);
+  background-color: var(--primary-color);
   margin-top: 1rem;
-}
-
-.head select option:hover {
-  background-color: brown;
 }
 
 .head input {
   font-size: 15px;
   border: none;
   height: auto;
-  font-weight: 900;
+  font-weight: 700;
   border-radius: 0.5rem;
   padding: 0.5rem;
   color: var(--font-ligth);
-  background-color: var(--card-color);
+  background-color: var(--primary-color);
   margin-top: 1rem;
 }
 
 .proyecto {
-  grid-area: proyecto;
-  margin: 0.5rem;
+  margin: 1rem;
+  flex-grow: 1;
 }
 .frente {
-  grid-area: frente;
-  margin: 0.5rem;
+  margin: 1rem;
+  flex-grow: 1;
 }
 .suministro {
-  grid-area: suministro;
-  margin: 0.5rem;
+  margin: 1rem;
+  flex-grow: 2;
 }
 .fecha {
-  grid-area: fecha;
-  margin: 0.5rem;
+  margin: 1rem;
+  flex-grow: 2;
 }
 .lugar {
-  grid-area: lugar;
-  margin: 0.5rem;
+  margin: 1rem;
+  flex-grow: 2;
 }
 .proveedor {
-  grid-area: proveedor;
-  margin: 0.5rem;
+  margin: 1rem;
+  flex-grow: 3;
 }
 
 .numero {
-  grid-area: numero;
-  margin: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 1rem;
+  flex-grow: 2;
 }
 
 .enviar {
@@ -82,12 +72,12 @@
 /*table*/
 
 .table {
-  color: var(--font-dark);
+  color: var(--font-color);
   margin: 1.5rem;
   width: calc(100% - 3rem);
   border-spacing: 0;
   border-radius: 1.5rem;
-  background-color: white;
+  background-color: var(--primary-color);
 }
 
 .table td {
@@ -96,8 +86,9 @@
 }
 
 .table th {
-  background-color: var(--card-color);
-  color: var(--font-ligth);
+  background-color: var(--accent-color);
+  color: var(--font-color);
+  font-size: 14px;
 }
 .table tr {
   height: 3rem;
@@ -228,8 +219,8 @@
   border-radius: 50%;
   padding: 0.1rem 0.3rem 0.1rem 0.3rem;
   border: none;
-  background-color: var(--card-color);
-  color: var(--font-ligth);
+  background-color: var(--accent-color);
+  color: var(--font-color);
   font-weight: 900;
   transition: all 0.3s ease-in-out;
 }
@@ -240,7 +231,7 @@
 
 .buttonAdd:hover {
   transform: scale(1.05);
-  background-color: #456a81;
+  background-color: var(--accent-hover-color);
 }
 
 .buttonsBackend {
@@ -299,4 +290,17 @@
 .buttonDelete:hover {
   transform: scale(1.05);
   background-color: rgb(161, 0, 0);
+}
+
+@media (max-width: 900px) {
+  .head {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .table {
+    font-size: 10px;
+  }
 }

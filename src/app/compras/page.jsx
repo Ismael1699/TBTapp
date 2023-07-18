@@ -1,36 +1,34 @@
+'use client';
 import Link from 'next/link';
 import Card from './(Card)/Card';
 import style from './layout.module.css';
+import { useState, useEffect } from 'react';
+import useSWR from 'swr';
 
+//const getData = async (url) => await fetch(`${url}`).then((res) => res.json());
 async function getData() {
-  const response = await fetch(process.env.URL_HOST + '/api/conectionDB', {
-    cache: 'no-store',
-  });
-  console.log(response);
+  const link = '/api/conectionDB';
+  const response = await fetch(link);
   return JSON.parse(await response.text());
 }
 
-export default async function Compras() {
-  const dataRequisiciones = await getData();
+export default function Compras() {
+  const [array, setArray] = useState([]);
+
+  useEffect(() => {
+    async function localFetch() {
+      setArray(await getData());
+    }
+    localFetch();
+  }, []);
 
   return (
     <div className={style.container}>
       <div className={style.header}>
         <div className={style.title}>
-          <p>Requisiciones</p>
+          <p>Compras</p>
         </div>
         <div className={style.containerbuscador}>
-          <i className='bi bi-search'></i>
-          <form>
-            <label htmlFor='search'></label>
-            <input
-              className={style.buscador}
-              type='text'
-              placeholder='buscar compra'
-              id='search'
-            />
-          </form>
-
           <Link
             href='/compras/agregar'
             className='button'
@@ -49,12 +47,14 @@ export default async function Compras() {
       </div>
 
       <div className={style.containercard}>
-        {dataRequisiciones.data.map((obj, index) => (
-          <Card
-            obj={obj}
-            key={index}
-          />
-        ))}
+        {array.length === 0
+          ? null
+          : array.data.map((obj, index) => (
+              <Card
+                obj={obj}
+                key={index}
+              />
+            ))}
       </div>
     </div>
   );

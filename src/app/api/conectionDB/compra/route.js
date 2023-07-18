@@ -8,8 +8,8 @@ export async function GET(req) {
 
   const [res] = await pool.query(`
       SELECT  requisiciones.id, requisiciones.proyecto, requisiciones.frente, requisiciones.suministro, requisiciones.fecha, requisiciones.lugar, requisiciones.numero, requisiciones.proveedor , row_requisiciones.obj_table
-      FROM database.requisiciones
-      INNER JOIN database.row_requisiciones
+      FROM requisiciones
+      INNER JOIN row_requisiciones
       ON  requisiciones.numero = row_requisiciones.n_compra
       WHERE requisiciones.id=${id}`);
 

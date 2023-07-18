@@ -256,13 +256,6 @@ export default function Agregar() {
         </button>
         <div className={style.buttonsBackend}>
           <button
-            className={style.buttonEnviar}
-            onClick={excel}
-          >
-            <i className='bi bi-send-fill'></i>
-            Generate
-          </button>
-          <button
             onClick={centralizeData}
             className={style.buttonEnviar}
           >

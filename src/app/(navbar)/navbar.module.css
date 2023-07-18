@@ -1,16 +1,12 @@
 .navbar {
   width: 15%;
   height: 100%;
-  background-color: var(--card-color);
-  border-radius: 0 1.5rem 1.5rem 0;
   overflow: hidden;
 }
 
 .user {
-  background-color: rgba(196, 196, 196, 0.288);
   height: 25%;
   width: 100%;
-  border-radius: 0 1.5rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,7 +14,7 @@
 }
 
 .img {
-  background-color: var(--card-color);
+  background-color: var(--secundary-color);
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
@@ -31,7 +27,6 @@
 
 .img i {
   font-size: 65px;
-  color: var(--font-ligth);
 }
 
 .navbar li {
@@ -40,7 +35,9 @@
   height: 70%;
   margin-left: 0.5rem;
   font-weight: 900;
-  color: var(--font-ligth);
+  display: flex;
+  flex-direction: column;
+  text-decoration-line: none;
 }
 
 .navbar li ul {
@@ -53,13 +50,40 @@
 }
 
 .navbar li ul:hover {
-  background-color: var(--global-bg);
+  width: 70%;
+  margin-left: 2rem;
+  background-color: #ffdc82;
   border-radius: 1rem;
-  margin-left: 1.5rem;
+
   transform: scale(1.1);
-  color: var(--font-dark);
 }
 .profile {
   width: 50%;
   height: 50%;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    border-radius: 0;
+    background-color: rgba(216, 216, 216, 0.575);
+    width: 100%;
+    height: 15%;
+    display: flex;
+  }
+  .user {
+    width: 30%;
+    height: 100%;
+  }
+
+  .navbar li {
+    color: rgba(105, 105, 105, 0.747);
+    height: 100%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .img {
+    display: none;
+  }
 }

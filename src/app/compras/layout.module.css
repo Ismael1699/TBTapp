@@ -1,8 +1,10 @@
 /* container general*/
 .compras {
-  width: 85%;
-  height: 100%;
-  color: var(--font-dark);
+  width: calc(85% - 3rem);
+  height: calc(100% - 3rem);
+  margin: 1.5rem;
+  border-radius: var(--border-radius-primary);
+  background-color: var(--secundary-color);
   overflow: auto;
 }
 
@@ -14,28 +16,26 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  padding: 1rem 0 0 2rem;
   width: 100%;
   height: 20%;
-  align-items: center;
 }
 
 .title p {
   font-size: var(--title-font-size);
-  margin-left: 1.5rem;
 }
 
 .containerbuscador {
   display: flex;
-  align-items: center;
-  margin-right: 2rem;
-  gap: 0.5rem;
+  gap: 2rem;
+  margin-top: 1.5rem;
 }
 
 .buscador {
   width: 20rem;
   height: 1.5rem;
-  padding: 1rem;
+
   margin-right: 2rem;
   border-radius: 0.6rem;
   border: 2px solid var(--font-ligth);
@@ -55,4 +55,26 @@
   padding: 1rem;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+@media (max-width: 900px) {
+  .compras {
+    height: 85%;
+    width: 100%;
+    margin: 0;
+    border-radius: none;
+    background-color: none;
+  }
+  .header {
+    flex-direction: column;
+  }
+
+  .buscador {
+    display: none;
+  }
+  .title p {
+    font-size: var(--title-font-size);
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+  }
 }
