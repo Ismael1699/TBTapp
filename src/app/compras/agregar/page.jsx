@@ -98,14 +98,17 @@ export default function Agregar() {
           Number.parseFloat(dataTarget).toFixed(2)
       ).toFixed(2);
     setItemSelected(() => {
-      return item === 'unitario'
-        ? {
-            ...itemSelected,
-            [item]: dataTarget,
-            final: pricefinal,
-          }
-        : item === 'cantidad'
-        ? {
+      if (item === 'unitario') {
+        return {
+          ...itemSelected,
+          [item]: dataTarget,
+          final: pricefinal,
+        };
+      }
+
+      if (item === 'cantidad') {
+        if (/^[0-9]*$/.test(dataTarget)) {
+          return {
             ...itemSelected,
             [item]: dataTarget,
             final:
@@ -114,11 +117,18 @@ export default function Agregar() {
                 Number.parseFloat(dataTarget).toFixed(2) *
                   Number.parseFloat(itemSelected.unitario).toFixed(2)
               ).toFixed(2),
-          }
-        : {
-            ...itemSelected,
-            [item]: dataTarget,
           };
+        }
+        return {
+          ...itemSelected,
+          [item]: '',
+        };
+      }
+
+      return {
+        ...itemSelected,
+        [item]: dataTarget,
+      };
     });
   }
 
@@ -230,14 +240,14 @@ export default function Agregar() {
       <table className={style.table}>
         <tbody>
           <tr>
-            <th>partida</th>
+            <th>Partida</th>
             <th>No parte</th>
             <th className={style.sizedescripcion}>Descripción</th>
             <th>Unidad</th>
             <th>Cantidad</th>
-            <th>Precio Unitario</th>
-            <th>Precio Final</th>
-            <th>modos</th>
+            <th>P. Unitario</th>
+            <th>P. Final</th>
+            <th>Modos</th>
           </tr>
 
           {/* parte donde se generará de manera dinamica los elementos de cada fila de la tabla */}

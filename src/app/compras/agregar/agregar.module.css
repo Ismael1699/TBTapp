@@ -15,7 +15,7 @@
   font-weight: 700;
   border-radius: 0.5rem;
   padding: 0.5rem;
-  color: var(--font-ligth);
+  color: var(--in-placeholder-color-secundary);
   background-color: var(--primary-color);
   margin-top: 1rem;
 }
@@ -27,9 +27,12 @@
   font-weight: 700;
   border-radius: 0.5rem;
   padding: 0.5rem;
-  color: var(--font-ligth);
+  color: var(--in-placeholder-color-secundary);
   background-color: var(--primary-color);
   margin-top: 1rem;
+}
+.head input::placeholder {
+  color: var(--in-placeholder-color);
 }
 
 .proyecto {
@@ -145,7 +148,7 @@
   font-size: 12px;
   width: 90%;
   border: none;
-  background-color: var(--global-bg);
+  background-color: var(--secundary-color);
   border-radius: 0.5rem;
   padding-left: 0.7rem;
   padding-right: 0.7rem;
@@ -239,7 +242,7 @@
 }
 
 .buttonEnviar {
-  color: var(--font-dark);
+  color: var(--font-color);
   font-weight: 900;
   padding: 0.5rem 1.3rem 0.5rem 1.3rem;
   background-color: var(--accent-color);

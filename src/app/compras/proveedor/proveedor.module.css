@@ -13,7 +13,7 @@
 }
 
 .title {
-  color: var(--font-dark);
+  color: var(--font-color);
   font-size: var(--title-font-size);
 }
 
@@ -26,10 +26,10 @@
 }
 
 .filterButton {
-  color: var(--font-ligth);
+  color: var(--font-color);
   font-weight: 900;
   padding: 0.5rem 1.3rem 0.5rem 1.3rem;
-  background-color: var(--card-color);
+  background-color: var(--primary-color);
   border: none;
   outline: 0;
   border-radius: 1rem;

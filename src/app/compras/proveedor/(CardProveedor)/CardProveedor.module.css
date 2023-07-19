@@ -1,19 +1,16 @@
 .container {
   width: 22rem;
   height: 11rem;
-  background-color: var(--card-color);
+  background-color: var(--primary-color);
   border-radius: 1rem;
-  padding: 0.8rem;
+  padding: 1rem;
   color: var(--font-ligth);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 0.5fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    'proveedor proveedor proveedor proveedor proveedor'
-    'contacto contacto telefono correo correo'
-    'rfc rfc direccion direccion direccion';
+  box-shadow: var(--box-shadow);
+  transition: all 0.5s ease-in-out;
+}
+
+.container:hover {
+  transform: scale(1.1);
 }
 
 .edit {
@@ -21,17 +18,17 @@
   border: none;
   border-radius: 50%;
   padding: 0rem 0.1rem 0rem 0.1rem;
-  background-color: #553e4c;
+  background-color: var(--font-color);
   transition: all 0.3s ease-in-out;
 }
 .edit i {
   font-size: 20px;
-  color: var(--font-ligth);
+  color: var(--primary-color);
 }
 
 .edit:hover {
   transform: scale(1.05);
-  background-color: #6e5063;
+  background-color: #929292;
 }
 
 .delete {
@@ -39,64 +36,52 @@
   border: none;
   border-radius: 50%;
   padding: 0rem 0.1rem 0rem 0.1rem;
-  background-color: #7c0000;
+  background-color: #a70000;
   transition: all 0.3s ease-in-out;
 }
+
 .delete i {
   font-size: 20px;
-  color: var(--font-ligth);
+  color: var(--primary-color);
 }
 
 .delete:hover {
   transform: scale(1.05);
-  background-color: #a70000;
+  background-color: #c73636;
 }
 
 .proveedor {
   font-size: 15px;
   font-weight: 900;
-  grid-area: proveedor;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
+}
+
+.proveedor p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .contacto {
-  font-size: 10px;
-  grid-area: contacto;
+  margin-top: 1.5rem;
+  font-size: 11px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
-.telefono {
-  font-size: 10px;
-  grid-area: telefono;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.contacto p:nth-child(2n) {
+  margin-top: 0.5rem;
 }
-
 .correo {
+  margin-top: 1rem;
   font-size: 10px;
   grid-area: correo;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.rfc {
-  font-size: 10px;
-  grid-area: rfc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.direccion {
-  font-size: 10px;
-  grid-area: direccion;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 1.5rem;
 }

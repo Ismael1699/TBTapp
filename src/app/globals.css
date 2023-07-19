@@ -16,6 +16,7 @@
   --content-color: #ffff;
   --card-color: #d3d3d3;
   --in-placeholder-color: #73737354;
+  --in-placeholder-color-secundary: #00000069;
   --input-bg-color: #f6f7f8;
   --global-bg: #ebebeb;
   --title-font-size: 2.5rem;
@@ -24,6 +25,7 @@
   --secundary-color: #f0f0f0;
   --font-color: #737373;
   --border-radius-primary: 30px;
+  --box-shadow: -15px 15px 40px 0 #00000025;
 }
 
 * {

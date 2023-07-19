@@ -15,6 +15,7 @@ export default function EditEneable({
       ? 0
       : Number.parseFloat(itemSelected.unitario).toFixed(2);
   const final = Number.parseFloat(cant * price).toFixed(2);
+
   return (
     <tr
       key={obj.id}
@@ -26,8 +27,9 @@ export default function EditEneable({
         <input
           id='noparte'
           className={style.inputsRow}
-          type='number'
+          type='text'
           onChange={onChangeEditing}
+          value={itemSelected.noparte}
         />
       </td>
       <td>
@@ -36,6 +38,7 @@ export default function EditEneable({
           type='text'
           className={style.inputsRow}
           onChange={onChangeEditing}
+          value={itemSelected.descripcion}
         />
       </td>
       <td>
@@ -44,7 +47,7 @@ export default function EditEneable({
           className={style.inputsRow}
           name='unidad'
           onChange={onChangeEditing}
-          defaultValue=''
+          value={itemSelected.unidad}
         >
           <option
             disabled
@@ -61,7 +64,9 @@ export default function EditEneable({
           id='cantidad'
           className={style.inputsRow}
           type='number'
+          min='1'
           onChange={onChangeEditing}
+          value={itemSelected.cantidad}
         />
       </td>
       <td>
@@ -70,6 +75,7 @@ export default function EditEneable({
           className={style.inputsRow}
           type='number'
           onChange={onChangeEditing}
+          value={itemSelected.unitario}
         />
       </td>
       <td>{final}</td>
