@@ -1,6 +1,7 @@
 'use client';
 import style from './addproveedor.module.css';
 import { useState } from 'react';
+import Slider from './Slider/Slider';
 
 async function sendProveedor(data, method) {
   const res = await fetch('/api/proveedores', {
@@ -27,14 +28,23 @@ export default function AddProveedor({
     telefono: '',
     correo: '',
     frente: '',
+    contacto: '',
+    factura: 0,
   };
 
-  const [dataProveedores, setDataProveedores] = useState(cardSelected);
+  const [dataProveedores, setDataProveedores] = useState(
+    Object.entries(cardSelected).length === 0 ? dataStruct : cardSelected
+  );
+  console.log(dataProveedores);
 
   function inputsOnChange(e) {
     const item = e.target.id;
     const value = e.target.value;
     return setDataProveedores({ ...dataProveedores, [item]: value });
+  }
+
+  function dataSliderOnChange(data) {
+    setDataProveedores({ ...dataProveedores, factura: data });
   }
 
   function checkCompleteInformation() {
@@ -63,20 +73,179 @@ export default function AddProveedor({
   return (
     <>
       <div className={style.container}>
-        <div className={style.buttons}>
+        <div className={style.title}>
+          <p>Agregar nuevo proveedor</p>
           <button
             className={style.cancelar}
             onClick={cancelarOnClick}
           >
             <i className='bi bi-x-circle-fill'></i>
-            Cancelar
           </button>
+        </div>
+        <div className={style.proveedor}>
+          <p className={style.subtitle}>Proveedor</p>
+          <form>
+            <div>
+              <label
+                className={style.labbel}
+                htmlFor='name'
+              >
+                Nombre
+              </label>
+              <input
+                type='text'
+                id='name'
+                value={dataProveedores.name}
+                onChange={inputsOnChange}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor='rfc'
+                className={style.labbel}
+              >
+                RFC
+              </label>
+              <input
+                id='rfc'
+                value={dataProveedores.rfc}
+                onChange={inputsOnChange}
+                type='text'
+              />
+            </div>
+            <div>
+              <label htmlFor='frente'>Frente</label>
+              <select
+                name='frente'
+                id='frente'
+                value={dataProveedores.frente}
+                onChange={inputsOnChange}
+              >
+                <option
+                  value=''
+                  disabled
+                >
+                  Elegir alguna
+                </option>
+                <option value='MAQUINARIA'>Maquinaria</option>
+                <option value='PLANEACION'>Planeación</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <div className={style.bancario}>
+          <p className={style.subtitle}>Datos bancarios</p>
+          <form>
+            <div className={style.clabe}>
+              <label
+                className={style.labbel}
+                htmlFor='clabe'
+              >
+                Clabe
+              </label>
+              <input
+                type='text'
+                id='clabe'
+                value={dataProveedores.clabe}
+                onChange={inputsOnChange}
+              />
+            </div>
+            <div className={style.slidercontainer}>
+              <Slider
+                dataSliderOnChange={dataSliderOnChange}
+                factura={dataProveedores.factura}
+              />
+            </div>
+            <div className={style.banco}>
+              <label htmlFor='banco'>Banco</label>
+              <input
+                type='text'
+                id='banco'
+                value={dataProveedores.banco}
+                onChange={inputsOnChange}
+              />
+            </div>
+            <div className={style.cuenta}>
+              <label htmlFor='cuenta'>Cuenta</label>
+              <input
+                type='text'
+                id='cuenta'
+                value={dataProveedores.cuenta}
+                onChange={inputsOnChange}
+              />
+            </div>
+          </form>
+        </div>
+
+        <div className={style.contacto}>
+          <p className={style.subtitle}>Contacto</p>
+          <form>
+            <div className={style.nombrecontacto}>
+              <label
+                className={style.labbel}
+                htmlFor='contacto'
+              >
+                Nombre
+              </label>
+              <input
+                type='text'
+                id='contacto'
+                value={dataProveedores.contacto}
+                onChange={inputsOnChange}
+              />
+            </div>
+            <div className={style.direccion}>
+              <label
+                className={style.labbel}
+                htmlFor='direccion'
+              >
+                Dirección
+              </label>
+              <input
+                type='text'
+                id='direccion'
+                value={dataProveedores.direccion}
+                onChange={inputsOnChange}
+              />
+            </div>
+            <div className={style.correo}>
+              <label
+                className={style.labbel}
+                htmlFor='correo'
+              >
+                Correo
+              </label>
+              <input
+                type='text'
+                id='correo'
+                value={dataProveedores.correo}
+                onChange={inputsOnChange}
+              />
+            </div>
+            <div className={style.telefono}>
+              <label
+                className={style.labbel}
+                htmlFor='telefono'
+              >
+                telefono
+              </label>
+              <input
+                type='text'
+                id='telefono'
+                value={dataProveedores.telefono}
+                onChange={inputsOnChange}
+              />
+            </div>
+          </form>
+        </div>
+
+        <div className={style.buttons}>
           {isEditing ? (
             <button
               className={style.button}
               onClick={checkCompleteInformation}
             >
-              <i className='bi bi-plus-circle-fill'></i>
               Editar
             </button>
           ) : (
@@ -84,7 +253,6 @@ export default function AddProveedor({
               className={style.button}
               onClick={checkCompleteInformation}
             >
-              <i className='bi bi-plus-circle-fill'></i>
               Agregar
             </button>
           )}

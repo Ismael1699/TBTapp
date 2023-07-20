@@ -1,106 +1,203 @@
 .container {
   width: 32rem;
-  height: 32rem;
-  background-color: #e3e8ea9f;
-  backdrop-filter: blur(50px);
+  height: 39em;
+  background-color: #ffffff48;
+  backdrop-filter: blur(20px);
   position: fixed;
   z-index: 100;
   left: calc(50% - 11rem);
-  top: calc(50% - 16rem);
+  top: calc(50% - 19.5rem);
   border-radius: 3rem;
-  box-shadow: -64px 79px 100px 62px rgba(0, 0, 0, 0.3);
-  padding: 1rem 2rem 2rem 2rem;
-}
-
-.title {
-  border-bottom: 2px solid rgba(88, 88, 88, 0.466);
-  padding: 0.5rem;
-}
-.title p {
-  font-size: 18px;
-}
-
-.form {
-  display: flex;
-  width: 100%;
-  height: auto;
-  border-bottom: 2px solid rgba(88, 88, 88, 0.466);
-  padding: 0.5rem 0 0.5rem 0.5rem;
-  justify-content: space-between;
-}
-
-.subtitle {
-  width: 25%;
-}
-
-.subtitle p {
-  font-size: 14px;
-}
-
-.grupInputs {
-  width: 75%;
-  height: 7rem;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 0.1rem;
-  align-items: center;
-}
-
-.grupInputs input {
-  width: 40%;
-  border: none;
-  margin-top: 0.5rem;
-  background-color: #4100005e;
-  border-radius: 1rem;
-  padding: 0.1rem;
-  padding-left: 0.6rem;
-  color: var(--font-dark);
-}
-
-.grupInputs label {
-  font-size: 12px;
-  margin-top: 0.2rem;
-  margin-left: 0.5rem;
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem 2rem 2rem 2rem;
 }
 
 .blur {
   position: fixed;
   z-index: 99;
-  width: 100%;
+  width: 85%;
   height: 100%;
   top: 0;
-  backdrop-filter: blur(1.5px);
+  backdrop-filter: blur(3px);
 }
 
-.button {
-  background-color: rgb(0, 161, 0);
-  height: auto;
-  border: none;
+/* titulos y cancalar */
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title p {
+  font-size: 18px;
   font-weight: 900;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  color: var(--font-ligth);
-  border-radius: 1rem;
-}
-
-.button i {
-  color: var(--font-ligth);
-  margin-right: 0.5rem;
+  letter-spacing: 3px;
 }
 
 .cancelar {
-  background-color: rgb(182, 0, 0);
   color: var(--font-ligth);
   height: auto;
   border: none;
   font-weight: 900;
-  padding: 0.5rem 1rem 0.5rem 1rem;
   border-radius: 1rem;
-  margin-right: 2rem;
+  transition: all 0.5s ease-in-out;
 }
+.cancelar:hover {
+  transform: scale(1.1);
+}
+
 .cancelar i {
-  color: var(--font-ligth);
-  margin-right: 0.5rem;
+  font-size: 30px;
+  color: var(--delete-color);
+  margin: auto;
+}
+
+/* subtitulos */
+.subtitle {
+  margin-top: 0.5rem;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.container label {
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 0.4rem;
+  margin-left: 0.5rem;
+}
+.container input {
+  height: 1.5rem;
+  border: none;
+  background-color: rgba(78, 78, 78, 0.164);
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+.container select {
+  height: 1.5rem;
+  border: none;
+  background-color: rgba(78, 78, 78, 0.164);
+  border-radius: 5px;
+  padding-left: 0.5rem;
+}
+
+/* Proveedor  */
+.proveedor {
+  display: flex;
+  flex-direction: column;
+}
+
+.proveedor form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  gap: 20%;
+}
+.proveedor form div:first-child {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.proveedor form div:nth-child(2n) {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.proveedor form div:nth-child(3n) {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+/* Datos bancarios */
+.bancario {
+  display: flex;
+  flex-direction: column;
+}
+
+.bancario form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  gap: 10%;
+}
+
+.clabe {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-bottom: 0.5rem;
+}
+
+.slidercontainer {
+  width: 20%;
+}
+
+.banco {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+.cuenta {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+/* Contacto */
+
+.contacto {
+  display: flex;
+  flex-direction: column;
+}
+
+.contacto form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  gap: 10%;
+}
+
+.nombrecontacto {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.direccion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.correo {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+.telefono {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+/* Botones */
+
+.button {
+  background-color: var(--accent-color);
+  height: auto;
+  border: none;
+  font-weight: 900;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  color: var(--font-color);
+  border-radius: 1rem;
 }
 
 .buttons {

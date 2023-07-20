@@ -8,6 +8,7 @@ export async function GET() {
 
 export async function POST(req) {
   const res = await req.json();
+  console.log(res);
 
   const [dataDuplicate] = await pool.query(
     `SELECT id, clabe FROM proveedores WHERE frente ="${res.frente}"`
@@ -34,6 +35,7 @@ export async function POST(req) {
     telefono: res.telefono,
     correo: res.correo,
     frente: res.frente,
+    factura: res.factura,
   });
   return NextResponse.json({
     message: `Se ha guardado el proveedor "${res.name}" correctamente`,
@@ -44,7 +46,7 @@ export async function PUT(req) {
   const body = await req.json();
 
   await pool.query(
-    'UPDATE proveedores SET name= ?, direccion = ?, rfc = ?, banco= ?, cuenta = ?, clabe = ?, contacto = ?, telefono = ?, correo = ?, frente = ? WHERE id = ? ',
+    'UPDATE proveedores SET name= ?, direccion = ?, rfc = ?, banco= ?, cuenta = ?, clabe = ?, contacto = ?, telefono = ?, correo = ?, frente = ?, factura = ? WHERE id = ? ',
     [
       body.name,
       body.direccion,
@@ -56,6 +58,7 @@ export async function PUT(req) {
       body.telefono,
       body.correo,
       body.frente,
+      body.factura,
       body.id,
     ]
   );
