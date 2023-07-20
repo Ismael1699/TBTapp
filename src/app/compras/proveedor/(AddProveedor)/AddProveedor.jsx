@@ -15,7 +15,6 @@ export default function AddProveedor({
   isEditing,
   cardSelected,
   setCardSelected,
-
   cancelarOnClick,
 }) {
   const dataStruct = {
@@ -35,7 +34,6 @@ export default function AddProveedor({
   const [dataProveedores, setDataProveedores] = useState(
     Object.entries(cardSelected).length === 0 ? dataStruct : cardSelected
   );
-  console.log(dataProveedores);
 
   function inputsOnChange(e) {
     const item = e.target.id;
@@ -67,7 +65,7 @@ export default function AddProveedor({
     const response = await sendProveedor(data, method);
     alert(response.message);
     setCardSelected({});
-    return cancelarOnClick;
+    cancelarOnClick();
   }
 
   return (

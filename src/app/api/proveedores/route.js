@@ -8,7 +8,6 @@ export async function GET() {
 
 export async function POST(req) {
   const res = await req.json();
-  console.log(res);
 
   const [dataDuplicate] = await pool.query(
     `SELECT id, clabe FROM proveedores WHERE frente ="${res.frente}"`
