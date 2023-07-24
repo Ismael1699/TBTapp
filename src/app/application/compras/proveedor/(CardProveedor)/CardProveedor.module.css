@@ -1,0 +1,87 @@
+.container {
+  width: 22rem;
+  height: 11rem;
+  background-color: var(--primary-color);
+  border-radius: 1rem;
+  padding: 1rem;
+  color: var(--font-ligth);
+  box-shadow: var(--box-shadow);
+  transition: all 0.5s ease-in-out;
+}
+
+.container:hover {
+  transform: scale(1.1);
+}
+
+.edit {
+  margin-left: 0.4rem;
+  border: none;
+  border-radius: 50%;
+  padding: 0rem 0.1rem 0rem 0.1rem;
+  background-color: var(--font-color);
+  transition: all 0.3s ease-in-out;
+}
+.edit i {
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+.edit:hover {
+  transform: scale(1.05);
+  background-color: #929292;
+}
+
+.delete {
+  margin-left: 0.4rem;
+  border: none;
+  border-radius: 50%;
+  padding: 0rem 0.1rem 0rem 0.1rem;
+  background-color: var(--delete-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.delete i {
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+.delete:hover {
+  transform: scale(1.05);
+  background-color: #c73636;
+}
+
+.proveedor {
+  font-size: 15px;
+  font-weight: 900;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.proveedor p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.contacto {
+  margin-top: 1.5rem;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.contacto p:nth-child(2n) {
+  margin-top: 0.5rem;
+}
+.correo {
+  margin-top: 1rem;
+  font-size: 10px;
+  grid-area: correo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}

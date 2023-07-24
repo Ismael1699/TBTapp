@@ -1,0 +1,219 @@
+.container {
+  width: 32rem;
+  height: 39em;
+  background-color: #ffffff48;
+  backdrop-filter: blur(20px);
+  position: fixed;
+  z-index: 100;
+  left: calc(50% - 11rem);
+  top: calc(50% - 19.5rem);
+  border-radius: 3rem;
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem 2rem 2rem 2rem;
+}
+
+.blur {
+  position: fixed;
+  z-index: 99;
+  width: 85%;
+  height: 100%;
+  top: 0;
+  backdrop-filter: blur(3px);
+}
+
+/* titulos y cancalar */
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title p {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.cancelar {
+  color: var(--font-ligth);
+  height: auto;
+  border: none;
+  font-weight: 900;
+  border-radius: 1rem;
+  transition: all 0.5s ease-in-out;
+}
+.cancelar:hover {
+  transform: scale(1.1);
+}
+
+.cancelar i {
+  font-size: 30px;
+  color: var(--delete-color);
+  margin: auto;
+}
+
+/* subtitulos */
+.subtitle {
+  margin-top: 0.5rem;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.container label {
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 0.4rem;
+  margin-left: 0.5rem;
+}
+.container input {
+  height: 1.5rem;
+  border: none;
+  background-color: rgba(78, 78, 78, 0.164);
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+.container select {
+  height: 1.5rem;
+  border: none;
+  background-color: rgba(78, 78, 78, 0.164);
+  border-radius: 5px;
+  padding-left: 0.5rem;
+}
+
+/* Proveedor  */
+.proveedor {
+  display: flex;
+  flex-direction: column;
+}
+
+.proveedor form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  gap: 20%;
+}
+.proveedor form div:first-child {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.proveedor form div:nth-child(2n) {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.proveedor form div:nth-child(3n) {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+/* Datos bancarios */
+.bancario {
+  display: flex;
+  flex-direction: column;
+}
+
+.bancario form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  gap: 10%;
+}
+
+.clabe {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-bottom: 0.5rem;
+}
+
+.slidercontainer {
+  width: 20%;
+}
+
+.banco {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+.cuenta {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+/* Contacto */
+
+.contacto {
+  display: flex;
+  flex-direction: column;
+}
+
+.contacto form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  gap: 10%;
+}
+
+.nombrecontacto {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.direccion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.correo {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+.telefono {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+/* Botones */
+
+.button {
+  background-color: var(--accent-color);
+  height: auto;
+  border: none;
+  font-weight: 900;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  color: var(--font-color);
+  border-radius: 1rem;
+}
+
+.buttons {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 1rem;
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: 100%;
+    height: 80;
+    left: 0;
+    top: 0;
+  }
+}

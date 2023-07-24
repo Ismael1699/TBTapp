@@ -1,13 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
+/*
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap'); */
 
 :root {
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
-
   /*variables de estilos globales*/
   --accent-color: #ffdc82;
   --accent-hover-color: #ffd000;
@@ -33,14 +28,12 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: Lato, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  letter-spacing: 1px;
+  font-family: var(--font-lato);
 }
 
 html,
 body {
-  font-family: var(--font-mono);
+  font-family: var(--font-lato);
   color: var(--font-color);
   width: 100vw;
   height: 100vh;
@@ -60,11 +53,9 @@ a:active {
   text-decoration: none;
 }
 
-.contSec {
+main {
   height: 100%;
   width: 100%;
-  display: flex;
-  border-radius: 1rem;
 }
 
 .button {
@@ -90,42 +81,6 @@ a:active {
   background-color: var(--accent-hover-color);
 }
 
-.home {
-  width: calc(85% - 3rem);
-  height: calc(100% - 3rem);
-  margin: 1.5rem;
-  border-radius: var(--border-radius-primary);
-  background-color: var(--secundary-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Raleway';
-  font-size: 30px;
-  letter-spacing: 3px;
-  font-weight: 900;
-}
-
-.home p {
-  animation-name: fade;
-  animation-duration: 3s;
-}
-
-.img {
-  margin-top: 1.5rem;
-  width: 15rem;
-  height: 15rem;
-  object-fit: cover;
-  border-radius: 50%;
-  transition: all 0.5s ease-in-out;
-  animation-name: fade;
-  animation-duration: 3s;
-}
-
-img:hover {
-  transform: scale(1.2);
-}
-
 @keyframes fade {
   from {
     opacity: 0;
@@ -135,26 +90,5 @@ img:hover {
   to {
     opacity: 1;
     transform: translateY(0%);
-  }
-}
-
-@media (max-width: 900px) {
-  .contSec {
-    display: flex;
-    flex-direction: column-reverse;
-    width: 100%;
-    height: 100%;
-  }
-
-  .home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    height: 85%;
-  }
-  .home p {
-    text-align: center;
   }
 }
