@@ -1,9 +1,7 @@
 import style from './navbar.module.css';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
-export default function NavbarIn() {
-  const router = useRouter();
+export default function NavWeb() {
   return (
     <>
       <div className={style.navbar}>
@@ -12,12 +10,7 @@ export default function NavbarIn() {
             {/* <Image src={profile} className={style.profile}></Image> */}
             <i className='bi bi-person-fill'></i>
           </div>
-          <button
-            onClick={async () => {
-              await auth.userLogout();
-            }}
-            className='button'
-          >
+          <button className='button'>
             <p>Logout</p>
           </button>
         </div>

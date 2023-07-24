@@ -59,6 +59,7 @@ export default function SignUp() {
             type='email'
             placeholder='Escribe tu email'
             autoComplete='new-password'
+            required
           />
 
           <input
@@ -67,12 +68,14 @@ export default function SignUp() {
             type='text'
             placeholder='Escribe tu nombre de usuario'
             autoComplete='new-password'
+            required
           />
           <select
             name='rol'
             id='rol'
             className={login.select}
             defaultValue=''
+            required
           >
             <option
               value=''
@@ -93,6 +96,7 @@ export default function SignUp() {
             name='password'
             placeholder='Escribe tu contraseña'
             autoComplete='new-password'
+            required
           />
           <input
             className={login.input}
@@ -100,6 +104,7 @@ export default function SignUp() {
             name='key'
             placeholder='Escribe la clabe de administrador'
             autoComplete='new-password'
+            required
           />
           <button
             type='submit'

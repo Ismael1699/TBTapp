@@ -1,12 +1,9 @@
 'use client';
-import { useContext, useEffect, useState } from 'react';
+import NavMobile from './NavMobile/NavMobile';
+import NavWeb from './NavWeb/NavWeb';
+import { useEffect, useState } from 'react';
 
-import NavbarIn from './navbarin';
-import NavbarOut from './navbarout';
-import NavMobileIn from './NavMobile/NavMobileIn.jsx';
-import NavMobileOut from './NavMobile/NavMobileOut.jsx';
-
-export default function Navbar() {
+export default function Nav() {
   const [width, setWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 'hola'
   );
@@ -22,9 +19,5 @@ export default function Navbar() {
     setWidth(window.innerWidth);
   }
 
-  function showContent() {
-    return <NavbarIn />;
-  }
-
-  return <>{showContent()}</>;
+  return <div> {width > 900 ? <NavWeb /> : <NavMobile />}</div>;
 }

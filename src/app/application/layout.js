@@ -1,4 +1,4 @@
-import Navbar from './(navbar)/navbar';
+import NavWeb from '@/components/Nav/NavWeb/NavWeb';
 import style from './application.module.css';
 
 export const metadata = {
@@ -9,7 +9,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <div className={style.layout}>
-      <Navbar />
+      <NavWeb />
       {children}
     </div>
   );
