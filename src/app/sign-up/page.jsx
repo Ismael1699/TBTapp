@@ -16,7 +16,9 @@ export default function SignUp() {
     try {
       const formData = new FormData(e.target);
       const res = await axios.post('/api/auth/sign-up', {
+        user: formData.get('user'),
         email: formData.get('email'),
+        rol: formData.get('rol'),
         password: formData.get('password'),
         key: formData.get('key'),
       });
@@ -34,7 +36,7 @@ export default function SignUp() {
 
   async function sendHome() {
     setTimeout(() => {
-      router.push('/compras');
+      router.push('/application/compras');
     }, '1000');
   }
 
@@ -42,10 +44,10 @@ export default function SignUp() {
     <div className={login.containerSing}>
       <div className={login.contenido}></div>
       <div className={login.inputs}>
-        <p className={login.title}>Sing up</p>
+        <p className={login.title}>¡Registrate!</p>
         <p className={login.subtitle}>
-          Por favor ingresa la cuenta, la contraseña de la cuenta y clave de
-          administrador
+          Si cuentas con una clave administrador podras crear un cuenta con
+          TBTapp.
         </p>
         <form
           onSubmit={handleSubmit}
@@ -58,6 +60,33 @@ export default function SignUp() {
             placeholder='Escribe tu email'
             autoComplete='new-password'
           />
+
+          <input
+            className={login.input}
+            name='user'
+            type='text'
+            placeholder='Escribe tu nombre de usuario'
+            autoComplete='new-password'
+          />
+          <select
+            name='rol'
+            id='rol'
+            className={login.select}
+            defaultValue=''
+          >
+            <option
+              value=''
+              disabled
+            >
+              Selecione una opción
+            </option>
+            <option value='MAQUINARIA'>Maquinaria</option>
+            <option value='PLANEACION'>Planeación</option>
+            <option value='SUPER-INTENDENTE'>SuperIntendente</option>
+            <option value='DIRECTOR'>Director</option>
+            <option value='CONTADOR'>Contador</option>
+            <option value='SUPER-USER-ROOT'>SuperUserRoot</option>
+          </select>
           <input
             className={login.input}
             type='password'

@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 
 export async function POST(req) {
   try {
-    const { email, password, key } = await req.json();
+    const { user, email, rol, password, key } = await req.json();
 
     if (key !== process.env.NEXT_PUBLIC_KEY_ADMIN) {
       return NextResponse.json(
@@ -28,7 +28,7 @@ export async function POST(req) {
     }
 
     const [userFound] = await pool.query(
-      `SELECT * FROM user WHERE email = "${email}"`
+      `SELECT * FROM users WHERE email = "${email}"`
     );
 
     if (userFound.length !== 0) {
@@ -41,7 +41,7 @@ export async function POST(req) {
     const hashedPassword = await bcrypt.hash(password, 12);
 
     pool.query(
-      `INSERT INTO user (email, password) VALUES("${email}","${hashedPassword}")`
+      `INSERT INTO users (user, email, rol , password) VALUES("${user}","${email}", "${rol}","${hashedPassword}")`
     );
 
     return NextResponse.json({ message: 'Se ha registrado correctamente' });
