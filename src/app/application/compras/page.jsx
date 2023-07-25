@@ -6,24 +6,21 @@ import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import { useSession } from 'next-auth/react';
 
-//const getData = async (url) => await fetch(`${url}`).then((res) => res.json());
-async function getData() {
-  const link = '/api/conectionDB';
-  const response = await fetch(link);
-  return JSON.parse(await response.text());
-}
+const getData = async (url) => await fetch(`${url}`).then((res) => res.json());
+// async function getData() {
+//   const link = '/api/conectionDB';
+//   const response = await fetch(link);
+//   return JSON.parse(await response.text());
+// }
 
 export default function Compras() {
   const [array, setArray] = useState([]);
-  const session = useSession();
-  console.log(session);
+  const { data, error, isLoading, mutate } = useSWR(
+    '/api/conectionDB',
+    getData
+  );
 
-  useEffect(() => {
-    async function localFetch() {
-      setArray(await getData());
-    }
-    localFetch();
-  }, []);
+  const session = useSession();
 
   return (
     <div className={style.container}>
@@ -50,14 +47,14 @@ export default function Compras() {
       </div>
 
       <div className={style.containercard}>
-        {array.length === 0
-          ? null
-          : array.data.map((obj, index) => (
+        {data
+          ? data.data.map((obj, index) => (
               <Card
                 obj={obj}
                 key={index}
               />
-            ))}
+            ))
+          : null}
       </div>
     </div>
   );
