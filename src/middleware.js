@@ -11,7 +11,7 @@ export { default } from 'next-auth/middleware';
 // }
 
 export const config = {
-  matcher: ['/compras/:path*'],
+  matcher: ['/application/:path*'],
   pages: {
     signIn: '/sign-in',
   },

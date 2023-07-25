@@ -1,8 +1,7 @@
 /* container general*/
 .compras {
-  width: calc(85% - 3rem);
-  height: calc(100% - 3rem);
-  margin: 1.5rem;
+  width: 85%;
+  margin: 1rem 1.5rem 1rem 1.5rem;
   border-radius: var(--border-radius-primary);
   background-color: var(--secundary-color);
   overflow: auto;

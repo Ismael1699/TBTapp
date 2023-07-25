@@ -32,7 +32,7 @@ export default function SingIn() {
 
   async function sendCompras() {
     setTimeout(() => {
-      router.push('/compras');
+      router.push('/application/compras');
     }, '1000');
   }
 

@@ -13,7 +13,7 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         const [userFound] = await pool.query(
-          `SELECT * FROM user WHERE email = "${credentials.email}"`
+          `SELECT * FROM users WHERE email = "${credentials.email}"`
         );
 
         if (userFound.length === 0) throw new Error('No tienes acceso');
@@ -23,7 +23,6 @@ const handler = NextAuth({
           userFound[0].password
         );
         if (!passwordMatch) throw new Error('No tienes acceso');
-
         return userFound[0];
       },
     }),
@@ -37,6 +36,8 @@ const handler = NextAuth({
       return token;
     },
     async session({ session, token, user }) {
+      delete token.user.password;
+      console.log(token.user);
       session.user = token.user;
       return session;
     },
