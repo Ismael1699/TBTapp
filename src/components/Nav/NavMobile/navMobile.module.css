@@ -9,6 +9,7 @@
   justify-content: space-between;
   padding: 0 2rem 0 2rem;
   align-items: center;
+  z-index: 100;
 }
 .navMobile i {
   font-size: 40px;
@@ -37,11 +38,11 @@
   height: 5rem;
   background-color: var(--accent-color);
   border-radius: 50%;
-  z-index: 1;
+  z-index: 101;
 }
 
 .more i {
   font-size: 60px;
   color: rgb(51, 51, 51);
-  z-index: 2;
+  z-index: 102;
 }

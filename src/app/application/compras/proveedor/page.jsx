@@ -61,7 +61,7 @@ export default function Proveedores() {
       mutate([newprovedores]);
       alert(res.message);
       router.refresh();
-      router.push('/compras/proveedor');
+      router.push('/application/compras/proveedor');
     }
   }
 
