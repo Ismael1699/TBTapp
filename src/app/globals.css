@@ -92,3 +92,9 @@ main {
     transform: translateY(0%);
   }
 }
+
+@media (max-width: 900px) {
+  body {
+    background-color: var(--secundary-color);
+  }
+}
