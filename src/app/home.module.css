@@ -1,41 +1,63 @@
 .home {
-  background-color: var(--secundary-color);
+  background-image: url('/paisaje.jpg');
+  background-size: cover;
+  background-position: center;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: 30px;
   letter-spacing: 3px;
   font-weight: 900;
+  transition: all 1s ease-in-out;
 }
 
-.home p {
+.home p:first-child {
   width: 100%;
   text-align: center;
   animation-name: fade;
   animation-duration: 3s;
+  margin-top: 6rem;
+  font-size: 55px;
+  font-weight: 700;
+  transition: all 1s ease-in-out;
+  letter-spacing: 15px;
 }
 
-.img {
-  overflow: hidden;
-  position: relative;
-  margin-top: 1.5rem;
-  width: 15rem;
-  height: 15rem;
-  border-radius: 50%;
-  transition: all 0.5s ease-in-out;
+.home p:nth-child(2n) {
+  font-size: 20px;
+  color: rgb(214, 214, 214);
+  margin-top: 3rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  width: 50%;
+  text-align: justify;
+  background-color: rgba(3, 3, 3, 0.158);
+  backdrop-filter: blur(20px);
+  padding: 2rem;
+  border-radius: 1rem;
   animation-name: fade;
   animation-duration: 3s;
 }
 
-.img:hover {
-  transform: scale(1.1);
+.button {
+  margin-top: 20rem;
+  background-color: var(--accent-color);
+  border: none;
+  padding: 1rem 5rem 1rem 5rem;
+  border-radius: 10rem;
+  font-size: 20px;
+  color: var(--text-color);
+  box-shadow: -15px 15px 30px 0 rgba(12, 12, 12, 0.596);
+  transition: all 1s ease-in-out;
+  animation-name: fade;
+  animation-duration: 3s;
+  letter-spacing: 3px;
 }
-
-.home button {
-  margin-top: 3rem;
+.button:hover {
+  transform: scale(1.1);
 }
 
 @keyframes fade {
@@ -47,5 +69,12 @@
   to {
     opacity: 1;
     transform: translateY(0%);
+  }
+}
+
+@media (max-width: 900px) {
+  .home p:first-child {
+    margin-top: 3rem;
+    transition: all 1s ease-in-out;
   }
 }
