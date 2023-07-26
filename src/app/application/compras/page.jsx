@@ -5,6 +5,7 @@ import style from './layout.module.css';
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import { useSession } from 'next-auth/react';
+import Loading from './loading';
 
 const getData = async (url) => await fetch(`${url}`).then((res) => res.json());
 // async function getData() {
@@ -20,8 +21,9 @@ export default function Compras() {
     getData
   );
 
-  const session = useSession();
-
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className={style.container}>
       <div className={style.header}>
