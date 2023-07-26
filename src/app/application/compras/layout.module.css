@@ -66,9 +66,21 @@
     border-radius: 0;
   }
   .header {
-    background-color: red;
     flex-direction: column;
     padding: 0;
+  }
+  .title {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+  }
+  .title p {
+    width: 100%;
+    text-align: center;
+  }
+  .containerbuscador {
+    margin-top: 1rem;
+    justify-content: center;
   }
 
   .buscador {
