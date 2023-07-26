@@ -1,0 +1,47 @@
+.navMobile {
+  height: 10%;
+  width: 100%;
+  background-color: rgb(51, 51, 51);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem 0 2rem;
+  align-items: center;
+}
+.navMobile i {
+  font-size: 40px;
+  color: var(--accent-color);
+}
+
+.more {
+  width: 6rem;
+  height: 100%;
+}
+.round {
+  width: 6rem;
+  height: 6rem;
+  background-color: rgb(51, 51, 51);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 20px;
+  border-radius: 50%;
+}
+.round::after {
+  content: '';
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.more i {
+  font-size: 60px;
+  color: rgb(51, 51, 51);
+  z-index: 2;
+}

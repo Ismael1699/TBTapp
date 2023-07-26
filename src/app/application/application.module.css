@@ -9,3 +9,9 @@
   width: calc(85% - 3rem);
   height: calc(100% - 2rem);
 }
+
+@media (max-width: 900px) {
+  .layout {
+    display: initial;
+  }
+}

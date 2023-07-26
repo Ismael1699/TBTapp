@@ -1,4 +1,4 @@
-import NavWeb from '@/components/Nav/NavWeb/NavWeb';
+import Nav from '@/components/Nav/Nav';
 import style from './application.module.css';
 
 export const metadata = {
@@ -9,7 +9,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <div className={style.layout}>
-      <NavWeb />
+      <Nav />
       {children}
     </div>
   );
