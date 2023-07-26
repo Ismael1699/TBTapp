@@ -66,7 +66,7 @@ export default function RequisicionDetails({ params }) {
       setItemTable(res.obj_table.table);
     }
     dataCompra();
-  }, []);
+  }, [params.id]);
 
   //función para eleminar filas
   function rowDelete(e) {

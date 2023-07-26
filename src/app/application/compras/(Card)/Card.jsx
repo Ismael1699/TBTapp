@@ -45,7 +45,7 @@ export default async function Card({ obj }) {
           </p>
         </div>
         <div className={style.options}>
-          <Link href={`/compras/${obj.id}`}>
+          <Link href={`/application/compras/${obj.id}`}>
             <i className='bi bi-three-dots'></i>
           </Link>
         </div>

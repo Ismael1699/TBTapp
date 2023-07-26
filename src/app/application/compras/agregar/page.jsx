@@ -220,7 +220,7 @@ export default function Agregar() {
       alert(res1.message);
       alert(resExcel.message);
       router.refresh();
-      router.push('/compras');
+      router.push('/application/compras');
     } else {
       alert('Status: ' + res.status + ' ' + res.statusText);
     }
