@@ -1,15 +1,22 @@
 'use client';
 import signin from './login.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 export default function SingIn() {
   const [error, setError] = useState();
   const [succesfully, setSuccesfully] = useState();
   const router = useRouter();
+  const { data: session, status, update } = useSession();
 
-  // Funciones para obtener lo que inserta el usuario en los imputs
+  console.log(status);
+  useEffect(
+    () =>
+      status === 'authenticated' ? router.push('/application') : undefined,
+    [status, router]
+  );
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -20,10 +27,11 @@ export default function SingIn() {
       password: formData.get('password'),
       redirect: false,
     });
+    console.log(res);
 
-    if (res?.error) return setError(res.error);
+    if (res.error) return setError(res.error);
 
-    if (res?.ok) {
+    if (res.ok) {
       setError('');
       setSuccesfully('Se ha iniciado sesión');
       return await sendCompras();
@@ -32,7 +40,7 @@ export default function SingIn() {
 
   async function sendCompras() {
     setTimeout(() => {
-      router.push('/application/compras');
+      router.push('/application');
     }, '1000');
   }
 

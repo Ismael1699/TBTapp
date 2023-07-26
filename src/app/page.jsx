@@ -15,7 +15,7 @@ export default async function App() {
         digital.
       </p> */}
       <button className={style.button}>
-        <Link href='/application/compras'>Comenzar</Link>
+        <Link href='/application'>Comenzar</Link>
       </button>
     </div>
   );

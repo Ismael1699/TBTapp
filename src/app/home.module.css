@@ -76,5 +76,9 @@
   .home p:first-child {
     margin-top: 3rem;
     transition: all 1s ease-in-out;
+    font-size: 45px;
+    text-align: left;
+    padding-left: 1rem;
+    letter-spacing: 3px;
   }
 }
