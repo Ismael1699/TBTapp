@@ -4,16 +4,9 @@ import Card from '@/components/Compras/Card/Card';
 import style from './layout.module.css';
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
-import { useSession } from 'next-auth/react';
 import Loading from './loading';
 
 const getData = async (url) => await fetch(`${url}`).then((res) => res.json());
-// async function getData() {
-//   const link = '/api/conectionDB';
-//   const response = await fetch(link);
-//   return JSON.parse(await response.text());
-// }
-
 export default function Compras() {
   const [array, setArray] = useState([]);
   const { data, error, isLoading, mutate } = useSWR(

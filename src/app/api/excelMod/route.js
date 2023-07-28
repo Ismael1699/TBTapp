@@ -90,7 +90,7 @@ export async function POST(req) {
     workbook
       .sheet('compra')
       .cell('L' + cellNumberUnitario)
-      .value(parseInt(item.unitario, 10));
+      .value(parseFloat(item.unitario, 10));
     cellNumberUnitario++;
   });
 

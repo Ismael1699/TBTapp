@@ -2,6 +2,7 @@ import Link from 'next/link';
 import style from './card.module.css';
 import DownloadButton from './DownloadButton/DownloadButton';
 import SegmentBarStatus from './SegmentBarStatus/SegmentBarStatus';
+import { stringify } from 'uuid';
 
 const fechaname = [
   'enero',
@@ -27,7 +28,13 @@ export default async function Card({ obj }) {
   });
   const frenteLowerCase = arrayFrente.join('');
   const arrayFecha = obj.fecha.split('-');
-  console.log(obj);
+
+  const total = obj.obj_table.table.reduce((acumulador, obj) => {
+    let floatnumber = parseFloat(parseFloat(obj.final).toFixed(2));
+    return acumulador + floatnumber;
+  }, 0);
+
+  const totalconIVA = Number.parseFloat(total * 1.16).toFixed(2);
   return (
     <div className={style.card}>
       <div className={style.header}>
@@ -58,8 +65,8 @@ export default async function Card({ obj }) {
         </p>
         <p className={style.unitario}>
           {(
-            parseInt(obj.obj_table.table[0].unitario) *
-            parseInt(obj.obj_table.table[0].cantidad)
+            parseFloat(obj.obj_table.table[0].unitario) *
+            parseFloat(obj.obj_table.table[0].cantidad)
           ).toLocaleString('en', {
             style: 'currency',
             currency: 'MXN',
@@ -72,7 +79,7 @@ export default async function Card({ obj }) {
           <i className='bi bi-three-dots'></i>
         </div>
         <p className={style.total}>
-          {parseInt(obj.obj_table.table[0].final).toLocaleString('en', {
+          {parseFloat(totalconIVA).toLocaleString('en', {
             style: 'currency',
             currency: 'MXN',
           })}
