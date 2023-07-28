@@ -1,16 +1,16 @@
 'use client';
 
-async function getExcel(frente, numero) {
-  const response = await fetch('/api/excelMod/download', {
+async function getExcel(obj) {
+  const response = await fetch('/api/excelMod', {
     method: 'POST',
-    body: JSON.stringify({ frente, numero }),
+    body: JSON.stringify(obj),
   });
   return JSON.parse(await response.text());
 }
 
-export default function Downloadbutton({ frente, numero }) {
+export default function Downloadbutton({ obj }) {
   async function descargar() {
-    const blob = await getExcel(frente, numero);
+    const blob = await getExcel(obj);
 
     const base64String = blob.excel;
 
@@ -30,7 +30,7 @@ export default function Downloadbutton({ frente, numero }) {
     var a = document.createElement('a');
     document.body.appendChild(a);
     a.href = url;
-    a.download = `HOJA DE COMPRA ${numero}.xlsm`;
+    a.download = `HOJA DE COMPRA ${obj.numero}.xlsm`;
     a.click();
     URL.revokeObjectURL(url);
     document.body.removeChild(a);

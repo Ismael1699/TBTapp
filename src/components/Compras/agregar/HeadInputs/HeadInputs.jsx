@@ -1,28 +1,36 @@
 'use client';
-import style from '../agregar.module.css';
+import style from './headinputs.module.css';
+import useSWR from 'swr';
+import axios from 'axios';
 
-export default function HeadData({
+async function getProveedores(link) {
+  const res = await axios(link);
+  return res;
+}
+
+export default function HeadInputs({
   setHeadData,
   headData,
-  setDataWasSent,
   isEditing,
-  arrayProveedores,
   setDataProveedor,
 }) {
-  const proveedoresArray = arrayProveedores;
-
+  const { data, error, isLoading, mutate } = useSWR(
+    '/api/proveedores',
+    getProveedores
+  );
+  const proveedoresArray = data?.data;
   //funcion para obtener los datos del header
   function headHandleChange(e) {
-    setDataWasSent(false);
     const item = e.target.id;
     setHeadData({ ...headData, [item]: e.target.value });
     if (item === 'proveedor') {
-      arrayProveedores.map((obj) => {
+      proveedoresArray.map((obj) => {
         obj.name === e.target.value ? setDataProveedor(obj) : undefined;
       });
     }
   }
-
+  if (error) return 'An error has occurred.';
+  if (isLoading) return 'Cargando..';
   return (
     <div className={style.head}>
       <div className={style.proyecto}>

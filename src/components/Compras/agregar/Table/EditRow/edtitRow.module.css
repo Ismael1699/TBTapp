@@ -1,0 +1,100 @@
+.edit {
+  width: 100%;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  justify-content: space-between;
+}
+
+.edit input {
+  height: 100%;
+  width: calc(100% - 0.8rem);
+  margin: 0rem 0.4rem 0rem 0.4rem;
+  border: none;
+  border-radius: 0.5rem;
+
+  color: var(--font-color);
+  transition: all 0.5s ease-in-out;
+  padding: 0.5rem;
+}
+.edit input:focus {
+  outline-color: rgba(121, 121, 121, 0.308);
+
+  outline-width: 2px;
+}
+
+.edit select {
+  height: 100%;
+  width: calc(100% - 0.8rem);
+  margin: 0rem 0.4rem 0rem 0.4rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0 0.5rem 0 0.5rem;
+  color: var(--font-color);
+  transition: all 0.5s ease-in-out;
+}
+.edit select:focus {
+  outline-color: rgba(121, 121, 121, 0.308);
+
+  outline-width: 2px;
+}
+
+.partida {
+  height: 100%;
+  width: var(--partida);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partida p {
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.noparte {
+  height: 60%;
+  width: var(--noparte);
+}
+
+.descripcion {
+  height: 60%;
+  width: var(--descripcion);
+}
+
+.unidad {
+  height: 60%;
+  width: var(--unidad);
+}
+
+.cantidad {
+  height: 60%;
+  width: var(--cantidad);
+}
+
+.unitario {
+  height: 60%;
+  width: var(--unitario);
+}
+
+.final {
+  height: 60%;
+  width: var(--final);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modos {
+  height: 60%;
+  width: var(--modos);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: rgb(1, 170, 1);
+}

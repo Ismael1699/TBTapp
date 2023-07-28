@@ -1,0 +1,96 @@
+.row {
+  display: flex;
+  margin: 0;
+  align-items: center;
+  height: 3rem;
+  transition: all 0.5s ease-in-out;
+  background-color: rgba(214, 214, 214, 0.158);
+}
+.row:hover {
+  transform: scale(1.01);
+  box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.432);
+}
+
+.rowPar {
+  display: flex;
+  margin: 0;
+  align-items: center;
+  height: 3rem;
+  background-color: var(--primary-color);
+  transition: all 0.3s ease-in-out;
+}
+.rowPar:hover {
+  transform: scale(1.01);
+  box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.432);
+}
+
+.row p {
+  width: var(--partida);
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.rowPar p {
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.row p:first-child {
+  width: var(--partida);
+}
+.row p:nth-child(2) {
+  width: var(--noparte);
+}
+
+.row p:nth-child(3) {
+  width: var(--descripcion);
+}
+.row p:nth-child(4) {
+  width: var(--unidad);
+}
+
+.row p:nth-child(5) {
+  width: var(--cantidad);
+}
+
+.row p:nth-child(6) {
+  width: var(--noparte);
+}
+.row p:nth-child(7) {
+  width: var(--final);
+}
+
+.rowPar p:first-child {
+  width: var(--partida);
+}
+.rowPar p:nth-child(2) {
+  width: var(--noparte);
+}
+
+.rowPar p:nth-child(3) {
+  width: var(--descripcion);
+}
+.rowPar p:nth-child(4) {
+  width: var(--unidad);
+}
+
+.rowPar p:nth-child(5) {
+  width: var(--cantidad);
+}
+
+.rowPar p:nth-child(6) {
+  width: var(--noparte);
+}
+.rowPar p:nth-child(7) {
+  width: var(--final);
+}
+
+.modos {
+  width: var(--modos);
+  flex-grow: 2;
+  display: flex;
+  justify-content: center;
+}

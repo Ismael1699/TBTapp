@@ -27,15 +27,12 @@ export default async function Card({ obj }) {
   });
   const frenteLowerCase = arrayFrente.join('');
   const arrayFecha = obj.fecha.split('-');
-
+  console.log(obj);
   return (
     <div className={style.card}>
       <div className={style.header}>
         <div className={style.downloadIcon}>
-          <DownloadButton
-            frente={obj.frente}
-            numero={obj.numero}
-          />
+          <DownloadButton obj={obj} />
         </div>
         <div className={style.title}>
           <p className={style.orden}>Orden de compra {obj.numero}</p>

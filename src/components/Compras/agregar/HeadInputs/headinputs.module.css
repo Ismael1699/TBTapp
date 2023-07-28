@@ -1,0 +1,87 @@
+.head {
+  width: fit-content;
+  height: fit-content;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.head select {
+  font-size: 15px;
+  border: none;
+  height: auto;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: var(--in-placeholder-color-secundary);
+  background-color: var(--primary-color);
+  margin-top: 1rem;
+}
+
+.head select:focus {
+  outline-color: rgba(121, 121, 121, 0.308);
+
+  outline-width: 2px;
+}
+
+.head input {
+  font-size: 15px;
+  border: none;
+  height: auto;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: var(--in-placeholder-color-secundary);
+  background-color: var(--primary-color);
+  margin-top: 1rem;
+}
+.head input::placeholder {
+  color: var(--in-placeholder-color);
+}
+
+.head input:focus {
+  outline-color: rgba(121, 121, 121, 0.308);
+
+  outline-width: 2px;
+}
+
+.proyecto {
+  margin: 1rem;
+  flex-grow: 1;
+}
+.frente {
+  margin: 1rem;
+  flex-grow: 1;
+}
+.suministro {
+  margin: 1rem;
+  flex-grow: 2;
+}
+.fecha {
+  margin: 1rem;
+  flex-grow: 2;
+}
+.lugar {
+  margin: 1rem;
+  flex-grow: 2;
+}
+.proveedor {
+  margin: 1rem;
+  flex-grow: 3;
+}
+
+.numero {
+  margin: 1rem;
+  flex-grow: 2;
+}
+
+@media (max-width: 900px) {
+  .head {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

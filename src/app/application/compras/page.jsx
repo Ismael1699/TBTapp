@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import Card from './(Card)/Card';
+import Card from '@/components/Compras/Card/Card';
 import style from './layout.module.css';
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';

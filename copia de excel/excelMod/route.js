@@ -2,13 +2,11 @@ const XlsxPopulate = require('xlsx-populate');
 import { NextResponse } from 'next/server';
 import { join } from 'path';
 import { cwd } from 'process';
-import { pool } from '@/database/db';
 
 export async function POST(req) {
   //request del cliente
   const body = await req.json();
   let workbook = '';
-  let base = '';
   if (body.frente === 'MAQUINARIA') {
     workbook = await XlsxPopulate.fromFileAsync(
       join(
@@ -64,11 +62,11 @@ export async function POST(req) {
   workbook.sheet('requi').cell('K20').value(body.proveedor);
   workbook.sheet('requi').cell(cellSuministro).value('X');
   workbook.sheet('requi').cell(cellLugar).value('X');
-  console.log(body);
+
   //modificar celdas de la tabla de productos
   let numberTable = 19;
   let cellNumberUnitario = 16;
-  body.obj_table.table.map((item, index) => {
+  body.table.map((item, index) => {
     numberTable++;
     workbook
       .sheet('requi')
@@ -94,27 +92,41 @@ export async function POST(req) {
     cellNumberUnitario++;
   });
 
-  const [dataProveedor] = await pool.query(
-    `SELECT * FROM proveedores where name= ?`,
-    [body.proveedor]
-  );
   workbook.sheet('requi').cell('K20').value(body.proveedor);
-  workbook.sheet('requi').cell('M20').value(dataProveedor[0].rfc);
-  workbook.sheet('requi').cell('M21').value(dataProveedor[0].cuenta);
-  workbook.sheet('requi').cell('M22').value(dataProveedor[0].clabe);
-  workbook.sheet('requi').cell('M23').value(dataProveedor[0].telefono);
-  workbook.sheet('requi').cell('M24').value(dataProveedor[0].correo);
-  workbook.sheet('requi').cell('M25').value(dataProveedor[0].banco);
-  workbook.sheet('compra').cell('H8').value(dataProveedor[0].direccion);
-  workbook.sheet('compra').cell('H29').value(dataProveedor[0].contacto);
+  workbook.sheet('requi').cell('M20').value(body.dataProveedor.rfc);
+  workbook.sheet('requi').cell('M21').value(body.dataProveedor.cuenta);
+  workbook.sheet('requi').cell('M22').value(body.dataProveedor.clabe);
+  workbook.sheet('requi').cell('M23').value(body.dataProveedor.telefono);
+  workbook.sheet('requi').cell('M24').value(body.dataProveedor.correo);
+  workbook.sheet('requi').cell('M25').value(body.dataProveedor.banco);
+  workbook.sheet('compra').cell('H8').value(body.dataProveedor.direccion);
+  workbook.sheet('compra').cell('H29').value(body.dataProveedor.contacto);
 
-  await workbook.outputAsync('base64').then(function (base64) {
-    base =
-      'data:' +
-      'application/vnd.ms-excel.sheet.macroEnabled.12' +
-      ';base64,' +
-      base64;
+  if (body.frente === 'MAQUINARIA') {
+    await workbook.toFileAsync(
+      join(
+        cwd(),
+        'src',
+        'ExcelsStorageRequis',
+        'Maquinaria',
+        `HOJA DE COMPRA ${body.numero}.xlsm`
+      )
+    );
+  }
+  if (body.frente === 'PLANEACION') {
+    await workbook.toFileAsync(
+      join(
+        cwd(),
+        'src',
+        'ExcelsStorageRequis',
+        'Planeacion',
+        `HOJA DE COMPRA ${body.numero}.xlsm`
+      )
+    );
+  }
+  return NextResponse.json({
+    message:
+      "Se ha creado el archivo de excel, consulta el archivo en requisiciones/'tarjeta de la requisicion'/Descargar' ",
+    url: 'se creo corretamente',
   });
-
-  return NextResponse.json({ excel: base });
 }

@@ -72,13 +72,13 @@ export async function PUT(req) {
   } = await req.json();
 
   await pool.query(
-    'UPDATE requisiciones SET proyecto = ?, frente = ?, suministro = ?, fecha = ?, lugar = ?, proveedor = ?, numero = ? ',
+    'UPDATE requisiciones SET proyecto = ?, frente = ?, suministro = ?, fecha = ?, lugar = ?, proveedor = ? where numero = ? ',
     [proyecto, frente, suministro, fecha, lugar, proveedor, numero]
   );
 
   await pool.query(
-    'UPDATE row_requisiciones SET n_compra = ?, frente = ?, obj_table = ?',
-    [numero, frente, JSON.stringify({ table: table })]
+    'UPDATE row_requisiciones SET  frente = ?, obj_table = ? where n_compra = ?',
+    [frente, JSON.stringify({ table: table }), numero]
   );
 
   return NextResponse.json({
