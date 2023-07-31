@@ -1,8 +1,8 @@
 'use client';
 import style from './proveedor.module.css';
-import AddProveedor from './(AddProveedor)/AddProveedor';
+import AddProveedor from '@/components/Compras/proveedor/AddProveedor/AddProveedor';
 import { useState } from 'react';
-import CardProveedor from './(CardProveedor)/CardProveedor';
+import CardProveedor from '@/components/Compras/proveedor/CardProveedor/CardProveedor';
 import useSWR from 'swr';
 import { useRouter } from 'next/navigation';
 
