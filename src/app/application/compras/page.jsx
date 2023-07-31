@@ -9,10 +9,7 @@ import Loading from './loading';
 const getData = async (url) => await fetch(`${url}`).then((res) => res.json());
 export default function Compras() {
   const [array, setArray] = useState([]);
-  const { data, error, isLoading, mutate } = useSWR(
-    '/api/conectionDB',
-    getData
-  );
+  const { data, error, isLoading, mutate } = useSWR('/api/compras', getData);
 
   if (isLoading) {
     return <Loading />;

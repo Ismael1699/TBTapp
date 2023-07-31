@@ -1,7 +1,7 @@
 'use client';
 
 async function getExcel(obj) {
-  const response = await fetch('/api/excelMod', {
+  const response = await fetch('/api/excelGenerate', {
     method: 'POST',
     body: JSON.stringify(obj),
   });

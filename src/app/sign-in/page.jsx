@@ -11,10 +11,11 @@ export default function SingIn() {
   const router = useRouter();
   const { data: session, status, update } = useSession();
 
-  console.log(status);
   useEffect(
     () =>
-      status === 'authenticated' ? router.push('/application') : undefined,
+      status === 'authenticated'
+        ? router.push(location.origin + '/application')
+        : undefined,
     [status, router]
   );
 
@@ -34,15 +35,15 @@ export default function SingIn() {
     if (res.ok) {
       setError('');
       setSuccesfully('Se ha iniciado sesión');
-      return await sendCompras();
+      router.refresh();
     }
   }
 
-  async function sendCompras() {
-    setTimeout(() => {
-      router.push('/application');
-    }, '1000');
-  }
+  // async function sendCompras() {
+  //   setTimeout(() => {
+  //     router.push('/application');
+  //   }, '1000');
+  // }
 
   return (
     <div className={signin.containerLogin}>

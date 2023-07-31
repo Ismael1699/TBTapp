@@ -19,5 +19,5 @@ export default function Nav() {
     setWidth(window.innerWidth);
   }
 
-  return width > 900 ? <NavWeb /> : <NavMobile />;
+  return <>{width > 900 ? <NavWeb /> : <NavMobile />}</>;
 }

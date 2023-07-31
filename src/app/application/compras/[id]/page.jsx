@@ -20,16 +20,16 @@ async function sendBackend(data) {
   //   method: 'PUT',
   //   body: JSON.stringify(data),
   // });
-  return await axios.put('/api/conectionDB', data);
+  return await axios.put('/api/compras', data);
 }
 
 async function getDataCompra(id) {
-  const res = await fetch(`/api/conectionDB/compra?id=${id}`);
+  const res = await fetch(`/api/compras/getCompra?id=${id}`);
   return JSON.parse(await res.text());
 }
 
 async function deleteCompra(id) {
-  const res = await fetch(`/api/conectionDB?id=${id}`, {
+  const res = await fetch(`/api/compras?id=${id}`, {
     method: 'DELETE',
   });
   return JSON.parse(await res.text());

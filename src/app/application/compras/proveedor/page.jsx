@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 const getProveedores = (url) => fetch(`${url}`).then((res) => res.json());
 
 async function deleteProveedorBackend(id) {
-  const response = await fetch('/api/proveedores/deleteProveedor', {
+  const response = await fetch('/api/compras/proveedores/deleteProveedor', {
     method: 'POST', //No es la manera correcta de hace run delete, para modificar esto se tendra que implementar rutas dinamicas
     body: JSON.stringify({ id }),
   });
@@ -23,7 +23,7 @@ export default function Proveedores() {
   const [isEditing, setIsEditing] = useState(false);
   const [cardSelected, setCardSelected] = useState({});
   const { data, error, isLoading, mutate } = useSWR(
-    '/api/proveedores',
+    '/api/compras/proveedores',
     getProveedores
   );
   const proveedoresArray = data;

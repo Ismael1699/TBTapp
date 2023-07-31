@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Slider from './Slider/Slider';
 
 async function sendProveedor(data, method) {
-  const res = await fetch('/api/proveedores', {
+  const res = await fetch('/api/compras/proveedores', {
     method: method,
     body: JSON.stringify(data),
   });

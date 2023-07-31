@@ -12,9 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={lato.className}>
-        <Providers>
-          <main>{children}</main>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

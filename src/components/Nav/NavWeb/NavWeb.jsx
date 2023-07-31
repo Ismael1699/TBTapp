@@ -1,9 +1,10 @@
 'use client';
 
 import style from './navweb.module.css';
-import Link from 'next/link';
+
 import { useSession, signOut } from 'next-auth/react';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function NavWeb() {
   const [whatPage, setWhatPage] = useState('');
@@ -25,9 +26,7 @@ export default function NavWeb() {
   return (
     <div className={style.navbar}>
       <div className={style.tbt}>
-        <p>
-          TBT App <span className={style.marca}>&#174;</span>
-        </p>
+        <p>TBT App</p>
       </div>
       <li>
         <ul
@@ -69,7 +68,6 @@ export default function NavWeb() {
           ></i>
         </div>
         <div className={style.img}>
-          {/* <Image src={profile} className={style.profile}></Image> */}
           <i className='bi bi-person-fill'></i>
         </div>
         <p>{session ? session.user.user : ''}</p>

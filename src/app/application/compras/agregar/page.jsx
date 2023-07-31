@@ -15,7 +15,7 @@ const structHead = {
 };
 
 async function sendBackend(data) {
-  return await fetch(`/api/conectionDB`, {
+  return await fetch(`/api/compras`, {
     method: 'POST',
     body: JSON.stringify(data),
   });
