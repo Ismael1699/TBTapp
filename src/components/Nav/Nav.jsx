@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 export default function Nav() {
   const [width, setWidth] = useState(
-    typeof window !== 'undefined' ? window.innerWidth : 'hola'
+    typeof window !== 'undefined' ? window.innerWidth : ''
   );
 
   useEffect(() => {

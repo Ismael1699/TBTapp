@@ -50,7 +50,7 @@ export default function ItemCard({ index, obj, itemDelete, editingRow }) {
         <p className={style.valor}>{obj.cantidad}</p>
       </div>
       <div className={style.container}>
-        <p className={style.subtitle}>Precio Unitario</p>
+        <p className={style.subtitle}>Unitario</p>
         <p className={style.valor}>{unitario}</p>
       </div>
 

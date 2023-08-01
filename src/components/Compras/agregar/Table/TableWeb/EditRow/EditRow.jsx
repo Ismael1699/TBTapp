@@ -7,6 +7,7 @@ export default function EditRow({
   itemSelected,
   setItems,
   items,
+  setIsEditingRow,
 }) {
   function onChangeEditing(e) {
     const item = e.target.id;
@@ -57,6 +58,7 @@ export default function EditRow({
         obj.id === itemSelected.id ? { ...itemSelected } : { ...obj }
       )
     );
+    setIsEditingRow(false);
   }
 
   return (

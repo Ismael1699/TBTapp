@@ -110,7 +110,7 @@ export default function EditItemCard({
         />
       </div>
       <div className={style.container}>
-        <p className={style.subtitle}>Precio Unitario</p>
+        <p className={style.subtitle}>Unitario</p>
         <input
           className={style.valor}
           type='number'

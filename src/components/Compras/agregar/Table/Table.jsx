@@ -2,7 +2,7 @@
 
 import TableWeb from './TableWeb/TableWeb';
 import TableMobile from './TableMobile/TableMobile';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Table({
   items,
@@ -11,9 +11,22 @@ export default function Table({
   isEditing,
   deleteRequisicion,
 }) {
-  const [withScreen, setWithScreen] = useState(899);
+  const [width, setWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : ''
+  );
 
-  return withScreen > 900 ? (
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', setSize);
+      return () => window.removeEventListener('resize', setSize);
+    }
+  }, []);
+
+  function setSize() {
+    setWidth(window.innerWidth);
+  }
+
+  return width > 900 ? (
     <TableWeb
       items={items}
       setItems={setItems}

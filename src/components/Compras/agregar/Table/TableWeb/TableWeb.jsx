@@ -25,6 +25,7 @@ export default function TableWeb({
   deleteRequisicion,
 }) {
   const [itemSelected, setItemSelected] = useState({});
+  const [isEditingRow, setIsEditingRow] = useState(false);
   function addItem() {
     const getLastItem = items[items.length - 1];
     const newPartida = items.length == 0 ? 1 : getLastItem.partida + 1;
@@ -32,6 +33,7 @@ export default function TableWeb({
   }
 
   function editingRow(e) {
+    setIsEditingRow(true);
     const id = e.target.parentElement.id;
 
     const element = items.filter((obj) => {
@@ -47,6 +49,9 @@ export default function TableWeb({
 
   function itemDelete(e) {
     setItems(items.filter((item) => item.id !== e.target.parentElement.id));
+  }
+  function advertencia() {
+    alert('Termina de editar el Articulo para enviar la compra completa');
   }
 
   return (
@@ -72,6 +77,7 @@ export default function TableWeb({
             itemSelected={itemSelected}
             setItems={setItems}
             items={items}
+            setIsEditingRow={setIsEditingRow}
           />
         ) : (
           <Row
@@ -104,7 +110,7 @@ export default function TableWeb({
 
         <button
           className={style.enviar}
-          onClick={centralizeData}
+          onClick={isEditingRow ? advertencia : centralizeData}
         >
           <i className='bi bi-send-fill'></i>
           Enviar
