@@ -37,7 +37,9 @@ export default function Agregar() {
       items.map((obj) => {
         const valuesObj = Object.values(obj);
         valuesObj.map((values) =>
-          values === '' ? (rowContentData = false) : (rowContentData = true)
+          values === '' || values === 0 || values === '0'
+            ? (rowContentData = false)
+            : (rowContentData = true)
         );
       });
     }

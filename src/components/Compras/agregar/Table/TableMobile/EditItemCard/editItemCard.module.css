@@ -1,0 +1,104 @@
+.itemCard {
+  font-size: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  margin: 1rem;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--font-color);
+}
+
+.title {
+  font-size: 20px;
+  margin: auto;
+  padding-left: 1rem;
+}
+
+.itemCard p:first-child {
+  width: 80%;
+}
+
+.itemCard i {
+  margin: auto;
+  text-align: center;
+  font-size: 35px;
+  width: 10%;
+  color: greenyellow;
+}
+
+.container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+}
+
+.container input {
+  border: none;
+  background-color: var(--secundary-color);
+  border-radius: 1rem;
+  font-size: 16px;
+  text-indent: 1rem;
+  padding: 0.3rem 0 0.3rem 0;
+  text-align: center;
+}
+.descripcion textarea {
+  height: auto;
+  width: 100%;
+  resize: vertical;
+  border: none;
+  background-color: var(--secundary-color);
+  border-radius: 1rem;
+  font-size: 16px;
+  padding: 1rem;
+}
+
+.container select {
+  height: auto;
+  width: 80%;
+  resize: vertical;
+  border: none;
+  background-color: var(--secundary-color);
+  border-radius: 1rem;
+  font-size: 16px;
+  padding: 0.3rem;
+  text-align: center;
+}
+
+.subtitle {
+  width: fit-content;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+}
+.valor {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.descripcion {
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.descripcion p:first-child {
+  font-weight: 400;
+  font-size: 16px;
+  width: fit-content;
+}
+.descripcion input:nth-of-type(2) {
+  text-align: justify;
+  font-weight: 300;
+}
+.valorFinal {
+  font-weight: 400;
+  color: rgb(3, 194, 3);
+}
+
+.itemCard div:last-child {
+  margin-bottom: 1rem;
+}

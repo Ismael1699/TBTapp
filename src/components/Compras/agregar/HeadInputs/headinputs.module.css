@@ -7,6 +7,10 @@
   flex-wrap: wrap;
   align-items: center;
 }
+.head p {
+  font-size: 20px;
+  font-weight: 500;
+}
 
 .head select {
   font-size: 15px;
@@ -83,5 +87,11 @@
     height: auto;
     display: flex;
     flex-wrap: wrap;
+  }
+  .head input {
+    font-size: 16px;
+  }
+  .head select {
+    font-size: 16px;
   }
 }

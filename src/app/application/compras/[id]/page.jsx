@@ -60,7 +60,9 @@ export default function RequisicionDetails({ params }) {
       items.map((obj) => {
         const valuesObj = Object.values(obj);
         valuesObj.map((values) =>
-          values === '' ? (rowContentData = false) : (rowContentData = true)
+          values === '' || values === 0 || values === '0'
+            ? (rowContentData = false)
+            : (rowContentData = true)
         );
       });
     }
@@ -99,7 +101,7 @@ export default function RequisicionDetails({ params }) {
       router.push('/application/compras');
     }
   }
-
+  console.log(items);
   return (
     <div>
       <HeadInputs

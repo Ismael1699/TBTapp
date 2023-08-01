@@ -15,7 +15,7 @@ export default function HeadInputs({
   setDataProveedor,
 }) {
   const { data, error, isLoading, mutate } = useSWR(
-    '/api/proveedores',
+    '/api/compras/proveedores',
     getProveedores
   );
   const proveedoresArray = data?.data;
@@ -29,12 +29,11 @@ export default function HeadInputs({
       });
     }
   }
-  if (error) return 'An error has occurred.';
-  if (isLoading) return 'Cargando..';
+
   return (
     <div className={style.head}>
       <div className={style.proyecto}>
-        <h3>Proyecto</h3>
+        <p>Proyecto</p>
         <select
           id='proyecto'
           name='proyecto'
@@ -53,7 +52,7 @@ export default function HeadInputs({
       </div>
 
       <div className={style.frente}>
-        <h3>Frente</h3>
+        <p>Frente</p>
         <select
           id='frente'
           name='frente'
@@ -72,7 +71,7 @@ export default function HeadInputs({
       </div>
 
       <div className={style.suministro}>
-        <h3>Grupo de suministro</h3>
+        <p>Grupo de suministro</p>
         <select
           id='suministro'
           name='grupo de suministro'
@@ -98,7 +97,7 @@ export default function HeadInputs({
       </div>
 
       <div className={style.fecha}>
-        <h3>Fecha</h3>
+        <p>Fecha</p>
         <input
           id='fecha'
           type='date'
@@ -108,7 +107,7 @@ export default function HeadInputs({
       </div>
 
       <div className={style.lugar}>
-        <h3>Lugar de compra</h3>
+        <p>Lugar de compra</p>
         <select
           id='lugar'
           name='lugar de compra'
@@ -128,7 +127,7 @@ export default function HeadInputs({
       </div>
 
       <div className={style.proveedor}>
-        <h3>Proveedor</h3>
+        <p>Proveedor</p>
         <select
           id='proveedor'
           name='proveerdor'
@@ -141,7 +140,7 @@ export default function HeadInputs({
           >
             Elegir alguna
           </option>
-          {proveedoresArray.map((obj, index) => (
+          {proveedoresArray?.map((obj, index) => (
             <option
               key={index}
               value={obj.name}
@@ -153,7 +152,7 @@ export default function HeadInputs({
         </select>
       </div>
       <div className={style.numero}>
-        <h3>Numero de requisición</h3>
+        <p>Numero de requisición</p>
         {isEditing ? (
           <div>{headData.numero}</div>
         ) : (
