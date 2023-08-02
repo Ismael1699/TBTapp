@@ -67,10 +67,14 @@ export default async function Card({ obj }) {
           {(
             parseFloat(obj.obj_table.table[0].unitario) *
             parseFloat(obj.obj_table.table[0].cantidad)
-          ).toLocaleString('en', {
-            style: 'currency',
-            currency: 'MXN',
-          })}
+          )
+            .toLocaleString('en', {
+              style: 'currency',
+              currency: 'MXN',
+            })
+            .split('')
+            .filter((item) => item !== 'M' && item !== 'X')
+            .join('')}
         </p>
         <div className={style.more1}>
           <i className='bi bi-three-dots'></i>
@@ -79,10 +83,14 @@ export default async function Card({ obj }) {
           <i className='bi bi-three-dots'></i>
         </div>
         <p className={style.total}>
-          {parseFloat(totalconIVA).toLocaleString('en', {
-            style: 'currency',
-            currency: 'MXN',
-          })}
+          {parseFloat(totalconIVA)
+            .toLocaleString('en', {
+              style: 'currency',
+              currency: 'MXN',
+            })
+            .split('')
+            .filter((item) => item !== 'M' && item !== 'X')
+            .join('')}
         </p>
       </div>
       <div className={style.status}>

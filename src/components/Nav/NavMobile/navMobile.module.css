@@ -7,22 +7,25 @@
   left: 0;
   display: flex;
   justify-content: space-between;
-  padding: 0 2rem 0 2rem;
   align-items: center;
-  z-index: 100;
+  z-index: 80;
 }
 .navMobile i {
   font-size: 40px;
+  position: relative;
   color: var(--accent-color);
+  transition: all 0.7s ease-in-out;
 }
 
 .more {
   width: 6rem;
   height: 100%;
+  display: flex;
+  justify-content: center;
 }
 .round {
-  width: 6rem;
-  height: 6rem;
+  width: 5rem;
+  height: 5rem;
   background-color: rgb(51, 51, 51);
   display: flex;
   justify-content: center;
@@ -34,15 +37,42 @@
 .round::after {
   content: '';
   position: absolute;
-  width: 5rem;
-  height: 5rem;
+  width: 4.5rem;
+  height: 4.5rem;
   background-color: var(--accent-color);
   border-radius: 50%;
   z-index: 101;
+}
+
+.efecct {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 90;
 }
 
 .more i {
   font-size: 60px;
   color: rgb(51, 51, 51);
   z-index: 102;
+}
+
+.clicked i {
+  color: var(--secundary-color);
+  transition: all 0.7s ease-in-out;
+  z-index: 90;
+}
+
+.clicked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.1);
+  transform: translateY(-5px);
+  transition: all 0.7s ease-in-out;
+  z-index: 90;
 }

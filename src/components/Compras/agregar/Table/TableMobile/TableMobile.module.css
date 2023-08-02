@@ -57,7 +57,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 3rem;
+  margin-right: 1rem;
 }
 
 .enviar p {
@@ -84,7 +84,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 3rem;
+  margin-right: 0.5rem;
 }
 .buttonDelete:hover {
   transform: scale(1.05);

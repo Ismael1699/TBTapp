@@ -1,8 +1,13 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Table from '@/components/Compras/agregar/Table/Table';
 import HeadInputs from '@/components/Compras/agregar/HeadInputs/HeadInputs';
+import dynamic from 'next/dynamic';
+
+const Table = dynamic(
+  () => import('@/components/Compras/agregar/Table/Table'),
+  { ssr: false }
+);
 
 const structHead = {
   proyecto: '',
