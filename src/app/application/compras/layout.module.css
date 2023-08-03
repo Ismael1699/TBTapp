@@ -53,6 +53,7 @@
   width: 100%;
   display: flex;
   padding: 1rem;
+  padding-bottom: 3rem;
   flex-wrap: wrap;
   justify-content: space-around;
 }
