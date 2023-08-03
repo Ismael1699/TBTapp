@@ -39,7 +39,7 @@ export default function NavMobile() {
         <div className={style.efecct}>
           <Link
             href='/application/user'
-            className={whatPage === 'user' ? style.clicked : ''}
+            className={whatPage === 'user' ? style.clicked : style.noClicked}
           >
             <i
               className='bi bi-person-fill'
@@ -51,7 +51,9 @@ export default function NavMobile() {
         <div className={style.efecct}>
           <Link
             href='/application'
-            className={whatPage === 'dashboard' ? style.clicked : ''}
+            className={
+              whatPage === 'dashboard' ? style.clicked : style.noClicked
+            }
           >
             <i
               className='bi bi-grid-fill'
@@ -71,7 +73,7 @@ export default function NavMobile() {
         <div className={style.efecct}>
           <Link
             href='/application/compras'
-            className={whatPage === 'compras' ? style.clicked : ''}
+            className={whatPage === 'compras' ? style.clicked : style.noClicked}
           >
             <i
               className='bi bi-briefcase-fill'
