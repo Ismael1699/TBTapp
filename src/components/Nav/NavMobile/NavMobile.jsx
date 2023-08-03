@@ -21,6 +21,7 @@ export default function NavMobile() {
     signOut();
   }
   function clickPageHandle(e) {
+    if (isMoreClicked) setIsMoreClicked(false);
     setWhatPage(e.target.id);
   }
 

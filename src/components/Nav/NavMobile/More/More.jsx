@@ -12,6 +12,7 @@ export default function More({ isMoreClicked, clickMore, clickPageHandle }) {
         href='/application'
         onClick={excueteFunctions}
         id='dashboard'
+        className={style.Link}
       >
         Dashboard
         <i className='bi bi-caret-right-fill'></i>
@@ -20,6 +21,7 @@ export default function More({ isMoreClicked, clickMore, clickPageHandle }) {
         href='/application/user'
         onClick={excueteFunctions}
         id='user'
+        className={style.Link}
       >
         Perfil
         <i className='bi bi-caret-right-fill'></i>
@@ -28,6 +30,7 @@ export default function More({ isMoreClicked, clickMore, clickPageHandle }) {
         href='/application/compras'
         onClick={excueteFunctions}
         id='compras'
+        className={style.Link}
       >
         Compras
         <i className='bi bi-caret-right-fill'></i>
