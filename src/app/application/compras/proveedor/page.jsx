@@ -29,6 +29,10 @@ export default function Proveedores() {
   const proveedoresArray = data;
   const router = useRouter();
 
+  //controlan el sistema de carga de los datos hecho al servidor  el useSWR
+  if (error) return 'An error has occurred.';
+  if (isLoading) return 'Cargando..';
+
   //cancelar la ventan de agregar o editar proveeodores
   function cancelarOnClick() {
     setIsEditing(false);
@@ -64,10 +68,6 @@ export default function Proveedores() {
       router.push('/application/compras/proveedor');
     }
   }
-
-  //controlan el sistema de carga de los datos hecho al servidor  el useSWR
-  if (error) return 'An error has occurred.';
-  if (isLoading) return 'Cargando..';
 
   return (
     <div className={style.container}>
