@@ -1,3 +1,5 @@
-export default function User() {
-  return <div>hola es es mi usuario</div>;
+import User from '@/components/User/User';
+
+export default function Page() {
+  return <User />;
 }

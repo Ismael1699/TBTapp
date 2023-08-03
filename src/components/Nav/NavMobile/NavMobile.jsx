@@ -28,7 +28,6 @@ export default function NavMobile() {
     setIsMoreClicked(!isMoreClicked);
   }
 
-  console.log(isMoreClicked);
   return (
     <>
       <More

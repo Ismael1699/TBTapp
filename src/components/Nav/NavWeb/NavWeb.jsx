@@ -5,10 +5,12 @@ import style from './navweb.module.css';
 import { useSession, signOut } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function NavWeb() {
   const [whatPage, setWhatPage] = useState('');
   const { data: session, status, update } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     const splitUrl = window.location.pathname.split('/');
@@ -61,7 +63,10 @@ export default function NavWeb() {
       </li>
       <div className={style.user}>
         <div className={style.botonera}>
-          <i className='bi bi-gear-fill'></i>
+          <i
+            className='bi bi-gear-fill'
+            onClick={() => router.push('/application/user')}
+          ></i>
           <i
             className='bi bi-door-open-fill'
             onClick={logOutHandle}
