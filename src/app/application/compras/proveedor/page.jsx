@@ -5,9 +5,13 @@ import { useState } from 'react';
 import CardProveedor from '@/components/Compras/proveedor/CardProveedor/CardProveedor';
 import useSWR from 'swr';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 //consultas al backend
-const getProveedores = (url) => fetch(`${url}`).then((res) => res.json());
+async function getProveedores(link) {
+  const res = await axios(link);
+  return res;
+}
 
 async function deleteProveedorBackend(id) {
   const response = await fetch('/api/compras/proveedores/deleteProveedor', {
@@ -26,12 +30,14 @@ export default function Proveedores() {
     '/api/compras/proveedores',
     getProveedores
   );
-  const proveedoresArray = data;
+  const proveedoresArray = data?.data;
   const router = useRouter();
 
   //controlan el sistema de carga de los datos hecho al servidor  el useSWR
+  console.log(error);
   if (error) return 'An error has occurred.';
   if (isLoading) return 'Cargando..';
+  console.log(proveedoresArray);
 
   //cancelar la ventan de agregar o editar proveeodores
   function cancelarOnClick() {
