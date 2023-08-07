@@ -79,7 +79,7 @@ export default function RequisicionDetails({ params }) {
       alert('Por favor terminina de llenar los datos');
     }
   }
-
+  console.log(headData);
   async function saveData(data) {
     const res = await sendBackend(data);
     if (res.statusText == 'OK') {

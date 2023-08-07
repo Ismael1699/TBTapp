@@ -1,6 +1,5 @@
 import { pool } from '../../../database/db';
 import { NextResponse } from 'next/server';
-const fs = require('fs');
 
 export async function POST(req) {
   const {
@@ -37,24 +36,12 @@ export async function POST(req) {
     numero,
     obj_table: JSON.stringify({ table: table }),
   });
-
-  // await pool.query('INSERT INTO row_requisiciones SET ?', {
-  //   n_compra: numero,
-  //   frente: frente,
-  //   obj_table: JSON.stringify({ table: table }),
-  // });
-
   return NextResponse.json({
     message: `Se ha añadio la requisición ${numero}`,
   });
 }
 
 export async function GET() {
-  // const [response] = await pool.query(`
-  //     SELECT  requisiciones.id, requisiciones.proyecto, requisiciones.frente, requisiciones.suministro, requisiciones.fecha, requisiciones.lugar, requisiciones.numero, requisiciones.proveedor , row_requisiciones.obj_table
-  //     FROM requisiciones
-  //     INNER JOIN row_requisiciones
-  //     ON  requisiciones.numero = row_requisiciones.n_compra ;`);
   const [response] = await pool.query('SELECT * FROM requisiciones');
   return NextResponse.json({ data: response });
 }
@@ -72,15 +59,18 @@ export async function PUT(req) {
   } = await req.json();
 
   await pool.query(
-    'UPDATE requisiciones SET proyecto = ?, frente = ?, suministro = ?, fecha = ?, lugar = ?, proveedor = ? where numero = ? ',
-    [proyecto, frente, suministro, fecha, lugar, proveedor, numero]
+    'UPDATE requisiciones SET proyecto = ?, frente = ?, suministro = ?, fecha = ?, lugar = ?, proveedor = ? , obj_table = ? where numero = ? ',
+    [
+      proyecto,
+      frente,
+      suministro,
+      fecha,
+      lugar,
+      proveedor,
+      JSON.stringify({ table: table }),
+      numero,
+    ]
   );
-
-  await pool.query(
-    'UPDATE row_requisiciones SET  frente = ?, obj_table = ? where n_compra = ?',
-    [frente, JSON.stringify({ table: table }), numero]
-  );
-
   return NextResponse.json({
     message: `Se ha actualizado la requisición ${numero}`,
   });
@@ -89,52 +79,9 @@ export async function PUT(req) {
 export async function DELETE(req) {
   const { searchParams } = new URL(req.url);
   const id = searchParams.get('id');
-  const [numeroRequisicion] = await pool.query(
-    `select numero from requisiciones where id=${id};`
-  );
-  const [frenteRequisicion] = await pool.query(
-    `select frente from requisiciones where id=${id};`
-  );
-
-  const [idTable] = await pool.query(
-    `select id from row_requisiciones where n_compra=${numeroRequisicion[0].numero};`
-  );
 
   await pool.query('DELETE FROM requisiciones WHERE id = ?', [id]);
-  await pool.query(`DELETE FROM row_requisiciones WHERE id=${idTable[0].id}`);
 
-  // if (frenteRequisicion[0].frente === 'MAQUINARIA') {
-  //   const filename = join(
-  //     cwd(),
-  //     'ExcelsStorageRequis',
-  //     'Maquinaria',
-  //     `HOJA DE COMPRA ${numeroRequisicion[0].numero}.xlsm`
-  //   );
-  //   fs.unlink(filename, (err) => {
-  //     if (err) {
-  //       console.error('Error al eliminar el archivo:', err);
-  //       return;
-  //     }
-
-  //     console.log('Archivo eliminado correctamente.');
-  //   });
-  // }
-  // if (frenteRequisicion[0].frente === 'PLANEACION') {
-  //   const filename = join(
-  //     cwd(),
-  //     'ExcelsStorageRequis',
-  //     'Planeacion',
-  //     `HOJA DE COMPRA ${numeroRequisicion[0].numero}.xlsm`
-  //   );
-  //   fs.unlink(filename, (err) => {
-  //     if (err) {
-  //       console.error('Error al eliminar el archivo:', err);
-  //       return;
-  //     }
-
-  //     console.log('Archivo eliminado correctamente.');
-  //   });
-  // }
   return NextResponse.json({
     message: `Se ha eliminado correctamente`,
   });
