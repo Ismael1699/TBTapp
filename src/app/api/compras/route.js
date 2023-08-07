@@ -1,8 +1,6 @@
 import { pool } from '../../../database/db';
 import { NextResponse } from 'next/server';
 const fs = require('fs');
-import { join } from 'path';
-import { cwd } from 'process';
 
 export async function POST(req) {
   const {
@@ -37,13 +35,14 @@ export async function POST(req) {
     lugar,
     proveedor,
     numero,
-  });
-
-  await pool.query('INSERT INTO row_requisiciones SET ?', {
-    n_compra: numero,
-    frente: frente,
     obj_table: JSON.stringify({ table: table }),
   });
+
+  // await pool.query('INSERT INTO row_requisiciones SET ?', {
+  //   n_compra: numero,
+  //   frente: frente,
+  //   obj_table: JSON.stringify({ table: table }),
+  // });
 
   return NextResponse.json({
     message: `Se ha añadio la requisición ${numero}`,
@@ -51,11 +50,12 @@ export async function POST(req) {
 }
 
 export async function GET() {
-  const [response] = await pool.query(`
-      SELECT  requisiciones.id, requisiciones.proyecto, requisiciones.frente, requisiciones.suministro, requisiciones.fecha, requisiciones.lugar, requisiciones.numero, requisiciones.proveedor , row_requisiciones.obj_table
-      FROM requisiciones 
-      INNER JOIN row_requisiciones 
-      ON  requisiciones.numero = row_requisiciones.n_compra ;`);
+  // const [response] = await pool.query(`
+  //     SELECT  requisiciones.id, requisiciones.proyecto, requisiciones.frente, requisiciones.suministro, requisiciones.fecha, requisiciones.lugar, requisiciones.numero, requisiciones.proveedor , row_requisiciones.obj_table
+  //     FROM requisiciones
+  //     INNER JOIN row_requisiciones
+  //     ON  requisiciones.numero = row_requisiciones.n_compra ;`);
+  const [response] = await pool.query('SELECT * FROM requisiciones');
   return NextResponse.json({ data: response });
 }
 

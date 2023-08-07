@@ -1,9 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Table from '@/components/Compras/agregar/Table/Table';
 import HeadInputs from '@/components/Compras/agregar/HeadInputs/HeadInputs';
 import axios from 'axios';
+import dynamic from 'next/dynamic';
+
+const Table = dynamic(
+  () => import('@/components/Compras/agregar/Table/Table'),
+  { ssr: false }
+);
 
 const structHead = {
   proyecto: '',
@@ -16,16 +21,11 @@ const structHead = {
 };
 
 async function sendBackend(data) {
-  // return await fetch(`/api/conectionDB`, {
-  //   method: 'PUT',
-  //   body: JSON.stringify(data),
-  // });
   return await axios.put('/api/compras', data);
 }
 
 async function getDataCompra(id) {
-  const res = await fetch(`/api/compras/getCompra?id=${id}`);
-  return JSON.parse(await res.text());
+  return axios(`/api/compras/getCompra?id=${id}`);
 }
 
 async function deleteCompra(id) {
@@ -45,8 +45,8 @@ export default function RequisicionDetails({ params }) {
   useEffect(() => {
     async function dataCompra() {
       const res = await getDataCompra(params.id);
-      setHeadData(res);
-      setItems(res.obj_table.table);
+      setHeadData(res.data);
+      setItems(res.data.obj_table.table);
     }
     dataCompra();
   }, [params.id]);
@@ -101,7 +101,6 @@ export default function RequisicionDetails({ params }) {
       router.push('/application/compras');
     }
   }
-  console.log(items);
   return (
     <div>
       <HeadInputs
