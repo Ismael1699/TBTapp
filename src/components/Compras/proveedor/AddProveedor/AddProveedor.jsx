@@ -11,26 +11,26 @@ async function sendProveedor(data, method) {
   return JSON.parse(await res.text());
 }
 
+const dataStruct = {
+  name: '',
+  rfc: '',
+  direccion: '',
+  banco: '',
+  clabe: '',
+  cuenta: '',
+  telefono: '',
+  correo: '',
+  frente: '',
+  contacto: '',
+  factura: 0,
+};
+
 export default function AddProveedor({
   isEditing,
   cardSelected,
   setCardSelected,
   cancelarOnClick,
 }) {
-  const dataStruct = {
-    name: '',
-    rfc: '',
-    direccion: '',
-    banco: '',
-    clabe: '',
-    cuenta: '',
-    telefono: '',
-    correo: '',
-    frente: '',
-    contacto: '',
-    factura: 0,
-  };
-
   const [dataProveedores, setDataProveedores] = useState(
     Object.entries(cardSelected).length === 0 ? dataStruct : cardSelected
   );
@@ -63,6 +63,7 @@ export default function AddProveedor({
 
   async function sendDataToDB(data, method) {
     const response = await sendProveedor(data, method);
+
     alert(response.message);
     setCardSelected({});
     cancelarOnClick();

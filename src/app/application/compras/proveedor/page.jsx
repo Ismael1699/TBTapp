@@ -34,10 +34,8 @@ export default function Proveedores() {
   const router = useRouter();
 
   //controlan el sistema de carga de los datos hecho al servidor  el useSWR
-  console.log(error);
   if (error) return 'An error has occurred.';
   if (isLoading) return 'Cargando..';
-  console.log(proveedoresArray);
 
   //cancelar la ventan de agregar o editar proveeodores
   function cancelarOnClick() {
@@ -70,8 +68,6 @@ export default function Proveedores() {
       const res = await deleteProveedorBackend(id);
       mutate([newprovedores]);
       alert(res.message);
-      router.refresh();
-      router.push('/application/compras/proveedor');
     }
   }
 
@@ -106,7 +102,7 @@ export default function Proveedores() {
         ) : (
           <></>
         )}
-        {proveedoresArray.map((obj, index) => {
+        {proveedoresArray?.map((obj, index) => {
           return (
             <CardProveedor
               obj={obj}

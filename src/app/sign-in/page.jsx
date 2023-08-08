@@ -28,7 +28,6 @@ export default function SingIn() {
       password: formData.get('password'),
       redirect: false,
     });
-    console.log(res);
 
     if (res.error) return setError(res.error);
 
