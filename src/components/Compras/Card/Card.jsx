@@ -60,9 +60,9 @@ export default async function Card({ obj }) {
           <p>{obj.proyecto}</p>
         </div>
         <p className={style.cantidad}>{obj.obj_table.table[0].cantidad}</p>
-        <p className={style.descripcion}>
+        <div className={style.descripcion}>
           {obj.obj_table.table[0].descripcion}
-        </p>
+        </div>
         <p className={style.unitario}>
           {(
             parseFloat(obj.obj_table.table[0].unitario) *
