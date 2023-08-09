@@ -5,11 +5,16 @@ import style from './layout.module.css';
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import Loading from './loading';
+import { useSession } from 'next-auth/react';
 
 const getData = async (url) => await fetch(`${url}`).then((res) => res.json());
 export default function Compras() {
   const [array, setArray] = useState([]);
-  const { data, error, isLoading, mutate } = useSWR('/api/compras', getData);
+  const { data: session, status, update } = useSession();
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/compras?rol=${session?.user.rol}`,
+    getData
+  );
 
   if (isLoading) {
     return <Loading />;

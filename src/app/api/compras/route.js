@@ -41,8 +41,23 @@ export async function POST(req) {
   });
 }
 
-export async function GET() {
-  const [response] = await pool.query('SELECT * FROM requisiciones');
+export async function GET(req) {
+  const { searchParams } = new URL(req.url);
+  const rol = searchParams.get('rol');
+
+  const condicionRol =
+    rol === 'DIRECTOR' ||
+    rol === 'SUPER-INTENDENTE' ||
+    rol === 'CONTADOR' ||
+    rol === 'SUPER-USER-ROOT';
+
+  if (condicionRol) {
+    const [response] = await pool.query(`SELECT * FROM requisiciones`);
+    return NextResponse.json({ data: response });
+  }
+  const [response] = await pool.query(
+    `SELECT * FROM requisiciones WHERE frente="${rol}"`
+  );
   return NextResponse.json({ data: response });
 }
 
