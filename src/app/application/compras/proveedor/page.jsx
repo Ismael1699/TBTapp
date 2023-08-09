@@ -6,6 +6,7 @@ import CardProveedor from '@/components/Compras/proveedor/CardProveedor/CardProv
 import useSWR from 'swr';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
 
 //consultas al backend
 async function getProveedores(link) {
@@ -26,8 +27,9 @@ export default function Proveedores() {
   const [agregarWasClicked, setAgregarWasClicked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [cardSelected, setCardSelected] = useState({});
+  const { data: session, status, update } = useSession();
   const { data, error, isLoading, mutate } = useSWR(
-    '/api/compras/proveedores',
+    `/api/compras/proveedores?rol=${session?.user.rol}`,
     getProveedores
   );
   const proveedoresArray = data?.data;
