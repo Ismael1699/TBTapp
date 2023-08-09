@@ -2,6 +2,7 @@
 import style from './headinputs.module.css';
 import useSWR from 'swr';
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
 
 async function getProveedores(link) {
   const res = await axios(link);
@@ -14,8 +15,9 @@ export default function HeadInputs({
   isEditing,
   setDataProveedor,
 }) {
+  const { data: session, status, update } = useSession();
   const { data, error, isLoading, mutate } = useSWR(
-    '/api/compras/proveedores',
+    `/api/compras/proveedores?rol=${session?.user.rol}`,
     getProveedores
   );
   const proveedoresArray = data?.data;

@@ -1,8 +1,24 @@
 import { pool } from '@/database/db';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
-  const [response] = await pool.query(`SELECT * FROM proveedores`);
+export async function GET(req) {
+  const { searchParams } = new URL(req.url);
+  const rol = searchParams.get('rol');
+
+  const condicionRol =
+    rol === 'DIRECTOR' ||
+    rol === 'SUPER-INTENDENTE' ||
+    rol === 'CONTADOR' ||
+    rol === 'SUPER-USER-ROOT';
+
+  if (condicionRol) {
+    const [response] = await pool.query(`SELECT * FROM proveedores`);
+    return NextResponse.json(response);
+  }
+
+  const [response] = await pool.query(
+    `SELECT * FROM proveedores WHERE frente="${rol}"`
+  );
   return NextResponse.json(response);
 }
 
