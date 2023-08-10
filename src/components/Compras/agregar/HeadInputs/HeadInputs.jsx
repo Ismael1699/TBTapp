@@ -3,7 +3,6 @@ import style from './headinputs.module.css';
 import useSWR from 'swr';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
-import { NULL } from 'xlsx-populate/lib/FormulaError';
 
 async function getProveedores(link) {
   const res = await axios(link);

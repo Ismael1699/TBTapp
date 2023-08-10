@@ -100,6 +100,7 @@ export default function Proveedores() {
             cardSelected={cardSelected}
             setCardSelected={setCardSelected}
             cancelarOnClick={cancelarOnClick}
+            session={session}
           />
         ) : (
           <></>

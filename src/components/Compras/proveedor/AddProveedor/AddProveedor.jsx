@@ -30,10 +30,16 @@ export default function AddProveedor({
   cardSelected,
   setCardSelected,
   cancelarOnClick,
+  session,
 }) {
   const [dataProveedores, setDataProveedores] = useState(
     Object.entries(cardSelected).length === 0 ? dataStruct : cardSelected
   );
+  const whatUser =
+    session.user.rol === 'DIRECTOR' ||
+    session.user.rol === 'SUPER-INTENDENTE' ||
+    session.user.rol === 'CONTADOR' ||
+    session.user.rol === 'SUPER-USER-ROOT';
 
   function inputsOnChange(e) {
     const item = e.target.id;
@@ -126,8 +132,18 @@ export default function AddProveedor({
                 >
                   Elegir alguna
                 </option>
-                <option value='MAQUINARIA'>Maquinaria</option>
-                <option value='PLANEACION'>Planeación</option>
+                {session.user.rol === 'MAQUINARIA' ? (
+                  <option value='MAQUINARIA'>Maquinaria</option>
+                ) : null}
+                {session.user.rol === 'PLANEACION' ? (
+                  <option value='MAQUINARIA'>Planeacion</option>
+                ) : null}
+                {whatUser ? (
+                  <option value='MAQUINARIA'>Maquinaria</option>
+                ) : null}
+                {whatUser ? (
+                  <option value='MAQUINARIA'>Planeacion</option>
+                ) : null}
               </select>
             </div>
           </form>
