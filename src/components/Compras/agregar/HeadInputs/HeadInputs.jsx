@@ -3,6 +3,7 @@ import style from './headinputs.module.css';
 import useSWR from 'swr';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { NULL } from 'xlsx-populate/lib/FormulaError';
 
 async function getProveedores(link) {
   const res = await axios(link);
@@ -21,6 +22,11 @@ export default function HeadInputs({
     getProveedores
   );
   const proveedoresArray = data?.data;
+  const whatUser =
+    session.user.rol === 'DIRECTOR' ||
+    session.user.rol === 'SUPER-INTENDENTE' ||
+    session.user.rol === 'CONTADOR' ||
+    session.user.rol === 'SUPER-USER-ROOT';
   //funcion para obtener los datos del header
   function headHandleChange(e) {
     const item = e.target.id;
@@ -67,8 +73,14 @@ export default function HeadInputs({
           >
             Elegir alguna
           </option>
-          <option value='MAQUINARIA'>Maquinaria</option>
-          <option value='PLANEACION'>Planeación</option>
+          {session.user.rol === 'MAQUINARIA' ? (
+            <option value='MAQUINARIA'>Maquinaria</option>
+          ) : null}
+          {session.user.rol === 'PLANEACION' ? (
+            <option value='MAQUINARIA'>Planeacion</option>
+          ) : null}
+          {whatUser ? <option value='MAQUINARIA'>Maquinaria</option> : null}
+          {whatUser ? <option value='MAQUINARIA'>Planeacion</option> : null}
         </select>
       </div>
 
