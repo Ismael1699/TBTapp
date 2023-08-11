@@ -22,7 +22,6 @@ export default function GenerateCards() {
     isLoading,
     mutate,
   } = useSWR(`/api/compras?rol=${session?.user.rol}`, getProveedores);
-  console.log(proveedoresData);
 
   function setterArrayDataFilter(value) {
     value
