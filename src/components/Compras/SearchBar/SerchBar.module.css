@@ -1,0 +1,32 @@
+.container {
+  width: 80%;
+  height: auto;
+  background-color: var(--primary-color);
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: var(--font-color);
+  padding: 0.2rem;
+}
+
+.container i:first-child {
+  margin-left: 1rem;
+  font-size: 20px;
+  width: 10%;
+}
+
+.container i:last-child {
+  margin-right: 1rem;
+}
+.container input {
+  border: none;
+  padding: 0.5rem;
+  width: 80%;
+  color: var(--font-color);
+}
+
+.container input:focus {
+  border: none;
+  outline: none;
+}

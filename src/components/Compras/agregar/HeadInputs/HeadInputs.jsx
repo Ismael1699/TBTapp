@@ -79,7 +79,7 @@ export default function HeadInputs({
             <option value='MAQUINARIA'>Planeacion</option>
           ) : null}
           {whatUser ? <option value='MAQUINARIA'>Maquinaria</option> : null}
-          {whatUser ? <option value='MAQUINARIA'>Planeacion</option> : null}
+          {whatUser ? <option value='PLANEACION'>Planeacion</option> : null}
         </select>
       </div>
 

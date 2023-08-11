@@ -1,33 +1,15 @@
-'use client';
 import Link from 'next/link';
-import Card from '@/components/Compras/Card/Card';
 import style from './layout.module.css';
-import { useState, useEffect } from 'react';
-import useSWR from 'swr';
-import Loading from './loading';
-import { useSession } from 'next-auth/react';
+import GenerateCards from '@/components/Compras/GenerateCards/GenerateCards';
 
-const getProveedores = async (url) =>
-  await fetch(`${url}`).then((res) => res.json());
 export default function Compras() {
-  const [array, setArray] = useState([]);
-  const { data: session, status, update } = useSession();
-
-  const { data, error, isLoading, mutate } = useSWR(
-    `/api/compras?rol=${session?.user.rol}`,
-    getProveedores
-  );
-
-  if (isLoading) {
-    return <Loading />;
-  }
   return (
     <div className={style.container}>
       <div className={style.header}>
         <div className={style.title}>
           <p>Compras</p>
         </div>
-        <div className={style.containerbuscador}>
+        <div className={style.botonera}>
           <Link
             href='compras/agregar'
             className='button'
@@ -44,16 +26,8 @@ export default function Compras() {
           </Link>
         </div>
       </div>
-
-      <div className={style.containercard}>
-        {data
-          ? data.data.map((obj, index) => (
-              <Card
-                obj={obj}
-                key={index}
-              />
-            ))
-          : null}
+      <div className={style.containerCards}>
+        <GenerateCards />
       </div>
     </div>
   );

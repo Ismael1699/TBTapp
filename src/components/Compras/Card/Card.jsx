@@ -2,7 +2,6 @@ import Link from 'next/link';
 import style from './card.module.css';
 import DownloadButton from './DownloadButton/DownloadButton';
 import SegmentBarStatus from './SegmentBarStatus/SegmentBarStatus';
-import { stringify } from 'uuid';
 
 const fechaname = [
   'enero',
@@ -35,6 +34,7 @@ export default async function Card({ obj }) {
   }, 0);
 
   const totalconIVA = Number.parseFloat(total * 1.16).toFixed(2);
+
   return (
     <div className={style.card}>
       <div className={style.header}>
@@ -102,10 +102,3 @@ export default async function Card({ obj }) {
     </div>
   );
 }
-
-// {
-//   parseInt(obj.obj_table.table[0].unitario).toLocaleString('en', {
-//     style: 'currency',
-//     currency: 'MXN',
-//   });
-// }
