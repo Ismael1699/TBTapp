@@ -14,7 +14,7 @@ async function getProveedores(url) {
 }
 
 export default function GenerateCards() {
-  const [arrayDataFilter, setArrayDataFilter] = useState();
+  const [arrayDataFilter, setArrayDataFilter] = useState('');
   const { data: session, status, update } = useSession();
   const {
     data: proveedoresData,
@@ -28,31 +28,45 @@ export default function GenerateCards() {
       ? setArrayDataFilter(
           searchMatch(proveedoresData, value, ['numero', 'proyecto'])
         )
-      : setArrayDataFilter(proveedoresData);
+      : null;
+  }
+
+  function renderCards() {
+    console.log(arrayDataFilter);
+    if (arrayDataFilter === '') {
+      return proveedoresData?.map((obj, index) => (
+        <Card
+          obj={obj}
+          key={index}
+        />
+      ));
+    }
+
+    if (arrayDataFilter.length === 0) {
+      return (
+        <p className={style.noCoincidencia}>No se encontro coincidencias</p>
+      );
+    }
+
+    return arrayDataFilter?.map((obj, index) => (
+      <Card
+        obj={obj}
+        key={index}
+      />
+    ));
   }
 
   return (
     <div className={style.container}>
       <div className={style.filtrosContainer}>
         <div className={style.searchContainer}>
-          <SerachBar setterArrayDataFilter={setterArrayDataFilter} />
+          <SerachBar
+            setterArrayDataFilter={setterArrayDataFilter}
+            setArrayDataFilter={setArrayDataFilter}
+          />
         </div>
       </div>
-      <div className={style.cardsContainer}>
-        {arrayDataFilter
-          ? arrayDataFilter?.map((obj, index) => (
-              <Card
-                obj={obj}
-                key={index}
-              />
-            ))
-          : proveedoresData?.map((obj, index) => (
-              <Card
-                obj={obj}
-                key={index}
-              />
-            ))}
-      </div>
+      <div className={style.cardsContainer}>{renderCards()}</div>
     </div>
   );
 }

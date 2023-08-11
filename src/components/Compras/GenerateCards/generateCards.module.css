@@ -32,6 +32,10 @@
   justify-content: space-around;
 }
 
+.noCoincidencia {
+  margin-top: 2rem;
+}
+
 @media (max-width: 900px) {
   .filtrosContainer {
     justify-content: center;

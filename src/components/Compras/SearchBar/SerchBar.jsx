@@ -2,12 +2,15 @@
 import style from './SerchBar.module.css';
 import { useState } from 'react';
 
-export default function SerachBar({ setterArrayDataFilter }) {
+export default function SerachBar({
+  setterArrayDataFilter,
+  setArrayDataFilter,
+}) {
   const [search, setSearch] = useState('');
 
   function clear() {
     setSearch('');
-    setterArrayDataFilter('');
+    setArrayDataFilter('');
   }
   return (
     <div className={style.container}>
