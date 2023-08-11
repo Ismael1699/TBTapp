@@ -8,9 +8,9 @@
 }
 
 .filtrosContainer {
-  background-color: tan;
-  width: 40%;
+  width: 100%;
   height: 3rem;
+  display: flex;
 }
 
 .searchContainer {
@@ -19,6 +19,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  transition: all 0.5s ease-in-out;
 }
 
 .cardsContainer {
@@ -29,4 +30,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+@media (max-width: 900px) {
+  .filtrosContainer {
+    justify-content: center;
+  }
+  .searchContainer {
+    width: 80%;
+    transition: all 0.5s ease-in-out;
+  }
 }

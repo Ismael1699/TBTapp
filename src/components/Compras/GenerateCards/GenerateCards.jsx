@@ -33,9 +33,10 @@ export default function GenerateCards() {
 
   return (
     <div className={style.container}>
-      <div className={style.filtrosContainer}></div>
-      <div className={style.searchContainer}>
-        <SerachBar setterArrayDataFilter={setterArrayDataFilter} />
+      <div className={style.filtrosContainer}>
+        <div className={style.searchContainer}>
+          <SerachBar setterArrayDataFilter={setterArrayDataFilter} />
+        </div>
       </div>
       <div className={style.cardsContainer}>
         {arrayDataFilter

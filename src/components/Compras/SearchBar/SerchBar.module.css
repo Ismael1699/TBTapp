@@ -8,16 +8,17 @@
   overflow: hidden;
   color: var(--font-color);
   padding: 0.2rem;
+  justify-content: space-between;
 }
 
 .container i:first-child {
-  margin-left: 1rem;
   font-size: 20px;
   width: 15%;
+  text-align: center;
 }
 
 .container i:last-child {
-  margin-right: 1rem;
+  text-align: center;
   width: 15%;
 }
 .container input {
