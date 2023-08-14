@@ -93,7 +93,6 @@ export default function RequisicionDetails({ params }) {
           ? parseFloat(precioTotal * 1.16).toFixed(2)
           : precioTotal;
 
-      console.log(dataProveedor);
       const data = { ...headData, precio: precioFinal, table: items };
       return saveData(data);
     } else {
@@ -102,8 +101,10 @@ export default function RequisicionDetails({ params }) {
   }
   async function saveData(data) {
     const res = await sendBackend(data);
-    if (res.statusText == 'OK') {
+    console.log(res);
+    if (res.status == 200) {
       const res1 = await res.data;
+      console.log('entro');
       alert(res1.message);
       router.push('/application/compras');
     } else {
