@@ -28,6 +28,13 @@ async function getDataCompra(id) {
   return axios(`/api/compras/getCompra?id=${id}`);
 }
 
+async function getProveedor(proveedor) {
+  const res = await axios(
+    `/api/compras/proveedores/getProveedor?name=${proveedor}`
+  );
+  return res.data;
+}
+
 async function deleteCompra(id) {
   const res = await fetch(`/api/compras?id=${id}`, {
     method: 'DELETE',
@@ -47,6 +54,8 @@ export default function RequisicionDetails({ params }) {
       const res = await getDataCompra(params.id);
       setHeadData(res.data);
       setItems(res.data.obj_table.table);
+      const proveedor = await getProveedor(res.data.proveedor);
+      setDataProveedor(proveedor);
     }
     dataCompra();
   }, [params.id]);
@@ -73,7 +82,19 @@ export default function RequisicionDetails({ params }) {
     );
 
     if (rowContentData && headContentData) {
-      const data = { ...headData, table: items };
+      const precioTotal = parseFloat(
+        items.reduce((acumulador, obj) => {
+          return acumulador + parseFloat(parseFloat(obj.final).toFixed(2));
+        }, 0)
+      ).toFixed(2);
+
+      const precioFinal =
+        dataProveedor.factura === 1
+          ? parseFloat(precioTotal * 1.16).toFixed(2)
+          : precioTotal;
+
+      console.log(dataProveedor);
+      const data = { ...headData, precio: precioFinal, table: items };
       return saveData(data);
     } else {
       alert('Por favor terminina de llenar los datos');

@@ -33,6 +33,8 @@ export default function Agregar() {
   const [items, setItems] = useState([]);
   const router = useRouter();
 
+  console.log(dataProveedor);
+
   function centralizeData() {
     let rowContentData = false;
 
@@ -57,14 +59,13 @@ export default function Agregar() {
     if (rowContentData && headContentData) {
       const precioTotal = parseFloat(
         items.reduce((acumulador, obj) => {
-          console.log(acumulador);
           return acumulador + parseFloat(parseFloat(obj.final).toFixed(2));
         }, 0)
       ).toFixed(2);
 
       const precioFinal =
-        dataProveedor === 1
-          ? parseFloat(precioFinal * 1.16).toFixed(2)
+        dataProveedor.factura === 1
+          ? parseFloat(precioTotal * 1.16).toFixed(2)
           : precioTotal;
 
       const data = { ...headData, precio: precioFinal, table: items };
