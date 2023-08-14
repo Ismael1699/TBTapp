@@ -9,7 +9,11 @@ export async function POST(req) {
   const body = await req.json();
   let workbook = '';
   let base = '';
-  if (body.frente === 'MAQUINARIA') {
+  const [dataProveedor] = await pool.query(
+    `SELECT * FROM proveedores where name= ?`,
+    [body.proveedor]
+  );
+  if (body.frente === 'MAQUINARIA' && dataProveedor[0].factura === 1) {
     workbook = await XlsxPopulate.fromFileAsync(
       join(
         cwd(),
@@ -20,7 +24,19 @@ export async function POST(req) {
       )
     );
   }
-  if (body.frente === 'PLANEACION') {
+  if (body.frente === 'MAQUINARIA' && dataProveedor[0].factura === 0) {
+    console.log('entro');
+    workbook = await XlsxPopulate.fromFileAsync(
+      join(
+        cwd(),
+        'src',
+        'ExcelsStorageRequis',
+        'plantillas',
+        'MaquinariaNoFactura.xlsm'
+      )
+    );
+  }
+  if (body.frente === 'PLANEACION' && dataProveedor[0].factura === 1) {
     workbook = await XlsxPopulate.fromFileAsync(
       join(
         cwd(),
@@ -28,6 +44,18 @@ export async function POST(req) {
         'ExcelsStorageRequis',
         'plantillas',
         'plantillaPlaneacion.xlsm'
+      )
+    );
+  }
+
+  if (body.frente === 'PLANEACION' && dataProveedor[0].factura === 0) {
+    workbook = await XlsxPopulate.fromFileAsync(
+      join(
+        cwd(),
+        'src',
+        'ExcelsStorageRequis',
+        'plantillas',
+        'PlaneacionNoFactura.xlsm'
       )
     );
   }
@@ -94,10 +122,6 @@ export async function POST(req) {
     cellNumberUnitario++;
   });
 
-  const [dataProveedor] = await pool.query(
-    `SELECT * FROM proveedores where name= ?`,
-    [body.proveedor]
-  );
   workbook.sheet('requi').cell('K20').value(body.proveedor);
   workbook.sheet('requi').cell('M20').value(dataProveedor[0].rfc);
   workbook.sheet('requi').cell('M21').value(dataProveedor[0].cuenta);

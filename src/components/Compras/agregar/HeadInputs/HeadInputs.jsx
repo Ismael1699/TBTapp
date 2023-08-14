@@ -22,10 +22,10 @@ export default function HeadInputs({
   );
   const proveedoresArray = data?.data;
   const whatUser =
-    session.user.rol === 'DIRECTOR' ||
-    session.user.rol === 'SUPER-INTENDENTE' ||
-    session.user.rol === 'CONTADOR' ||
-    session.user.rol === 'SUPER-USER-ROOT';
+    session?.user.rol === 'DIRECTOR' ||
+    session?.user.rol === 'SUPER-INTENDENTE' ||
+    session?.user.rol === 'CONTADOR' ||
+    session?.user.rol === 'SUPER-USER-ROOT';
   //funcion para obtener los datos del header
   function headHandleChange(e) {
     const item = e.target.id;
@@ -72,10 +72,10 @@ export default function HeadInputs({
           >
             Elegir alguna
           </option>
-          {session.user.rol === 'MAQUINARIA' ? (
+          {session?.user.rol === 'MAQUINARIA' ? (
             <option value='MAQUINARIA'>Maquinaria</option>
           ) : null}
-          {session.user.rol === 'PLANEACION' ? (
+          {session?.user.rol === 'PLANEACION' ? (
             <option value='MAQUINARIA'>Planeacion</option>
           ) : null}
           {whatUser ? <option value='MAQUINARIA'>Maquinaria</option> : null}
