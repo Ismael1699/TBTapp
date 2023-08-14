@@ -67,8 +67,7 @@ export default function Agregar() {
           ? parseFloat(precioFinal * 1.16).toFixed(2)
           : precioTotal;
 
-      const data = { ...headData, precioCompra: precioFinal, table: items };
-      console.log(data);
+      const data = { ...headData, precio: precioFinal, table: items };
       return saveData(data);
     } else {
       alert('Por favor terminina de llenar los datos');

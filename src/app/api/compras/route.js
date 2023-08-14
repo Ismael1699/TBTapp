@@ -11,6 +11,7 @@ export async function POST(req) {
     proveedor,
     numero,
     table,
+    precio,
   } = await req.json();
 
   const [dataDuplicate] = await pool.query(
@@ -34,6 +35,7 @@ export async function POST(req) {
     lugar,
     proveedor,
     numero,
+    precio,
     obj_table: JSON.stringify({ table: table }),
   });
   return NextResponse.json({
