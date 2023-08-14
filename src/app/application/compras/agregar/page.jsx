@@ -55,7 +55,20 @@ export default function Agregar() {
     );
 
     if (rowContentData && headContentData) {
-      const data = { ...headData, table: items };
+      const precioTotal = parseFloat(
+        items.reduce((acumulador, obj) => {
+          console.log(acumulador);
+          return acumulador + parseFloat(parseFloat(obj.final).toFixed(2));
+        }, 0)
+      ).toFixed(2);
+
+      const precioFinal =
+        dataProveedor === 1
+          ? parseFloat(precioFinal * 1.16).toFixed(2)
+          : precioTotal;
+
+      const data = { ...headData, precioCompra: precioFinal, table: items };
+      console.log(data);
       return saveData(data);
     } else {
       alert('Por favor terminina de llenar los datos');

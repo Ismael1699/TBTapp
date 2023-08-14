@@ -32,7 +32,6 @@ export default function GenerateCards() {
   }
 
   function renderCards() {
-    console.log(arrayDataFilter);
     if (arrayDataFilter === '') {
       return proveedoresData?.map((obj, index) => (
         <Card

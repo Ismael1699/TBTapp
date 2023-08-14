@@ -2,6 +2,7 @@ import Link from 'next/link';
 import style from './card.module.css';
 import DownloadButton from './DownloadButton/DownloadButton';
 import SegmentBarStatus from './SegmentBarStatus/SegmentBarStatus';
+import axios from 'axios';
 
 const fechaname = [
   'enero',
