@@ -29,13 +29,6 @@ export default async function Card({ obj }) {
   const frenteLowerCase = arrayFrente.join('');
   const arrayFecha = obj.fecha.split('-');
 
-  const total = obj.obj_table.table.reduce((acumulador, obj) => {
-    let floatnumber = parseFloat(parseFloat(obj.final).toFixed(2));
-    return acumulador + floatnumber;
-  }, 0);
-
-  const totalconIVA = Number.parseFloat(total * 1.16).toFixed(2);
-
   return (
     <div className={style.card}>
       <div className={style.header}>
@@ -84,7 +77,7 @@ export default async function Card({ obj }) {
           <i className='bi bi-three-dots'></i>
         </div>
         <p className={style.total}>
-          {parseFloat(totalconIVA)
+          {parseFloat(obj.precio)
             .toLocaleString('en', {
               style: 'currency',
               currency: 'MXN',
