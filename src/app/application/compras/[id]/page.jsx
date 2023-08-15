@@ -101,10 +101,8 @@ export default function RequisicionDetails({ params }) {
   }
   async function saveData(data) {
     const res = await sendBackend(data);
-    console.log(res);
     if (res.status == 200) {
       const res1 = await res.data;
-      console.log('entro');
       alert(res1.message);
       router.push('/application/compras');
     } else {

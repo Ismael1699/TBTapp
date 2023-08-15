@@ -2,6 +2,9 @@
 import style from './addproveedor.module.css';
 import { useState } from 'react';
 import Slider from './Slider/Slider';
+import Proveedor from '@/components/Compras/proveedor/AddProveedor/Proveedor/Proveedor';
+import Bancarios from './Bancarios/Bancarios';
+import Contacto from './Contacto/Contacto';
 
 async function sendProveedor(data, method) {
   const res = await fetch('/api/compras/proveedores', {
@@ -87,7 +90,7 @@ export default function AddProveedor({
             <i className='bi bi-x-circle-fill'></i>
           </button>
         </div>
-        <div className={style.proveedor}>
+        {/* <div className={style.proveedor}>
           <p className={style.subtitle}>Proveedor</p>
           <form>
             <div>
@@ -147,9 +150,15 @@ export default function AddProveedor({
               </select>
             </div>
           </form>
-        </div>
+        </div> */}
+        <Proveedor
+          dataProveedores={dataProveedores}
+          inputsOnChange={inputsOnChange}
+          session={session}
+          whatUser={whatUser}
+        />
 
-        <div className={style.bancario}>
+        {/* <div className={style.bancario}>
           <p className={style.subtitle}>Datos bancarios</p>
           <form>
             <div className={style.clabe}>
@@ -191,9 +200,15 @@ export default function AddProveedor({
               />
             </div>
           </form>
-        </div>
+        </div> */}
 
-        <div className={style.contacto}>
+        <Bancarios
+          dataProveedores={dataProveedores}
+          inputsOnChange={inputsOnChange}
+          dataSliderOnChange={dataSliderOnChange}
+        />
+
+        {/* <div className={style.contacto}>
           <p className={style.subtitle}>Contacto</p>
           <form>
             <div className={style.nombrecontacto}>
@@ -253,7 +268,12 @@ export default function AddProveedor({
               />
             </div>
           </form>
-        </div>
+        </div> */}
+
+        <Contacto
+          dataProveedores={dataProveedores}
+          inputsOnChange={inputsOnChange}
+        />
 
         <div className={style.buttons}>
           {isEditing ? (
