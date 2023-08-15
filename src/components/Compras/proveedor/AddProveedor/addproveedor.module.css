@@ -90,6 +90,11 @@
   margin-top: 1.5rem;
 }
 
+.selectSection {
+  font-weight: 900;
+  border-bottom: 3px solid var(--accent-color);
+}
+
 /* Proveedor  */
 .proveedor {
   display: flex;

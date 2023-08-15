@@ -101,18 +101,21 @@ export default function AddProveedor({
           <div
             id='proveedor'
             onClick={sectionHandle}
+            className={showSecction === 'proveedor' ? style.selectSection : ''}
           >
             Proveedor
           </div>
           <div
             id='bancario'
             onClick={sectionHandle}
+            className={showSecction === 'bancario' ? style.selectSection : ''}
           >
             Bancario
           </div>
           <div
             id='contacto'
             onClick={sectionHandle}
+            className={showSecction === 'contacto' ? style.selectSection : ''}
           >
             contacto
           </div>
