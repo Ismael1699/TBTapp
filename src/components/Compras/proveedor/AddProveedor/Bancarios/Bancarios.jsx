@@ -7,7 +7,6 @@ export default function Bancarios({
 }) {
   return (
     <div className={style.bancario}>
-      <p className={style.subtitle}>Datos bancarios</p>
       <form>
         <div className={style.clabe}>
           <label

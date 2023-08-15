@@ -3,7 +3,6 @@ import style from '../addproveedor.module.css';
 export default function Contacto({ dataProveedores, inputsOnChange }) {
   return (
     <div className={style.contacto}>
-      <p className={style.subtitle}>Contacto</p>
       <form>
         <div className={style.nombrecontacto}>
           <label

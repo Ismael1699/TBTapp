@@ -8,7 +8,6 @@ export default function Proveedor({
 }) {
   return (
     <div className={style.proveedor}>
-      <p className={style.subtitle}>Proveedor</p>
       <form>
         <div>
           <label

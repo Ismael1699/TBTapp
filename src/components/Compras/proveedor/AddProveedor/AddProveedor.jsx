@@ -38,6 +38,9 @@ export default function AddProveedor({
   const [dataProveedores, setDataProveedores] = useState(
     Object.entries(cardSelected).length === 0 ? dataStruct : cardSelected
   );
+
+  const [showSecction, setShowSecction] = useState('proveedor');
+
   const whatUser =
     session.user.rol === 'DIRECTOR' ||
     session.user.rol === 'SUPER-INTENDENTE' ||
@@ -78,8 +81,12 @@ export default function AddProveedor({
     cancelarOnClick();
   }
 
+  function sectionHandle(e) {
+    setShowSecction(e.target.id);
+  }
+
   return (
-    <>
+    <div className={style.global}>
       <div className={style.container}>
         <div className={style.title}>
           <p>Agregar nuevo proveedor</p>
@@ -90,190 +97,50 @@ export default function AddProveedor({
             <i className='bi bi-x-circle-fill'></i>
           </button>
         </div>
-        {/* <div className={style.proveedor}>
-          <p className={style.subtitle}>Proveedor</p>
-          <form>
-            <div>
-              <label
-                className={style.labbel}
-                htmlFor='name'
-              >
-                Nombre
-              </label>
-              <input
-                type='text'
-                id='name'
-                value={dataProveedores.name}
-                onChange={inputsOnChange}
-              />
-            </div>
-            <div>
-              <label
-                htmlFor='rfc'
-                className={style.labbel}
-              >
-                RFC
-              </label>
-              <input
-                id='rfc'
-                value={dataProveedores.rfc}
-                onChange={inputsOnChange}
-                type='text'
-              />
-            </div>
-            <div>
-              <label htmlFor='frente'>Frente</label>
-              <select
-                name='frente'
-                id='frente'
-                value={dataProveedores.frente}
-                onChange={inputsOnChange}
-              >
-                <option
-                  value=''
-                  disabled
-                >
-                  Elegir alguna
-                </option>
-                {session.user.rol === 'MAQUINARIA' ? (
-                  <option value='MAQUINARIA'>Maquinaria</option>
-                ) : null}
-                {session.user.rol === 'PLANEACION' ? (
-                  <option value='MAQUINARIA'>Planeacion</option>
-                ) : null}
-                {whatUser ? (
-                  <option value='MAQUINARIA'>Maquinaria</option>
-                ) : null}
-                {whatUser ? (
-                  <option value='MAQUINARIA'>Planeacion</option>
-                ) : null}
-              </select>
-            </div>
-          </form>
-        </div> */}
-        <Proveedor
-          dataProveedores={dataProveedores}
-          inputsOnChange={inputsOnChange}
-          session={session}
-          whatUser={whatUser}
-        />
+        <div className={style.section}>
+          <div
+            id='proveedor'
+            onClick={sectionHandle}
+          >
+            Proveedor
+          </div>
+          <div
+            id='bancario'
+            onClick={sectionHandle}
+          >
+            Bancario
+          </div>
+          <div
+            id='contacto'
+            onClick={sectionHandle}
+          >
+            contacto
+          </div>
+          <div>Documentos</div>
+        </div>
+        {showSecction === 'proveedor' ? (
+          <Proveedor
+            dataProveedores={dataProveedores}
+            inputsOnChange={inputsOnChange}
+            session={session}
+            whatUser={whatUser}
+          />
+        ) : null}
 
-        {/* <div className={style.bancario}>
-          <p className={style.subtitle}>Datos bancarios</p>
-          <form>
-            <div className={style.clabe}>
-              <label
-                className={style.labbel}
-                htmlFor='clabe'
-              >
-                Clabe
-              </label>
-              <input
-                type='text'
-                id='clabe'
-                value={dataProveedores.clabe}
-                onChange={inputsOnChange}
-              />
-            </div>
-            <div className={style.slidercontainer}>
-              <Slider
-                dataSliderOnChange={dataSliderOnChange}
-                factura={dataProveedores.factura}
-              />
-            </div>
-            <div className={style.banco}>
-              <label htmlFor='banco'>Banco</label>
-              <input
-                type='text'
-                id='banco'
-                value={dataProveedores.banco}
-                onChange={inputsOnChange}
-              />
-            </div>
-            <div className={style.cuenta}>
-              <label htmlFor='cuenta'>Cuenta</label>
-              <input
-                type='text'
-                id='cuenta'
-                value={dataProveedores.cuenta}
-                onChange={inputsOnChange}
-              />
-            </div>
-          </form>
-        </div> */}
+        {showSecction === 'bancario' ? (
+          <Bancarios
+            dataProveedores={dataProveedores}
+            inputsOnChange={inputsOnChange}
+            dataSliderOnChange={dataSliderOnChange}
+          />
+        ) : null}
 
-        <Bancarios
-          dataProveedores={dataProveedores}
-          inputsOnChange={inputsOnChange}
-          dataSliderOnChange={dataSliderOnChange}
-        />
-
-        {/* <div className={style.contacto}>
-          <p className={style.subtitle}>Contacto</p>
-          <form>
-            <div className={style.nombrecontacto}>
-              <label
-                className={style.labbel}
-                htmlFor='contacto'
-              >
-                Nombre
-              </label>
-              <input
-                type='text'
-                id='contacto'
-                value={dataProveedores.contacto}
-                onChange={inputsOnChange}
-              />
-            </div>
-            <div className={style.direccion}>
-              <label
-                className={style.labbel}
-                htmlFor='direccion'
-              >
-                Dirección
-              </label>
-              <input
-                type='text'
-                id='direccion'
-                value={dataProveedores.direccion}
-                onChange={inputsOnChange}
-              />
-            </div>
-            <div className={style.correo}>
-              <label
-                className={style.labbel}
-                htmlFor='correo'
-              >
-                Correo
-              </label>
-              <input
-                type='text'
-                id='correo'
-                value={dataProveedores.correo}
-                onChange={inputsOnChange}
-              />
-            </div>
-            <div className={style.telefono}>
-              <label
-                className={style.labbel}
-                htmlFor='telefono'
-              >
-                telefono
-              </label>
-              <input
-                type='text'
-                id='telefono'
-                value={dataProveedores.telefono}
-                onChange={inputsOnChange}
-              />
-            </div>
-          </form>
-        </div> */}
-
-        <Contacto
-          dataProveedores={dataProveedores}
-          inputsOnChange={inputsOnChange}
-        />
+        {showSecction === 'contacto' ? (
+          <Contacto
+            dataProveedores={dataProveedores}
+            inputsOnChange={inputsOnChange}
+          />
+        ) : null}
 
         <div className={style.buttons}>
           {isEditing ? (
@@ -293,7 +160,7 @@ export default function AddProveedor({
           )}
         </div>
       </div>
-      <div className={style.blur}></div>
-    </>
+      {/* <div className={style.blur}></div> */}
+    </div>
   );
 }
