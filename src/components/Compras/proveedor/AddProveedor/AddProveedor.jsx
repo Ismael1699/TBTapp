@@ -5,6 +5,7 @@ import Slider from './Slider/Slider';
 import Proveedor from '@/components/Compras/proveedor/AddProveedor/Proveedor/Proveedor';
 import Bancarios from './Bancarios/Bancarios';
 import Contacto from './Contacto/Contacto';
+import Documentos from './Documentos/Documentos';
 
 async function sendProveedor(data, method) {
   const res = await fetch('/api/compras/proveedores', {
@@ -119,7 +120,13 @@ export default function AddProveedor({
           >
             Contacto
           </div>
-          <div>Documentos</div>
+          <div
+            id='documentos'
+            onClick={sectionHandle}
+            className={showSecction === 'documentos' ? style.selectSection : ''}
+          >
+            Documentos
+          </div>
         </div>
         {showSecction === 'proveedor' ? (
           <Proveedor
@@ -140,6 +147,13 @@ export default function AddProveedor({
 
         {showSecction === 'contacto' ? (
           <Contacto
+            dataProveedores={dataProveedores}
+            inputsOnChange={inputsOnChange}
+          />
+        ) : null}
+
+        {showSecction === 'documentos' ? (
+          <Documentos
             dataProveedores={dataProveedores}
             inputsOnChange={inputsOnChange}
           />
