@@ -117,7 +117,7 @@ export default function AddProveedor({
             onClick={sectionHandle}
             className={showSecction === 'contacto' ? style.selectSection : ''}
           >
-            contacto
+            Contacto
           </div>
           <div>Documentos</div>
         </div>
@@ -163,7 +163,6 @@ export default function AddProveedor({
           )}
         </div>
       </div>
-      {/* <div className={style.blur}></div> */}
     </div>
   );
 }

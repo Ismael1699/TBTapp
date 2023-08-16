@@ -25,7 +25,7 @@ export default function Contacto({ dataProveedores, inputsOnChange }) {
           >
             Dirección
           </label>
-          <input
+          <textarea
             type='text'
             id='direccion'
             value={dataProveedores.direccion}

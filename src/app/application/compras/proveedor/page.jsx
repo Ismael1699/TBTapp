@@ -42,6 +42,7 @@ export default function Proveedores() {
   //cancelar la ventan de agregar o editar proveeodores
   function cancelarOnClick() {
     setIsEditing(false);
+    setCardSelected({});
     return agregarOnClick();
   }
 

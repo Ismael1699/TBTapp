@@ -63,7 +63,7 @@
 }
 
 .container label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   margin-bottom: 0.4rem;
   margin-left: 0.5rem;
@@ -73,14 +73,29 @@
   border: none;
   background-color: rgba(78, 78, 78, 0.164);
   border-radius: 5px;
-  padding: 0.5rem;
+  padding: 1.1rem;
+  font-size: 14px;
+  color: var(--font-color);
 }
 .container select {
-  height: 1.5rem;
+  height: 2.1rem;
   border: none;
   background-color: rgba(78, 78, 78, 0.164);
   border-radius: 5px;
   padding-left: 0.5rem;
+  font-size: 14px;
+  color: var(--font-color);
+}
+
+.container textarea {
+  resize: vertical;
+  padding: 1rem;
+  height: auto;
+  background-color: rgba(78, 78, 78, 0.164);
+  color: var(--font-color);
+  border: none;
+  font-size: 14px;
+  border-radius: 5px;
 }
 
 /*Secction*/
@@ -236,5 +251,18 @@
     height: 80;
     left: 0;
     top: 0;
+  }
+
+  .container input {
+    font-size: 16px;
+  }
+  .container label {
+    font-size: 16px;
+  }
+  .container select {
+    font-size: 16px;
+  }
+  .container textarea {
+    font-size: 16px;
   }
 }
