@@ -6,6 +6,7 @@ import Proveedor from '@/components/Compras/proveedor/AddProveedor/Proveedor/Pro
 import Bancarios from './Bancarios/Bancarios';
 import Contacto from './Contacto/Contacto';
 import Documentos from './Documentos/Documentos';
+import axios from 'axios';
 
 async function sendProveedor(data, method) {
   const res = await fetch('/api/compras/proveedores', {
@@ -13,6 +14,17 @@ async function sendProveedor(data, method) {
     body: JSON.stringify(data),
   });
   return JSON.parse(await res.text());
+}
+
+async function sendFiles(file1, file2) {
+  let formData = new FormData();
+  formData.append('bancario', file1);
+  formData.append('constancia', file2);
+  const res = await axios.post('/api/compras/proveedores/documents', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 }
 
 const dataStruct = {
@@ -41,6 +53,8 @@ export default function AddProveedor({
   );
 
   const [showSecction, setShowSecction] = useState('proveedor');
+  const [fileConstacia, setFileConstancia] = useState('');
+  const [fileBancario, setFileBancario] = useState('');
 
   const whatUser =
     session.user.rol === 'DIRECTOR' ||
@@ -54,6 +68,21 @@ export default function AddProveedor({
     return setDataProveedores({ ...dataProveedores, [item]: value });
   }
 
+  function inputsFilesOnChange(e) {
+    const regex = /(.pdf)$/m;
+    const isPdf = regex.test(e.target.value);
+
+    if (isPdf) {
+      if (e.target.id === 'bancariofile') {
+        return setFileBancario({ bancario: e.target.files[0] });
+      }
+
+      return setFileConstancia({ constancia: e.target.files[0] });
+    }
+    return alert(
+      'El archivo: ' + e.target.files[0].name + ' no es un archivo pdf'
+    );
+  }
   function dataSliderOnChange(data) {
     setDataProveedores({ ...dataProveedores, factura: data });
   }
@@ -62,11 +91,15 @@ export default function AddProveedor({
     const arrayValuesDataProvedores = Object.values(dataProveedores);
     let allInfomationIs = false;
     arrayValuesDataProvedores.map((value) =>
-      value === '' ? (allInfomationIs = false) : (allInfomationIs = true)
+      value === '' || value === 0
+        ? (allInfomationIs = false)
+        : (allInfomationIs = true)
     );
-
-    if (allInfomationIs) {
+    let filesIsAll = false;
+    if (fileBancario && fileConstacia) filesIsAll = true;
+    if (allInfomationIs && filesIsAll) {
       if (isEditing) {
+        sendFiles(fileBancario.bancario, fileConstacia.constancia);
         return sendDataToDB(dataProveedores, 'PUT');
       }
       return sendDataToDB(dataProveedores, 'POST');
@@ -86,6 +119,8 @@ export default function AddProveedor({
     setShowSecction(e.target.id);
   }
 
+  console.log(fileBancario);
+  console.log(fileConstacia);
   return (
     <div className={style.global}>
       <div className={style.container}>
@@ -154,8 +189,11 @@ export default function AddProveedor({
 
         {showSecction === 'documentos' ? (
           <Documentos
-            dataProveedores={dataProveedores}
-            inputsOnChange={inputsOnChange}
+            inputsFilesOnChange={inputsFilesOnChange}
+            fileBancario={fileBancario}
+            setFileBancario={setFileBancario}
+            fileConstacia={fileConstacia}
+            setFileConstancia={setFileConstancia}
           />
         ) : null}
 

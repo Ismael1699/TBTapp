@@ -2,32 +2,13 @@
 import { useState } from 'react';
 import styleLocal from './documentos.module.css';
 
-export default function Documentos() {
-  const [fileConstacia, setFileConstancia] = useState();
-  const [fileBancario, setFileBancario] = useState();
-
-  function costanciahandle(e) {
-    const regex = /(.pdf)$/m;
-    const isPdf = regex.test(e.target.value);
-    if (isPdf) {
-      return setFileConstancia(e.target.files[0]);
-    }
-    return alert(
-      'El archivo: ' + e.target.files[0].name + ' no es un archivo pdf'
-    );
-  }
-
-  function bancarioHandle(e) {
-    const regex = /(.pdf)$/m;
-    const isPdf = regex.test(e.target.value);
-    if (isPdf) {
-      return setFileBancario(e.target.files[0]);
-    }
-    return alert(
-      'El archivo: ' + e.target.files[0].name + ' no es un archivo pdf'
-    );
-  }
-
+export default function Documentos({
+  inputsFilesOnChange,
+  fileBancario,
+  setFileBancario,
+  fileConstacia,
+  setFileConstancia,
+}) {
   function deleteFileConstacia() {
     setFileConstancia('');
   }
@@ -45,10 +26,12 @@ export default function Documentos() {
               className={styleLocal.deleteContainer}
               onClick={deleteFileConstacia}
             >
-              <i class='bi bi-x'></i>
+              <i className='bi bi-x'></i>
             </div>
             <i className='bi bi-filetype-pdf'></i>
-            <p className={styleLocal.nameFile}>{fileConstacia.name}</p>
+            <p className={styleLocal.nameFile}>
+              {fileConstacia.constancia.name}
+            </p>
           </>
         ) : (
           <>
@@ -68,7 +51,7 @@ export default function Documentos() {
           id='constancia'
           type='file'
           className={styleLocal.inputOcult}
-          onChange={costanciahandle}
+          onChange={inputsFilesOnChange}
         />
       </div>
       <div className={styleLocal.containerFile}>
@@ -78,10 +61,10 @@ export default function Documentos() {
               className={styleLocal.deleteContainer}
               onClick={deleteFileBancario}
             >
-              <i class='bi bi-x'></i>
+              <i className='bi bi-x'></i>
             </div>
             <i className='bi bi-filetype-pdf'></i>
-            <p className={styleLocal.nameFile}>{fileBancario.name}</p>
+            <p className={styleLocal.nameFile}>{fileBancario.bancario.name}</p>
           </>
         ) : (
           <>
@@ -101,7 +84,7 @@ export default function Documentos() {
           id='bancariofile'
           type='file'
           className={styleLocal.inputOcult}
-          onChange={bancarioHandle}
+          onChange={inputsFilesOnChange}
         />
       </div>
     </div>
