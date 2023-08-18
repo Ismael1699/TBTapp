@@ -27,6 +27,7 @@ async function sendFiles(file1, file2, nombreProveedor, frente) {
       'Content-Type': 'multipart/form-data',
     },
   });
+  return res;
 }
 
 const dataStruct = {
@@ -101,13 +102,9 @@ export default function AddProveedor({
     if (fileBancario && fileConstacia) filesIsAll = true;
     if (allInfomationIs && filesIsAll) {
       if (isEditing) {
-        sendFiles(
-          fileBancario.bancario,
-          fileConstacia.constancia,
-          dataProveedores.name,
-          dataProveedores.frente
-        );
-        return sendDataToDB(dataProveedores, 'PUT');
+        sendDataToDB(dataProveedores, 'PUT');
+
+        return sendFilesToServer();
       }
       return sendDataToDB(dataProveedores, 'POST');
     }
@@ -122,12 +119,23 @@ export default function AddProveedor({
     cancelarOnClick();
   }
 
+  async function sendFilesToServer() {
+    try {
+      const res = await sendFiles(
+        fileBancario.bancario,
+        fileConstacia.constancia,
+        dataProveedores.name,
+        dataProveedores.frente
+      );
+      alert(res.data.message);
+    } catch (error) {
+      alert(error.response.data);
+    }
+  }
+
   function sectionHandle(e) {
     setShowSecction(e.target.id);
   }
-
-  console.log(fileBancario);
-  console.log(fileConstacia);
   return (
     <div className={style.global}>
       <div className={style.container}>

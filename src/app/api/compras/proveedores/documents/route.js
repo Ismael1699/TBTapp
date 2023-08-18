@@ -16,11 +16,11 @@ export async function POST(request) {
   const name = body.get('name').split(' ').join('_');
 
   try {
-    uploadFileS3(
+    await uploadFileS3(
       bufferConstancia,
       `compras/proveedores/${frente}/${name}/constancia.pdf`
     );
-    uploadFileS3(
+    await uploadFileS3(
       bufferBancario,
       `compras/proveedores/${frente}/${name}/bancario.pdf`
     );
@@ -29,13 +29,10 @@ export async function POST(request) {
       message: 'se actualizado correctamente los archivos',
     });
   } catch (error) {
-    return new Response(
-      {
-        message:
-          'No se ha podido cargar al servidor el archivo, vuelve a intentarlo',
-      },
-      { status: 200 }
-    );
+    console.log(error);
+    return new Response('No se ha subido el archivo a la nube', {
+      status: 500,
+    });
   }
 }
 

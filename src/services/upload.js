@@ -20,17 +20,16 @@ const client = new S3Client({
 });
 
 export async function uploadFileS3(file, routeAndName) {
-  const params = {
-    Bucket: BUCKET_NAME,
-    Key: routeAndName,
-    Body: file,
-  };
-  const comand = new PutObjectCommand(params);
   try {
-    const response = client.send(comand);
-    return { message: 'el archivo se he subido al bucket correctamente' };
+    const params = {
+      Bucket: BUCKET_NAME,
+      Key: routeAndName,
+      Body: file,
+    };
+    const comand = new PutObjectCommand(params);
+    const response = await client.send(comand);
   } catch (error) {
-    return new Error(error);
+    throw 'Error en aws al subirlo';
   }
 }
 
