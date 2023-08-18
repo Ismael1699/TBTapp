@@ -15,16 +15,28 @@ export async function POST(request) {
   const frente = body.get('frente').toLowerCase();
   const name = body.get('name').split(' ').join('_');
 
-  uploadFileS3(
-    bufferConstancia,
-    `compras/proveedores/${frente}/${name}/constancia.pdf`
-  );
-  uploadFileS3(
-    bufferBancario,
-    `compras/proveedores/${frente}/${name}/bancario.pdf`
-  );
+  try {
+    uploadFileS3(
+      bufferConstancia,
+      `compras/proveedores/${frente}/${name}/constancia.pdf`
+    );
+    uploadFileS3(
+      bufferBancario,
+      `compras/proveedores/${frente}/${name}/bancario.pdf`
+    );
 
-  return NextResponse.json({ message: 'se actualizado correctamente' });
+    return NextResponse.json({
+      message: 'se actualizado correctamente los archivos',
+    });
+  } catch (error) {
+    return new Response(
+      {
+        message:
+          'No se ha podido cargar al servidor el archivo, vuelve a intentarlo',
+      },
+      { status: 200 }
+    );
+  }
 }
 
 export async function GET() {

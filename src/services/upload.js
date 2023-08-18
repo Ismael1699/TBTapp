@@ -26,7 +26,12 @@ export async function uploadFileS3(file, routeAndName) {
     Body: file,
   };
   const comand = new PutObjectCommand(params);
-  return client.send(comand);
+  try {
+    const response = client.send(comand);
+    return { message: 'el archivo se he subido al bucket correctamente' };
+  } catch (error) {
+    return new Error(error);
+  }
 }
 
 export async function downloadFileS3() {
