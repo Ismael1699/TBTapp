@@ -19,10 +19,10 @@ const client = new S3Client({
   },
 });
 
-export async function uploadFileS3(file) {
+export async function uploadFileS3(file, routeAndName) {
   const params = {
     Bucket: BUCKET_NAME,
-    Key: 'preuba.pdf',
+    Key: routeAndName,
     Body: file,
   };
   const comand = new PutObjectCommand(params);
@@ -44,7 +44,7 @@ export async function downloadFileS3() {
 export async function deleteFileS3() {
   const command = new DeleteObjectCommand({
     Bucket: BUCKET_NAME,
-    Key: 'preuba.pdf',
+    Key: 'nueva/',
   });
   const response = await client.send(command);
   return response;

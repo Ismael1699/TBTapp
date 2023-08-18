@@ -16,10 +16,12 @@ async function sendProveedor(data, method) {
   return JSON.parse(await res.text());
 }
 
-async function sendFiles(file1, file2) {
+async function sendFiles(file1, file2, nombreProveedor, frente) {
   let formData = new FormData();
   formData.append('bancario', file1);
   formData.append('constancia', file2);
+  formData.append('name', nombreProveedor);
+  formData.append('frente', frente);
   const res = await axios.post('/api/compras/proveedores/documents', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -99,7 +101,12 @@ export default function AddProveedor({
     if (fileBancario && fileConstacia) filesIsAll = true;
     if (allInfomationIs && filesIsAll) {
       if (isEditing) {
-        sendFiles(fileBancario.bancario, fileConstacia.constancia);
+        sendFiles(
+          fileBancario.bancario,
+          fileConstacia.constancia,
+          dataProveedores.name,
+          dataProveedores.frente
+        );
         return sendDataToDB(dataProveedores, 'PUT');
       }
       return sendDataToDB(dataProveedores, 'POST');

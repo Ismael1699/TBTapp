@@ -4,11 +4,26 @@ const fs = require('fs/promises');
 
 export async function POST(request) {
   let body = await request.formData();
-  const bancario = body.get('bancario');
-  const bytes = await bancario.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-  uploadFileS3(buffer);
-  console.log(buffer);
+  const bancarioFile = body.get('bancario');
+  const bytesBancario = await bancarioFile.arrayBuffer();
+  const bufferBancario = Buffer.from(bytesBancario);
+
+  const constanciaFile = body.get('constancia');
+  const bytesConstancia = await constanciaFile.arrayBuffer();
+  const bufferConstancia = Buffer.from(bytesConstancia);
+
+  const frente = body.get('frente').toLowerCase();
+  const name = body.get('name').split(' ').join('_');
+
+  uploadFileS3(
+    bufferConstancia,
+    `compras/proveedores/${frente}/${name}/constancia.pdf`
+  );
+  uploadFileS3(
+    bufferBancario,
+    `compras/proveedores/${frente}/${name}/bancario.pdf`
+  );
+
   return NextResponse.json({ message: 'se actualizado correctamente' });
 }
 
