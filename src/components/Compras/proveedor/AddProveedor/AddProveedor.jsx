@@ -15,11 +15,11 @@ async function sendProveedor(data, method) {
   return JSON.parse(await res.text());
 }
 
-async function sendFiles(file1, file2, nombreProveedor, frente, id) {
+async function sendFiles(file, nombreProveedor, frente, id, nameFile) {
   let formData = new FormData();
-  formData.append('bancario', file1);
-  formData.append('constancia', file2);
-  formData.append('name', nombreProveedor);
+  formData.append('file', file);
+  formData.append('nameFile', nameFile);
+  formData.append('proveedor', nombreProveedor);
   formData.append('frente', frente);
   formData.append('id', id);
   const res = await axios.post('/api/compras/proveedores/documents', formData, {
@@ -118,14 +118,22 @@ export default function AddProveedor({
 
   async function sendFilesToServer() {
     try {
-      const res = await sendFiles(
+      const bancario = await sendFiles(
         fileBancario.bancario,
-        fileConstacia.constancia,
         dataProveedores.name,
         dataProveedores.frente,
-        dataProveedores.id
+        dataProveedores.id,
+        'bancario'
       );
-      alert(res.data.message);
+
+      const constancia = await sendFiles(
+        fileBancario.constancia,
+        dataProveedores.name,
+        dataProveedores.frente,
+        dataProveedores.id,
+        'constancia'
+      );
+      alert(bancario.data.message);
     } catch (error) {
       alert(error.response.data);
     }

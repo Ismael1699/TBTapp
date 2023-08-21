@@ -6,9 +6,9 @@ export async function PUT(req) {
   console.log(body);
 
   await pool.query(
-    'UPDATE proveedores SET constanciaKey = ?, bancarioKey = ? WHERE id = ?',
-    [body.constanciaKey, body.bancarioKey, body.id]
+    `UPDATE proveedores SET ${body.nameFile}Key = ? WHERE id = ?`,
+    [body.key, body.id]
   );
 
-  return NextResponse.json({ message: 'hola mundo' });
+  return NextResponse.json({ message: 'Se ha guardado la key correctamente' });
 }

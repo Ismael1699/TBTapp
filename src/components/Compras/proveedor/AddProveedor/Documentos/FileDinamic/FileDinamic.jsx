@@ -26,10 +26,7 @@ export default function FileDinamic({
           <div className={styleLocal.deleteContainer}>
             <i className='bi bi-x'></i>
           </div>
-          <i
-            className='bi bi-filetype-pdf'
-            onClick={getFileToServer}
-          ></i>
+          <i className='bi bi-filetype-pdf'></i>
           <p className={styleLocal.nameFile}>{getName}</p>
         </>
       );
