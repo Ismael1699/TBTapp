@@ -1,25 +1,33 @@
 'use client';
 import { useState } from 'react';
 import styleLocal from './documentos.module.css';
+import FileDinamic from './FileDinamic/FileDinamic';
 
 export default function Documentos({
-  inputsFilesOnChange,
   fileBancario,
   setFileBancario,
   fileConstacia,
   setFileConstancia,
+  dataProveedores,
 }) {
-  function deleteFileConstacia() {
-    setFileConstancia('');
-  }
+  function inputsFilesOnChange(e) {
+    const regex = /(.pdf)$/m;
+    const isPdf = regex.test(e.target.value);
 
-  function deleteFileBancario() {
-    setFileBancario('');
-  }
+    if (isPdf) {
+      if (e.target.id === 'bancariofile') {
+        return setFileBancario({ bancario: e.target.files[0] });
+      }
 
+      return setFileConstancia({ constancia: e.target.files[0] });
+    }
+    return alert(
+      'El archivo: ' + e.target.files[0].name + ' no es un archivo pdf'
+    );
+  }
   return (
     <div className={styleLocal.documentos}>
-      <div className={styleLocal.containerFile}>
+      {/* <div className={styleLocal.containerFile}>
         {fileConstacia ? (
           <>
             <div
@@ -53,8 +61,24 @@ export default function Documentos({
           className={styleLocal.inputOcult}
           onChange={inputsFilesOnChange}
         />
-      </div>
-      <div className={styleLocal.containerFile}>
+      </div> */}
+      <FileDinamic
+        name='constancia'
+        file={fileConstacia}
+        setFile={setFileConstancia}
+        dataProveedores={dataProveedores}
+        inputsFilesOnChange={inputsFilesOnChange}
+      />
+
+      <FileDinamic
+        name='bancariofile'
+        file={fileBancario}
+        setFile={setFileBancario}
+        dataProveedores={dataProveedores}
+        inputsFilesOnChange={inputsFilesOnChange}
+      />
+
+      {/* <div className={styleLocal.containerFile}>
         {fileBancario ? (
           <>
             <div
@@ -86,7 +110,7 @@ export default function Documentos({
           className={styleLocal.inputOcult}
           onChange={inputsFilesOnChange}
         />
-      </div>
+      </div> */}
     </div>
   );
 }

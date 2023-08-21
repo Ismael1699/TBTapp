@@ -73,21 +73,6 @@ export default function AddProveedor({
     return setDataProveedores({ ...dataProveedores, [item]: value });
   }
 
-  function inputsFilesOnChange(e) {
-    const regex = /(.pdf)$/m;
-    const isPdf = regex.test(e.target.value);
-
-    if (isPdf) {
-      if (e.target.id === 'bancariofile') {
-        return setFileBancario({ bancario: e.target.files[0] });
-      }
-
-      return setFileConstancia({ constancia: e.target.files[0] });
-    }
-    return alert(
-      'El archivo: ' + e.target.files[0].name + ' no es un archivo pdf'
-    );
-  }
   function dataSliderOnChange(data) {
     setDataProveedores({ ...dataProveedores, factura: data });
   }
@@ -149,8 +134,8 @@ export default function AddProveedor({
   function sectionHandle(e) {
     setShowSecction(e.target.id);
   }
-
-  console.log(dataProveedores);
+  console.log(fileConstacia);
+  console.log(fileBancario);
 
   return (
     <div className={style.global}>
@@ -220,11 +205,11 @@ export default function AddProveedor({
 
         {showSecction === 'documentos' ? (
           <Documentos
-            inputsFilesOnChange={inputsFilesOnChange}
             fileBancario={fileBancario}
             setFileBancario={setFileBancario}
             fileConstacia={fileConstacia}
             setFileConstancia={setFileConstancia}
+            dataProveedores={dataProveedores}
           />
         ) : null}
 
