@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import { uploadFileS3, downloadFileS3, deleteFileS3 } from '@/services/upload';
+import axios from 'axios';
+import { stringify } from 'querystring';
 const fs = require('fs/promises');
 
 export async function POST(request) {
@@ -14,17 +16,31 @@ export async function POST(request) {
 
   const frente = body.get('frente').toLowerCase();
   const name = body.get('name').split(' ').join('_');
+  const id = body.get('id');
 
   try {
-    await uploadFileS3(
-      bufferConstancia,
-      `compras/proveedores/${frente}/${name}/constancia.pdf`
-    );
-    await uploadFileS3(
-      bufferBancario,
-      `compras/proveedores/${frente}/${name}/bancario.pdf`
-    );
+    const constanciaKey = `compras/proveedores/${frente}/${name}/constancia.pdf`;
+    const bancarioKey = `compras/proveedores/${frente}/${name}/bancario.pdf`;
 
+    const resConstancia = await uploadFileS3(bufferConstancia, constanciaKey);
+
+    const resBancario = await uploadFileS3(bufferBancario, bancarioKey);
+    if (
+      resConstancia.$metadata.httpStatusCode === 200 &&
+      resBancario.$metadata.httpStatusCode === 200
+    ) {
+      await axios.put(
+        process.env.NEXT_PUBLIC_URL_HOST +
+          '/api/compras/proveedores/documents/statusDocumentsDB',
+        {
+          frente: frente,
+          name: name,
+          constanciaKey: constanciaKey,
+          bancarioKey: bancarioKey,
+          id: id,
+        }
+      );
+    }
     return NextResponse.json({
       message: 'se actualizado correctamente los archivos',
     });

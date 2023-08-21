@@ -51,6 +51,8 @@ export async function POST(req) {
     correo: res.correo,
     frente: res.frente,
     factura: res.factura,
+    constanciaKey: 'false',
+    bancarioKey: 'false',
   });
   return NextResponse.json({
     message: `Se ha guardado el proveedor "${res.name}" correctamente`,

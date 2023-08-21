@@ -1,7 +1,6 @@
 'use client';
 import style from './addproveedor.module.css';
 import { useState } from 'react';
-import Slider from './Slider/Slider';
 import Proveedor from '@/components/Compras/proveedor/AddProveedor/Proveedor/Proveedor';
 import Bancarios from './Bancarios/Bancarios';
 import Contacto from './Contacto/Contacto';
@@ -16,12 +15,13 @@ async function sendProveedor(data, method) {
   return JSON.parse(await res.text());
 }
 
-async function sendFiles(file1, file2, nombreProveedor, frente) {
+async function sendFiles(file1, file2, nombreProveedor, frente, id) {
   let formData = new FormData();
   formData.append('bancario', file1);
   formData.append('constancia', file2);
   formData.append('name', nombreProveedor);
   formData.append('frente', frente);
+  formData.append('id', id);
   const res = await axios.post('/api/compras/proveedores/documents', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -42,6 +42,8 @@ const dataStruct = {
   frente: '',
   contacto: '',
   factura: 0,
+  constanciaKey: 'false',
+  bancarioKey: 'false',
 };
 
 export default function AddProveedor({
@@ -98,17 +100,27 @@ export default function AddProveedor({
         ? (allInfomationIs = false)
         : (allInfomationIs = true)
     );
-    let filesIsAll = false;
-    if (fileBancario && fileConstacia) filesIsAll = true;
+
+    const filesIsAll = fileBancario && fileConstacia;
+    const withOutFiles = !fileBancario && !fileConstacia;
+
     if (allInfomationIs && filesIsAll) {
       if (isEditing) {
         sendDataToDB(dataProveedores, 'PUT');
-
         return sendFilesToServer();
       }
-      return sendDataToDB(dataProveedores, 'POST');
+      sendDataToDB(dataProveedores, 'POST');
+      return sendFilesToServer();
     }
-    return alert('Por favor termina de completar los datos para ser enviados');
+
+    if (allInfomationIs && withOutFiles) {
+      return isEditing
+        ? sendDataToDB(dataProveedores, 'PUT')
+        : sendDataToDB(dataProveedores, 'POST');
+    }
+    return alert(
+      'Por favor termina de completar los datos o de seleccionar los archivos para ser enviados'
+    );
   }
 
   async function sendDataToDB(data, method) {
@@ -125,7 +137,8 @@ export default function AddProveedor({
         fileBancario.bancario,
         fileConstacia.constancia,
         dataProveedores.name,
-        dataProveedores.frente
+        dataProveedores.frente,
+        dataProveedores.id
       );
       alert(res.data.message);
     } catch (error) {
@@ -136,6 +149,9 @@ export default function AddProveedor({
   function sectionHandle(e) {
     setShowSecction(e.target.id);
   }
+
+  console.log(dataProveedores);
+
   return (
     <div className={style.global}>
       <div className={style.container}>

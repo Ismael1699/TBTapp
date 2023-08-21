@@ -28,6 +28,7 @@ export async function uploadFileS3(file, routeAndName) {
     };
     const comand = new PutObjectCommand(params);
     const response = await client.send(comand);
+    return response;
   } catch (error) {
     throw 'Error en aws al subirlo';
   }
