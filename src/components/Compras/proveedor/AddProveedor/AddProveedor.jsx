@@ -134,9 +134,6 @@ export default function AddProveedor({
   function sectionHandle(e) {
     setShowSecction(e.target.id);
   }
-  console.log(fileConstacia);
-  console.log(fileBancario);
-
   return (
     <div className={style.global}>
       <div className={style.container}>

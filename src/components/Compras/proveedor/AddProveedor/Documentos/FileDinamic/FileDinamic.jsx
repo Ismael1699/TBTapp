@@ -5,15 +5,37 @@ export default function FileDinamic({
   file,
   setFile,
   inputsFilesOnChange,
+  dataProveedores,
 }) {
   function clear() {
     setFile('');
     document.getElementById(name).value = '';
   }
 
-  return (
-    <div className={styleLocal.containerFile}>
-      {file ? (
+  function dinamicRender() {
+    const key =
+      name === 'constancia'
+        ? dataProveedores.constanciaKey
+        : dataProveedores.bancarioKey;
+
+    if (key !== 'false') {
+      const arrayKey = key.split('/');
+      const getName = arrayKey[arrayKey.length - 1];
+      return (
+        <>
+          <div className={styleLocal.deleteContainer}>
+            <i className='bi bi-x'></i>
+          </div>
+          <i
+            className='bi bi-filetype-pdf'
+            onClick={getFileToServer}
+          ></i>
+          <p className={styleLocal.nameFile}>{getName}</p>
+        </>
+      );
+    }
+    if (file) {
+      return (
         <>
           <div
             className={styleLocal.deleteContainer}
@@ -26,7 +48,9 @@ export default function FileDinamic({
             {name === 'constancia' ? file.constancia.name : file.bancario.name}
           </p>
         </>
-      ) : (
+      );
+    } else {
+      return (
         <>
           <label
             htmlFor={name}
@@ -38,14 +62,16 @@ export default function FileDinamic({
             ></i>
             Subir {name === 'constancia' ? 'constancia' : 'datos bancarios'}
           </label>
+          <input
+            id={name}
+            type='file'
+            className={styleLocal.inputOcult}
+            onChange={inputsFilesOnChange}
+          />
         </>
-      )}
-      <input
-        id={name}
-        type='file'
-        className={styleLocal.inputOcult}
-        onChange={inputsFilesOnChange}
-      />
-    </div>
-  );
+      );
+    }
+  }
+
+  return <div className={styleLocal.containerFile}>{dinamicRender()}</div>;
 }
