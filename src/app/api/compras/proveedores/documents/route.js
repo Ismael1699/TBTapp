@@ -41,11 +41,12 @@ export async function POST(request) {
   }
 }
 
-export async function GET() {
-  const data = await downloadFileS3();
-  fs.writeFile('./message.pdf', data);
-
-  return NextResponse.json({ message: 'se actualizado correctamente' });
+export async function GET(req) {
+  const { searchParams } = new URL(req.url);
+  const key = searchParams.get('key');
+  const file = await downloadFileS3(key);
+  const fileArr = Array.from(file);
+  return NextResponse.json({ arrBits: fileArr });
 }
 
 export async function DELETE() {

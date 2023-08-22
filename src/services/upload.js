@@ -34,10 +34,10 @@ export async function uploadFileS3(file, routeAndName) {
   }
 }
 
-export async function downloadFileS3() {
+export async function downloadFileS3(key) {
   const command = new GetObjectCommand({
     Bucket: BUCKET_NAME,
-    Key: 'preuba.pdf',
+    Key: key,
   });
 
   const response = await client.send(command);

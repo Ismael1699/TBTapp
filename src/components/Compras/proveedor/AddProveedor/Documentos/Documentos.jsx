@@ -8,6 +8,7 @@ export default function Documentos({
   fileConstacia,
   setFileConstancia,
   dataProveedores,
+  setDataProveedores,
 }) {
   function inputsFilesOnChange(e) {
     const regex = /(.pdf)$/m;
@@ -32,6 +33,7 @@ export default function Documentos({
         setFile={setFileConstancia}
         dataProveedores={dataProveedores}
         inputsFilesOnChange={inputsFilesOnChange}
+        setDataProveedores={setDataProveedores}
       />
 
       <FileDinamic
@@ -40,6 +42,7 @@ export default function Documentos({
         setFile={setFileBancario}
         dataProveedores={dataProveedores}
         inputsFilesOnChange={inputsFilesOnChange}
+        setDataProveedores={setDataProveedores}
       />
     </div>
   );

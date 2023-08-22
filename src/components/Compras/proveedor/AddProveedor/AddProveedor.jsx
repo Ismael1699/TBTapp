@@ -88,14 +88,44 @@ export default function AddProveedor({
 
     const filesIsAll = fileBancario && fileConstacia;
     const withOutFiles = !fileBancario && !fileConstacia;
+    const sendToFileBancario =
+      dataProveedores.constanciaKey !== 'false' &&
+      dataProveedores.bancarioKey === 'false' &&
+      !fileConstacia &&
+      fileBancario;
+    const sendToFileConstancia =
+      dataProveedores.constanciaKey === 'false' &&
+      dataProveedores.bancarioKey !== 'false' &&
+      fileConstacia &&
+      !fileBancario;
 
     if (allInfomationIs && filesIsAll) {
       if (isEditing) {
         sendDataToDB(dataProveedores, 'PUT');
-        return sendFilesToServer();
+        uploadFileBancario();
+        return uploadFileConstancia();
       }
       sendDataToDB(dataProveedores, 'POST');
-      return sendFilesToServer();
+      uploadFileBancario;
+      return uploadFileConstancia();
+    }
+
+    if (allInfomationIs && sendToFileBancario) {
+      if (isEditing) {
+        sendDataToDB(dataProveedores, 'PUT');
+        return uploadFileBancario();
+      }
+      sendDataToDB(dataProveedores, 'POST');
+      return uploadFileBancario();
+    }
+
+    if (allInfomationIs && sendToFileConstancia) {
+      if (isEditing) {
+        sendDataToDB(dataProveedores, 'PUT');
+        return uploadFileConstancia();
+      }
+      sendDataToDB(dataProveedores, 'POST');
+      return uploadFileConstancia;
     }
 
     if (allInfomationIs && withOutFiles) {
@@ -116,24 +146,31 @@ export default function AddProveedor({
     cancelarOnClick();
   }
 
-  async function sendFilesToServer() {
+  async function uploadFileConstancia() {
     try {
-      const bancario = await sendFiles(
-        fileBancario.bancario,
-        dataProveedores.name,
-        dataProveedores.frente,
-        dataProveedores.id,
-        'bancario'
-      );
-
-      const constancia = await sendFiles(
+      const response = await sendFiles(
         fileBancario.constancia,
         dataProveedores.name,
         dataProveedores.frente,
         dataProveedores.id,
         'constancia'
       );
-      alert(bancario.data.message);
+      alert(response.data.message);
+    } catch (error) {
+      alert(error.response.data);
+    }
+  }
+
+  async function uploadFileBancario() {
+    try {
+      const response = await sendFiles(
+        fileBancario.bancario,
+        dataProveedores.name,
+        dataProveedores.frente,
+        dataProveedores.id,
+        'bancario'
+      );
+      alert(response.data.message);
     } catch (error) {
       alert(error.response.data);
     }
@@ -215,6 +252,7 @@ export default function AddProveedor({
             fileConstacia={fileConstacia}
             setFileConstancia={setFileConstancia}
             dataProveedores={dataProveedores}
+            setDataProveedores={setDataProveedores}
           />
         ) : null}
 

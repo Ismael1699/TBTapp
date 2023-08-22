@@ -1,4 +1,11 @@
+import axios from 'axios';
 import styleLocal from '../documentos.module.css';
+import createDownload from '@/utils/createDownload';
+
+async function getFileToServer(key) {
+  const res = await axios(`/api/compras/proveedores/documents?key=${key}`);
+  return res.data;
+}
 
 export default function FileDinamic({
   name,
@@ -6,10 +13,22 @@ export default function FileDinamic({
   setFile,
   inputsFilesOnChange,
   dataProveedores,
+  setDataProveedores,
 }) {
   function clear() {
     setFile('');
     document.getElementById(name).value = '';
+  }
+
+  function deleteFromCache() {}
+
+  async function downloadFile() {
+    const file = await getFileToServer(
+      name === 'constancia'
+        ? dataProveedores.constanciaKey
+        : dataProveedores.bancarioKey
+    );
+    createDownload(file.arrBits, `${name}.pdf`);
   }
 
   function dinamicRender() {
@@ -26,7 +45,10 @@ export default function FileDinamic({
           <div className={styleLocal.deleteContainer}>
             <i className='bi bi-x'></i>
           </div>
-          <i className='bi bi-filetype-pdf'></i>
+          <i
+            className='bi bi-filetype-pdf'
+            onClick={downloadFile}
+          ></i>
           <p className={styleLocal.nameFile}>{getName}</p>
         </>
       );
