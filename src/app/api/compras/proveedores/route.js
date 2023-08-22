@@ -51,8 +51,8 @@ export async function POST(req) {
     correo: res.correo,
     frente: res.frente,
     factura: res.factura,
-    constanciaKey: 'false',
-    bancarioKey: 'false',
+    constanciaKey: res.constanciaKeyKey,
+    bancarioKey: res.bancarioKey,
   });
   return NextResponse.json({
     message: `Se ha guardado el proveedor "${res.name}" correctamente`,
@@ -63,7 +63,7 @@ export async function PUT(req) {
   const body = await req.json();
 
   await pool.query(
-    'UPDATE proveedores SET name= ?, direccion = ?, rfc = ?, banco= ?, cuenta = ?, clabe = ?, contacto = ?, telefono = ?, correo = ?, frente = ?, factura = ? WHERE id = ? ',
+    'UPDATE proveedores SET name= ?, direccion = ?, rfc = ?, banco= ?, cuenta = ?, clabe = ?, contacto = ?, telefono = ?, correo = ?, frente = ?, factura = ?, constanciaKey = ?, bancarioKey = ? WHERE id = ? ',
     [
       body.name,
       body.direccion,
@@ -76,6 +76,8 @@ export async function PUT(req) {
       body.correo,
       body.frente,
       body.factura,
+      body.constanciaKey,
+      body.bancarioKey,
       body.id,
     ]
   );

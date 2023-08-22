@@ -91,7 +91,17 @@ export default function Proveedores() {
     }
   }
 
-  console.log(proveedoresArray);
+  function updateCache(data) {
+    const proveedoresArrayCopy = structuredClone(proveedoresArray);
+
+    let indice = proveedoresArrayCopy.findIndex(
+      (objeto) => objeto.id === data.id
+    );
+
+    if (indice !== -1) {
+      mutate(proveedoresArrayCopy.splice(indice, 1, data));
+    }
+  }
 
   return (
     <div className={style.container}>
@@ -121,6 +131,7 @@ export default function Proveedores() {
             setCardSelected={setCardSelected}
             cancelarOnClick={cancelarOnClick}
             session={session}
+            updateCache={updateCache}
           />
         ) : (
           <></>

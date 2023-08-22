@@ -6,6 +6,7 @@ import Bancarios from './Bancarios/Bancarios';
 import Contacto from './Contacto/Contacto';
 import Documentos from './Documentos/Documentos';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 async function sendProveedor(data, method) {
   const res = await fetch('/api/compras/proveedores', {
@@ -59,15 +60,15 @@ export default function AddProveedor({
   setCardSelected,
   cancelarOnClick,
   session,
+  updateCache,
 }) {
   const [dataProveedores, setDataProveedores] = useState(
     Object.entries(cardSelected).length === 0 ? dataStruct : cardSelected
   );
-
   const [showSecction, setShowSecction] = useState('proveedor');
   const [fileConstacia, setFileConstancia] = useState('');
   const [fileBancario, setFileBancario] = useState('');
-
+  const router = useRouter();
   const whatUser =
     session.user.rol === 'DIRECTOR' ||
     session.user.rol === 'SUPER-INTENDENTE' ||
@@ -84,7 +85,7 @@ export default function AddProveedor({
     setDataProveedores({ ...dataProveedores, factura: data });
   }
 
-  function checkCompleteInformation() {
+  async function checkCompleteInformation() {
     const arrayValuesDataProvedores = Object.values(dataProveedores);
     let allInfomationIs = false;
     arrayValuesDataProvedores.map((value) =>
@@ -108,31 +109,37 @@ export default function AddProveedor({
 
     if (allInfomationIs && filesIsAll) {
       if (isEditing) {
-        sendDataToDB(dataProveedores, 'PUT');
-        uploadFileBancario();
-        return uploadFileConstancia();
+        await sendDataToDB(dataProveedores, 'PUT');
+        await uploadFileBancario();
+        await uploadFileConstancia();
+        return refresh();
       }
-      sendDataToDB(dataProveedores, 'POST');
-      uploadFileBancario;
-      return uploadFileConstancia();
+      await sendDataToDB(dataProveedores, 'POST');
+      await uploadFileBancario();
+      await uploadFileConstancia();
+      return refresh();
     }
 
     if (allInfomationIs && sendToFileBancario) {
       if (isEditing) {
-        sendDataToDB(dataProveedores, 'PUT');
-        return uploadFileBancario();
+        await sendDataToDB(dataProveedores, 'PUT');
+        await uploadFileBancario();
+        return refresh();
       }
-      sendDataToDB(dataProveedores, 'POST');
-      return uploadFileBancario();
+      await sendDataToDB(dataProveedores, 'POST');
+      await uploadFileBancario();
+      return refresh();
     }
 
     if (allInfomationIs && sendToFileConstancia) {
       if (isEditing) {
-        sendDataToDB(dataProveedores, 'PUT');
-        return uploadFileConstancia();
+        await sendDataToDB(dataProveedores, 'PUT');
+        await uploadFileConstancia();
+        return refresh();
       }
-      sendDataToDB(dataProveedores, 'POST');
-      return uploadFileConstancia;
+      await sendDataToDB(dataProveedores, 'POST');
+      await uploadFileConstancia();
+      return refresh();
     }
 
     if (allInfomationIs && withOutFiles) {
@@ -162,6 +169,8 @@ export default function AddProveedor({
   }
 
   async function sendDataToDB(data, method) {
+    updateCache(data);
+
     const response = await sendProveedor(data, method);
 
     alert(response.message);
@@ -172,7 +181,7 @@ export default function AddProveedor({
   async function uploadFileConstancia() {
     try {
       const response = await sendFiles(
-        fileBancario.constancia,
+        fileConstacia.constancia,
         dataProveedores.name,
         dataProveedores.frente,
         dataProveedores.id,
@@ -202,6 +211,11 @@ export default function AddProveedor({
   function sectionHandle(e) {
     setShowSecction(e.target.id);
   }
+
+  function refresh() {
+    return router.push('/application/compras/proveedor');
+  }
+
   return (
     <div className={style.global}>
       <div className={style.container}>
