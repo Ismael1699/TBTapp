@@ -22,6 +22,13 @@ async function deleteProveedorBackend(id) {
   return JSON.parse(await response.text());
 }
 
+async function deleteFiles(key) {
+  const res = await axios.delete(
+    `/api/compras/proveedores/documents?key=${key}`
+  );
+  return res.data;
+}
+
 //Componente Provedores
 export default function Proveedores() {
   const [agregarWasClicked, setAgregarWasClicked] = useState(false);
@@ -62,17 +69,29 @@ export default function Proveedores() {
 
   // Control para eleminar del fronted y del backend la card selecionada
   async function deleteCard(e) {
-    const id = e.target.parentElement.value;
+    const id = parseInt(e.target.parentElement.value);
+
+    let dataProveedorElim = '';
+    const newprovedores = proveedoresArray.filter((obj) => {
+      obj.id === id ? (dataProveedorElim = obj) : null;
+      return obj.id !== id;
+    });
 
     const elim = confirm('Deseas eleiminarlo');
-    const newprovedores = proveedoresArray.filter((obj) => obj.id !== id);
-
     if (elim) {
+      const preKey = `compras/proveedores/${dataProveedorElim.frente.toLowerCase()}/${dataProveedorElim.name
+        .split(' ')
+        .join('_')}/`;
+
+      deleteFiles(preKey + 'bancario.pdf');
+      deleteFiles(preKey + 'constancia.pdf');
       const res = await deleteProveedorBackend(id);
       mutate([newprovedores]);
       alert(res.message);
     }
   }
+
+  console.log(proveedoresArray);
 
   return (
     <div className={style.container}>
