@@ -20,7 +20,13 @@ export default function FileDinamic({
     document.getElementById(name).value = '';
   }
 
-  function deleteFromCache() {}
+  function deleteFromCache() {
+    setDataProveedores(
+      name === 'constancia'
+        ? { ...dataProveedores, constanciaKey: 'false' }
+        : { ...dataProveedores, bancarioKey: 'false' }
+    );
+  }
 
   async function downloadFile() {
     const file = await getFileToServer(
@@ -43,7 +49,10 @@ export default function FileDinamic({
       return (
         <>
           <div className={styleLocal.deleteContainer}>
-            <i className='bi bi-x'></i>
+            <i
+              className='bi bi-x'
+              onClick={deleteFromCache}
+            ></i>
           </div>
           <i
             className='bi bi-filetype-pdf'

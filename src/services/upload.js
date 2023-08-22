@@ -46,10 +46,10 @@ export async function downloadFileS3(key) {
   return str;
 }
 
-export async function deleteFileS3() {
+export async function deleteFileS3(key) {
   const command = new DeleteObjectCommand({
     Bucket: BUCKET_NAME,
-    Key: 'nueva/',
+    Key: key,
   });
   const response = await client.send(command);
   return response;

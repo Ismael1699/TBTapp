@@ -49,7 +49,11 @@ export async function GET(req) {
   return NextResponse.json({ arrBits: fileArr });
 }
 
-export async function DELETE() {
-  const res = await deleteFileS3();
+export async function DELETE(req) {
+  const { searchParams } = new URL(req.url);
+  const key = searchParams.get('key');
+  console.log(key);
+  const res = await deleteFileS3(key);
+  console.log(res);
   return NextResponse.json({ message: 'elemento elimindado' });
 }

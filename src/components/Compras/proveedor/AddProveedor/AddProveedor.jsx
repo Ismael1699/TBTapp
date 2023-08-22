@@ -30,6 +30,13 @@ async function sendFiles(file, nombreProveedor, frente, id, nameFile) {
   return res;
 }
 
+async function deleteFiles(key) {
+  const res = await axios.delete(
+    `/api/compras/proveedores/documents?key=${key}`
+  );
+  return res.data;
+}
+
 const dataStruct = {
   name: '',
   rfc: '',
@@ -129,6 +136,22 @@ export default function AddProveedor({
     }
 
     if (allInfomationIs && withOutFiles) {
+      if (
+        dataProveedores.bancarioKey === 'false' &&
+        dataProveedores.constanciaKey === 'false'
+      ) {
+        deleteFiles(
+          `compras/proveedores/${dataProveedores.frente.toLowerCase()}/${dataProveedores.name
+            .split(' ')
+            .join('_')}/bancario.pdf`
+        );
+        deleteFiles(
+          `compras/proveedores/${dataProveedores.frente.toLowerCase()}/${dataProveedores.name
+            .split(' ')
+            .join('_')}/constancia.pdf`
+        );
+      }
+
       return isEditing
         ? sendDataToDB(dataProveedores, 'PUT')
         : sendDataToDB(dataProveedores, 'POST');
