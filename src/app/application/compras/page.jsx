@@ -3,10 +3,19 @@ import style from './layout.module.css';
 import GenerateCards from '@/components/Compras/GenerateCards/GenerateCards';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import axios from 'axios';
+
+async function getCompras(rol) {
+  const res = await axios(
+    process.env.NEXT_PUBLIC_URL_HOST + `/api/compras?rol=${rol}`
+  );
+  return res.data.data;
+}
 
 export default async function Compras() {
   const session = await getServerSession(authOptions);
-  console.log(session);
+  const compras = await getCompras(session.user.rol);
+
   return (
     <div className={style.container}>
       <div className={style.header}>
@@ -31,7 +40,7 @@ export default async function Compras() {
         </div>
       </div>
       <div className={style.containerCards}>
-        <GenerateCards />
+        <GenerateCards compras={compras} />
       </div>
     </div>
   );

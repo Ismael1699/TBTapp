@@ -1,27 +1,16 @@
 'use client';
-import axios from 'axios';
+
 import style from './generateCards.module.css';
-import { useSession } from 'next-auth/react';
+
 import Card from '../Card/Card';
-import useSWR from 'swr';
+
 import SerachBar from '../SearchBar/SerchBar';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import searchMatch from '@/utils/searchMatch';
 
-async function getProveedores(url) {
-  const res = await axios(url);
-  return res.data.data;
-}
-
-export default function GenerateCards() {
+export default function GenerateCards({ compras }) {
   const [arrayDataFilter, setArrayDataFilter] = useState('');
-  const { data: session, status, update } = useSession();
-  const {
-    data: proveedoresData,
-    error,
-    isLoading,
-    mutate,
-  } = useSWR(`/api/compras?rol=${session?.user.rol}`, getProveedores);
+  const [proveedoresData, setProveedoresData] = useState(compras);
 
   function setterArrayDataFilter(value) {
     value
@@ -33,7 +22,7 @@ export default function GenerateCards() {
 
   function renderCards() {
     if (arrayDataFilter === '') {
-      return proveedoresData?.map((obj, index) => (
+      return proveedoresData.map((obj, index) => (
         <Card
           obj={obj}
           key={index}
