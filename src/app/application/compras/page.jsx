@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import style from './layout.module.css';
 import GenerateCards from '@/components/Compras/GenerateCards/GenerateCards';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
-export default function Compras() {
+export default async function Compras() {
+  const session = await getServerSession(authOptions);
+  console.log(session);
   return (
     <div className={style.container}>
       <div className={style.header}>
