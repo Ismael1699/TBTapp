@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import HeadInputs from '@/components/Compras/agregar/HeadInputs/HeadInputs';
 import axios from 'axios';
@@ -24,17 +24,6 @@ async function sendBackend(data) {
   return await axios.put('/api/compras', data);
 }
 
-async function getDataCompra(id) {
-  return axios(`/api/compras/getCompra?id=${id}`);
-}
-
-async function getProveedor(proveedor) {
-  const res = await axios(
-    `/api/compras/proveedores/getProveedor?name=${proveedor}`
-  );
-  return res.data;
-}
-
 async function deleteCompra(id) {
   const res = await fetch(`/api/compras?id=${id}`, {
     method: 'DELETE',
@@ -42,23 +31,18 @@ async function deleteCompra(id) {
   return JSON.parse(await res.text());
 }
 
-export default function RequisicionDetails({ params, compra, proveedor }) {
-  const [headData, setHeadData] = useState(structHead);
-  const [dataProveedor, setDataProveedor] = useState({});
+export default function RequisicionDetails({
+  params,
+  compra,
+  proveedor,
+  proveedores,
+  user,
+}) {
+  const [headData, setHeadData] = useState(compra);
+  const [dataProveedor, setDataProveedor] = useState(proveedor);
   const [isEditing, setIsEditing] = useState(true);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(compra.obj_table.table);
   const router = useRouter();
-
-  useEffect(() => {
-    async function dataCompra() {
-      const res = await getDataCompra(params.id);
-      setHeadData(res.data);
-      setItems(res.data.obj_table.table);
-      const proveedor = await getProveedor(res.data.proveedor);
-      setDataProveedor(proveedor);
-    }
-    dataCompra();
-  }, [params.id]);
 
   function centralizeData() {
     let rowContentData = false;
@@ -127,6 +111,8 @@ export default function RequisicionDetails({ params, compra, proveedor }) {
         setHeadData={setHeadData}
         isEditing={isEditing}
         setDataProveedor={setDataProveedor}
+        proveedores={proveedores}
+        user={user}
       />
       <Table
         items={items}

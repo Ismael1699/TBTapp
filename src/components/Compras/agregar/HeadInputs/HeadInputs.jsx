@@ -14,24 +14,20 @@ export default function HeadInputs({
   headData,
   isEditing,
   setDataProveedor,
+  proveedores,
+  user,
 }) {
-  const { data: session, status, update } = useSession();
-  const { data, error, isLoading, mutate } = useSWR(
-    `/api/compras/proveedores?rol=${session?.user.rol}`,
-    getProveedores
-  );
-  const proveedoresArray = data?.data;
   const whatUser =
-    session?.user.rol === 'DIRECTOR' ||
-    session?.user.rol === 'SUPER-INTENDENTE' ||
-    session?.user.rol === 'CONTADOR' ||
-    session?.user.rol === 'SUPER-USER-ROOT';
+    user.rol === 'DIRECTOR' ||
+    user.rol === 'SUPER-INTENDENTE' ||
+    user.rol === 'CONTADOR' ||
+    user.rol === 'SUPER-USER-ROOT';
   //funcion para obtener los datos del header
   function headHandleChange(e) {
     const item = e.target.id;
     setHeadData({ ...headData, [item]: e.target.value });
     if (item === 'proveedor') {
-      proveedoresArray.map((obj) => {
+      proveedores.map((obj) => {
         obj.name === e.target.value ? setDataProveedor(obj) : undefined;
       });
     }
@@ -72,10 +68,10 @@ export default function HeadInputs({
           >
             Elegir alguna
           </option>
-          {session?.user.rol === 'MAQUINARIA' ? (
+          {user.rol === 'MAQUINARIA' ? (
             <option value='MAQUINARIA'>Maquinaria</option>
           ) : null}
-          {session?.user.rol === 'PLANEACION' ? (
+          {user.rol === 'PLANEACION' ? (
             <option value='MAQUINARIA'>Planeacion</option>
           ) : null}
           {whatUser ? <option value='MAQUINARIA'>Maquinaria</option> : null}
@@ -153,7 +149,7 @@ export default function HeadInputs({
           >
             Elegir alguna
           </option>
-          {proveedoresArray?.map((obj, index) => (
+          {proveedores?.map((obj, index) => (
             <option
               key={index}
               value={obj.name}
