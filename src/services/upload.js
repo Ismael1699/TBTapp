@@ -30,8 +30,7 @@ export async function uploadFileS3(file, routeAndName) {
     const response = await client.send(comand);
     return response;
   } catch (error) {
-    console.log(error);
-    // throw 'Error en aws al subirlo';
+    throw 'Error en aws al subirlo';
   }
 }
 

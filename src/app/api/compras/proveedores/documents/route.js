@@ -34,7 +34,6 @@ export async function POST(request) {
       message: 'se actualizado correctamente los archivos',
     });
   } catch (error) {
-    console.log(error);
     return new Response('No se ha subido el archivo a la nube', {
       status: 500,
     });
@@ -52,8 +51,6 @@ export async function GET(req) {
 export async function DELETE(req) {
   const { searchParams } = new URL(req.url);
   const key = searchParams.get('key');
-  console.log(key);
   const res = await deleteFileS3(key);
-  console.log(res);
   return NextResponse.json({ message: 'elemento elimindado' });
 }

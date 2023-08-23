@@ -51,7 +51,7 @@ export async function POST(req) {
     correo: res.correo,
     frente: res.frente,
     factura: res.factura,
-    constanciaKey: res.constanciaKeyKey,
+    constanciaKey: res.constanciaKey,
     bancarioKey: res.bancarioKey,
   });
   return NextResponse.json({

@@ -92,7 +92,7 @@ export default function AddProveedor({
       value === '' || value === 0 ? (allInfomationIs = false) : null
     );
 
-    const filesIsAll = fileBancario && fileConstacia;
+    const filesIsAll = fileBancario !== '' && fileConstacia !== '';
     const withOutFiles = !fileBancario && !fileConstacia;
     const sendToFileBancario =
       dataProveedores.constanciaKey !== 'false' &&

@@ -25,7 +25,6 @@ export async function POST(req) {
     );
   }
   if (body.frente === 'MAQUINARIA' && dataProveedor[0].factura === 0) {
-    console.log('entro');
     workbook = await XlsxPopulate.fromFileAsync(
       join(
         cwd(),
@@ -92,7 +91,6 @@ export async function POST(req) {
   workbook.sheet('requi').cell('K20').value(body.proveedor);
   workbook.sheet('requi').cell(cellSuministro).value('X');
   workbook.sheet('requi').cell(cellLugar).value('X');
-  console.log(body);
   //modificar celdas de la tabla de productos
   let numberTable = 19;
   let cellNumberUnitario = 16;

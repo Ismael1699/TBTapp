@@ -38,7 +38,6 @@ const handler = NextAuth({
     async session({ session, token, user }) {
       delete token.user.password;
       session.user = token.user;
-      console.log(session);
       return session;
     },
   },

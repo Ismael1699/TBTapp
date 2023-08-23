@@ -3,8 +3,6 @@ import { pool } from '@/database/db';
 
 export async function PUT(req) {
   const body = await req.json();
-  console.log(body);
-
   await pool.query(
     `UPDATE proveedores SET ${body.nameFile}Key = ? WHERE id = ?`,
     [body.key, body.id]
