@@ -87,11 +87,9 @@ export default function AddProveedor({
 
   async function checkCompleteInformation() {
     const arrayValuesDataProvedores = Object.values(dataProveedores);
-    let allInfomationIs = false;
+    let allInfomationIs = true;
     arrayValuesDataProvedores.map((value) =>
-      value === '' || value === 0
-        ? (allInfomationIs = false)
-        : (allInfomationIs = true)
+      value === '' || value === 0 ? (allInfomationIs = false) : null
     );
 
     const filesIsAll = fileBancario && fileConstacia;
