@@ -1,153 +1,28 @@
-'use client';
+import Proveedores from '@/components/Compras/proveedor/Proveedores';
 import style from './proveedor.module.css';
-import AddProveedor from '@/components/Compras/proveedor/AddProveedor/AddProveedor';
-import { useState } from 'react';
-import CardProveedor from '@/components/Compras/proveedor/CardProveedor/CardProveedor';
-import useSWR from 'swr';
-import { useRouter } from 'next/navigation';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import axios from 'axios';
-import { useSession } from 'next-auth/react';
 
-//consultas al backend
-async function getProveedores(link) {
-  const res = await axios(link);
-  return res;
-}
-
-async function deleteProveedorBackend(id) {
-  const response = await fetch('/api/compras/proveedores/deleteProveedor', {
-    method: 'POST', //No es la manera correcta de hace run delete, para modificar esto se tendra que implementar rutas dinamicas
-    body: JSON.stringify({ id }),
-  });
-  return JSON.parse(await response.text());
-}
-
-async function deleteFiles(key) {
-  const res = await axios.delete(
-    `/api/compras/proveedores/documents?key=${key}`
+async function getProveedores(rol) {
+  const res = await axios(
+    process.env.NEXT_PUBLIC_URL_HOST + `/api/compras/proveedores?rol=${rol}`
   );
   return res.data;
 }
 
-//Componente Provedores
-export default function Proveedores() {
-  const [agregarWasClicked, setAgregarWasClicked] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [cardSelected, setCardSelected] = useState({});
-  const { data: session, status, update } = useSession();
-  const { data, error, isLoading, mutate } = useSWR(
-    `/api/compras/proveedores?rol=${session?.user.rol}`,
-    getProveedores
-  );
-  const proveedoresArray = data?.data;
-  const router = useRouter();
-
-  //controlan el sistema de carga de los datos hecho al servidor  el useSWR
-  if (error) return 'An error has occurred.';
-  if (isLoading) return 'Cargando..';
-
-  //cancelar la ventan de agregar o editar proveeodores
-  function cancelarOnClick() {
-    setIsEditing(false);
-    setCardSelected({});
-    return agregarOnClick();
-  }
-
-  //controaldor de abrir y cerrar la venta de proveedores
-  function agregarOnClick() {
-    return setAgregarWasClicked(!agregarWasClicked);
-  }
-
-  // controla que tarjeta va a ser editado, sus datos se guardan en cardSelected
-  function editingProveedor(e) {
-    const id = e.target.parentElement.value;
-    const itemMatch = proveedoresArray.filter((obj) => obj.id + '' === id);
-    setCardSelected(itemMatch[0]);
-    setIsEditing(true);
-    return setAgregarWasClicked(true);
-  }
-
-  // Control para eleminar del fronted y del backend la card selecionada
-  async function deleteCard(e) {
-    const id = parseInt(e.target.parentElement.value);
-
-    let dataProveedorElim = '';
-    const newprovedores = proveedoresArray.filter((obj) => {
-      obj.id === id ? (dataProveedorElim = obj) : null;
-      return obj.id !== id;
-    });
-
-    const elim = confirm('Deseas eleiminarlo');
-    if (elim) {
-      const preKey = `compras/proveedores/${dataProveedorElim.frente.toLowerCase()}/${dataProveedorElim.name
-        .split(' ')
-        .join('_')}/`;
-
-      deleteFiles(preKey + 'bancario.pdf');
-      deleteFiles(preKey + 'constancia.pdf');
-      const res = await deleteProveedorBackend(id);
-      mutate([newprovedores]);
-      alert(res.message);
-    }
-  }
-
-  function updateCache(data) {
-    const proveedoresArrayCopy = structuredClone(proveedoresArray);
-
-    let indice = proveedoresArrayCopy.findIndex(
-      (objeto) => objeto.id === data.id
-    );
-
-    if (indice !== -1) {
-      mutate(proveedoresArrayCopy.splice(indice, 1, data));
-    }
-  }
-
+export default async function ProvedoresPage() {
+  const session = await getServerSession(authOptions);
+  const proveedores = await getProveedores(session.user.rol);
   return (
     <div className={style.container}>
-      <div className={style.head}>
-        <div className={style.title}>
-          <p>Proveedores</p>
-        </div>
-        <div className={style.buttons}>
-          <button
-            className='button'
-            onClick={agregarOnClick}
-          >
-            Agregar
-          </button>
-          <button className={style.filterButton}>Maquinaria</button>
-          <button className={style.filterButton}>Terracerias</button>
-          <button className={style.filterButton}>Administración</button>
-        </div>
+      <div className={style.title}>
+        <p>Proveedores</p>
       </div>
-      <div className={style.body}>
-        {agregarWasClicked ? (
-          <AddProveedor
-            agregarOnClick={agregarOnClick}
-            isEditing={isEditing}
-            setIsEditing={setIsEditing}
-            cardSelected={cardSelected}
-            setCardSelected={setCardSelected}
-            cancelarOnClick={cancelarOnClick}
-            session={session}
-            updateCache={updateCache}
-          />
-        ) : (
-          <></>
-        )}
-        {proveedoresArray?.map((obj, index) => {
-          return (
-            <CardProveedor
-              obj={obj}
-              index={index}
-              key={index}
-              editingProveedor={editingProveedor}
-              deleteCard={deleteCard}
-            />
-          );
-        })}
-      </div>
+      <Proveedores
+        provedores={proveedores}
+        session={session}
+      />
     </div>
   );
 }

@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  height: auto;
+}
+
+.head {
+  height: auto;
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+  justify-content: flex-end;
+}
+
+.agregar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--accent-color);
+  transition: all 0.5s ease-in-out;
+}
+
+.agregar:hover {
+  transform: scale(1.2);
+}
+
+.agregar i {
+  font-size: 25px;
+  color: var(--font-color);
+}
+
+.body {
+  padding-top: 1.5rem;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: space-around;
+  padding-bottom: 3rem;
+}

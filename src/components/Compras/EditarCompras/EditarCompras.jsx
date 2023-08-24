@@ -89,6 +89,7 @@ export default function RequisicionDetails({
       const res1 = await res.data;
       alert(res1.message);
       router.push('/application/compras');
+      router.refresh();
     } else {
       alert('Status: ' + res.status + ' ' + res.statusText);
     }
@@ -102,6 +103,7 @@ export default function RequisicionDetails({
       const res = await deleteCompra(params.id);
       alert(res.message);
       router.push('/application/compras');
+      router.refresh();
     }
   }
   return (
