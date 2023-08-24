@@ -4,7 +4,15 @@ import bcrypt from 'bcryptjs';
 
 export async function POST(req) {
   try {
-    const { user, email, rol, password, key } = await req.json();
+    const { user, email, rol, password, confirmPassword, key } =
+      await req.json();
+
+    if (password !== confirmPassword) {
+      return NextResponse.json(
+        { message: 'La contraseña no coíncide' },
+        { status: 401 }
+      );
+    }
 
     if (key !== process.env.NEXT_PUBLIC_KEY_ADMIN) {
       return NextResponse.json(

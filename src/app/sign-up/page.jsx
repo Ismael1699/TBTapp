@@ -19,7 +19,8 @@ export default function SignUp() {
         user: formData.get('user'),
         email: formData.get('email'),
         rol: formData.get('rol'),
-        password: formData.get('password'),
+        password: formData.get('password1'),
+        confirmPassword: formData.get('password2'),
         key: formData.get('key'),
       });
 
@@ -93,8 +94,16 @@ export default function SignUp() {
           <input
             className={login.input}
             type='password'
-            name='password'
+            name='password1'
             placeholder='Escribe tu contraseña'
+            autoComplete='new-password'
+            required
+          />
+          <input
+            className={login.input}
+            type='password'
+            name='password2'
+            placeholder='confirma tu contraseña'
             autoComplete='new-password'
             required
           />
@@ -113,6 +122,7 @@ export default function SignUp() {
             Enviar
           </button>
         </form>
+
         {succesfully && (
           <div className={login.alertSucces}>
             <p>{succesfully}</p>

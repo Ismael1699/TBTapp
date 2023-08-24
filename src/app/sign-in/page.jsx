@@ -38,12 +38,6 @@ export default function SingIn() {
     }
   }
 
-  // async function sendCompras() {
-  //   setTimeout(() => {
-  //     router.push('/application');
-  //   }, '1000');
-  // }
-
   return (
     <div className={signin.containerLogin}>
       <div className={signin.contenido}></div>
@@ -56,18 +50,20 @@ export default function SingIn() {
           className={signin.form}
           onSubmit={handleSubmit}
         >
+          <label htmlFor='email'>Correo</label>
           <input
             className={signin.input}
-            name='email'
+            id='email'
             type='email'
-            placeholder='Escribe tu usuario'
+            placeholder='ejemplo@tbtsa.com.mx'
             autoComplete='new-password'
           />
+          <label htmlFor='password'>Contraseña</label>
           <input
             className={signin.input}
             type='password'
-            name='password'
-            placeholder='Escribe tu contraseña'
+            id='password'
+            placeholder='Escribe tu contraseña aqui'
             autoComplete='new-password'
           />
           <button
