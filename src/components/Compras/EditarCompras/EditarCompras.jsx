@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import HeadInputs from '@/components/Compras/agregar/HeadInputs/HeadInputs';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
+import style from './agregarCompra.module.css';
 
 const Table = dynamic(
   () => import('@/components/Compras/agregar/Table/Table'),
@@ -107,7 +108,7 @@ export default function RequisicionDetails({
     }
   }
   return (
-    <div>
+    <div className={style.container}>
       <HeadInputs
         headData={headData}
         setHeadData={setHeadData}

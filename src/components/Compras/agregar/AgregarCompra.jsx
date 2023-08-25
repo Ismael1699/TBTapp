@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import HeadInputs from '@/components/Compras/agregar/HeadInputs/HeadInputs';
 import dynamic from 'next/dynamic';
+import style from './agregarCompra.module.css';
 
 const Table = dynamic(
   () => import('@/components/Compras/agregar/Table/Table'),
@@ -86,7 +87,7 @@ export default function AgregarCompra({ proveedores, user }) {
   }
 
   return (
-    <div>
+    <div className={style.container}>
       <HeadInputs
         headData={headData}
         setHeadData={setHeadData}

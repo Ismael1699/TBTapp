@@ -1,0 +1,11 @@
+.container {
+  height: 100%;
+}
+
+@media (max-width: 900px) {
+  .container {
+    height: 100%;
+    overflow: scroll;
+    padding-bottom: 1rem;
+  }
+}
