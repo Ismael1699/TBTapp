@@ -4,11 +4,12 @@
 }
 
 .head {
-  height: 15%;
+  height: 10%;
   width: 100%;
   display: flex;
   padding: 1rem;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .agregar {
@@ -31,7 +32,7 @@
 
 .body {
   padding-top: 1.5rem;
-  height: 85%;
+  height: 90%;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
