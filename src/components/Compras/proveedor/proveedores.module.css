@@ -1,10 +1,10 @@
 .container {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .head {
-  height: auto;
+  height: 15%;
   width: 100%;
   display: flex;
   padding: 1rem;
@@ -31,11 +31,12 @@
 
 .body {
   padding-top: 1.5rem;
-  height: auto;
+  height: 85%;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
   justify-content: space-around;
-  padding-bottom: 3rem;
+  padding-bottom: 10rem;
+  overflow: scroll;
 }
