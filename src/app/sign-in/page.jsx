@@ -54,6 +54,7 @@ export default function SingIn() {
           <input
             className={signin.input}
             id='email'
+            name='email'
             type='email'
             placeholder='ejemplo@tbtsa.com.mx'
             autoComplete='new-password'
@@ -63,6 +64,7 @@ export default function SingIn() {
             className={signin.input}
             type='password'
             id='password'
+            name='password'
             placeholder='Escribe tu contraseña aqui'
             autoComplete='new-password'
           />
