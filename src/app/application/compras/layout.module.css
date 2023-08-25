@@ -5,7 +5,6 @@
   height: calc(100% - 2rem);
   border-radius: var(--border-radius-primary);
   background-color: var(--secundary-color);
-  overflow: auto;
 }
 
 .container {
@@ -36,42 +35,40 @@
 /* cuerpo de Requisiones */
 .containerCards {
   padding-top: 1rem;
+  padding-bottom: 4rem;
   height: 90%;
   width: 100%;
+  overflow: scroll;
 }
 
 @media (max-width: 900px) {
   .compras {
-    height: auto;
+    height: 100%;
     width: 100%;
     margin: 0;
     padding-bottom: 5rem;
     border-radius: 0;
   }
+  .container {
+    padding: 0;
+  }
+
   .header {
     flex-direction: column;
     padding: 0;
+    justify-content: flex-start;
+    height: 20%;
   }
   .title {
+    padding-top: 0.5rem;
     display: flex;
-    justify-items: center;
     align-items: center;
   }
   .title p {
     width: 100%;
     text-align: center;
   }
-  .containerbuscador {
-    margin-top: 1rem;
-    justify-content: center;
-  }
-
-  .buscador {
-    display: none;
-  }
-  .title p {
-    font-size: var(--title-font-size);
-    margin-left: 1rem;
-    margin-top: 0.5rem;
+  .containerCards {
+    height: 90%;
   }
 }
