@@ -15,7 +15,8 @@ async function getProveedor(proveedor) {
     process.env.NEXT_PUBLIC_URL_HOST +
       `/api/compras/proveedores/getProveedor?name=${proveedor}`
   );
-  return res.data;
+
+  return res.data ? res.data : {};
 }
 
 async function getProveedores(rol) {

@@ -14,6 +14,7 @@ export default function HeadInputs({
   headData,
   isEditing,
   setDataProveedor,
+  dataProveedor,
   proveedores,
   user,
 }) {
@@ -134,14 +135,14 @@ export default function HeadInputs({
           <option value='nacional'>Compra nacional</option>
         </select>
       </div>
-
+      {console.log(headData.proveedor)}
       <div className={style.proveedor}>
         <p>Proveedor</p>
         <select
           id='proveedor'
           name='proveerdor'
           onChange={headHandleChange}
-          value={headData.proveedor}
+          value={!headData.proveedor ? '' : headData.proveedor}
         >
           <option
             disabled

@@ -39,7 +39,10 @@ export default function RequisicionDetails({
   proveedores,
   user,
 }) {
-  const [headData, setHeadData] = useState(compra);
+  const [headData, setHeadData] = useState({
+    ...compra,
+    proveedor: proveedor.name,
+  });
   const [dataProveedor, setDataProveedor] = useState(proveedor);
   const [isEditing, setIsEditing] = useState(true);
   const [items, setItems] = useState(compra.obj_table.table);
@@ -114,6 +117,7 @@ export default function RequisicionDetails({
         setHeadData={setHeadData}
         isEditing={isEditing}
         setDataProveedor={setDataProveedor}
+        dataProveedor={dataProveedor}
         proveedores={proveedores}
         user={user}
       />
