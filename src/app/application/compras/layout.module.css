@@ -40,7 +40,7 @@
   padding-bottom: 4rem;
   height: 90%;
   width: 100%;
-  overflow: scroll;
+  overflow: auto;
 }
 
 @media (max-width: 900px) {
