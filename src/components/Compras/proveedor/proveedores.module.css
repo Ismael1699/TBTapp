@@ -7,7 +7,7 @@
   height: 10%;
   width: 100%;
   display: flex;
-  padding: 1rem;
+  padding: 1.5rem;
   justify-content: flex-end;
   align-items: center;
 }
@@ -31,6 +31,7 @@
 }
 
 .body {
+  padding: 1.5rem;
   padding-top: 1.5rem;
   height: 90%;
   width: 100%;
@@ -39,5 +40,5 @@
   gap: 3rem;
   justify-content: space-around;
   padding-bottom: 10rem;
-  overflow: scroll;
+  overflow: auto;
 }
