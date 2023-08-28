@@ -13,6 +13,15 @@ export async function POST(req) {
     `SELECT * FROM proveedores where name= ?`,
     [body.proveedor]
   );
+  //si existe el usuario
+  if (dataProveedor.length === 0) {
+    return new Response(
+      'No existe el proveedor, no se puede generar si no hay un proveedor relacionado con la orden de compra',
+      {
+        status: 500,
+      }
+    );
+  }
   if (body.frente === 'MAQUINARIA' && dataProveedor[0].factura === 1) {
     workbook = await XlsxPopulate.fromFileAsync(
       join(

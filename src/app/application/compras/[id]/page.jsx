@@ -16,7 +16,7 @@ async function getProveedor(proveedor) {
       `/api/compras/proveedores/getProveedor?name=${proveedor}`
   );
 
-  return res.data ? res.data : {};
+  return res.data;
 }
 
 async function getProveedores(rol) {
@@ -30,6 +30,7 @@ export default async function CompraDetails({ params }) {
   const session = await getServerSession(authOptions);
   const compra = await getCompra(params.id);
   const proveedor = await getProveedor(compra.proveedor);
+
   const proveedores = await getProveedores(session.user.rol);
   return (
     <EditarCompra
