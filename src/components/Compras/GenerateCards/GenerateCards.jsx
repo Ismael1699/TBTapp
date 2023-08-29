@@ -5,12 +5,14 @@ import style from './generateCards.module.css';
 import Card from '../Card/Card';
 
 import SerachBar from '../SearchBar/SerchBar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import searchMatch from '@/utils/searchMatch';
 
 export default function GenerateCards({ compras }) {
   const [arrayDataFilter, setArrayDataFilter] = useState('');
   const [proveedoresData, setProveedoresData] = useState(compras);
+
+  useEffect(() => setProveedoresData(compras), [compras]);
 
   function setterArrayDataFilter(value) {
     value
