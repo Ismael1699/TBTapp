@@ -35,7 +35,7 @@ export async function POST(req) {
         'ExcelsStorageRequis',
         'plantillas',
         'maquinaria',
-        'Factura.xlsm'
+        'Factura.xlsx'
       )
     );
   }
@@ -49,7 +49,7 @@ export async function POST(req) {
         'ExcelsStorageRequis',
         'plantillas',
         'maquinaria',
-        'NoFactura.xlsm'
+        'NoFactura.xlsx'
       )
     );
   }
@@ -63,7 +63,7 @@ export async function POST(req) {
         'ExcelsStorageRequis',
         'plantillas',
         'planeacion',
-        'Factura.xlsm'
+        'Factura.xlsx'
       )
     );
   }
@@ -77,7 +77,7 @@ export async function POST(req) {
         'ExcelsStorageRequis',
         'plantillas',
         'planeacion',
-        'NoFactura.xlsm'
+        'NoFactura.xlsx'
       )
     );
   }
@@ -174,10 +174,12 @@ export async function POST(req) {
   await workbook.outputAsync('base64').then(function (base64) {
     base =
       'data:' +
-      'application/vnd.ms-excel.sheet.macroEnabled.12' +
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' +
       ';base64,' +
       base64;
   });
 
   return NextResponse.json({ excel: base });
 }
+
+//mime type de macros application/vnd.ms-excel.sheet.macroEnabled.12
