@@ -176,6 +176,24 @@
   width: 45%;
 }
 
+.moneda {
+  margin-top: 0.5rem;
+
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.moneda label {
+  width: 100%;
+}
+.moneda input {
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+  padding: 0;
+  width: 15px;
+}
+
 /* Contacto */
 
 .contacto {

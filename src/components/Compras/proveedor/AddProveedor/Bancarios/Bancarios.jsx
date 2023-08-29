@@ -46,6 +46,26 @@ export default function Bancarios({
             onChange={inputsOnChange}
           />
         </div>
+        <div className={style.moneda}>
+          <label htmlFor='moneda'>Moneda</label>
+          <br />
+          <input
+            type='radio'
+            value='peso'
+            name='moneda'
+            onClick={inputsOnChange}
+            checked={dataProveedores.moneda === 'peso'}
+          />
+          Peso
+          <input
+            type='radio'
+            value='dolar'
+            name='moneda'
+            onClick={inputsOnChange}
+            checked={dataProveedores.moneda === 'dolar'}
+          />
+          Dolar
+        </div>
       </form>
     </div>
   );

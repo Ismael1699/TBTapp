@@ -45,6 +45,7 @@ const dataStruct = {
   banco: '',
   clabe: '',
   cuenta: '',
+  moneda: '',
   telefono: '',
   correo: '',
   frente: '',
@@ -76,6 +77,13 @@ export default function AddProveedor({
     session.user.rol === 'SUPER-USER-ROOT';
 
   function inputsOnChange(e) {
+    if (e.target.name === 'moneda') {
+      return setDataProveedores({
+        ...dataProveedores,
+        [e.target.name]: e.target.value,
+      });
+    }
+
     const item = e.target.id;
     const value = e.target.value;
     return setDataProveedores({ ...dataProveedores, [item]: value });
