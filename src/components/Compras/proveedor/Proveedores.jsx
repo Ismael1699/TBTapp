@@ -84,7 +84,9 @@ export default function Proveedores({ provedores, session }) {
     );
 
     if (indice !== -1) {
-      return setProveedoresArray(proveedoresArrayCopy.splice(indice, 1, data));
+      proveedoresArrayCopy.splice(indice, 1, data);
+
+      return setProveedoresArray(proveedoresArrayCopy);
     }
     router.replace('/application/compras/proveedor');
     router.refresh();
