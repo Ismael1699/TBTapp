@@ -29,13 +29,13 @@ export default function numeroALetras(cantidad, moneda) {
   var plural;
   var abreviacion;
 
-  if (moneda === 'pesos') {
+  if (moneda === 'peso') {
     singular = 'PESO';
     plural = 'PESOS';
     abreviacion = 'M.N.';
   }
 
-  if (moneda === 'dolares') {
+  if (moneda === 'dolar') {
     singular = 'DOLAR AMERICANO';
     plural = 'DOLARES AMERICANOS';
     abreviacion = 'USD';

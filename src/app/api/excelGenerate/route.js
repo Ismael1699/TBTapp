@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { join } from 'path';
 import { cwd } from 'process';
 import { pool } from '@/database/db';
+import numeroALetras from '@/utils/numeroALetra';
 
 export async function POST(req) {
   //request del cliente
@@ -22,6 +23,10 @@ export async function POST(req) {
       }
     );
   }
+
+  // Condicionales para saber que tipo de plantilla tiene que genera el sistema
+
+  //maquinaria factura
   if (body.frente === 'MAQUINARIA' && dataProveedor[0].factura === 1) {
     workbook = await XlsxPopulate.fromFileAsync(
       join(
@@ -29,10 +34,13 @@ export async function POST(req) {
         'src',
         'ExcelsStorageRequis',
         'plantillas',
-        'plantillaMaquinaria.xlsm'
+        'maquinaria',
+        'Factura.xlsm'
       )
     );
   }
+
+  //maquinria no factura
   if (body.frente === 'MAQUINARIA' && dataProveedor[0].factura === 0) {
     workbook = await XlsxPopulate.fromFileAsync(
       join(
@@ -40,10 +48,13 @@ export async function POST(req) {
         'src',
         'ExcelsStorageRequis',
         'plantillas',
-        'MaquinariaNoFactura.xlsm'
+        'maquinaria',
+        'NoFactura.xlsm'
       )
     );
   }
+
+  //planeación factura
   if (body.frente === 'PLANEACION' && dataProveedor[0].factura === 1) {
     workbook = await XlsxPopulate.fromFileAsync(
       join(
@@ -51,11 +62,13 @@ export async function POST(req) {
         'src',
         'ExcelsStorageRequis',
         'plantillas',
-        'plantillaPlaneacion.xlsm'
+        'planeacion',
+        'Factura.xlsm'
       )
     );
   }
 
+  //planeación no factura
   if (body.frente === 'PLANEACION' && dataProveedor[0].factura === 0) {
     workbook = await XlsxPopulate.fromFileAsync(
       join(
@@ -63,7 +76,8 @@ export async function POST(req) {
         'src',
         'ExcelsStorageRequis',
         'plantillas',
-        'PlaneacionNoFactura.xlsm'
+        'planeacion',
+        'NoFactura.xlsm'
       )
     );
   }
@@ -100,6 +114,20 @@ export async function POST(req) {
   workbook.sheet('requi').cell('K20').value(body.proveedor);
   workbook.sheet('requi').cell(cellSuministro).value('X');
   workbook.sheet('requi').cell(cellLugar).value('X');
+  //si es dolares o no para agregar nota de tipo de cambio a requi a orden de compra
+  dataProveedor[0].moneda === 'dolar'
+    ? workbook
+        .sheet('requi')
+        .cell('D30')
+        .value('NOTA: HACER EL TIPO DE CAMBIO EL DIA DEL DEPOSITO')
+    : '';
+  dataProveedor[0].moneda === 'dolar'
+    ? workbook
+        .sheet('compra')
+        .cell('F27')
+        .value('NOTA: HACER EL TIPO DE CAMBIO EL DIA DEL DEPOSITO')
+    : '';
+
   //modificar celdas de la tabla de productos
   let numberTable = 19;
   let cellNumberUnitario = 16;
@@ -138,6 +166,10 @@ export async function POST(req) {
   workbook.sheet('requi').cell('M25').value(dataProveedor[0].banco);
   workbook.sheet('compra').cell('H8').value(dataProveedor[0].direccion);
   workbook.sheet('compra').cell('H29').value(dataProveedor[0].contacto);
+
+  // insertar la cantidad en letras
+  const cantidadEnLetra = numeroALetras(body.precio, dataProveedor[0].moneda);
+  workbook.sheet('compra').cell('B35').value(`SON:( ${cantidadEnLetra} )`);
 
   await workbook.outputAsync('base64').then(function (base64) {
     base =

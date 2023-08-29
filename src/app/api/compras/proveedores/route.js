@@ -46,6 +46,7 @@ export async function POST(req) {
     banco: res.banco,
     cuenta: res.cuenta,
     clabe: res.clabe,
+    moneda: res.moneda,
     contacto: res.contacto,
     telefono: res.telefono,
     correo: res.correo,
@@ -63,7 +64,7 @@ export async function PUT(req) {
   const body = await req.json();
 
   await pool.query(
-    'UPDATE proveedores SET name= ?, direccion = ?, rfc = ?, banco= ?, cuenta = ?, clabe = ?, contacto = ?, telefono = ?, correo = ?, frente = ?, factura = ?, constanciaKey = ?, bancarioKey = ? WHERE id = ? ',
+    'UPDATE proveedores SET name= ?, direccion = ?, rfc = ?, banco= ?, cuenta = ?, clabe = ?, moneda = ?, contacto = ?, telefono = ?, correo = ?, frente = ?, factura = ?, constanciaKey = ?, bancarioKey = ? WHERE id = ? ',
     [
       body.name,
       body.direccion,
@@ -71,6 +72,7 @@ export async function PUT(req) {
       body.banco,
       body.cuenta,
       body.clabe,
+      body.moneda,
       body.contacto,
       body.telefono,
       body.correo,

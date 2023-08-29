@@ -53,7 +53,7 @@ export default function Bancarios({
             type='radio'
             value='peso'
             name='moneda'
-            onClick={inputsOnChange}
+            onChange={inputsOnChange}
             checked={dataProveedores.moneda === 'peso'}
           />
           Peso
@@ -61,7 +61,7 @@ export default function Bancarios({
             type='radio'
             value='dolar'
             name='moneda'
-            onClick={inputsOnChange}
+            onChange={inputsOnChange}
             checked={dataProveedores.moneda === 'dolar'}
           />
           Dolar
