@@ -172,14 +172,10 @@ export async function POST(req) {
   workbook.sheet('compra').cell('B35').value(`SON:( ${cantidadEnLetra} )`);
 
   await workbook.outputAsync('base64').then(function (base64) {
-    base =
-      'data:' +
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' +
-      ';base64,' +
-      base64;
+    base = 'data:' + 'application/pdf' + ';base64,' + base64;
   });
 
   return NextResponse.json({ excel: base });
 }
 
-//mime type de macros application/vnd.ms-excel.sheet.macroEnabled.12
+//mime type de macros application/vnd.ms-excel.sheet.macroEnabled.12   application/vnd.openxmlformats-officedocument.spreadsheetml.sheet

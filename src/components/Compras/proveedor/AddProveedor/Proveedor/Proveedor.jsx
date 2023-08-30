@@ -55,7 +55,7 @@ export default function Proveedor({
               <option value='MAQUINARIA'>Maquinaria</option>
             ) : null}
             {session.user.rol === 'PLANEACION' ? (
-              <option value='MAQUINARIA'>Planeacion</option>
+              <option value='PLANEACION'>Planeacion</option>
             ) : null}
             {whatUser ? <option value='MAQUINARIA'>Maquinaria</option> : null}
             {whatUser ? <option value='PLANEACION'>Planeacion</option> : null}

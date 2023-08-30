@@ -29,7 +29,7 @@ export default function Downloadbutton({ obj }) {
       var a = document.createElement('a');
       document.body.appendChild(a);
       a.href = url;
-      a.download = `HOJA DE COMPRA ${obj.numero}.xlsx`;
+      a.download = `HOJA DE COMPRA ${obj.numero}.pdf`;
       a.click();
       URL.revokeObjectURL(url);
       document.body.removeChild(a);
