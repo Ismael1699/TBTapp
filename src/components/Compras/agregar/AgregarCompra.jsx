@@ -17,6 +17,7 @@ const structHead = {
   fecha: '',
   lugar: '',
   proveedor: '',
+  ISR: '0',
   numero: '',
 };
 
@@ -33,6 +34,7 @@ export default function AgregarCompra({ proveedores, user }) {
   const [isEditing, setIsEditing] = useState(false);
   const [items, setItems] = useState([]);
   const router = useRouter();
+  console.log(headData);
 
   function centralizeData() {
     let rowContentData = false;

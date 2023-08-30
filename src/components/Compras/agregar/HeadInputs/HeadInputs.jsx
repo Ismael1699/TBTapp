@@ -161,6 +161,16 @@ export default function HeadInputs({
           ))}
         </select>
       </div>
+
+      <div className={style.isr}>
+        <p>% I.S.R.</p>
+        <input
+          id='ISR'
+          type='numnber'
+          onChange={headHandleChange}
+          value={headData.ISR}
+        />
+      </div>
       <div className={style.numero}>
         <p>Numero de requisición</p>
         {isEditing ? (
