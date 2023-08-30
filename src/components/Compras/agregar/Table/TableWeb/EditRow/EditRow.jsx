@@ -94,10 +94,17 @@ export default function EditRow({
             value=''
           ></option>
           <option value='pza'>PZA</option>
-          <option value='Serv'>Serv</option>
+          <option value='Serv'>Servicio</option>
           <option value='Litros'>Litros</option>
           <option value='Kilos'>Kilos</option>
           <option value='Toneladas'>Toneladas</option>
+          <option value='M3'>M3</option>
+          <option value='ML'>ML</option>
+          <option value='Estimacion'>Estimación</option>
+          <option value='Pesos'>Pesos</option>
+          <option value='Renta'>Renta</option>
+          <option value='Semana'>Semana</option>
+          <option value='Flete'>Flete</option>
         </select>
       </div>
       <div className={style.cantidad}>
