@@ -73,7 +73,7 @@ export default function HeadInputs({
             <option value='MAQUINARIA'>Maquinaria</option>
           ) : null}
           {user.rol === 'PLANEACION' ? (
-            <option value='MAQUINARIA'>Planeacion</option>
+            <option value='PLANEACION'>Planeacion</option>
           ) : null}
           {whatUser ? <option value='MAQUINARIA'>Maquinaria</option> : null}
           {whatUser ? <option value='PLANEACION'>Planeacion</option> : null}

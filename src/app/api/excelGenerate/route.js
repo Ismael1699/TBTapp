@@ -4,6 +4,7 @@ import { join } from 'path';
 import { cwd } from 'process';
 import { pool } from '@/database/db';
 import numeroALetras from '@/utils/numeroALetra';
+const jsPDF = require('jspdf');
 
 export async function POST(req) {
   //request del cliente
@@ -172,7 +173,11 @@ export async function POST(req) {
   workbook.sheet('compra').cell('B35').value(`SON:( ${cantidadEnLetra} )`);
 
   await workbook.outputAsync('base64').then(function (base64) {
-    base = 'data:' + 'application/pdf' + ';base64,' + base64;
+    base =
+      'data:' +
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' +
+      ';base64,' +
+      base64;
   });
 
   return NextResponse.json({ excel: base });
