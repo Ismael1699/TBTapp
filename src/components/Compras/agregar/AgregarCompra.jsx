@@ -64,9 +64,13 @@ export default function AgregarCompra({ proveedores, user }) {
         }, 0)
       ).toFixed(2);
 
+      const ISRNumber = parseFloat(headData.ISR).toFixed(2);
+      const impuestos =
+        ISRNumber <= 0 ? 1.16 : (1.16 - ISRNumber / 100).toFixed(2);
+
       const precioFinal =
         dataProveedor.factura === 1
-          ? parseFloat(precioTotal * 1.16).toFixed(2)
+          ? parseFloat(precioTotal * impuestos).toFixed(2)
           : precioTotal;
 
       const data = { ...headData, precio: precioFinal, table: items };

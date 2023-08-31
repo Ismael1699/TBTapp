@@ -9,6 +9,7 @@ export async function POST(req) {
     fecha,
     lugar,
     proveedor,
+    ISR,
     numero,
     table,
     precio,
@@ -34,6 +35,7 @@ export async function POST(req) {
     fecha,
     lugar,
     proveedor,
+    ISR,
     numero,
     precio,
     obj_table: JSON.stringify({ table: table }),
@@ -71,13 +73,14 @@ export async function PUT(req) {
     fecha,
     lugar,
     proveedor,
+    ISR,
     numero,
     precio,
     table,
   } = await req.json();
 
   await pool.query(
-    'UPDATE requisiciones SET proyecto = ?, frente = ?, suministro = ?, fecha = ?, lugar = ?, proveedor = ?, precio = ? , obj_table = ? where numero = ? ',
+    'UPDATE requisiciones SET proyecto = ?, frente = ?, suministro = ?, fecha = ?, lugar = ?, proveedor = ?, ISR = ?, precio = ? , obj_table = ? where numero = ? ',
     [
       proyecto,
       frente,
@@ -85,6 +88,7 @@ export async function PUT(req) {
       fecha,
       lugar,
       proveedor,
+      ISR,
       precio,
       JSON.stringify({ table: table }),
       numero,

@@ -18,6 +18,7 @@ const structHead = {
   fecha: '',
   lugar: '',
   proveedor: '',
+  ISR: '0',
   numero: '',
 };
 

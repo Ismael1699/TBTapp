@@ -166,7 +166,7 @@ export default function HeadInputs({
         <p>% I.S.R.</p>
         <input
           id='ISR'
-          type='numnber'
+          type='number'
           onChange={headHandleChange}
           value={headData.ISR}
         />
