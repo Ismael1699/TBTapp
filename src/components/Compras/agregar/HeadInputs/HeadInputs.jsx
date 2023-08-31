@@ -161,7 +161,15 @@ export default function HeadInputs({
           ))}
         </select>
       </div>
-
+      <div className={style.economico}>
+        <p>Economico</p>
+        <input
+          id='economico'
+          type='text'
+          value={headData.economico}
+          onChange={headHandleChange}
+        />
+      </div>
       <div className={style.isr}>
         <p>% I.S.R.</p>
         <input

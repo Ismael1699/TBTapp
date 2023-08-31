@@ -73,12 +73,27 @@
 }
 .proveedor {
   margin: 1rem;
-  flex-grow: 3;
+  flex-grow: 1;
 }
 
 .numero {
   margin: 1rem;
-  flex-grow: 2;
+  flex-grow: 1;
+}
+
+.economico {
+  margin: 1rem;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.economico p {
+  width: 100%;
+}
+.economico .isr {
+  margin: 1rem;
+  flex-grow: 1;
 }
 
 @media (max-width: 900px) {

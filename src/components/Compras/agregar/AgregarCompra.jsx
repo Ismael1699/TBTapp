@@ -17,6 +17,7 @@ const structHead = {
   fecha: '',
   lugar: '',
   proveedor: '',
+  economico: 'No aplica',
   ISR: '0',
   numero: '',
 };
