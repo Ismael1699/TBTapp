@@ -75,7 +75,7 @@ export default function AddProveedor({
     session.user.rol === 'SUPER-INTENDENTE' ||
     session.user.rol === 'CONTADOR' ||
     session.user.rol === 'SUPER-USER-ROOT';
-
+  console.log(dataProveedores);
   function inputsOnChange(e) {
     if (e.target.name === 'moneda') {
       return setDataProveedores({
@@ -97,7 +97,7 @@ export default function AddProveedor({
     const arrayValuesDataProvedores = Object.values(dataProveedores);
     let allInfomationIs = true;
     arrayValuesDataProvedores.map((value) =>
-      value === '' || value === 0 ? (allInfomationIs = false) : null
+      value === '' ? (allInfomationIs = false) : null
     );
 
     const filesIsAll = fileBancario !== '' && fileConstacia !== '';
