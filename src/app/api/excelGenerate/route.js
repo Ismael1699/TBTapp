@@ -168,6 +168,15 @@ export async function POST(req) {
   workbook.sheet('compra').cell('H8').value(dataProveedor[0].direccion);
   workbook.sheet('compra').cell('H29').value(dataProveedor[0].contacto);
 
+  const precio = parseFloat(body.precio).toFixed(2);
+  const ISRPorcentaje = parseFloat(body.ISR).toFixed(2) / 100;
+  if (ISRPorcentaje <= 0) {
+    const precioSinInpuestos = (precio / (1.16 - ISRPorcentaje)).toFixed(2);
+
+    const ISRCantidad = (precioSinInpuestos * ISRPorcentaje).toFixed(2);
+    workbook.sheet('compra').cell('M42').value(ISRCantidad);
+  }
+
   // insertar la cantidad en letras
   const cantidadEnLetra = numeroALetras(body.precio, dataProveedor[0].moneda);
   workbook.sheet('compra').cell('B35').value(`SON:( ${cantidadEnLetra} )`);
