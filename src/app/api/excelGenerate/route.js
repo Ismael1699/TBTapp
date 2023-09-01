@@ -39,6 +39,14 @@ export async function POST(req) {
         'Factura.xlsx'
       )
     );
+    const imgRute = join(
+      cwd(),
+      'src',
+      'ExcelsStorageRequis',
+      'firmas',
+      'maquinaria.png'
+    );
+    workbook.sheet('requi').picture(imgRute).moveTo('B34');
   }
 
   //maquinria no factura

@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('/bote.jpg');
+    url('/bote.webp');
   background-size: cover;
   background-position: center;
   backdrop-filter: blur(30px);
