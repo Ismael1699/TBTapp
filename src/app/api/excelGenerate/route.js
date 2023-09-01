@@ -115,6 +115,13 @@ export async function POST(req) {
   workbook.sheet('requi').cell('K20').value(body.proveedor);
   workbook.sheet('requi').cell(cellSuministro).value('X');
   workbook.sheet('requi').cell(cellLugar).value('X');
+
+  //economico en caso de ser una compra para una maquina
+  if (body.economico !== 'No aplica' && body.economico !== '') {
+    workbook.sheet('requi').cell('C31').value(body.economico);
+    workbook.sheet('compra').cell('C31').value(body.economico);
+  }
+
   //si es dolares o no para agregar nota de tipo de cambio a requi a orden de compra
   dataProveedor[0].moneda === 'dolar'
     ? workbook
