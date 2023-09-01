@@ -13,6 +13,7 @@ export async function POST(req) {
     numero,
     table,
     precio,
+    economico,
   } = await req.json();
 
   const [dataDuplicate] = await pool.query(
@@ -38,6 +39,7 @@ export async function POST(req) {
     ISR,
     numero,
     precio,
+    economico,
     obj_table: JSON.stringify({ table: table }),
   });
   return NextResponse.json({
@@ -76,11 +78,12 @@ export async function PUT(req) {
     ISR,
     numero,
     precio,
+    economico,
     table,
   } = await req.json();
 
   await pool.query(
-    'UPDATE requisiciones SET proyecto = ?, frente = ?, suministro = ?, fecha = ?, lugar = ?, proveedor = ?, ISR = ?, precio = ? , obj_table = ? where numero = ? ',
+    'UPDATE requisiciones SET proyecto = ?, frente = ?, suministro = ?, fecha = ?, lugar = ?, proveedor = ?, ISR = ?, precio = ?, economico = ?, obj_table = ? where numero = ? ',
     [
       proyecto,
       frente,
@@ -90,6 +93,7 @@ export async function PUT(req) {
       proveedor,
       ISR,
       precio,
+      economico,
       JSON.stringify({ table: table }),
       numero,
     ]
