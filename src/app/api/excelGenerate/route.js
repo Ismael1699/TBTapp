@@ -39,14 +39,6 @@ export async function POST(req) {
         'Factura.xlsx'
       )
     );
-    const imgRute = join(
-      cwd(),
-      'src',
-      'ExcelsStorageRequis',
-      'firmas',
-      'maquinaria.png'
-    );
-    workbook.sheet('requi').picture(imgRute).moveTo('B34');
   }
 
   //maquinria no factura
@@ -193,6 +185,7 @@ export async function POST(req) {
   }
 
   // insertar la cantidad en letras
+  console.log(body.precio);
   const cantidadEnLetra = numeroALetras(body.precio, dataProveedor[0].moneda);
   workbook.sheet('compra').cell('B35').value(`SON:( ${cantidadEnLetra} )`);
 

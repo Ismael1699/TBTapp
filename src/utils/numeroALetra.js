@@ -202,9 +202,9 @@ export default function numeroALetras(cantidad, moneda) {
       if (unidad == 0) {
         return decenas[decena - 1];
       } else if (unidad == 1) {
-        return (veinte = 'VEINTI' + 'UN ');
+        return 'VEINTI' + 'UN ';
       } else {
-        return (veinte = 'VEINTI' + unidades(unidad));
+        return 'VEINTI' + unidades(unidad);
       }
     } else {
       if (unidad == 0) {
