@@ -18,13 +18,17 @@
     "eslint-config-next": "13.4.10",
     "exceljs": "^4.3.0",
     "jspdf": "^2.5.1",
+    "libreoffice-convert": "^1.4.1",
     "mysql2": "^3.5.2",
     "next": "13.4.10",
     "next-auth": "^4.22.3",
+    "pdfkit": "^0.13.0",
+    "pdfmake": "^0.2.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "swr": "^2.2.0",
     "uuid": "^9.0.0",
+    "xlsx": "^0.18.5",
     "xlsx-populate": "^1.21.0"
   }
 }
