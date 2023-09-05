@@ -52,9 +52,11 @@ export async function GET(req, { params }) {
   const inputPath = path.join(__dirname, 'holamundo.xlsx');
   const outputPath = path.join(__dirname, `/resources/example${ext}`);
 
-  const Buf = await fs.readFile(inputPath);
+  const Buf = await fs.readFile(
+    join(cwd(), 'src', 'app', 'api', 'excelGenerateV2', 'holamundo.xlsx')
+  );
 
-  let pdfBuf = await libre.convertAsync(Buf, ext, undefined);
+  let pdfBuf = await libre.convertAsync(Buf, ext);
 
   return NextResponse.json({ message: 'hola mundo' });
 }
