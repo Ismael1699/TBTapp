@@ -1,15 +1,15 @@
 'use client';
 import axios from 'axios';
 
-async function getExcel(obj) {
-  const response = await axios.post('/api/excelGenerate', obj);
+async function getExcel(id) {
+  const response = await axios.get(`/api/excelGenerateV2/${id}`);
   return response;
 }
 
 export default function Downloadbutton({ obj }) {
   async function descargar() {
     try {
-      const blob = await getExcel(obj);
+      const blob = await getExcel(obj.id);
 
       const base64String = blob.data.excel;
 
@@ -34,6 +34,7 @@ export default function Downloadbutton({ obj }) {
       URL.revokeObjectURL(url);
       document.body.removeChild(a);
     } catch (error) {
+      console.log(error);
       if (axios.isAxiosError(error)) {
         return alert(error.response.data);
       }
