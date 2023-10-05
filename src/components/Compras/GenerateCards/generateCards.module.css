@@ -12,6 +12,9 @@
   width: 100%;
   height: 3rem;
   display: flex;
+  justify-content: space-between;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .searchContainer {
@@ -21,6 +24,9 @@
   justify-content: flex-end;
   align-items: center;
   transition: all 0.5s ease-in-out;
+}
+.mas {
+  margin-left: 3rem;
 }
 
 .cardsContainer {
@@ -38,10 +44,13 @@
 
 @media (max-width: 900px) {
   .filtrosContainer {
-    justify-content: center;
+    justify-content: space-around;
   }
   .searchContainer {
     width: 80%;
     transition: all 0.5s ease-in-out;
+  }
+  .mas {
+    margin-left: 0rem;
   }
 }

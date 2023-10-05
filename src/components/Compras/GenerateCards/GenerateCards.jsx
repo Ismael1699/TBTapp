@@ -7,6 +7,7 @@ import Card from '../Card/Card';
 import SerachBar from '../SearchBar/SerchBar';
 import { useEffect, useState } from 'react';
 import searchMatch from '@/utils/searchMatch';
+import BotonSSR from '@/components/Botones/BotonSSR/BotonSSR';
 
 export default function GenerateCards({ compras }) {
   const [arrayDataFilter, setArrayDataFilter] = useState('');
@@ -55,6 +56,13 @@ export default function GenerateCards({ compras }) {
             setArrayDataFilter={setArrayDataFilter}
           />
         </div>
+
+        <BotonSSR
+          link='compras/agregar'
+          className='bi bi-plus-lg'
+          hideText={true}
+          rounded={true}
+        />
       </div>
       <div className={style.cardsContainer}>{renderCards()}</div>
     </div>

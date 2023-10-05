@@ -1,0 +1,51 @@
+.button {
+  color: var(--font-color);
+  font-weight: 900;
+  padding: 0.8rem 2.4rem;
+  background-color: var(--accent-color);
+  border: none;
+  outline: 0;
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  box-shadow: -4px 4px 10px 0px rgba(0, 0, 0, 0.144);
+  transition: all 0.4s ease-in-out;
+}
+
+.button i {
+  font-size: 20px;
+}
+
+.button p {
+  font-size: 14px;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.rounded {
+  color: var(--font-color);
+  font-weight: 900;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.4rem;
+  box-shadow: -4px 4px 10px 0px rgba(0, 0, 0, 0.144);
+  transition: all 0.3s ease-in-out;
+}
+
+.rounded i {
+  font-size: 25px;
+}
+
+.rounded:hover {
+  transform: scale(1.1);
+}

@@ -50,8 +50,11 @@ export default function HeadInputs({
           >
             Elegir alguna
           </option>
-          <option value={2103}>2103 SCT Pachuca</option>
-          <option value={2104}>2104 SCT Atotonilco</option>
+          <option value={'2103 SCT Pachuca'}>2103 SCT Pachuca</option>
+          <option value={'2104 SCT Atotonilco'}>2104 SCT Atotonilco</option>
+          <option value={'2301 SCT Coatzacoalcos'}>
+            2301 SCT Coatzacoalcos
+          </option>
         </select>
       </div>
 

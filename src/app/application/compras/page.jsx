@@ -4,6 +4,7 @@ import GenerateCards from '@/components/Compras/GenerateCards/GenerateCards';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import axios from 'axios';
+import BotonSSR from '@/components/Botones/BotonSSR/BotonSSR';
 
 async function getCompras(rol) {
   const res = await axios(
@@ -23,20 +24,17 @@ export default async function Compras() {
           <p>Compras</p>
         </div>
         <div className={style.botonera}>
-          <Link
-            href='compras/agregar'
-            className='button'
-          >
-            <i className='bi bi-plus-lg'></i>
-            <p>Compra</p>
-          </Link>
-          <Link
-            href='compras/proveedor'
-            className='button'
-          >
-            <i className='bi bi-plus-lg'></i>
-            <p>Provedor</p>
-          </Link>
+          <BotonSSR
+            text='Peticiones'
+            link='compras/peticiones'
+            className='bi bi-ui-radios-grid'
+          />
+
+          <BotonSSR
+            text='Proveedores'
+            className='bi bi-people-fill'
+            link='compras/proveedor'
+          />
         </div>
       </div>
       <div className={style.containerCards}>
