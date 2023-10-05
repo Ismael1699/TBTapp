@@ -185,7 +185,7 @@ export async function GET(req, { params }) {
     const precioSinInpuestos = (precio / (1.16 - ISRPorcentaje)).toFixed(2);
 
     const ISRCantidad = (precioSinInpuestos * ISRPorcentaje).toFixed(2);
-    workbook.getWorksheet('compra').getCell('M42').value = ISRCantidad;
+    workbook.getWorksheet('compra').getCell('M47').value = ISRCantidad;
   }
 
   // insertar la cantidad en letras
