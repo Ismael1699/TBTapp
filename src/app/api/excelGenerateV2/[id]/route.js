@@ -34,8 +34,8 @@ export async function GET(req, { params }) {
 
   // Condicionales para saber que tipo de plantilla tiene que genera el sistema
 
-  //maquinaria factura
-  if (body.frente === 'MAQUINARIA' && dataProveedor[0].factura === 1) {
+  //maquinaria
+  if (body.frente === 'MAQUINARIA') {
     await workbook.xlsx.readFile(
       join(
         cwd(),
@@ -48,22 +48,9 @@ export async function GET(req, { params }) {
     );
   }
 
-  //maquinria no factura
-  if (body.frente === 'MAQUINARIA' && dataProveedor[0].factura === 0) {
-    await workbook.xlsx.readFile(
-      join(
-        cwd(),
-        'src',
-        'ExcelsStorageRequis',
-        'plantillas',
-        'maquinaria',
-        'NoFactura.xlsx'
-      )
-    );
-  }
+  //planeación
 
-  //planeación factura
-  if (body.frente === 'PLANEACION' && dataProveedor[0].factura === 1) {
+  if (body.frente === 'PLANEACION') {
     await workbook.xlsx.readFile(
       join(
         cwd(),
@@ -76,19 +63,66 @@ export async function GET(req, { params }) {
     );
   }
 
-  //planeación no factura
-  if (body.frente === 'PLANEACION' && dataProveedor[0].factura === 0) {
-    await workbook.xlsx.readFile(
-      join(
-        cwd(),
-        'src',
-        'ExcelsStorageRequis',
-        'plantillas',
-        'planeacion',
-        'NoFactura.xlsx'
-      )
-    );
+  if (!dataProveedor[0].factura) {
+    workbook.getWorksheet('requi').getCell('L25').value = 'NO FACTURA';
+    workbook.getWorksheet('compra').getCell('F34').value = 'NO FACTURA';
   }
+
+  // //maquinaria factura
+  // if (body.frente === 'MAQUINARIA' && dataProveedor[0].factura === 1) {
+  //   await workbook.xlsx.readFile(
+  //     join(
+  //       cwd(),
+  //       'src',
+  //       'ExcelsStorageRequis',
+  //       'plantillas',
+  //       'maquinaria',
+  //       'Factura.xlsx'
+  //     )
+  //   );
+  // }
+
+  // //maquinria no factura
+  // if (body.frente === 'MAQUINARIA' && dataProveedor[0].factura === 0) {
+  //   await workbook.xlsx.readFile(
+  //     join(
+  //       cwd(),
+  //       'src',
+  //       'ExcelsStorageRequis',
+  //       'plantillas',
+  //       'maquinaria',
+  //       'NoFactura.xlsx'
+  //     )
+  //   );
+  // }
+
+  // //planeación factura
+  // if (body.frente === 'PLANEACION' && dataProveedor[0].factura === 1) {
+  //   await workbook.xlsx.readFile(
+  //     join(
+  //       cwd(),
+  //       'src',
+  //       'ExcelsStorageRequis',
+  //       'plantillas',
+  //       'planeacion',
+  //       'Factura.xlsx'
+  //     )
+  //   );
+  // }
+
+  // //planeación no factura
+  // if (body.frente === 'PLANEACION' && dataProveedor[0].factura === 0) {
+  //   await workbook.xlsx.readFile(
+  //     join(
+  //       cwd(),
+  //       'src',
+  //       'ExcelsStorageRequis',
+  //       'plantillas',
+  //       'planeacion',
+  //       'NoFactura.xlsx'
+  //     )
+  //   );
+  // }
   //Termina carga de archivos--------------------------------------------
 
   //CASE OBJECT suministro
@@ -129,17 +163,17 @@ export async function GET(req, { params }) {
 
   //economico en caso de ser una compra para una maquina
   if (body.economico !== 'No aplica' && body.economico !== '') {
-    workbook.getWorksheet('requi').getCell('C31').value = body.economico;
-    workbook.getWorksheet('compra').getCell('C31').value = body.economico;
+    workbook.getWorksheet('requi').getCell('C37').value = body.economico;
+    workbook.getWorksheet('compra').getCell('E35').value = body.economico;
   }
 
   //si es dolares o no para agregar nota de tipo de cambio a requi a orden de compra
   dataProveedor[0].moneda === 'dolar'
-    ? (workbook.getWorksheet('requi').getCell('D30').value =
+    ? (workbook.getWorksheet('requi').getCell('D38').value =
         'NOTA: HACER EL TIPO DE CAMBIO EL DIA DEL DEPOSITO')
     : '';
   dataProveedor[0].moneda === 'dolar'
-    ? (workbook.getWorksheet('compra').getCell('F27').value =
+    ? (workbook.getWorksheet('compra').getCell('F35').value =
         'NOTA: HACER EL TIPO DE CAMBIO EL DIA DEL DEPOSITO')
     : '';
 
@@ -175,7 +209,7 @@ export async function GET(req, { params }) {
   workbook.getWorksheet('requi').getCell('M25').value = dataProveedor[0].banco;
   workbook.getWorksheet('compra').getCell('H8').value =
     dataProveedor[0].direccion;
-  workbook.getWorksheet('compra').getCell('H34').value =
+  workbook.getWorksheet('compra').getCell('H36').value =
     dataProveedor[0].contacto;
 
   //calculo de impuestos
@@ -185,14 +219,14 @@ export async function GET(req, { params }) {
     const precioSinInpuestos = (precio / (1.16 - ISRPorcentaje)).toFixed(2);
 
     const ISRCantidad = (precioSinInpuestos * ISRPorcentaje).toFixed(2);
-    workbook.getWorksheet('compra').getCell('M47').value = ISRCantidad;
+    workbook.getWorksheet('compra').getCell('M49').value = ISRCantidad;
   }
 
   // insertar la cantidad en letras
   const cantidadEnLetra = numeroALetras(body.precio, dataProveedor[0].moneda);
   workbook
     .getWorksheet('compra')
-    .getCell('B40').value = `SON:( ${cantidadEnLetra} )`;
+    .getCell('B42').value = `SON:( ${cantidadEnLetra} )`;
 
   //insertar version de app en la ordenes de compras
   workbook
@@ -200,7 +234,7 @@ export async function GET(req, { params }) {
     .getCell('B45').value = `Generated by TBT-app ${process.env.VERSION_APP}`;
   workbook
     .getWorksheet('compra')
-    .getCell('B49').value = `Generated by TBT-app ${process.env.VERSION_APP}`;
+    .getCell('B51').value = `Generated by TBT-app ${process.env.VERSION_APP}`;
 
   //creación de base64 para enviar al cliente
   const buffer = await workbook.xlsx.writeBuffer();
