@@ -157,7 +157,7 @@ export async function GET(req, { params }) {
     body.numero,
     10
   );
-  workbook.getWorksheet('requi').getCell('K20').value = body.proveedor;
+  workbook.getWorksheet('requi').getCell('K19').value = body.proveedor;
   workbook.getWorksheet('requi').getCell(cellSuministro).value = 'X';
   workbook.getWorksheet('requi').getCell(cellLugar).value = 'X';
 
@@ -178,7 +178,7 @@ export async function GET(req, { params }) {
     : '';
 
   //modificar celdas de la tabla de productos
-  let numberTable = 19;
+  let numberTable = 18;
   let cellNumberUnitario = 16;
   body.obj_table.table.map((item, index) => {
     numberTable++;
@@ -199,14 +199,14 @@ export async function GET(req, { params }) {
   });
 
   //datos del proveedor
-  workbook.getWorksheet('requi').getCell('K20').value = body.proveedor;
-  workbook.getWorksheet('requi').getCell('M20').value = dataProveedor[0].rfc;
-  workbook.getWorksheet('requi').getCell('M21').value = dataProveedor[0].cuenta;
-  workbook.getWorksheet('requi').getCell('M22').value = dataProveedor[0].clabe;
-  workbook.getWorksheet('requi').getCell('M23').value =
+  workbook.getWorksheet('requi').getCell('K19').value = body.proveedor;
+  workbook.getWorksheet('requi').getCell('M19').value = dataProveedor[0].rfc;
+  workbook.getWorksheet('requi').getCell('M20').value = dataProveedor[0].cuenta;
+  workbook.getWorksheet('requi').getCell('M21').value = dataProveedor[0].clabe;
+  workbook.getWorksheet('requi').getCell('M22').value =
     dataProveedor[0].telefono;
-  workbook.getWorksheet('requi').getCell('M24').value = dataProveedor[0].correo;
-  workbook.getWorksheet('requi').getCell('M25').value = dataProveedor[0].banco;
+  workbook.getWorksheet('requi').getCell('M23').value = dataProveedor[0].correo;
+  workbook.getWorksheet('requi').getCell('M24').value = dataProveedor[0].banco;
   workbook.getWorksheet('compra').getCell('H8').value =
     dataProveedor[0].direccion;
   workbook.getWorksheet('compra').getCell('H36').value =
